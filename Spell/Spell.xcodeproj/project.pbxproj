@@ -101,7 +101,6 @@
 				B6A702A529B55EEB00487A0D /* Model Layer */,
 				B6A702A629B55EF200487A0D /* ViewModel Layer */,
 				B6A702A729B55EFD00487A0D /* View Layer */,
-				B6A7027F29B55DF500487A0D /* Preview Content */,
 			);
 			path = Spell;
 			sourceTree = "<group>";
@@ -163,6 +162,9 @@
 			isa = PBXGroup;
 			children = (
 				B6A702A829B55F2200487A0D /* Views */,
+				B6A702AA29B55F5F00487A0D /* Presets */,
+				B6A702AB29B55F6400487A0D /* Assets */,
+				B6A7027F29B55DF500487A0D /* Preview Content */,
 			);
 			path = "View Layer";
 			sourceTree = "<group>";
@@ -170,8 +172,6 @@
 		B6A702A829B55F2200487A0D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B6A702AB29B55F6400487A0D /* Assets */,
-				B6A702AA29B55F5F00487A0D /* Presets */,
 				B6A702A929B55F2A00487A0D /* Main */,
 			);
 			path = Views;

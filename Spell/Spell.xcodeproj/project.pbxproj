@@ -95,10 +95,12 @@
 		B6A7027729B55DF400487A0D /* Spell */ = {
 			isa = PBXGroup;
 			children = (
-				B6A7027829B55DF400487A0D /* SpellApp.swift */,
-				B6A7027A29B55DF400487A0D /* ContentView.swift */,
-				B6A7027C29B55DF500487A0D /* Assets.xcassets */,
-				B6A7027E29B55DF500487A0D /* Spell.entitlements */,
+				B6A702AC29B55FB800487A0D /* App */,
+				B6A702A329B55ED900487A0D /* Strings */,
+				B6A702A429B55EDF00487A0D /* Swift */,
+				B6A702A529B55EEB00487A0D /* Model Layer */,
+				B6A702A629B55EF200487A0D /* ViewModel Layer */,
+				B6A702A729B55EFD00487A0D /* View Layer */,
 				B6A7027F29B55DF500487A0D /* Preview Content */,
 			);
 			path = Spell;
@@ -127,6 +129,84 @@
 				B6A7029629B55DF600487A0D /* SpellUITestsLaunchTests.swift */,
 			);
 			path = SpellUITests;
+			sourceTree = "<group>";
+		};
+		B6A702A329B55ED900487A0D /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
+		B6A702A429B55EDF00487A0D /* Swift */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Swift;
+			sourceTree = "<group>";
+		};
+		B6A702A529B55EEB00487A0D /* Model Layer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Model Layer";
+			sourceTree = "<group>";
+		};
+		B6A702A629B55EF200487A0D /* ViewModel Layer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "ViewModel Layer";
+			sourceTree = "<group>";
+		};
+		B6A702A729B55EFD00487A0D /* View Layer */ = {
+			isa = PBXGroup;
+			children = (
+				B6A702A829B55F2200487A0D /* Views */,
+			);
+			path = "View Layer";
+			sourceTree = "<group>";
+		};
+		B6A702A829B55F2200487A0D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B6A702AB29B55F6400487A0D /* Assets */,
+				B6A702AA29B55F5F00487A0D /* Presets */,
+				B6A702A929B55F2A00487A0D /* Main */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B6A702A929B55F2A00487A0D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				B6A7027A29B55DF400487A0D /* ContentView.swift */,
+				B6A7027829B55DF400487A0D /* SpellApp.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		B6A702AA29B55F5F00487A0D /* Presets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presets;
+			sourceTree = "<group>";
+		};
+		B6A702AB29B55F6400487A0D /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				B6A7027C29B55DF500487A0D /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		B6A702AC29B55FB800487A0D /* App */ = {
+			isa = PBXGroup;
+			children = (
+				B6A7027E29B55DF500487A0D /* Spell.entitlements */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -411,7 +491,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Spell/Spell.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Spell/App/Spell.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Spell/Preview Content\"";
@@ -447,7 +527,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Spell/Spell.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Spell/App/Spell.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Spell/Preview Content\"";

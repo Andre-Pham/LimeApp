@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  Spell
+
+  Created by Andre Pham on 6/3/2023.
+  
+*/
+
+// MARK: - Tab Bar
+
+"tabBar.generate3D" = "3D";
+"tabBar.generateText" = "Camera";
+"tabBar.info" = "Info";
+"tabBar.settings" = "Settings";

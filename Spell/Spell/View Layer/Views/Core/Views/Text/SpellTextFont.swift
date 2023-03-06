@@ -11,10 +11,20 @@ import SwiftUI
 enum SpellTextFont {
     
     case title
+    case bodyBold
+    case bodyRegular
+    case bodyLight
     
     private var name: String {
         switch self {
-        case .title: return "TiltWarp-Regular"
+        case .title:
+            return "TiltWarp-Regular"
+        case .bodyBold:
+            return "Quicksand-SemiBold"
+        case .bodyRegular:
+            return "Quicksand-Regular"
+        case .bodyLight:
+            return "Quicksand-Light"
         }
     }
     

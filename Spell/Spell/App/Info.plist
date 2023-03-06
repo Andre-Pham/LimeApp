@@ -27,6 +27,9 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Quicksand-SemiBold.ttf</string>
+		<string>Quicksand-Regular.ttf</string>
+		<string>Quicksand-Light.ttf</string>
 		<string>TiltWarp-Regular.ttf</string>
 	</array>
 	<key>CFBundleDisplayName</key>

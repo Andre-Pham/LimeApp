@@ -9,7 +9,7 @@ import SwiftUI
 
 enum SpellIconSize: CGFloat {
     case large = 34
-    case standard = 18
+    case standard = 20
 }
 
 struct SpellIcon: View {

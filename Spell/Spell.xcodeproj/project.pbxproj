@@ -30,6 +30,9 @@
 		B6A702D229B57B3200487A0D /* SpellTextSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A702D129B57B3200487A0D /* SpellTextSize.swift */; };
 		B6A702D429B57BFF00487A0D /* SpellTextFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A702D329B57BFF00487A0D /* SpellTextFont.swift */; };
 		B6A702DD29B5919900487A0D /* TiltWarp-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B6A702DC29B5919500487A0D /* TiltWarp-Regular.ttf */; };
+		B6A702E329B59C7600487A0D /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B6A702E029B59C7600487A0D /* Quicksand-Regular.ttf */; };
+		B6A702E429B59C7600487A0D /* Quicksand-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B6A702E129B59C7600487A0D /* Quicksand-SemiBold.ttf */; };
+		B6A702E529B59C7600487A0D /* Quicksand-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B6A702E229B59C7600487A0D /* Quicksand-Light.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +81,9 @@
 		B6A702D329B57BFF00487A0D /* SpellTextFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellTextFont.swift; sourceTree = "<group>"; };
 		B6A702D529B57D3400487A0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6A702DC29B5919500487A0D /* TiltWarp-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TiltWarp-Regular.ttf"; sourceTree = "<group>"; };
+		B6A702E029B59C7600487A0D /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.ttf"; sourceTree = "<group>"; };
+		B6A702E129B59C7600487A0D /* Quicksand-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-SemiBold.ttf"; sourceTree = "<group>"; };
+		B6A702E229B59C7600487A0D /* Quicksand-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Light.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -342,6 +348,9 @@
 		B6A702D729B57F5B00487A0D /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				B6A702E229B59C7600487A0D /* Quicksand-Light.ttf */,
+				B6A702E029B59C7600487A0D /* Quicksand-Regular.ttf */,
+				B6A702E129B59C7600487A0D /* Quicksand-SemiBold.ttf */,
 				B6A702DC29B5919500487A0D /* TiltWarp-Regular.ttf */,
 			);
 			path = Fonts;
@@ -454,7 +463,10 @@
 				B6A7028129B55DF500487A0D /* Preview Assets.xcassets in Resources */,
 				B6A702DD29B5919900487A0D /* TiltWarp-Regular.ttf in Resources */,
 				B6A702CC29B579E600487A0D /* Localizable.strings in Resources */,
+				B6A702E529B59C7600487A0D /* Quicksand-Light.ttf in Resources */,
+				B6A702E429B59C7600487A0D /* Quicksand-SemiBold.ttf in Resources */,
 				B6A7027D29B55DF500487A0D /* Assets.xcassets in Resources */,
+				B6A702E329B59C7600487A0D /* Quicksand-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

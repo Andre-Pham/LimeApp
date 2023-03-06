@@ -25,7 +25,7 @@ enum SpellTextSize {
         case .title4: return 25
         case .title5: return 20
             
-        case .tabBar: return 14
+        case .tabBar: return 9
         }
     }
     

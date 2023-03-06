@@ -33,36 +33,37 @@ struct TabBarView: View {
                     TabBarIconView(
                         viewRouter: self.viewRouter,
                         correspondingPage: .generate3D,
-                        icon: SpellIcon(image: Image(systemName: "trash")),
-                        selectedIcon: SpellIcon(image: Image(systemName: "trash.fill")),
+                        icon: SpellIcon(image: Image(systemName: "cube.transparent")),
+                        selectedIcon: SpellIcon(image: Image(systemName: "cube.transparent.fill")),
                         text: Strings("tabBar.generate3D").local
                     )
                     
                     TabBarIconView(
                         viewRouter: self.viewRouter,
                         correspondingPage: .generateText,
-                        icon: SpellIcon(image: Image(systemName: "trash")),
-                        selectedIcon: SpellIcon(image: Image(systemName: "trash.fill")),
+                        icon: SpellIcon(image: Image(systemName: "hand.wave")),
+                        selectedIcon: SpellIcon(image: Image(systemName: "hand.wave.fill")),
                         text: Strings("tabBar.generateText").local
                     )
                     
                     TabBarIconView(
                         viewRouter: self.viewRouter,
                         correspondingPage: .info,
-                        icon: SpellIcon(image: Image(systemName: "trash")),
-                        selectedIcon: SpellIcon(image: Image(systemName: "trash.fill")),
+                        icon: SpellIcon(image: Image(systemName: "info.circle")),
+                        selectedIcon: SpellIcon(image: Image(systemName: "info.circle.fill")),
                         text: Strings("tabBar.info").local
                     )
                     
                     TabBarIconView(
                         viewRouter: self.viewRouter,
                         correspondingPage: .settings,
-                        icon: SpellIcon(image: Image(systemName: "trash")),
-                        selectedIcon: SpellIcon(image: Image(systemName: "trash.fill")),
+                        icon: SpellIcon(image: Image(systemName: "gearshape")),
+                        selectedIcon: SpellIcon(image: Image(systemName: "gearshape.fill")),
                         text: Strings("tabBar.settings").local
                     )
                 }
-                .frame(height: 55)
+                .padding(.top, 4)
+                .frame(height: 50)
                 .background(SpellColors.background)
                 .edgesIgnoringSafeArea(.bottom)
             }

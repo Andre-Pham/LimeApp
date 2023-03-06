@@ -9,7 +9,12 @@ import SwiftUI
 
 struct GenerateTextView: View {
     var body: some View {
-        Text("GenerateTextView")
+        ZStack {
+            Color.gray
+                .ignoresSafeArea()
+            
+            Text("GenerateTextView")
+        }
     }
 }
 

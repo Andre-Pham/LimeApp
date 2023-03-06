@@ -9,7 +9,12 @@ import SwiftUI
 
 struct Generate3DView: View {
     var body: some View {
-        Text("Generate3DView")
+        ZStack {
+            Color.gray
+                .ignoresSafeArea()
+            
+            Text("Generate3DView")
+        }
     }
 }
 

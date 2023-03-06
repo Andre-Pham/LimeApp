@@ -23,16 +23,16 @@ struct TabBarIconView: View {
                     Group {
                         if self.viewRouter.currentPage == self.correspondingPage {
                             self.selectedIcon
-                                .foregroundColor(.purple)
+                                .foregroundColor(.black)
                         } else {
                             self.icon
-                                .foregroundColor(.gray)
+                                .foregroundColor(.black)
                         }
                     }
                     .padding(.top, 24)
                         
                     
-                    SpellText(text: self.text, font: .title, size: .tabBar)
+                    SpellText(text: self.text, font: .bodyBold, size: .tabBar)
                     
                     Spacer()
                 }

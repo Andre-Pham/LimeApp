@@ -64,7 +64,7 @@ struct TabBarView: View {
                 }
                 .padding(.top, 4)
                 .frame(height: 50)
-                .background(SpellColors.background)
+                .background(SpellColors.backgroundFill)
                 .edgesIgnoringSafeArea(.bottom)
             }
         }

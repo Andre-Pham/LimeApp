@@ -14,7 +14,7 @@ struct MainView: View {
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                SpellColors.background
+                SpellColors.backgroundFill
                     .ignoresSafeArea()
 
                 TabBarView()
@@ -22,7 +22,7 @@ struct MainView: View {
 
                 // Top filled bar so content isn't shown around the notch
                 VStack {
-                    SpellColors.background
+                    SpellColors.backgroundFill
                         .frame(
                             width: geo.size.width,
                             height: geo.safeAreaInsets.top,

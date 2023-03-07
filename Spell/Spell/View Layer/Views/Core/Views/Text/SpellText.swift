@@ -11,7 +11,7 @@ struct SpellText: View {
     let text: String
     let font: SpellTextFont
     let size: SpellTextSize
-    var color: Color = SpellColors.text
+    var color: Color = SpellColors.bodyText
     var multilineTextAlignment: TextAlignment = .leading
     
     var body: some View {

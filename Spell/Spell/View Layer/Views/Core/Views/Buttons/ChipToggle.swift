@@ -12,10 +12,10 @@ struct ChipToggle: View {
     var icon: SpellIcon? = nil
     let text: String
     let onTap: (_ isSelected: Bool) -> Void
-    var color: Color = .gray
-    var selectedColor: Color = .red
-    var textColor: Color = .white
-    var selectedTextColor: Color = .white
+    var color: Color = SpellColors.secondaryButtonFill
+    var selectedColor: Color = SpellColors.primaryButtonFill
+    var textColor: Color = SpellColors.secondaryButtonText
+    var selectedTextColor: Color = SpellColors.primaryButtonText
     
     private var activeColor: Color {
         return self.isSelected ? self.selectedColor : self.color

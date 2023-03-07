@@ -33,6 +33,8 @@
 		B6A702E329B59C7600487A0D /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B6A702E029B59C7600487A0D /* Quicksand-Regular.ttf */; };
 		B6A702E429B59C7600487A0D /* Quicksand-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B6A702E129B59C7600487A0D /* Quicksand-SemiBold.ttf */; };
 		B6A702E529B59C7600487A0D /* Quicksand-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B6A702E229B59C7600487A0D /* Quicksand-Light.ttf */; };
+		B6A702EA29B5F50000487A0D /* ChipToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A702E929B5F50000487A0D /* ChipToggle.swift */; };
+		B6A702EC29B5FC1A00487A0D /* AnimateButtonPress.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A702EB29B5FC1A00487A0D /* AnimateButtonPress.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +86,8 @@
 		B6A702E029B59C7600487A0D /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.ttf"; sourceTree = "<group>"; };
 		B6A702E129B59C7600487A0D /* Quicksand-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-SemiBold.ttf"; sourceTree = "<group>"; };
 		B6A702E229B59C7600487A0D /* Quicksand-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Light.ttf"; sourceTree = "<group>"; };
+		B6A702E929B5F50000487A0D /* ChipToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipToggle.swift; sourceTree = "<group>"; };
+		B6A702EB29B5FC1A00487A0D /* AnimateButtonPress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateButtonPress.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -329,6 +333,7 @@
 		B6A702CF29B57B1F00487A0D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B6A702E629B5F4CA00487A0D /* Buttons */,
 				B6A702C729B578BE00487A0D /* SpellIcon.swift */,
 				B6A702D029B57B2300487A0D /* Text */,
 			);
@@ -354,6 +359,15 @@
 				B6A702DC29B5919500487A0D /* TiltWarp-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		B6A702E629B5F4CA00487A0D /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				B6A702E929B5F50000487A0D /* ChipToggle.swift */,
+				B6A702EB29B5FC1A00487A0D /* AnimateButtonPress.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -494,9 +508,11 @@
 				B6A702BD29B5765500487A0D /* Generate3DView.swift in Sources */,
 				B6A702B029B560FC00487A0D /* ViewRouter.swift in Sources */,
 				B6A702B229B5746500487A0D /* MainView.swift in Sources */,
+				B6A702EA29B5F50000487A0D /* ChipToggle.swift in Sources */,
 				B6A702D229B57B3200487A0D /* SpellTextSize.swift in Sources */,
 				B6A7027B29B55DF400487A0D /* ContentView.swift in Sources */,
 				B6A702BF29B5766700487A0D /* GenerateTextView.swift in Sources */,
+				B6A702EC29B5FC1A00487A0D /* AnimateButtonPress.swift in Sources */,
 				B6A702C529B5785900487A0D /* TabBarIconView.swift in Sources */,
 				B6A702C329B5768500487A0D /* SettingsView.swift in Sources */,
 				B6A702CA29B579C800487A0D /* Strings.swift in Sources */,

@@ -10,12 +10,13 @@ import SwiftUI
 struct ChipToggle: View {
     @State private var isSelected = false
     var icon: SpellIcon? = nil
-    let text: String
-    let onTap: (_ isSelected: Bool) -> Void
+    var selectedIcon: SpellIcon? = nil
+    var text: String? = nil
     var color: Color = SpellColors.secondaryButtonFill
     var selectedColor: Color = SpellColors.primaryButtonFill
     var textColor: Color = SpellColors.secondaryButtonText
     var selectedTextColor: Color = SpellColors.primaryButtonText
+    let onTap: (_ isSelected: Bool) -> Void
     
     private var activeColor: Color {
         return self.isSelected ? self.selectedColor : self.color
@@ -23,15 +24,33 @@ struct ChipToggle: View {
     private var activeTextColor: Color {
         return self.isSelected ? self.selectedTextColor : self.textColor
     }
+    private var activeIcon: SpellIcon? {
+        if self.isSelected {
+            return self.selectedIcon ?? self.icon
+        }
+        return self.icon
+    }
     
     var body: some View {
         HStack {
-            if let icon = self.icon {
-                icon
-                    .foregroundColor(self.activeTextColor)
+            if let icon = self.activeIcon {
+                ZStack {
+                    icon
+                        .foregroundColor(self.activeTextColor)
+                    
+                    // Ensure appropriate vertical padding is still added
+                    SpellText(text: "|", font: .bodyBold, size: .title5, color: .clear)
+                }
             }
             
-            SpellText(text: self.text, font: .bodyBold, size: .title5, color: self.activeTextColor)
+            if let text = self.text {
+                SpellText(text: text, font: .bodyBold, size: .title5, color: self.activeTextColor)
+            }
+            
+            // Render a circle if no icon and no text is provided
+            if self.activeIcon == nil && self.text == nil {
+                SpellText(text: "|", font: .bodyBold, size: .title5, color: .clear)
+            }
         }
         .padding(.vertical, 10)
         .padding(.horizontal, 20)
@@ -47,13 +66,25 @@ struct ChipToggle: View {
 
 struct ChipToggle_Previews: PreviewProvider {
     static var previews: some View {
-        HStack {
-            ChipToggle(text: "Hello World") { isSelected in
-                print("Chip is selected: \(isSelected)")
+        VStack(alignment: .leading) {
+            HStack {
+                ChipToggle(text: "Hello World") { isSelected in
+                    print("Chip is selected: \(isSelected)")
+                }
+                
+                ChipToggle(icon: SpellIcon(image: Image(systemName: "trash.fill")), text: "Chip") { isSelected in
+                    print("Chip is selected: \(isSelected)")
+                }
             }
             
-            ChipToggle(icon: SpellIcon(image: Image(systemName: "trash.fill")), text: "Chip") { isSelected in
-                print("Chip is selected: \(isSelected)")
+            HStack {
+                ChipToggle(icon: SpellIcon(image: Image(systemName: "trash.fill"))) { isSelected in
+                    print("Chip is selected: \(isSelected)")
+                }
+                
+                ChipToggle() { isSelected in
+                    print("Chip is selected: \(isSelected)")
+                }
             }
         }
     }

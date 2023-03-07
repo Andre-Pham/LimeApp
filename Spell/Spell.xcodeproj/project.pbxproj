@@ -35,6 +35,7 @@
 		B6A702E529B59C7600487A0D /* Quicksand-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B6A702E229B59C7600487A0D /* Quicksand-Light.ttf */; };
 		B6A702EA29B5F50000487A0D /* ChipToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A702E929B5F50000487A0D /* ChipToggle.swift */; };
 		B6A702EC29B5FC1A00487A0D /* AnimateButtonPress.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A702EB29B5FC1A00487A0D /* AnimateButtonPress.swift */; };
+		B6A702EE29B71A4B00487A0D /* Toolbar3DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A702ED29B71A4B00487A0D /* Toolbar3DView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		B6A702E229B59C7600487A0D /* Quicksand-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Light.ttf"; sourceTree = "<group>"; };
 		B6A702E929B5F50000487A0D /* ChipToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipToggle.swift; sourceTree = "<group>"; };
 		B6A702EB29B5FC1A00487A0D /* AnimateButtonPress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateButtonPress.swift; sourceTree = "<group>"; };
+		B6A702ED29B71A4B00487A0D /* Toolbar3DView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toolbar3DView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				B6A702BC29B5765500487A0D /* Generate3DView.swift */,
+				B6A702ED29B71A4B00487A0D /* Toolbar3DView.swift */,
 			);
 			path = "Generate 3D";
 			sourceTree = "<group>";
@@ -506,6 +509,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6A702BD29B5765500487A0D /* Generate3DView.swift in Sources */,
+				B6A702EE29B71A4B00487A0D /* Toolbar3DView.swift in Sources */,
 				B6A702B029B560FC00487A0D /* ViewRouter.swift in Sources */,
 				B6A702B229B5746500487A0D /* MainView.swift in Sources */,
 				B6A702EA29B5F50000487A0D /* ChipToggle.swift in Sources */,

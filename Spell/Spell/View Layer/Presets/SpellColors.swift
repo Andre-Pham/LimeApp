@@ -20,6 +20,7 @@ enum SpellColors {
     static let backgroundFill = Color("Assets#FFFFFF#000000")
     static let primaryButtonFill = Self.accent
     static let secondaryButtonFill = Self.component
+    static let toolbarFill = Self.backgroundFill
     
     // MARK: - Text
     

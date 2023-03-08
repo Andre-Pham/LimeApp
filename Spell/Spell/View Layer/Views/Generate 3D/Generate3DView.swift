@@ -11,9 +11,16 @@ struct Generate3DView: View {
     var body: some View {
         ZStack {
             Color.gray
-                .ignoresSafeArea()
             
             Text("Generate3DView")
+            
+            VStack {
+                Spacer()
+                
+                Toolbar3DView()
+                    .padding(.horizontal, 15)
+                    .padding(.bottom, 20)
+            }
         }
     }
 }

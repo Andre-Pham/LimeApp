@@ -15,6 +15,8 @@ enum SpellTextSize {
     case title4
     case title5
     
+    case body
+    
     case tabBar
     
     var value: CGFloat {
@@ -24,6 +26,8 @@ enum SpellTextSize {
         case .title3: return 35
         case .title4: return 25
         case .title5: return 20
+            
+        case .body: return 18
             
         case .tabBar: return 9
         }

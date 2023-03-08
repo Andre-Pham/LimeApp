@@ -36,6 +36,8 @@
 		B6A702EA29B5F50000487A0D /* ChipToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A702E929B5F50000487A0D /* ChipToggle.swift */; };
 		B6A702EC29B5FC1A00487A0D /* AnimateButtonPress.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A702EB29B5FC1A00487A0D /* AnimateButtonPress.swift */; };
 		B6A702EE29B71A4B00487A0D /* Toolbar3DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A702ED29B71A4B00487A0D /* Toolbar3DView.swift */; };
+		B6A702F129B8433F00487A0D /* KeyboardHeightPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A702F029B8433E00487A0D /* KeyboardHeightPublisher.swift */; };
+		B6A702F429B844E400487A0D /* KeyboardPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A702F329B844E400487A0D /* KeyboardPadding.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +92,8 @@
 		B6A702E929B5F50000487A0D /* ChipToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipToggle.swift; sourceTree = "<group>"; };
 		B6A702EB29B5FC1A00487A0D /* AnimateButtonPress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateButtonPress.swift; sourceTree = "<group>"; };
 		B6A702ED29B71A4B00487A0D /* Toolbar3DView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toolbar3DView.swift; sourceTree = "<group>"; };
+		B6A702F029B8433E00487A0D /* KeyboardHeightPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightPublisher.swift; sourceTree = "<group>"; };
+		B6A702F329B844E400487A0D /* KeyboardPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardPadding.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +205,7 @@
 		B6A702A629B55EF200487A0D /* ViewModel Layer */ = {
 			isa = PBXGroup;
 			children = (
+				B6A702EF29B8431400487A0D /* Publishers */,
 				B6A702AE29B560CB00487A0D /* State Managers */,
 				B6A702AD29B560C600487A0D /* View Models */,
 			);
@@ -328,6 +333,7 @@
 		B6A702C629B578B200487A0D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B6A702F229B844B800487A0D /* Modifiers */,
 				B6A702CF29B57B1F00487A0D /* Views */,
 			);
 			path = Core;
@@ -371,6 +377,22 @@
 				B6A702EB29B5FC1A00487A0D /* AnimateButtonPress.swift */,
 			);
 			path = Buttons;
+			sourceTree = "<group>";
+		};
+		B6A702EF29B8431400487A0D /* Publishers */ = {
+			isa = PBXGroup;
+			children = (
+				B6A702F029B8433E00487A0D /* KeyboardHeightPublisher.swift */,
+			);
+			path = Publishers;
+			sourceTree = "<group>";
+		};
+		B6A702F229B844B800487A0D /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				B6A702F329B844E400487A0D /* KeyboardPadding.swift */,
+			);
+			path = Modifiers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -519,7 +541,9 @@
 				B6A702EC29B5FC1A00487A0D /* AnimateButtonPress.swift in Sources */,
 				B6A702C529B5785900487A0D /* TabBarIconView.swift in Sources */,
 				B6A702C329B5768500487A0D /* SettingsView.swift in Sources */,
+				B6A702F429B844E400487A0D /* KeyboardPadding.swift in Sources */,
 				B6A702CA29B579C800487A0D /* Strings.swift in Sources */,
+				B6A702F129B8433F00487A0D /* KeyboardHeightPublisher.swift in Sources */,
 				B6A702C829B578BE00487A0D /* SpellIcon.swift in Sources */,
 				B6A702D429B57BFF00487A0D /* SpellTextFont.swift in Sources */,
 				B6A702CE29B57AD600487A0D /* SpellText.swift in Sources */,

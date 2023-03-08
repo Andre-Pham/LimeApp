@@ -14,8 +14,8 @@ struct TabBarView: View {
     var body: some View {
         ZStack {
             ZStack {
-                Generate3DView()
-                    .opacity(self.viewRouter.currentPage == .generate3D ? 1 : 0)
+                GenerateSceneView()
+                    .opacity(self.viewRouter.currentPage == .generateScene ? 1 : 0)
 
                 GenerateTextView()
                     .opacity(self.viewRouter.currentPage == .generateText ? 1 : 0)
@@ -34,7 +34,7 @@ struct TabBarView: View {
                 HStack(spacing: 0) {
                     TabBarIconView(
                         viewRouter: self.viewRouter,
-                        correspondingPage: .generate3D,
+                        correspondingPage: .generateScene,
                         icon: SpellIcon(image: Image(systemName: "cube.transparent")),
                         selectedIcon: SpellIcon(image: Image(systemName: "cube.transparent.fill")),
                         text: Strings("tabBar.generate3D").local

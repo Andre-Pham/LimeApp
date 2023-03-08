@@ -10,13 +10,13 @@ import Foundation
 class ViewRouter: ObservableObject {
     
     enum Page {
-        case generate3D
+        case generateScene
         case generateText
         case info
         case settings
     }
     
-    @Published private(set) var currentPage: Page = .generate3D
+    @Published private(set) var currentPage: Page = .generateScene
     
     func switchPage(to page: Page) {
         self.currentPage = page

@@ -1,5 +1,5 @@
 //
-//  Toolbar3DView.swift
+//  SceneToolbarView.swift
 //  Spell
 //
 //  Created by Andre Pham on 7/3/2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Toolbar3DView: View {
+struct SceneToolbarView: View {
     @State private var promptToolActive = false
     @State private var prompt: String = ""
     private static let cornerRadius = 30.0
@@ -78,7 +78,7 @@ struct Toolbar3DView_Previews: PreviewProvider {
             Color.green
                 .ignoresSafeArea()
             
-            Toolbar3DView()
+            SceneToolbarView()
         }
     }
 }

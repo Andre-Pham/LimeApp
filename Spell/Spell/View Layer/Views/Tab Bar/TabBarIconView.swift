@@ -50,7 +50,7 @@ struct TabBarIconView_Previews: PreviewProvider {
     static var previews: some View {
         TabBarIconView(
             viewRouter: ViewRouter(),
-            correspondingPage: .generate3D,
+            correspondingPage: .generateScene,
             icon: SpellIcon(image: Image(systemName: "trash")),
             selectedIcon: SpellIcon(image: Image(systemName: "trash.fill")),
             text: "Page"

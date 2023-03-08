@@ -19,19 +19,6 @@ struct MainView: View {
 
                 TabBarView()
                     .environmentObject(self.viewRouter)
-
-                // Top filled bar so content isn't shown around the notch
-                VStack {
-                    SpellColors.backgroundFill
-                        .frame(
-                            width: geo.size.width,
-                            height: geo.safeAreaInsets.top,
-                            alignment: .top
-                        )
-                        .ignoresSafeArea()
-
-                    Spacer()
-                }
             }
         }
     }

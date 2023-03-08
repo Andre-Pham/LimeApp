@@ -11,11 +11,14 @@ struct Toolbar3DView: View {
     @State private var promptToolActive = false
     @State private var prompt: String = ""
     private static let cornerRadius = 30.0
+    @State private var promptDisabled = false
+    @State private var promptTimerID = 1
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             if self.promptToolActive {
                 TextField("Prompt", text: self.$prompt)
+                    .disabled(self.promptDisabled)
                     .font(SpellTextFont.bodyBold.value(size: .body))
                     .padding(16) // Padding around text
                     .background(SpellColors.secondaryButtonFill)
@@ -25,6 +28,18 @@ struct Toolbar3DView: View {
             HStack {
                 ChipToggle(icon: SpellIcon(image: Image(systemName: "character.cursor.ibeam"))) { isSelected in
                     self.promptToolActive = isSelected
+                    if isSelected {
+                        // Disable the prompt to avoid keyboard animation
+                        // Animation clashes cause funky behaviour
+                        self.promptTimerID = (self.promptTimerID + 1)%1000
+                        let localTimerID = self.promptTimerID
+                        self.promptDisabled = true
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                            if localTimerID == self.promptTimerID {
+                                self.promptDisabled = false
+                            }
+                        }
+                    }
                 }
 
                 ChipToggle(icon: SpellIcon(image: Image(systemName: "slider.horizontal.below.rectangle"))) { isSelected in

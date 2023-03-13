@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SceneToolbarView: View {
+    let sceneViewController: SceneViewController
     @State private var promptToolActive = false
     @State private var prompt: String = ""
     private static let cornerRadius = 30.0
@@ -19,6 +20,7 @@ struct SceneToolbarView: View {
             if self.promptToolActive {
                 TextField("Prompt", text: self.$prompt)
                     .disabled(self.promptDisabled)
+                    .submitLabel(.done)
                     .font(SpellTextFont.bodyBold.value(size: .body))
                     .padding(16) // Padding around text
                     .background(SpellColors.secondaryButtonFill)
@@ -43,11 +45,11 @@ struct SceneToolbarView: View {
                 }
 
                 ChipToggle(icon: SpellIcon(image: Image(systemName: "slider.horizontal.below.rectangle"))) { isSelected in
-                    // Do something
+                    self.sceneViewController.printNames()
                 }
                 
                 ChipToggle(icon: SpellIcon(image: Image(systemName: "cube.transparent"))) { isSelected in
-                    // Do something
+                    self.sceneViewController.positionCameraToLookAt(nodeName: "group1")
                 }
                 
                 Spacer()
@@ -57,8 +59,8 @@ struct SceneToolbarView: View {
                     selectedIcon: SpellIcon(image: Image(systemName: "pause.fill"), scale: 0.85),
                     color: SpellColors.primaryButtonFill,
                     textColor: SpellColors.primaryButtonText
-                ) { isSelected in
-                    // Do something
+                ) { isPlaying in
+                    self.sceneViewController.setScenePause(to: !isPlaying)
                 }
             }
             .frame(maxWidth: .infinity)
@@ -78,7 +80,7 @@ struct Toolbar3DView_Previews: PreviewProvider {
             Color.green
                 .ignoresSafeArea()
             
-            SceneToolbarView()
+            SceneToolbarView(sceneViewController: SceneViewController())
         }
     }
 }

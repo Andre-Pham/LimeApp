@@ -13,7 +13,7 @@ struct GenerateSceneView: View {
     
     init() {
         self.sceneViewController = SceneViewController()
-        if let scene = SCNScene(named: "Models.scnassets/ship.scn") {
+        if let scene = SCNScene(named: "Models.scnassets/alphabet.dae") {
             self.sceneViewController.setupSceneView(with: scene)
         }
     }
@@ -26,7 +26,7 @@ struct GenerateSceneView: View {
             VStack {
                 Spacer()
                 
-                SceneToolbarView()
+                SceneToolbarView(sceneViewController: self.sceneViewController)
                     .padding(.horizontal, 15)
                     .padding(.bottom, 20)
             }

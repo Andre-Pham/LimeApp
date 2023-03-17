@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B63E169229C3F49B0083616A /* SceneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E169129C3F49B0083616A /* SceneController.swift */; };
+		B63E169429C3FF240083616A /* SceneCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E169329C3FF240083616A /* SceneCamera.swift */; };
+		B63E169629C43A0E0083616A /* SceneNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E169529C43A0E0083616A /* SceneNode.swift */; };
 		B6A7027929B55DF400487A0D /* SpellApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A7027829B55DF400487A0D /* SpellApp.swift */; };
 		B6A7027B29B55DF400487A0D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A7027A29B55DF400487A0D /* ContentView.swift */; };
 		B6A7027D29B55DF500487A0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6A7027C29B55DF500487A0D /* Assets.xcassets */; };
@@ -42,6 +45,7 @@
 		B6A702FA29B8576D00487A0D /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = B6A702F929B8576D00487A0D /* Models.scnassets */; };
 		B6A702FC29B857A800487A0D /* SceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A702FB29B857A800487A0D /* SceneView.swift */; };
 		B6A702FE29B85A5800487A0D /* TopSafeAreaInsetFill.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A702FD29B85A5800487A0D /* TopSafeAreaInsetFill.swift */; };
+		B6A7030029BEC00000487A0D /* SceneLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A702FF29BEC00000487A0D /* SceneLight.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +66,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B63E169129C3F49B0083616A /* SceneController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneController.swift; sourceTree = "<group>"; };
+		B63E169329C3FF240083616A /* SceneCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCamera.swift; sourceTree = "<group>"; };
+		B63E169529C43A0E0083616A /* SceneNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneNode.swift; sourceTree = "<group>"; };
 		B6A7027529B55DF400487A0D /* Spell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6A7027829B55DF400487A0D /* SpellApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellApp.swift; sourceTree = "<group>"; };
 		B6A7027A29B55DF400487A0D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -102,6 +109,7 @@
 		B6A702F929B8576D00487A0D /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
 		B6A702FB29B857A800487A0D /* SceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneView.swift; sourceTree = "<group>"; };
 		B6A702FD29B85A5800487A0D /* TopSafeAreaInsetFill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopSafeAreaInsetFill.swift; sourceTree = "<group>"; };
+		B6A702FF29BEC00000487A0D /* SceneLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneLight.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -411,6 +419,10 @@
 			children = (
 				B6A702F629B855B900487A0D /* SceneViewController.swift */,
 				B6A702FB29B857A800487A0D /* SceneView.swift */,
+				B6A702FF29BEC00000487A0D /* SceneLight.swift */,
+				B63E169129C3F49B0083616A /* SceneController.swift */,
+				B63E169329C3FF240083616A /* SceneCamera.swift */,
+				B63E169529C43A0E0083616A /* SceneNode.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -552,13 +564,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6A702BD29B5765500487A0D /* GenerateSceneView.swift in Sources */,
+				B6A7030029BEC00000487A0D /* SceneLight.swift in Sources */,
 				B6A702EE29B71A4B00487A0D /* SceneToolbarView.swift in Sources */,
 				B6A702B029B560FC00487A0D /* ViewRouter.swift in Sources */,
+				B63E169229C3F49B0083616A /* SceneController.swift in Sources */,
 				B6A702F729B855B900487A0D /* SceneViewController.swift in Sources */,
 				B6A702B229B5746500487A0D /* MainView.swift in Sources */,
 				B6A702EA29B5F50000487A0D /* ChipToggle.swift in Sources */,
 				B6A702D229B57B3200487A0D /* SpellTextSize.swift in Sources */,
 				B6A7027B29B55DF400487A0D /* ContentView.swift in Sources */,
+				B63E169629C43A0E0083616A /* SceneNode.swift in Sources */,
 				B6A702BF29B5766700487A0D /* GenerateTextView.swift in Sources */,
 				B6A702EC29B5FC1A00487A0D /* AnimateButtonPress.swift in Sources */,
 				B6A702C529B5785900487A0D /* TabBarIconView.swift in Sources */,
@@ -573,6 +588,7 @@
 				B6A702CE29B57AD600487A0D /* SpellText.swift in Sources */,
 				B6A7027929B55DF400487A0D /* SpellApp.swift in Sources */,
 				B6A702B629B5758300487A0D /* TabBarView.swift in Sources */,
+				B63E169429C3FF240083616A /* SceneCamera.swift in Sources */,
 				B6A702C129B5767400487A0D /* InfoView.swift in Sources */,
 				B6A702B429B574A100487A0D /* SpellColors.swift in Sources */,
 			);

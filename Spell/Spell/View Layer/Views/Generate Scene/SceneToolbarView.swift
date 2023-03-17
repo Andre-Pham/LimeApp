@@ -45,11 +45,14 @@ struct SceneToolbarView: View {
                 }
 
                 ChipToggle(icon: SpellIcon(image: Image(systemName: "slider.horizontal.below.rectangle"))) { isSelected in
-                    self.sceneViewController.printNames()
+                    //self.sceneViewController.scene2.
+                    //self.sceneViewController.printNames()
+                    self.sceneViewController.scene.printNames()
                 }
                 
                 ChipToggle(icon: SpellIcon(image: Image(systemName: "cube.transparent"))) { isSelected in
-                    self.sceneViewController.positionCameraToLookAt(nodeName: "group1")
+                    //self.sceneViewController.positionCameraToLookAt(nodeName: "group1")
+                    self.sceneViewController.scene.positionCameraToLookAt(nodeName: "group1")
                 }
                 
                 Spacer()
@@ -60,7 +63,8 @@ struct SceneToolbarView: View {
                     color: SpellColors.primaryButtonFill,
                     textColor: SpellColors.primaryButtonText
                 ) { isPlaying in
-                    self.sceneViewController.setScenePause(to: !isPlaying)
+                    //self.sceneViewController.setScenePause(to: !isPlaying)
+                    self.sceneViewController.scene.setScenePause(to: !isPlaying)
                 }
             }
             .frame(maxWidth: .infinity)

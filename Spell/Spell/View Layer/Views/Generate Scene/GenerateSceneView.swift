@@ -14,7 +14,9 @@ struct GenerateSceneView: View {
     init() {
         self.sceneViewController = SceneViewController()
         if let scene = SCNScene(named: "Models.scnassets/alphabet.dae") {
-            self.sceneViewController.setupSceneView(with: scene)
+            let scene = SceneController(scene: scene)
+            self.sceneViewController.attach(scene: scene)
+            //self.sceneViewController.setupSceneView(with: scene)
         }
     }
     

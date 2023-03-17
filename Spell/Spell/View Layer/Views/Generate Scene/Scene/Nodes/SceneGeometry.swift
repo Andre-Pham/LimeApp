@@ -13,17 +13,15 @@ class SceneGeometry {
     private static let NAME_PREFIX = "geometry"
     
     private var node: SCNNode = SCNNode()
-    private var geometry: SCNGeometry = SCNGeometry()
     var name: String {
         return self.node.name!
     }
     
     init(id: String = UUID().uuidString) {
-        self.node.geometry = self.geometry
         self.node.name = "\(Self.NAME_PREFIX)-\(id)"
     }
     
-    init(id: String = UUID().uuidString, geometry: SCNGeometry) {
+    init(id: String = UUID().uuidString, geometry: GeometryBuilder) {
         self.setGeometry(to: geometry)
         self.node.name = "\(Self.NAME_PREFIX)-\(id)"
     }
@@ -37,22 +35,38 @@ class SceneGeometry {
     }
     
     @discardableResult
-    func setGeometry(to geometry: SCNGeometry) -> Self {
-        self.node.geometry = geometry
-        self.geometry = geometry
+    func setGeometry(to geometryBuilder: GeometryBuilder) -> Self {
+        geometryBuilder.apply(to: self.node)
         return self
     }
     
     @discardableResult
     func setLightingModel(to lightingModel: SCNMaterial.LightingModel) -> Self {
-        self.node.geometry?.firstMaterial?.lightingModel = lightingModel
+        self.allNodes().forEach({
+            $0.geometry?.firstMaterial?.lightingModel = lightingModel
+        })
         return self
     }
     
     @discardableResult
     func setColor(to color: UIColor) -> Self {
-        self.node.geometry?.firstMaterial?.diffuse.contents = color
+        self.allNodes().forEach({
+            $0.geometry?.firstMaterial?.diffuse.contents = color
+        })
         return self
+    }
+    
+    private func allNodes() -> [SCNNode] {
+        var allNodes = [SCNNode]()
+        self.recursivelyFindNodes(for: self.node, insert: &allNodes)
+        return allNodes
+    }
+    
+    private func recursivelyFindNodes(for node: SCNNode, insert: inout [SCNNode]) {
+        insert.append(node)
+        for childNode in node.childNodes {
+            self.recursivelyFindNodes(for: childNode, insert: &insert)
+        }
     }
     
 }

@@ -27,14 +27,34 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
             .setRenderDistance(far: 300.0)
         scene.setCamera(to: camera)
          
-        let floor = SceneGeometry(id: "floor", geometry: GeometryBuilder.floor())
+        let floor = SceneGeometry(id: "floor", geometry: GeometryBuilder().floor())
             .setColor(to: .blue)
         scene.addGeometry(floor)
         
-        let line = SceneGeometry(id: "line", geometry: GeometryBuilder.line(origin: SCNVector3(0.0, 0.0, 0.0), end: SCNVector3(20, 20, 0)))
+        let cylinder = SceneGeometry(id: "cylinder1", geometry: GeometryBuilder().cylinder(origin: SCNVector3(0.0, 2.0, 0.0), end: SCNVector3(5, 7, 3), radius: 0.1))
             .setLightingModel(to: .constant)
             .setColor(to: .green)
-        scene.addGeometry(line)
+        scene.addGeometry(cylinder)
+        
+        let cylinder2 = SceneGeometry(id: "cylinder2", geometry: GeometryBuilder().cylinder(origin: SCNVector3(5, 7, 3), end: SCNVector3(1, 0, 0), radius: 0.1))
+            .setLightingModel(to: .constant)
+            .setColor(to: .red)
+        scene.addGeometry(cylinder2)
+        
+        let cylinder3 = SceneGeometry(id: "cylinder3", geometry: GeometryBuilder().cylinder(origin: SCNVector3(1, 0, 0), end: SCNVector3(8, 8, 0), radius: 0.1))
+            .setLightingModel(to: .constant)
+            .setColor(to: .purple)
+        scene.addGeometry(cylinder3)
+        
+        let sphere1 = SceneGeometry(id: "origin", geometry: GeometryBuilder().sphere(position: SCNVector3(0.0, 2.0, 0.0), radius: 0.1))
+            .setLightingModel(to: .constant)
+            .setColor(to: .orange)
+        scene.addGeometry(sphere1)
+        
+        let sphere2 = SceneGeometry(id: "end", geometry: GeometryBuilder().sphere(position: SCNVector3(5.0, 7.0, 3.0), radius: 0.1))
+            .setLightingModel(to: .constant)
+            .setColor(to: .orange)
+        scene.addGeometry(sphere2)
         
         let mainLight = SceneLight(id: "main")
             .setType(to: .omni)

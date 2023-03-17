@@ -44,6 +44,12 @@ class SceneGeometry {
     }
     
     @discardableResult
+    func setLightingModel(to lightingModel: SCNMaterial.LightingModel) -> Self {
+        self.node.geometry?.firstMaterial?.lightingModel = lightingModel
+        return self
+    }
+    
+    @discardableResult
     func setColor(to color: UIColor) -> Self {
         self.node.geometry?.firstMaterial?.diffuse.contents = color
         return self

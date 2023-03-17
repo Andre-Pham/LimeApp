@@ -10,6 +10,7 @@
 		B63E169229C3F49B0083616A /* SceneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E169129C3F49B0083616A /* SceneController.swift */; };
 		B63E169429C3FF240083616A /* SceneCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E169329C3FF240083616A /* SceneCamera.swift */; };
 		B63E169929C4467D0083616A /* SceneGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E169829C4467D0083616A /* SceneGeometry.swift */; };
+		B63E169B29C4873F0083616A /* GeometryBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E169A29C4873F0083616A /* GeometryBuilder.swift */; };
 		B6A7027929B55DF400487A0D /* SpellApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A7027829B55DF400487A0D /* SpellApp.swift */; };
 		B6A7027B29B55DF400487A0D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A7027A29B55DF400487A0D /* ContentView.swift */; };
 		B6A7027D29B55DF500487A0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6A7027C29B55DF500487A0D /* Assets.xcassets */; };
@@ -69,6 +70,7 @@
 		B63E169129C3F49B0083616A /* SceneController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneController.swift; sourceTree = "<group>"; };
 		B63E169329C3FF240083616A /* SceneCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCamera.swift; sourceTree = "<group>"; };
 		B63E169829C4467D0083616A /* SceneGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneGeometry.swift; sourceTree = "<group>"; };
+		B63E169A29C4873F0083616A /* GeometryBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryBuilder.swift; sourceTree = "<group>"; };
 		B6A7027529B55DF400487A0D /* Spell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6A7027829B55DF400487A0D /* SpellApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellApp.swift; sourceTree = "<group>"; };
 		B6A7027A29B55DF400487A0D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				B6A702FF29BEC00000487A0D /* SceneLight.swift */,
 				B63E169329C3FF240083616A /* SceneCamera.swift */,
 				B63E169829C4467D0083616A /* SceneGeometry.swift */,
+				B63E169A29C4873F0083616A /* GeometryBuilder.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -589,6 +592,7 @@
 				B6A702F429B844E400487A0D /* KeyboardPadding.swift in Sources */,
 				B6A702CA29B579C800487A0D /* Strings.swift in Sources */,
 				B6A702F129B8433F00487A0D /* KeyboardHeightPublisher.swift in Sources */,
+				B63E169B29C4873F0083616A /* GeometryBuilder.swift in Sources */,
 				B6A702C829B578BE00487A0D /* SpellIcon.swift in Sources */,
 				B6A702FC29B857A800487A0D /* SceneView.swift in Sources */,
 				B6A702D429B57BFF00487A0D /* SpellTextFont.swift in Sources */,

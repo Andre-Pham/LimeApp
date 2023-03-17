@@ -16,6 +16,7 @@ class SceneController {
     private var sceneView: SCNView = SCNView()
     private var sceneCamera = SceneCamera()
     private var sceneLights = [SceneLight]()
+    private var sceneGeometry = [SceneGeometry]()
     
     private var lightNodeNames: [String] {
         return self.sceneLights.map({ $0.name })
@@ -58,6 +59,12 @@ class SceneController {
     
     func addGeometry(_ sceneGeometry: SceneGeometry) {
         sceneGeometry.add(to: self.sceneView)
+        if let replacementIndex = self.sceneGeometry.firstIndex(where: { $0.name == sceneGeometry.name }) {
+            self.sceneGeometry[replacementIndex].remove()
+            self.sceneGeometry[replacementIndex] = sceneGeometry
+        } else {
+            self.sceneGeometry.append(sceneGeometry)
+        }
     }
     
     private func removeNode(named name: String) {
@@ -66,6 +73,13 @@ class SceneController {
             if sceneLight.name == name {
                 sceneLight.remove()
                 self.sceneLights.remove(at: index)
+            }
+        }
+        for index in stride(from: self.sceneGeometry.count - 1, through: 0, by: -1) {
+            let sceneGeometry = self.sceneGeometry[index]
+            if sceneGeometry.name == name {
+                sceneGeometry.remove()
+                self.sceneGeometry.remove(at: index)
             }
         }
         if self.sceneCamera.name == name {

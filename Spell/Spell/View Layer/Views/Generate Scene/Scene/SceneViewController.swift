@@ -27,9 +27,14 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
             .setRenderDistance(far: 300.0)
         scene.setCamera(to: camera)
          
-        let floor = SceneGeometry(id: "floor", geometry: SCNFloor())
+        let floor = SceneGeometry(id: "floor", geometry: GeometryBuilder.floor())
             .setColor(to: .blue)
         scene.addGeometry(floor)
+        
+        let line = SceneGeometry(id: "line", geometry: GeometryBuilder.line(origin: SCNVector3(0.0, 0.0, 0.0), end: SCNVector3(20, 20, 0)))
+            .setLightingModel(to: .constant)
+            .setColor(to: .green)
+        scene.addGeometry(line)
         
         let mainLight = SceneLight(id: "main")
             .setType(to: .omni)

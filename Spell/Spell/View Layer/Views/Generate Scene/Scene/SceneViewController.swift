@@ -20,14 +20,16 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
     
     func attach(scene: SceneController) {
         scene.attach(to: self)
+        self.scene = scene
         
         let camera = SceneCamera()
             .setPosition(to: SCNVector3(x: 0, y: 0, z: 15))
             .setRenderDistance(far: 300.0)
-        
-        scene.addCamera(camera)
-        
-        scene.setup()
+        scene.setCamera(to: camera)
+         
+        let floor = SceneGeometry(id: "floor", geometry: SCNFloor())
+            .setColor(to: .blue)
+        scene.addGeometry(floor)
         
         let mainLight = SceneLight(id: "main")
             .setType(to: .omni)
@@ -36,15 +38,11 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
         let ambientLight = SceneLight(id: "ambient")
             .setType(to: .ambient)
             .setColor(to: UIColor.red)
-        
         scene.addLight(mainLight)
         scene.addLight(ambientLight)
         
         scene.setCameraControl(allowed: true)
-        
         scene.setScenePause(to: true)
-        
-        self.scene = scene
     }
     
 }

@@ -40,18 +40,7 @@ class SceneController {
         controller.view.addSubview(self.sceneView)
     }
     
-    // TODO: TEMP
-    func setup() {
-        // Create an SCNFloor object with a white color
-        let floor = SCNFloor()
-        floor.firstMaterial?.diffuse.contents = UIColor.red
-        // Create an SCNNode with the SCNFloor geometry and add it to the scene
-        let floorNode = SCNNode(geometry: floor)
-        floorNode.name = "floor"
-        self.scene.rootNode.addChildNode(floorNode)
-    }
-    
-    func addCamera(_ sceneCamera: SceneCamera) {
+    func setCamera(to sceneCamera: SceneCamera) {
         self.sceneCamera.remove()
         sceneCamera.add(to: self.sceneView)
         self.sceneCamera = sceneCamera
@@ -67,23 +56,27 @@ class SceneController {
         }
     }
     
-    func removeLight(name: String) {
-        if let sceneLight = self.sceneLights.first(where: { $0.name == name }) {
-            sceneLight.remove()
-            self.sceneLights.removeAll(where: { $0.name == name })
-        }
+    func addGeometry(_ sceneGeometry: SceneGeometry) {
+        sceneGeometry.add(to: self.sceneView)
     }
     
-    @discardableResult
-    private func removeNode(named name: String) -> Int {
-        var count = 0
+    private func removeNode(named name: String) {
+        for index in stride(from: self.sceneLights.count - 1, through: 0, by: -1) {
+            let sceneLight = self.sceneLights[index]
+            if sceneLight.name == name {
+                sceneLight.remove()
+                self.sceneLights.remove(at: index)
+            }
+        }
+        if self.sceneCamera.name == name {
+            self.sceneCamera.remove()
+            self.sceneCamera = SceneCamera()
+        }
         self.scene.rootNode.enumerateChildNodes { (node, _) in
             if node.name == name {
                 node.removeFromParentNode()
-                count += 1
             }
         }
-        return count
     }
     
     func setScenePause(to isPaused: Bool) {

@@ -10,7 +10,7 @@ import SwiftUI
 struct SceneToolbarView: View {
     let sceneViewController: SceneViewController
     @State private var promptToolActive = false
-    @State private var prompt: String = ""
+    @State private var prompt: String = "group1"
     private static let cornerRadius = 30.0
     @State private var promptDisabled = false
     @State private var promptTimerID = 1
@@ -35,7 +35,7 @@ struct SceneToolbarView: View {
                         // Animation clashes cause funky behaviour
                         self.promptTimerID = (self.promptTimerID + 1)%1000
                         let localTimerID = self.promptTimerID
-                        self.promptDisabled = true
+                        //self.promptDisabled = true
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
                             if localTimerID == self.promptTimerID {
                                 self.promptDisabled = false
@@ -45,14 +45,12 @@ struct SceneToolbarView: View {
                 }
 
                 ChipToggle(icon: SpellIcon(image: Image(systemName: "slider.horizontal.below.rectangle"))) { isSelected in
-                    //self.sceneViewController.scene2.
-                    //self.sceneViewController.printNames()
                     self.sceneViewController.scene.printNames()
+                    self.sceneViewController.scene.showBoundingBox(nodeName: self.prompt, color: .blue)
                 }
                 
                 ChipToggle(icon: SpellIcon(image: Image(systemName: "cube.transparent"))) { isSelected in
-                    //self.sceneViewController.positionCameraToLookAt(nodeName: "group1")
-                    self.sceneViewController.scene.positionCameraToLookAt(nodeName: "group1")
+                    self.sceneViewController.scene.positionCameraToLookAt(nodeName: self.prompt)
                 }
                 
                 Spacer()
@@ -63,7 +61,6 @@ struct SceneToolbarView: View {
                     color: SpellColors.primaryButtonFill,
                     textColor: SpellColors.primaryButtonText
                 ) { isPlaying in
-                    //self.sceneViewController.setScenePause(to: !isPlaying)
                     self.sceneViewController.scene.setScenePause(to: !isPlaying)
                 }
             }

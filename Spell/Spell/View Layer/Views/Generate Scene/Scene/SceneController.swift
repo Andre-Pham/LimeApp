@@ -10,8 +10,6 @@ import Foundation
 
 class SceneController {
     
-    private static let CAMERA_NODE_NAME = "camera"
-    
     private var scene: SCNScene
     private var sceneView: SCNView = SCNView()
     private var sceneCamera = SceneCamera()
@@ -102,17 +100,21 @@ class SceneController {
     }
     
     func positionCameraToLookAt(nodeName: String) {
-        let node = self.scene.rootNode.childNode(withName: nodeName, recursively: true)!.presentation
+        guard let node = self.scene.rootNode.childNode(withName: nodeName, recursively: true)?.presentation else {
+            return
+        }
         
         // Calculate the bounding box of the node
         let boundingBox = node.boundingBox
         
         // Calculate the center point of the bounding box
-        let center = SCNVector3Make(
-            (boundingBox.min.x + boundingBox.max.x) * 0.5,
-            (boundingBox.min.y + boundingBox.max.y) * 0.5,
-            (boundingBox.min.z + boundingBox.max.z) * 0.5
-        )
+//        let center = SCNVector3Make(
+//            (boundingBox.min.x + boundingBox.max.x) * 0.5,
+//            (boundingBox.min.y + boundingBox.max.y) * 0.5,
+//            (boundingBox.min.z + boundingBox.max.z) * 0.5
+//        )
+        
+        let center = node.presentation.position
         
         // Calculate the distance from the center of the bounding box to the camera
         let distance = Float(boundingBox.max.z - boundingBox.min.z) * 2.0
@@ -122,21 +124,72 @@ class SceneController {
             .direct(to: center)
     }
     
+    func showBoundingBox(nodeName: String, color: UIColor = .red) {
+        guard let node = self.scene.rootNode.childNode(withName: nodeName, recursively: true)?.presentation else {
+            return
+        }
+        let min = node.boundingBox.min
+        let max = node.boundingBox.max
+        var edges = [(SCNVector3, SCNVector3)]()
+        edges.append((min, SCNVector3(max.x, min.y, min.z)))
+        edges.append((min, SCNVector3(min.x, max.y, min.z)))
+        edges.append((SCNVector3(min.x, min.y, max.z), min))
+        edges.append((max, SCNVector3(min.x, max.y, max.z)))
+        edges.append((max, SCNVector3(max.x, min.y, max.z)))
+        edges.append((max, SCNVector3(max.x, max.y, min.z)))
+        
+        let width = max.x - min.x
+        let height = max.y - min.y
+        let depth = max.z - min.z
+        
+        // TODO: Rewrite this to just use min and the width/height/depth
+        
+        edges.append((SCNVector3(min.x, min.y, min.z + depth), SCNVector3(min.x, max.y, min.z + depth)))
+        edges.append((SCNVector3(min.x + width, min.y, min.z), SCNVector3(min.x + width, max.y, min.z)))
+        
+        edges.append((SCNVector3(min.x, min.y + height, min.z), SCNVector3(max.x, min.y + height, min.z)))
+        edges.append((SCNVector3(min.x, min.y, min.z + depth), SCNVector3(max.x, min.y, min.z + depth)))
+        
+        edges.append((SCNVector3(min.x, min.y + height, max.z), SCNVector3(min.x, min.y + height, min.z)))
+        edges.append((SCNVector3(min.x + width, min.y, max.z), SCNVector3(min.x + width, min.y, min.z)))
+        
+        for edge in edges {
+            let geometry = SceneGeometry(geometry: GeometryBuilder().cylinder(origin: edge.0, end: edge.1, radius: 0.5))
+                .setLightingModel(to: .constant)
+                .setColor(to: color)
+            self.addGeometry(geometry)
+        }
+        
+//        let centre = SCNVector3(
+//            (min.x + max.x)/2.0,
+//            (min.y + max.y)/2.0,
+//            (min.z + max.z)/2.0
+//        )
+        let circle = SceneGeometry(geometry: GeometryBuilder().sphere(position: node.position, radius: 1.0))
+            .setLightingModel(to: .constant)
+            .setColor(to: color)
+        self.addGeometry(circle)
+    }
+    
     func printNames() {
         self.printNodes(node: self.scene.rootNode)
     }
     
     func printNodes(node: SCNNode, prefix: String = ">") {
-        var statement = prefix + " "
-        statement += node.name ?? "nil"
-        statement += ": "
-        statement += "(\(node.position.x), \(node.position.y), \(node.position.z))"
-        statement += " | "
-        statement += "(\(node.presentation.boundingBox.min.x), \(node.presentation.boundingBox.min.y), \(node.presentation.boundingBox.min.z), \(node.presentation.boundingBox.max.x), \(node.presentation.boundingBox.max.y), \(node.presentation.boundingBox.max.z))"
+        let statement = "\(prefix) \(node.toString(position: true, bounding: false))"
         print(statement)
         for childNode in node.childNodes {
             self.printNodes(node: childNode, prefix: prefix + ">")
         }
+        
+        // TODO: This allows me to speed up / slow down the animation speed
+        node.animationKeys.forEach({ key in
+            if let animation = node.animationPlayer(forKey: key) {
+                print("ANIMATION FOUND")
+                print("SPEED: \(animation.speed)")
+                animation.speed = 5.0
+            }
+        })
     }
     
 }

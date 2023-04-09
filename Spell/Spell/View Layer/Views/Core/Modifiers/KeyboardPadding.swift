@@ -11,6 +11,7 @@ import Combine
 
 struct KeyboardPadding: ViewModifier {
     @State private var keyboardHeight: CGFloat = 0
+    @State private var animation: Animation = .default
     var padding: Double?
     
     private var activePadding: Double {
@@ -23,8 +24,9 @@ struct KeyboardPadding: ViewModifier {
     func body(content: Content) -> some View {
         content
             .padding(.bottom, self.activePadding)
-            .animation(.interpolatingSpring(stiffness: 80, damping: 100, initialVelocity: 5), value: self.keyboardHeight)
-            .onReceive(Publishers.keyboardHeightChange) { height in
+            .animation(self.animation, value: self.keyboardHeight)
+            .onReceive(Publishers.keyboardHeightChange) { height, animation in
+                self.animation = animation
                 self.keyboardHeight = height
             }
     }

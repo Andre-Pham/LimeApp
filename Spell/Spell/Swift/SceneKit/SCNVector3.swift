@@ -31,4 +31,8 @@ extension SCNVector3 {
         )
     }
     
+    func toString() -> String {
+        return "(\(self.x.toString()), \(self.y.toString()), \(self.z.toString()))"
+    }
+    
 }

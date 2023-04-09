@@ -12,11 +12,10 @@ struct GenerateSceneView: View {
     private let sceneViewController: SceneViewController
     
     init() {
+        let sceneController = SceneController()
+        sceneController.addModel(SceneModel(file: "Models.scnassets/alphabet.dae"))
         self.sceneViewController = SceneViewController()
-        if let scene = SCNScene(named: "Models.scnassets/alphabet.dae") {
-            let scene = SceneController(scene: scene)
-            self.sceneViewController.attach(scene: scene)
-        }
+        self.sceneViewController.attach(scene: sceneController)
     }
     
     var body: some View {

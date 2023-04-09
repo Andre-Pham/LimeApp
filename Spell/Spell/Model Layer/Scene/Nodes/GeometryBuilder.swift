@@ -12,28 +12,33 @@ class GeometryBuilder {
     
     private var applyToNode: (_ node: SCNNode) -> Void = { node in /* Do nothing */ }
     
+    private init() { }
+    
     func apply(to node: SCNNode) {
         self.applyToNode(node)
     }
     
-    func floor() -> Self {
-        self.applyToNode = { node in
+    static func floor() -> GeometryBuilder {
+        let builder = GeometryBuilder()
+        builder.applyToNode = { node in
             node.geometry = SCNFloor()
         }
-        return self
+        return builder
     }
     
-    func line(origin: SCNVector3, end: SCNVector3) -> Self {
+    static func line(origin: SCNVector3, end: SCNVector3) -> GeometryBuilder {
+        let builder = GeometryBuilder()
         let source = SCNGeometrySource(vertices: [origin, end])
         let indices: [Int32] = [0, 1]
         let element = SCNGeometryElement(indices: indices, primitiveType: .line)
-        self.applyToNode = { node in
+        builder.applyToNode = { node in
             node.geometry = SCNGeometry(sources: [source], elements: [element])
         }
-        return self
+        return builder
     }
     
-    func cylinder(origin: SCNVector3, end: SCNVector3, radius: Double) -> Self {
+    static func cylinder(origin: SCNVector3, end: SCNVector3, radius: Double) -> GeometryBuilder {
+        let builder = GeometryBuilder()
         let height = CGFloat(GLKVector3Distance(SCNVector3ToGLKVector3(origin), SCNVector3ToGLKVector3(end)))
         
         let startNode = SCNNode()
@@ -49,7 +54,7 @@ class GeometryBuilder {
         cylinder.position.y = Float(-height/2)
         zAxisNode.addChildNode(cylinder)
         
-        self.applyToNode = { node in
+        builder.applyToNode = { node in
             if (origin.x > 0.0 && origin.y < 0.0 && origin.z < 0.0 && end.x > 0.0 && end.y < 0.0 && end.z > 0.0) {
                 endNode.addChildNode(zAxisNode)
                 endNode.constraints = [ SCNLookAtConstraint(target: startNode) ]
@@ -73,15 +78,16 @@ class GeometryBuilder {
             }
         }
         
-        return self
+        return builder
     }
     
-    func sphere(position: SCNVector3, radius: Double) -> Self {
-        self.applyToNode = { node in
+    static func sphere(position: SCNVector3, radius: Double) -> GeometryBuilder {
+        let builder = GeometryBuilder()
+        builder.applyToNode = { node in
             node.geometry = SCNSphere(radius: radius)
             node.position = position
         }
-        return self
+        return builder
     }
     
 }

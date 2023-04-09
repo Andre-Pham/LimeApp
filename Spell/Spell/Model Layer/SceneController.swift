@@ -10,8 +10,9 @@ import Foundation
 
 class SceneController {
     
-    private var scene: SCNScene
+    private var scene = SCNScene()
     private var sceneView: SCNView = SCNView()
+    private var sceneModels = [SceneModel]()
     private var sceneCamera = SceneCamera()
     private var sceneLights = [SceneLight]()
     private var sceneGeometry = [SceneGeometry]()
@@ -20,10 +21,10 @@ class SceneController {
         return self.sceneLights.map({ $0.name })
     }
     
-    init(scene: SCNScene = SCNScene()) {
-        self.scene = scene
+    init() {
         self.sceneView.scene = self.scene
         self.sceneCamera.add(to: self.sceneView)
+        self.scene.rootNode.name = "root"
     }
     
     func attach(to controller: UIViewController) {
@@ -37,6 +38,16 @@ class SceneController {
             self.sceneView.delegate = delegate
         }
         controller.view.addSubview(self.sceneView)
+    }
+    
+    func addModel(_ sceneModel: SceneModel) {
+        sceneModel.add(to: self.sceneView)
+        if let replacementIndex = self.sceneModels.firstIndex(where: { $0.name == sceneModel.name }) {
+            self.sceneModels[replacementIndex].remove()
+            self.sceneModels[replacementIndex] = sceneModel
+        } else {
+            self.sceneModels.append(sceneModel)
+        }
     }
     
     func setCamera(to sceneCamera: SceneCamera) {
@@ -154,7 +165,7 @@ class SceneController {
         edges.append((SCNVector3(min.x + width, min.y, max.z), SCNVector3(min.x + width, min.y, min.z)))
         
         for edge in edges {
-            let geometry = SceneGeometry(geometry: GeometryBuilder().cylinder(origin: edge.0, end: edge.1, radius: 0.5))
+            let geometry = SceneGeometry(geometry: GeometryBuilder.cylinder(origin: edge.0, end: edge.1, radius: 0.5))
                 .setLightingModel(to: .constant)
                 .setColor(to: color)
             self.addGeometry(geometry)
@@ -165,31 +176,14 @@ class SceneController {
 //            (min.y + max.y)/2.0,
 //            (min.z + max.z)/2.0
 //        )
-        let circle = SceneGeometry(geometry: GeometryBuilder().sphere(position: node.position, radius: 1.0))
+        let circle = SceneGeometry(geometry: GeometryBuilder.sphere(position: node.position, radius: 1.0))
             .setLightingModel(to: .constant)
             .setColor(to: color)
         self.addGeometry(circle)
     }
     
     func printNames() {
-        self.printNodes(node: self.scene.rootNode)
-    }
-    
-    func printNodes(node: SCNNode, prefix: String = ">") {
-        let statement = "\(prefix) \(node.toString(position: true, bounding: false))"
-        print(statement)
-        for childNode in node.childNodes {
-            self.printNodes(node: childNode, prefix: prefix + ">")
-        }
-        
-        // TODO: This allows me to speed up / slow down the animation speed
-        node.animationKeys.forEach({ key in
-            if let animation = node.animationPlayer(forKey: key) {
-                print("ANIMATION FOUND")
-                print("SPEED: \(animation.speed)")
-                animation.speed = 5.0
-            }
-        })
+        NodeUtil.printHierarchy(for: self.scene.rootNode)
     }
     
 }

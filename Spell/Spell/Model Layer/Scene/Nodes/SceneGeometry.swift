@@ -42,7 +42,7 @@ class SceneGeometry {
     
     @discardableResult
     func setLightingModel(to lightingModel: SCNMaterial.LightingModel) -> Self {
-        self.allNodes().forEach({
+        NodeUtil.getHierarchy(for: self.node).forEach({
             $0.geometry?.firstMaterial?.lightingModel = lightingModel
         })
         return self
@@ -50,23 +50,10 @@ class SceneGeometry {
     
     @discardableResult
     func setColor(to color: UIColor) -> Self {
-        self.allNodes().forEach({
+        NodeUtil.getHierarchy(for: self.node).forEach({
             $0.geometry?.firstMaterial?.diffuse.contents = color
         })
         return self
-    }
-    
-    private func allNodes() -> [SCNNode] {
-        var allNodes = [SCNNode]()
-        self.recursivelyFindNodes(for: self.node, insert: &allNodes)
-        return allNodes
-    }
-    
-    private func recursivelyFindNodes(for node: SCNNode, insert: inout [SCNNode]) {
-        insert.append(node)
-        for childNode in node.childNodes {
-            self.recursivelyFindNodes(for: childNode, insert: &insert)
-        }
     }
     
 }

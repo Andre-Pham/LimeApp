@@ -10,7 +10,7 @@ import SceneKit
 
 class SceneLight {
     
-    private static let NAME_PREFIX = "light"
+    public static let NAME_PREFIX = "light"
     
     private let node = SCNNode()
     private let light = SCNLight()

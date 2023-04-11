@@ -18,7 +18,6 @@
 		B63E175D29E2C6E10083616A /* SceneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E175C29E2C6E10083616A /* SceneModel.swift */; };
 		B63E176129E2DF740083616A /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E176029E2DF740083616A /* Math.swift */; };
 		B63E176329E39A2F0083616A /* SCNBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E176229E39A2F0083616A /* SCNBox.swift */; };
-		B63E176529E5048A0083616A /* NodeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E176429E5048A0083616A /* NodeUtil.swift */; };
 		B63E176929E504C70083616A /* NodeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E176829E504C70083616A /* NodeUtil.swift */; };
 		B6A7027929B55DF400487A0D /* SpellApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A7027829B55DF400487A0D /* SpellApp.swift */; };
 		B6A7027B29B55DF400487A0D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A7027A29B55DF400487A0D /* ContentView.swift */; };
@@ -87,7 +86,6 @@
 		B63E175C29E2C6E10083616A /* SceneModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneModel.swift; sourceTree = "<group>"; };
 		B63E176029E2DF740083616A /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		B63E176229E39A2F0083616A /* SCNBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNBox.swift; sourceTree = "<group>"; };
-		B63E176429E5048A0083616A /* NodeUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NodeUtil.swift; path = "Spell/Model Layer/Scene/Nodes/NodeUtil.swift"; sourceTree = SOURCE_ROOT; };
 		B63E176829E504C70083616A /* NodeUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeUtil.swift; sourceTree = "<group>"; };
 		B6A7027529B55DF400487A0D /* Spell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6A7027829B55DF400487A0D /* SpellApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellApp.swift; sourceTree = "<group>"; };
@@ -160,7 +158,6 @@
 		B63E169729C445980083616A /* Node Wrappers */ = {
 			isa = PBXGroup;
 			children = (
-				B63E176429E5048A0083616A /* NodeUtil.swift */,
 				B6A702FF29BEC00000487A0D /* SceneLight.swift */,
 				B63E169329C3FF240083616A /* SceneCamera.swift */,
 				B63E169829C4467D0083616A /* SceneGeometry.swift */,
@@ -631,7 +628,6 @@
 				B6A702EA29B5F50000487A0D /* ChipToggle.swift in Sources */,
 				B63E176129E2DF740083616A /* Math.swift in Sources */,
 				B6A702D229B57B3200487A0D /* SpellTextSize.swift in Sources */,
-				B63E176529E5048A0083616A /* NodeUtil.swift in Sources */,
 				B63E176929E504C70083616A /* NodeUtil.swift in Sources */,
 				B6A7027B29B55DF400487A0D /* ContentView.swift in Sources */,
 				B63E169E29C4BE370083616A /* SCNVector3.swift in Sources */,

@@ -10,7 +10,7 @@ import SceneKit
 
 class SceneCamera {
     
-    private static let NAME = "camera"
+    public static let NAME = "camera"
     
     private let node = SCNNode()
     private let camera = SCNCamera()

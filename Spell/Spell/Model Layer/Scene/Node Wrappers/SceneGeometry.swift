@@ -10,7 +10,7 @@ import SceneKit
 
 class SceneGeometry {
     
-    private static let NAME_PREFIX = "geometry"
+    public static let NAME_PREFIX = "geometry"
     
     private var node: SCNNode = SCNNode()
     var name: String {
@@ -53,6 +53,12 @@ class SceneGeometry {
         NodeUtil.getHierarchy(for: self.node).forEach({
             $0.geometry?.firstMaterial?.diffuse.contents = color
         })
+        return self
+    }
+    
+    @discardableResult
+    func setOpacity(to opacity: Double) -> Self {
+        self.node.opacity = opacity
         return self
     }
     

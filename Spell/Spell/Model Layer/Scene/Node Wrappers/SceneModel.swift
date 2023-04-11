@@ -10,22 +10,22 @@ import SceneKit
 
 class SceneModel {
     
-    private static let NAME_PREFIX = "model"
+    public static let NAME_PREFIX = "model"
     
     private var node: SCNNode = SCNNode()
     var name: String {
         return self.node.name!
     }
     
-    init(file: String) {
-        if let scene = SCNScene(named: file){
+    init(dir: String = "Models.scnassets", fileName: String) {
+        if let scene = SCNScene(named: "\(dir)/\(fileName)"){
             for childNode in scene.rootNode.childNodes {
                 self.node.addChildNode(childNode)
             }
         } else {
-            assertionFailure("File '\(file)' could not be loaded")
+            assertionFailure("File '\(fileName)' could not be loaded from \(dir)")
         }
-        self.node.name = "\(Self.NAME_PREFIX)-\(file)"
+        self.node.name = "\(Self.NAME_PREFIX)-\(fileName)"
     }
     
     func add(to sceneView: SCNView) {

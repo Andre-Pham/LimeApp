@@ -13,9 +13,10 @@ struct GenerateSceneView: View {
     
     init() {
         let sceneController = SceneController()
-        sceneController.addModel(SceneModel(file: "Models.scnassets/alphabet.dae"))
+        sceneController.addModel(SceneModel(fileName: "alphabet.dae"))
         self.sceneViewController = SceneViewController()
         self.sceneViewController.attach(scene: sceneController)
+        self.sceneViewController.setupScene()
     }
     
     var body: some View {
@@ -29,6 +30,31 @@ struct GenerateSceneView: View {
                 SceneToolbarView(sceneViewController: self.sceneViewController)
                     .padding(.horizontal, 15)
                     .padding(.bottom, 20)
+            }
+            
+            VStack {
+                Button("print") {
+                    self.sceneViewController.scene.printNames()
+                }
+                
+                Button("camera") {
+                    self.sceneViewController.scene.positionCameraFacing(nodeName: "\(SceneModel.NAME_PREFIX)-alphabet.dae")
+                }
+                
+                Button("boxes") {
+                    self.sceneViewController.scene.clearGeometry()
+                    self.sceneViewController.scene.showBox(for: "\(SceneModel.NAME_PREFIX)-alphabet.dae")
+                }
+                
+                Button("origin") {
+                    let sphere = GeometryBuilder.sphere(position: SCNVector3(), radius: 10.0)
+                    let sceneSphere = SceneGeometry(id: "origin", geometry: sphere)
+                        .setColor(to: .green)
+                        .setOpacity(to: 0.2)
+                    self.sceneViewController.scene.addGeometry(sceneSphere)
+                }
+                
+                Spacer()
             }
         }
     }

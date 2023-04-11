@@ -19,10 +19,6 @@ class SceneController {
     private var sceneLights = [SceneLight]()
     private var sceneGeometry = [SceneGeometry]()
     
-    private var lightNodeNames: [String] {
-        return self.sceneLights.map({ $0.name })
-    }
-    
     init() {
         self.sceneView.scene = self.scene
         self.sceneCamera.add(to: self.sceneView)
@@ -114,6 +110,7 @@ class SceneController {
     
     func positionCameraFacing(nodeName: String, distance: Float = 120.0) {
         guard let node = self.scene.rootNode.childNode(withName: nodeName, recursively: true)?.presentation else {
+            assertionFailure("Node '\(nodeName)' could not be found")
             return
         }
         var centre = node.presentation.position
@@ -160,7 +157,6 @@ class SceneController {
             guard let edges = SCNBox(node: node)?.edges else {
                 continue
             }
-            print("Adding bounding box for: \(node.name ?? "nil")")
             for edge in edges {
                 let geometry = SceneGeometry(geometry: GeometryBuilder.cylinder(origin: edge.0, end: edge.1, radius: 0.2))
                     .setLightingModel(to: .constant)

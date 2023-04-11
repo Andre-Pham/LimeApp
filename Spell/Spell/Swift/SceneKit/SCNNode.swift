@@ -10,6 +10,15 @@ import SceneKit
 
 extension SCNNode {
     
+    func hasBoundingBox() -> Bool {
+        let min = self.boundingBox.min
+        let max = self.boundingBox.max
+        let width = max.x - min.x
+        let height = max.y - min.y
+        let depth = max.z - min.z
+        return isGreaterZero(width*height*depth)
+    }
+    
     func toString(position: Bool = false, bounding: Bool = false, animation: Bool = false) -> String {
         let x = self.position.x.toString()
         let y = self.position.y.toString()
@@ -19,7 +28,8 @@ extension SCNNode {
             result += " | Position: (\(x), \(y), \(z))"
         }
         if bounding {
-            result += " | Bounding: \(self.boundingBox.min.toString()), \(self.boundingBox.max.toString())"
+            let boundingString = self.hasBoundingBox() ? "\(self.boundingBox.min.toString()), \(self.boundingBox.max.toString())" : "None"
+            result += " | Bounding: \(boundingString)"
         }
         if animation {
             var animations = [String]()

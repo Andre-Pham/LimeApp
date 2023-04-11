@@ -45,12 +45,25 @@ struct SceneToolbarView: View {
                 }
 
                 ChipToggle(icon: SpellIcon(image: Image(systemName: "slider.horizontal.below.rectangle"))) { isSelected in
-                    self.sceneViewController.scene.printNames()
-                    self.sceneViewController.scene.showBoundingBox(nodeName: self.prompt, color: .blue)
+                    //self.sceneViewController.scene.printNames()
+                    //self.sceneViewController.scene.showBoundingBox(nodeName: self.prompt, color: .blue)
+                    self.sceneViewController.scene.clearGeometry()
+//                    self.sceneViewController.scene.showAllBoxes()
+//                    self.sceneViewController.scene.showAllNodePositions()
+                    self.sceneViewController.scene.showBox(for: "model-Models.scnassets/alphabet.dae")
+                    /*
+                     Adding bounding box for: root
+                     Adding bounding box for: model-Models.scnassets/alphabet.dae
+                     Adding bounding box for: group1
+                     Adding bounding box for: left_hand
+                     Adding bounding box for: HandMesh
+                     Adding bounding box for: right_hand
+                     Adding bounding box for: HandMesh_1
+                     */
                 }
                 
-                ChipToggle(icon: SpellIcon(image: Image(systemName: "cube.transparent"))) { isSelected in
-                    self.sceneViewController.scene.positionCameraToLookAt(nodeName: self.prompt)
+                ChipToggle(icon: SpellIcon(image: Image(systemName: "cube.transparent")), text: "Cam") { isSelected in
+                    self.sceneViewController.scene.positionCameraFacing(nodeName: "model-Models.scnassets/alphabet.dae")
                 }
                 
                 Spacer()

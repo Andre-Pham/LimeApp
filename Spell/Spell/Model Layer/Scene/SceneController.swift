@@ -10,6 +10,8 @@ import Foundation
 
 class SceneController {
     
+    public static let ROOT_NODE_NAME = "root"
+    
     private var scene = SCNScene()
     private var sceneView: SCNView = SCNView()
     private var sceneModels = [SceneModel]()
@@ -24,7 +26,7 @@ class SceneController {
     init() {
         self.sceneView.scene = self.scene
         self.sceneCamera.add(to: self.sceneView)
-        self.scene.rootNode.name = "root"
+        self.scene.rootNode.name = Self.ROOT_NODE_NAME
     }
     
     func attach(to controller: UIViewController) {
@@ -110,76 +112,78 @@ class SceneController {
         self.sceneView.allowsCameraControl = allowed
     }
     
-    func positionCameraToLookAt(nodeName: String) {
+    func positionCameraFacing(nodeName: String, distance: Float = 120.0) {
         guard let node = self.scene.rootNode.childNode(withName: nodeName, recursively: true)?.presentation else {
             return
         }
-        
-        // Calculate the bounding box of the node
-        let boundingBox = node.boundingBox
-        
-        // Calculate the center point of the bounding box
-//        let center = SCNVector3Make(
-//            (boundingBox.min.x + boundingBox.max.x) * 0.5,
-//            (boundingBox.min.y + boundingBox.max.y) * 0.5,
-//            (boundingBox.min.z + boundingBox.max.z) * 0.5
-//        )
-        
-        let center = node.presentation.position
-        
-        // Calculate the distance from the center of the bounding box to the camera
-        let distance = Float(boundingBox.max.z - boundingBox.min.z) * 2.0
-        
+        var centre = node.presentation.position
+        if let boundingBox = SCNBox(node: node) {
+            centre = boundingBox.centre
+        }
         self.sceneCamera
-            .setPosition(to: SCNVector3Make(center.x, center.y, center.z + distance))
-            .direct(to: center)
+            .setPosition(to: SCNVector3Make(centre.x, centre.y, centre.z + distance))
+            .direct(to: centre)
     }
     
-    func showBoundingBox(nodeName: String, color: UIColor = .red) {
-        guard let node = self.scene.rootNode.childNode(withName: nodeName, recursively: true)?.presentation else {
-            return
+    func showBox(for nodeNames: String...) {
+        for name in nodeNames {
+            guard let node = self.scene.rootNode.childNode(withName: name, recursively: true) else {
+                continue
+            }
+            guard let edges = SCNBox(node: node)?.edges else {
+                continue
+            }
+            for edge in edges {
+                let geometry = SceneGeometry(geometry: GeometryBuilder.cylinder(origin: edge.0, end: edge.1, radius: 0.2))
+                    .setLightingModel(to: .constant)
+                    .setColor(to: .red)
+                self.addGeometry(geometry)
+            }
         }
-        let min = node.boundingBox.min
-        let max = node.boundingBox.max
-        var edges = [(SCNVector3, SCNVector3)]()
-        edges.append((min, SCNVector3(max.x, min.y, min.z)))
-        edges.append((min, SCNVector3(min.x, max.y, min.z)))
-        edges.append((SCNVector3(min.x, min.y, max.z), min))
-        edges.append((max, SCNVector3(min.x, max.y, max.z)))
-        edges.append((max, SCNVector3(max.x, min.y, max.z)))
-        edges.append((max, SCNVector3(max.x, max.y, min.z)))
-        
-        let width = max.x - min.x
-        let height = max.y - min.y
-        let depth = max.z - min.z
-        
-        // TODO: Rewrite this to just use min and the width/height/depth
-        
-        edges.append((SCNVector3(min.x, min.y, min.z + depth), SCNVector3(min.x, max.y, min.z + depth)))
-        edges.append((SCNVector3(min.x + width, min.y, min.z), SCNVector3(min.x + width, max.y, min.z)))
-        
-        edges.append((SCNVector3(min.x, min.y + height, min.z), SCNVector3(max.x, min.y + height, min.z)))
-        edges.append((SCNVector3(min.x, min.y, min.z + depth), SCNVector3(max.x, min.y, min.z + depth)))
-        
-        edges.append((SCNVector3(min.x, min.y + height, max.z), SCNVector3(min.x, min.y + height, min.z)))
-        edges.append((SCNVector3(min.x + width, min.y, max.z), SCNVector3(min.x + width, min.y, min.z)))
-        
-        for edge in edges {
-            let geometry = SceneGeometry(geometry: GeometryBuilder.cylinder(origin: edge.0, end: edge.1, radius: 0.5))
+    }
+    
+    func showPosition(for nodeNames: String...) {
+        for name in nodeNames {
+            guard let node = self.scene.rootNode.childNode(withName: name, recursively: true) else {
+                continue
+            }
+            let circle = SceneGeometry(geometry: GeometryBuilder.sphere(position: node.presentation.position, radius: 10))
                 .setLightingModel(to: .constant)
-                .setColor(to: color)
-            self.addGeometry(geometry)
+                .setColor(to: UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 0.2))
+            self.addGeometry(circle)
         }
-        
-//        let centre = SCNVector3(
-//            (min.x + max.x)/2.0,
-//            (min.y + max.y)/2.0,
-//            (min.z + max.z)/2.0
-//        )
-        let circle = SceneGeometry(geometry: GeometryBuilder.sphere(position: node.position, radius: 1.0))
-            .setLightingModel(to: .constant)
-            .setColor(to: color)
-        self.addGeometry(circle)
+    }
+    
+    func showAllBoxes() {
+        let nodes = NodeUtil.getHierarchy(for: self.scene.rootNode)
+        for node in nodes {
+            guard let edges = SCNBox(node: node)?.edges else {
+                continue
+            }
+            print("Adding bounding box for: \(node.name ?? "nil")")
+            for edge in edges {
+                let geometry = SceneGeometry(geometry: GeometryBuilder.cylinder(origin: edge.0, end: edge.1, radius: 0.2))
+                    .setLightingModel(to: .constant)
+                    .setColor(to: .red)
+                self.addGeometry(geometry)
+            }
+        }
+    }
+    
+    func showAllNodePositions() {
+        let nodes = NodeUtil.getHierarchy(for: self.scene.rootNode)
+        for node in nodes {
+            let circle = SceneGeometry(geometry: GeometryBuilder.sphere(position: node.presentation.position, radius: 10))
+                .setLightingModel(to: .constant)
+                .setColor(to: UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 0.2))
+            self.addGeometry(circle)
+        }
+    }
+    
+    func clearGeometry() {
+        for geometry in self.sceneGeometry {
+            self.removeNode(named: geometry.name)
+        }
     }
     
     func printNames() {

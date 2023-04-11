@@ -55,27 +55,9 @@ class GeometryBuilder {
         zAxisNode.addChildNode(cylinder)
         
         builder.applyToNode = { node in
-            if (origin.x > 0.0 && origin.y < 0.0 && origin.z < 0.0 && end.x > 0.0 && end.y < 0.0 && end.z > 0.0) {
-                endNode.addChildNode(zAxisNode)
-                endNode.constraints = [ SCNLookAtConstraint(target: startNode) ]
-                node.addChildNode(endNode)
-            } else if (origin.x < 0.0 && origin.y < 0.0 && origin.z < 0.0 && end.x < 0.0 && end.y < 0.0 && end.z > 0.0) {
-                endNode.addChildNode(zAxisNode)
-                endNode.constraints = [ SCNLookAtConstraint(target: startNode) ]
-                node.addChildNode(endNode)
-            } else if (origin.x < 0.0 && origin.y > 0.0 && origin.z < 0.0 && end.x < 0.0 && end.y > 0.0 && end.z > 0.0) {
-                endNode.addChildNode(zAxisNode)
-                endNode.constraints = [ SCNLookAtConstraint(target: startNode) ]
-                node.addChildNode(endNode)
-            } else if (origin.x > 0.0 && origin.y > 0.0 && origin.z < 0.0 && end.x > 0.0 && end.y > 0.0 && end.z > 0.0) {
-                endNode.addChildNode(zAxisNode)
-                endNode.constraints = [ SCNLookAtConstraint(target: startNode) ]
-                node.addChildNode(endNode)
-            } else {
-                startNode.addChildNode(zAxisNode)
-                startNode.constraints = [ SCNLookAtConstraint(target: endNode) ]
-                node.addChildNode(startNode)
-            }
+            endNode.addChildNode(zAxisNode)
+            endNode.constraints = [ SCNLookAtConstraint(target: startNode) ]
+            node.addChildNode(endNode)
         }
         
         return builder

@@ -108,6 +108,10 @@ class SceneController {
         self.sceneView.allowsCameraControl = allowed
     }
     
+    func setBackgroundColor(to color: UIColor?) {
+        self.sceneView.backgroundColor = color
+    }
+    
     func positionCameraFacing(nodeName: String, distance: Float = 120.0) {
         guard let node = self.scene.rootNode.childNode(withName: nodeName, recursively: true)?.presentation else {
             assertionFailure("Node '\(nodeName)' could not be found")

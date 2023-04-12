@@ -46,6 +46,11 @@ struct GenerateSceneView: View {
                     self.sceneViewController.scene.showBox(for: "\(SceneModel.NAME_PREFIX)-alphabet.dae")
                 }
                 
+                Button("dots") {
+                    self.sceneViewController.scene.clearGeometry()
+                    self.sceneViewController.scene.showPosition(for: "WorkGlove_R")
+                }
+                
                 Button("origin") {
                     let sphere = GeometryBuilder.sphere(position: SCNVector3(), radius: 10.0)
                     let sceneSphere = SceneGeometry(id: "origin", geometry: sphere)

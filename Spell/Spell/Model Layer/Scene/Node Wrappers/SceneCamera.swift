@@ -49,6 +49,17 @@ class SceneCamera {
         return self
     }
     
+    /// Makes the camera follow a node's movement until the camera is controlled by the user.
+    /// - Parameters:
+    ///   - target: The target node to follow
+    /// - Returns: Reference to object this is called on
+    @discardableResult
+    func follow(target: SCNNode) -> Self {
+        let lookAtConstraint = SCNLookAtConstraint(target: target)
+        self.node.constraints = [lookAtConstraint]
+        return self
+    }
+    
     @discardableResult
     func setRenderDistance(far: Double? = nil, near: Double? = nil) -> Self {
         if let far {

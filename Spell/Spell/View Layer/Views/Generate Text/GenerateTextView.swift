@@ -13,6 +13,8 @@ struct GenerateTextView: View {
             Color.gray
                 .ignoresSafeArea()
             
+            CameraView(CameraViewController())
+            
             Text("GenerateTextView")
         }
     }

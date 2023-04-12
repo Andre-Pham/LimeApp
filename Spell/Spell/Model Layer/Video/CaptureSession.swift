@@ -130,18 +130,22 @@ class CaptureSession: NSObject {
         self.captureSession.addOutput(self.videoOutput)
 
         // Update the video orientation
-        if let connection = self.videoOutput.connection(with: .video),
-            connection.isVideoOrientationSupported {
-            connection.videoOrientation = AVCaptureVideoOrientation(rawValue: UIDevice.current.orientation.rawValue)!
-            connection.isVideoMirrored = self.cameraPosition == .front
-
-            // Inverse the landscape orientation to force the image in the upward
-            // orientation.
-            if connection.videoOrientation == .landscapeLeft {
+        if let connection = self.videoOutput.connection(with: .video), connection.isVideoOrientationSupported {
+            switch UIDevice.current.orientation {
+            case .unknown, .portrait, .faceUp, .faceDown:
+                connection.videoOrientation = .portrait
+            case .portraitUpsideDown:
+                connection.videoOrientation = .portraitUpsideDown
+            case .landscapeLeft:
+                // Inverse to force the image in the upward orientation
                 connection.videoOrientation = .landscapeRight
-            } else if connection.videoOrientation == .landscapeRight {
+            case .landscapeRight:
+                // Inverse to force the image in the upward orientation
                 connection.videoOrientation = .landscapeLeft
+            @unknown default:
+                assertionFailure("Implement newly added orientation")
             }
+            connection.isVideoMirrored = self.cameraPosition == .front
         }
     }
     

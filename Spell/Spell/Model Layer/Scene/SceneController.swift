@@ -124,6 +124,9 @@ class SceneController {
         self.sceneCamera
             .setPosition(to: SCNVector3Make(centre.x, centre.y, centre.z + distance))
             .direct(to: centre)
+        // If not set, camera control can be affected by other scene nodes
+        // https://github.com/Andre-Pham/SpellApp/issues/1
+        self.sceneView.defaultCameraController.target = centre
     }
     
     func showBox(for nodeNames: String...) {

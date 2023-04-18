@@ -24,13 +24,7 @@ struct GenerateSceneView: View {
             SceneView(self.sceneViewController)
                 .ignoresSafeArea()
             
-            VStack {
-                Spacer()
-                
-                SceneToolbarView(sceneViewController: self.sceneViewController)
-                    .padding(.horizontal, 15)
-                    .padding(.bottom, 20)
-            }
+            SceneToolbarView(sceneViewController: self.sceneViewController)
             
             VStack {
                 Button("print") {

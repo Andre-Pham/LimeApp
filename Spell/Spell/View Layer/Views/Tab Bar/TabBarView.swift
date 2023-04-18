@@ -17,8 +17,9 @@ struct TabBarView: View {
                 GenerateSceneView()
                     .opacity(self.viewRouter.currentPage == .generateScene ? 1 : 0)
 
-                GenerateTextView()
-                    .opacity(self.viewRouter.currentPage == .generateText ? 1 : 0)
+                if self.viewRouter.currentPage == .generateText {
+                    GenerateTextView()
+                }
 
                 InfoView()
                     .opacity(self.viewRouter.currentPage == .info ? 1 : 0)

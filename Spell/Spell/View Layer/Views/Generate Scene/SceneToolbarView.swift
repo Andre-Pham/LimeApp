@@ -11,23 +11,24 @@ struct SceneToolbarView: View {
     let sceneViewController: SceneViewController
     @State private var promptToolActive = false
     @State private var prompt: String = ""
-    private static let cornerRadius = 30.0
     @State private var promptDisabled = false
     @State private var promptTimerID = 1
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        OverlaidToolbar {
             if self.promptToolActive {
-                TextField("Prompt", text: self.$prompt)
-                    .disabled(self.promptDisabled)
-                    .submitLabel(.done)
-                    .font(SpellTextFont.bodyBold.value(size: .body))
-                    .padding(16) // Padding around text
-                    .background(SpellColors.secondaryButtonFill)
-                    .cornerRadius(Self.cornerRadius)
+                ToolbarRow {
+                    TextField("Prompt", text: self.$prompt)
+                        .disabled(self.promptDisabled)
+                        .submitLabel(.done)
+                        .font(SpellTextFont.bodyBold.value(size: .body))
+                        .padding(16) // Padding around text
+                        .background(SpellColors.secondaryButtonFill)
+                        .cornerRadius(SpellCoreGraphics.foregroundCornerRadius)
+                }
             }
             
-            HStack {
+            ToolbarRow {
                 ChipToggle(icon: SpellIcon(image: Image(systemName: "character.cursor.ibeam"))) { isSelected in
                     self.promptToolActive = isSelected
                     if isSelected {
@@ -63,14 +64,8 @@ struct SceneToolbarView: View {
                     self.sceneViewController.scene.setScenePause(to: !isPlaying)
                 }
             }
-            .frame(maxWidth: .infinity)
         }
-        .frame(maxWidth: .infinity)
-        .padding(15) // Padding around components inside toolbar
-        .background(SpellColors.toolbarFill)
-        .cornerRadius(Self.cornerRadius)
         .animation(.interpolatingSpring(stiffness: 60, damping: 60, initialVelocity: 10), value: self.promptToolActive)
-        .keyboardPadding(padding: 260)
     }
 }
 

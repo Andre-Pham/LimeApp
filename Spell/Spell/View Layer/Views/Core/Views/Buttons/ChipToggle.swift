@@ -55,7 +55,7 @@ struct ChipToggle: View {
         .padding(.vertical, 10)
         .padding(.horizontal, 20)
         .background(self.activeColor)
-        .cornerRadius(50)
+        .cornerRadius(SpellCoreGraphics.foregroundCornerRadius)
         .onTapGesture {
             self.isSelected.toggle()
             self.onTap(self.isSelected)

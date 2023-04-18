@@ -8,20 +8,26 @@
 import SwiftUI
 
 struct GenerateTextView: View {
+    private let cameraViewController = CameraViewController()
+    
     var body: some View {
         ZStack {
             Color.gray
                 .ignoresSafeArea()
             
-            CameraView(CameraViewController())
+            CameraView(self.cameraViewController)
             
-            Text("GenerateTextView")
-        }
-    }
-}
+            OverlaidToolbar {
+                ToolbarRow {
+                    Spacer()
 
-struct GenerateTextView_Previews: PreviewProvider {
-    static var previews: some View {
-        GenerateTextView()
+                    ChipToggle(
+                        icon: SpellIcon(image: Image(systemName: "arrow.triangle.2.circlepath.camera.fill"))
+                    ) { isSelected in
+                        self.cameraViewController.flipCamera()
+                    }
+                }
+            }
+        }
     }
 }

@@ -43,6 +43,15 @@ class CameraViewController: UIViewController, CaptureDelegate {
         }
     }
     
+    func flipCamera() {
+        self.captureSession.flipCamera { error in
+            if let error {
+                assertionFailure("Failed to flip camera: \(error)")
+                return
+            }
+        }
+    }
+    
     private func setupAndBeginCapturingVideoFrames() {
         self.captureSession.setUpAVCapture { error in
             if let error {
@@ -52,15 +61,6 @@ class CameraViewController: UIViewController, CaptureDelegate {
             
             self.captureSession.captureDelegate = self
             self.captureSession.startCapturing()
-        }
-    }
-    
-    private func flipCamera() {
-        self.captureSession.flipCamera { error in
-            if let error {
-                assertionFailure("Failed to flip camera: \(error)")
-                return
-            }
         }
     }
     

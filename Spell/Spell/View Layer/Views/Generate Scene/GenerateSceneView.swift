@@ -38,17 +38,17 @@ struct GenerateSceneView: View {
                 }
                 
                 Button("camera") {
-                    self.sceneViewController.scene.positionCameraFacing(nodeName: "\(SceneModel.NAME_PREFIX)-alphabet.dae")
+                    self.sceneViewController.scene.positionCameraFacing(node: .hands)
                 }
                 
                 Button("boxes") {
                     self.sceneViewController.scene.clearGeometry()
-                    self.sceneViewController.scene.showBox(for: "\(SceneModel.NAME_PREFIX)-alphabet.dae")
+                    self.sceneViewController.scene.showBox(for: .hands)
                 }
                 
                 Button("dots") {
                     self.sceneViewController.scene.clearGeometry()
-                    self.sceneViewController.scene.showPosition(for: "WorkGlove_R")
+                    self.sceneViewController.scene.showPosition(for: .rightHand, .leftHand)
                 }
                 
                 Button("origin") {

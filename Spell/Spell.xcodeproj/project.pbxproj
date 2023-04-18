@@ -23,6 +23,7 @@
 		B63E176E29E6C9340083616A /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E176D29E6C9340083616A /* CameraViewController.swift */; };
 		B63E177129E6CAC30083616A /* CaptureSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E177029E6CAC30083616A /* CaptureSession.swift */; };
 		B63E177529E6CEF90083616A /* CaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E177429E6CEF90083616A /* CaptureDelegate.swift */; };
+		B63E17B929EE6BEB0083616A /* PresetNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E17B829EE6BEB0083616A /* PresetNode.swift */; };
 		B6A7027929B55DF400487A0D /* SpellApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A7027829B55DF400487A0D /* SpellApp.swift */; };
 		B6A7027B29B55DF400487A0D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A7027A29B55DF400487A0D /* ContentView.swift */; };
 		B6A7027D29B55DF500487A0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6A7027C29B55DF500487A0D /* Assets.xcassets */; };
@@ -95,6 +96,7 @@
 		B63E176D29E6C9340083616A /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		B63E177029E6CAC30083616A /* CaptureSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureSession.swift; sourceTree = "<group>"; };
 		B63E177429E6CEF90083616A /* CaptureDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureDelegate.swift; sourceTree = "<group>"; };
+		B63E17B829EE6BEB0083616A /* PresetNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetNode.swift; sourceTree = "<group>"; };
 		B6A7027529B55DF400487A0D /* Spell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6A7027829B55DF400487A0D /* SpellApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellApp.swift; sourceTree = "<group>"; };
 		B6A7027A29B55DF400487A0D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				B63E176829E504C70083616A /* NodeUtil.swift */,
 				B63E169129C3F49B0083616A /* SceneController.swift */,
 				B63E176229E39A2F0083616A /* SCNBox.swift */,
+				B63E17B829EE6BEB0083616A /* PresetNode.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -652,6 +655,7 @@
 				B63E16A029C7F2390083616A /* Double.swift in Sources */,
 				B63E175D29E2C6E10083616A /* SceneModel.swift in Sources */,
 				B63E176329E39A2F0083616A /* SCNBox.swift in Sources */,
+				B63E17B929EE6BEB0083616A /* PresetNode.swift in Sources */,
 				B6A702B229B5746500487A0D /* MainView.swift in Sources */,
 				B6A702EA29B5F50000487A0D /* ChipToggle.swift in Sources */,
 				B63E176129E2DF740083616A /* Math.swift in Sources */,

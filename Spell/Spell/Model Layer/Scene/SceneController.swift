@@ -112,7 +112,11 @@ class SceneController {
         self.sceneView.backgroundColor = color
     }
     
-    func positionCameraFacing(nodeName: String, distance: Float = 120.0) {
+    func positionCameraFacing(node: PresetNode, distance: Float = 120.0) {
+        self.positionCameraFacing(nodeName: node.name, distance: distance)
+    }
+    
+    private func positionCameraFacing(nodeName: String, distance: Float = 120.0) {
         guard let node = self.scene.rootNode.childNode(withName: nodeName, recursively: true)?.presentation else {
             assertionFailure("Node '\(nodeName)' could not be found")
             return
@@ -129,12 +133,18 @@ class SceneController {
         self.sceneView.defaultCameraController.target = centre
     }
     
-    func showBox(for nodeNames: String...) {
+    func showBox(for nodes: PresetNode...) {
+        for node in nodes { self.showBox(for: node.name) }
+    }
+    
+    private func showBox(for nodeNames: String...) {
         for name in nodeNames {
             guard let node = self.scene.rootNode.childNode(withName: name, recursively: true) else {
+                assertionFailure("Failed to discover node provided to show bounding box on")
                 continue
             }
             guard let edges = SCNBox(node: node)?.edges else {
+                assertionFailure("Node provided to show bounding box on has no bounding box")
                 continue
             }
             for edge in edges {
@@ -146,7 +156,11 @@ class SceneController {
         }
     }
     
-    func showPosition(for nodeNames: String...) {
+    func showPosition(for nodes: PresetNode...) {
+        for node in nodes { self.showPosition(for: node.name) }
+    }
+    
+    private func showPosition(for nodeNames: String...) {
         for name in nodeNames {
             guard let node = self.scene.rootNode.childNode(withName: name, recursively: true) else {
                 continue

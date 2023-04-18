@@ -42,6 +42,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
         
         self.scene.setCameraControl(allowed: true)
         self.scene.setScenePause(to: true)
+        self.scene.setBackgroundColor(to: UIColor(red: 0.95, green: 0.95, blue: 0.96, alpha: 1.00))
     }
     
 }

@@ -12,10 +12,8 @@ struct GenerateTextView: View {
     
     var body: some View {
         ZStack {
-            Color.gray
-                .ignoresSafeArea()
-            
             CameraView(self.cameraViewController)
+                .ignoresSafeArea()
             
             OverlaidToolbar {
                 ToolbarRow {

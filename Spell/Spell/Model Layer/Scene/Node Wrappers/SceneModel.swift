@@ -46,4 +46,33 @@ class SceneModel {
         }
     }
     
+    func translate(_ translation: SCNVector3, animationDuration: Double? = nil) {
+        if let duration = animationDuration {
+            let action = SCNAction.move(by: translation, duration: duration)
+            let sequence = SCNAction.sequence([action])
+            self.node.presentation.runAction(sequence)
+        } else {
+            self.node.localTranslate(by: translation)
+        }
+        // The following resets the animation bounding box, hence it isn't included
+        /*for node in NodeUtil.getHierarchy(for: self.node) {
+            node.presentation.boundingBox.min += translation
+            node.presentation.boundingBox.max += translation
+        }*/
+    }
+    
+//    func match(_ model: SceneModel, animationDuration: Double? = nil) {
+//        // Obviously inefficient, will review later
+//        for node in NodeUtil.getHierarchy(for: self.node) {
+//            for otherNode in NodeUtil.getHierarchy(for: model.node) {
+//                if node.name == otherNode.name {
+//                    let translation = otherNode.presentation.position - node.presentation.position
+//                    let action = SCNAction.move(by: translation, duration: animationDuration ?? 0.0)
+//                    let sequence = SCNAction.sequence([action])
+//                    node.presentation.runAction(sequence)
+//                }
+//            }
+//        }
+//    }
+    
 }

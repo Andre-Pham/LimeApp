@@ -10,6 +10,22 @@ import SceneKit
 
 extension SCNVector3 {
     
+    static func + (left: SCNVector3, right: SCNVector3) -> SCNVector3 {
+        return SCNVector3(x: left.x + right.x, y: left.y + right.y, z: left.z + right.z)
+    }
+    
+    static func - (left: SCNVector3, right: SCNVector3) -> SCNVector3 {
+        return SCNVector3(x: left.x - right.x, y: left.y - right.y, z: left.z - right.z)
+    }
+    
+    static func += (left: inout SCNVector3, right: SCNVector3) {
+        left = left + right
+    }
+    
+    static func -= (left: inout SCNVector3, right: SCNVector3) {
+        left = left - right
+    }
+    
     var normalized: SCNVector3 {
         let length = sqrt(pow(self.x, 2) + pow(self.y, 2) + pow(self.z, 2))
         return SCNVector3(self.x / length, self.y / length, self.z / length)

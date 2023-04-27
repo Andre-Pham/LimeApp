@@ -15,6 +15,7 @@ class CameraViewController: UIViewController, CaptureDelegate {
     private var currentFrame: CGImage? = nil
     
     override func viewDidLoad() {
+        self.setupView()
         UIApplication.shared.isIdleTimerDisabled = true
         
         // Load model here
@@ -39,7 +40,7 @@ class CameraViewController: UIViewController, CaptureDelegate {
             
             // Run ML here and delegate the outcome
             
-            self.view = UIImageView(image: UIImage(cgImage: frame))
+            self.setView(to: frame)
         }
     }
     
@@ -62,6 +63,15 @@ class CameraViewController: UIViewController, CaptureDelegate {
             self.captureSession.captureDelegate = self
             self.captureSession.startCapturing()
         }
+    }
+    
+    private func setupView() {
+        self.view = UIImageView()
+        self.view.contentMode = .scaleAspectFill
+    }
+    
+    private func setView(to image: CGImage) {
+        (self.view as! UIImageView).image = UIImage(cgImage: image)
     }
     
 }

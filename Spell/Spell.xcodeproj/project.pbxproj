@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B617D05B29FA13A50090B815 /* SpellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617D05A29FA13A50090B815 /* SpellButton.swift */; };
+		B617D05D29FA184E0090B815 /* ChipMultistate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617D05C29FA184E0090B815 /* ChipMultistate.swift */; };
+		B617D05F29FA22ED0090B815 /* PresetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617D05E29FA22ED0090B815 /* PresetModel.swift */; };
+		B617D06129FA28260090B815 /* ScrubberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617D06029FA28260090B815 /* ScrubberView.swift */; };
 		B63E169229C3F49B0083616A /* SceneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E169129C3F49B0083616A /* SceneController.swift */; };
 		B63E169429C3FF240083616A /* SceneCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E169329C3FF240083616A /* SceneCamera.swift */; };
 		B63E169929C4467D0083616A /* SceneGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E169829C4467D0083616A /* SceneGeometry.swift */; };
@@ -84,6 +88,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B617D05A29FA13A50090B815 /* SpellButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellButton.swift; sourceTree = "<group>"; };
+		B617D05C29FA184E0090B815 /* ChipMultistate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipMultistate.swift; sourceTree = "<group>"; };
+		B617D05E29FA22ED0090B815 /* PresetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetModel.swift; sourceTree = "<group>"; };
+		B617D06029FA28260090B815 /* ScrubberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrubberView.swift; sourceTree = "<group>"; };
 		B63E169129C3F49B0083616A /* SceneController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneController.swift; sourceTree = "<group>"; };
 		B63E169329C3FF240083616A /* SceneCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCamera.swift; sourceTree = "<group>"; };
 		B63E169829C4467D0083616A /* SceneGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneGeometry.swift; sourceTree = "<group>"; };
@@ -202,6 +210,7 @@
 				B63E169129C3F49B0083616A /* SceneController.swift */,
 				B63E176229E39A2F0083616A /* SCNBox.swift */,
 				B63E17B829EE6BEB0083616A /* PresetNode.swift */,
+				B617D05E29FA22ED0090B815 /* PresetModel.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -432,6 +441,7 @@
 				B6A702F529B8552000487A0D /* Scene */,
 				B6A702BC29B5765500487A0D /* GenerateSceneView.swift */,
 				B6A702ED29B71A4B00487A0D /* SceneToolbarView.swift */,
+				B617D06029FA28260090B815 /* ScrubberView.swift */,
 			);
 			path = "Generate Scene";
 			sourceTree = "<group>";
@@ -508,6 +518,8 @@
 			children = (
 				B6A702E929B5F50000487A0D /* ChipToggle.swift */,
 				B6A702EB29B5FC1A00487A0D /* AnimateButtonPress.swift */,
+				B617D05A29FA13A50090B815 /* SpellButton.swift */,
+				B617D05C29FA184E0090B815 /* ChipMultistate.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -693,6 +705,7 @@
 				B63E176929E504C70083616A /* NodeUtil.swift in Sources */,
 				B6A7027B29B55DF400487A0D /* ContentView.swift in Sources */,
 				B63E176E29E6C9340083616A /* CameraViewController.swift in Sources */,
+				B617D05F29FA22ED0090B815 /* PresetModel.swift in Sources */,
 				B63E17BC29EE7E980083616A /* Toolbar.swift in Sources */,
 				B63E169E29C4BE370083616A /* SCNVector3.swift in Sources */,
 				B6A702BF29B5766700487A0D /* GenerateTextView.swift in Sources */,
@@ -709,6 +722,7 @@
 				B6A702C829B578BE00487A0D /* SpellIcon.swift in Sources */,
 				B6A702FC29B857A800487A0D /* SceneView.swift in Sources */,
 				B6A702D429B57BFF00487A0D /* SpellTextFont.swift in Sources */,
+				B617D05B29FA13A50090B815 /* SpellButton.swift in Sources */,
 				B63E177529E6CEF90083616A /* CaptureDelegate.swift in Sources */,
 				B6A702FE29B85A5800487A0D /* TopSafeAreaInsetFill.swift in Sources */,
 				B6A702CE29B57AD600487A0D /* SpellText.swift in Sources */,
@@ -718,7 +732,9 @@
 				B63E169429C3FF240083616A /* SceneCamera.swift in Sources */,
 				B6A702C129B5767400487A0D /* InfoView.swift in Sources */,
 				B6A702B429B574A100487A0D /* SpellColors.swift in Sources */,
+				B617D06129FA28260090B815 /* ScrubberView.swift in Sources */,
 				B63E17C129EE80610083616A /* SpellCoreGraphics.swift in Sources */,
+				B617D05D29FA184E0090B815 /* ChipMultistate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

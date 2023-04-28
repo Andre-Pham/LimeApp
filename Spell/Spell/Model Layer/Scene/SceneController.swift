@@ -38,6 +38,28 @@ class SceneController {
         controller.view.addSubview(self.sceneView)
     }
     
+    // MARK: - Getters
+    
+    func getModel(_ preset: PresetModel) -> SceneModel? {
+        let model: SceneModel? = self.sceneModels.first(where: { $0.name == preset.name })
+        assert(model != nil, "Preset model \(preset.name) has no corresponding model in the scene")
+        return model
+    }
+    
+    func getCamera() -> SceneCamera {
+        return self.sceneCamera
+    }
+    
+    func getLights() -> [SceneLight] {
+        return Array(self.sceneLights)
+    }
+    
+    func getGeometry() -> [SceneGeometry] {
+        return Array(self.sceneGeometry)
+    }
+    
+    // MARK: - Scene Nodes
+    
     func addModel(_ sceneModel: SceneModel) {
         sceneModel.add(to: self.sceneView)
         if let replacementIndex = self.sceneModels.firstIndex(where: { $0.name == sceneModel.name }) {
@@ -46,6 +68,7 @@ class SceneController {
         } else {
             self.sceneModels.append(sceneModel)
         }
+        sceneModel.pause()
     }
     
     func setCamera(to sceneCamera: SceneCamera) {
@@ -100,6 +123,8 @@ class SceneController {
         }
     }
     
+    // MARK: - Scene State
+    
     func setScenePause(to isPaused: Bool) {
         self.scene.rootNode.isPaused = isPaused
     }
@@ -111,6 +136,8 @@ class SceneController {
     func setBackgroundColor(to color: UIColor?) {
         self.sceneView.backgroundColor = color
     }
+    
+    // MARK: - Camera
     
     func positionCameraFacing(node: PresetNode, distance: Float = 120.0) {
         self.positionCameraFacing(nodeName: node.name, distance: distance)
@@ -132,6 +159,8 @@ class SceneController {
         // https://github.com/Andre-Pham/SpellApp/issues/1
         self.sceneView.defaultCameraController.target = centre
     }
+    
+    // MARK: - Geometry
     
     func showBox(for nodes: PresetNode...) {
         for node in nodes { self.showBox(for: node.name) }
@@ -202,6 +231,8 @@ class SceneController {
             self.removeNode(named: geometry.name)
         }
     }
+    
+    // MARK: - Debugging
     
     func printNames() {
         NodeUtil.printHierarchy(for: self.scene.rootNode)

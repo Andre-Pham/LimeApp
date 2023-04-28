@@ -9,17 +9,66 @@ import SwiftUI
 
 struct SceneToolbarView: View {
     let sceneViewController: SceneViewController
+    
+    /// If the prompt tool is visible
     @State private var promptToolActive = false
+    /// Prompt text
     @State private var prompt: String = ""
-    @State private var promptDisabled = false
-    @State private var promptTimerID = 1
+    
+    /// If the timeline tool is visible
+    @State private var timelineToolActive = false
+    /// The scrubber's progression proportion, between 0 and 1
+    @State private var scrubberProgressProportion: CGFloat = 0.0
+    /// If the scrubber is currently being adjusted
+    @State private var isTracking = false
+    /// Caches whether the scene is paused or not
+    @State private var pauseCache = false
+    /// The number of tools open
+    private var toolsOpenCount: Int {
+        let prompt = self.promptToolActive ? 1 : 0
+        let timeline = self.timelineToolActive ? 1 : 0
+        return prompt + timeline
+    }
     
     var body: some View {
         OverlaidToolbar {
+            if self.timelineToolActive {
+                ToolbarRow {
+                    ScrubberView(progressProportion: self.$scrubberProgressProportion, isTracking: self.$isTracking)
+                        .frame(height: 25.0)
+                        .onChange(of: self.isTracking) { isTracking in
+                            if isTracking {
+                                self.pauseCache = !(self.sceneViewController.scene.getModel(.hands)?.isPlaying ?? false)
+                                // The model appears in the starting position during tracking unless playing
+                                self.sceneViewController.scene.getModel(.hands)?.play()
+                            } else {
+                                // Resume pause/play state - delay to guarantee model doesn't appear in starting position
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                                    self.sceneViewController.scene.getModel(.hands)?.setModelPause(to: self.pauseCache)
+                                }
+                            }
+                        }
+                        .onChange(of: self.scrubberProgressProportion) { proportion in
+                            if self.isTracking {
+                                self.sceneViewController.scene.getModel(.hands)?.setAnimationTime(to: proportion)
+                            }
+                        }
+                    
+                    Spacer()
+                    
+                    ChipMultistate(
+                        states: [1.0, 1.5, 100.0, 0.25, 0.5],
+                        labels: ["1x", "1.5x", "100x", "0.25x", "0.5x"],
+                        minWidth: 50
+                    ) { animationSpeed in
+                        self.sceneViewController.scene.getModel(.hands)?.setAnimationSpeed(to: animationSpeed)
+                    }
+                }
+            }
+            
             if self.promptToolActive {
                 ToolbarRow {
                     TextField("Prompt", text: self.$prompt)
-                        .disabled(self.promptDisabled)
                         .submitLabel(.done)
                         .font(SpellTextFont.bodyBold.value(size: .body))
                         .padding(16) // Padding around text
@@ -29,28 +78,24 @@ struct SceneToolbarView: View {
             }
             
             ToolbarRow {
-                ChipToggle(icon: SpellIcon(image: Image(systemName: "character.cursor.ibeam"))) { isSelected in
+                ChipToggle(
+                    icon: SpellIcon(image: Image(systemName: "character.cursor.ibeam"))
+                ) { isSelected in
                     self.promptToolActive = isSelected
-                    if isSelected {
-                        // Disable the prompt to avoid keyboard animation
-                        // Animation clashes cause funky behaviour
-                        self.promptTimerID = (self.promptTimerID + 1)%1000
-                        let localTimerID = self.promptTimerID
-                        //self.promptDisabled = true
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-                            if localTimerID == self.promptTimerID {
-                                self.promptDisabled = false
-                            }
-                        }
-                    }
                 }
 
-                ChipToggle(icon: SpellIcon(image: Image(systemName: "slider.horizontal.below.rectangle"))) { isSelected in
-                    
+                ChipToggle(
+                    icon: SpellIcon(image: Image(systemName: "slider.horizontal.below.rectangle"))
+                ) { isSelected in
+                    self.timelineToolActive = isSelected
                 }
                 
-                ChipToggle(icon: SpellIcon(image: Image(systemName: "cube.transparent"))) { isSelected in
-                    
+                SpellButton(
+                    icon: SpellIcon(image: Image(systemName: "cube.transparent")),
+                    color: SpellColors.secondaryButtonFill,
+                    textColor: SpellColors.secondaryButtonText
+                ) {
+                    self.sceneViewController.scene.positionCameraFacing(node: .hands)
                 }
                 
                 Spacer()
@@ -61,11 +106,19 @@ struct SceneToolbarView: View {
                     color: SpellColors.primaryButtonFill,
                     textColor: SpellColors.primaryButtonText
                 ) { isPlaying in
-                    self.sceneViewController.scene.setScenePause(to: !isPlaying)
+                    self.sceneViewController.scene.getModel(.hands)?.setModelPause(to: !isPlaying)
                 }
             }
         }
-        .animation(.interpolatingSpring(stiffness: 60, damping: 60, initialVelocity: 10), value: self.promptToolActive)
+        .animation(.interpolatingSpring(stiffness: 60, damping: 60, initialVelocity: 10), value: self.toolsOpenCount)
+        .onAppear {
+            // TODO: Try this with the SwiftUI timer to see if performance increases
+            Timer.scheduledTimer(withTimeInterval: 1/60, repeats: true) { timer in
+                if !self.isTracking, let proportion = self.sceneViewController.scene.getModel(.hands)?.animationProgressProportion {
+                    self.scrubberProgressProportion = proportion
+                }
+            }
+        }
     }
 }
 

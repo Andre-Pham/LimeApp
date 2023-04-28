@@ -17,6 +17,10 @@ struct GenerateTextView: View {
             
             OverlaidToolbar {
                 ToolbarRow {
+                    SpellButton(text: "translation here") {
+                        // Clear text
+                    }
+                    
                     Spacer()
 
                     ChipToggle(

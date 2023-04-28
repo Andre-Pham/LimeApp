@@ -66,13 +66,11 @@ class SceneModel {
         self.animationDuration = self.animationPlayers.first?.animation.duration ?? 0.0
         
         Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { timer in
-            guard self.isPlaying else {
+            guard self.isPlaying, let timer = self.timer else {
+                self.timer = DispatchTime.now()
                 return
             }
-            var addition = 0.0
-            if let testTimer = self.timer {
-                addition = Double(DispatchTime.now().uptimeNanoseconds - testTimer.uptimeNanoseconds)/1_000_000_000.0
-            }
+            let addition = Double(DispatchTime.now().uptimeNanoseconds - timer.uptimeNanoseconds)/1_000_000_000.0
             self.animationProgress = (self.animationProgress + addition*self.animationSpeed)
             if isGreater(self.animationProgress, self.animationDuration) {
                 self.setAnimationTime(to: 0.0) // Also resets animation progress

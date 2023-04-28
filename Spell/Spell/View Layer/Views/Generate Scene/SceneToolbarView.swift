@@ -23,6 +23,8 @@ struct SceneToolbarView: View {
     @State private var isTracking = false
     /// Caches whether the scene is paused or not
     @State private var pauseCache = false
+    /// Caches the animation speed of the animation
+    @State private var animationSpeedCache = 1.0
     /// The number of tools open
     private var toolsOpenCount: Int {
         let prompt = self.promptToolActive ? 1 : 0
@@ -39,12 +41,16 @@ struct SceneToolbarView: View {
                         .onChange(of: self.isTracking) { isTracking in
                             if isTracking {
                                 self.pauseCache = !(self.sceneViewController.scene.getModel(.hands)?.isPlaying ?? false)
+                                self.animationSpeedCache = self.sceneViewController.scene.getModel(.hands)?.animationSpeed ?? 1.0
                                 // The model appears in the starting position during tracking unless playing
+                                // Slow down the animation so it appears not to play
+                                self.sceneViewController.scene.getModel(.hands)?.setAnimationSpeed(to: 0.01)
                                 self.sceneViewController.scene.getModel(.hands)?.play()
                             } else {
-                                // Resume pause/play state - delay to guarantee model doesn't appear in starting position
+                                // Resume state - delay to guarantee model doesn't appear in starting position
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                                     self.sceneViewController.scene.getModel(.hands)?.setModelPause(to: self.pauseCache)
+                                    self.sceneViewController.scene.getModel(.hands)?.setAnimationSpeed(to: self.animationSpeedCache)
                                 }
                             }
                         }

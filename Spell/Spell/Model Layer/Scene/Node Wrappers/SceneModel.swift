@@ -30,7 +30,7 @@ class SceneModel {
     /// The progress through the model's animation (seconds)
     private var animationProgress: Double = 0.0
     /// The speed multiplier on the model's animation
-    private var animationSpeed = 1.0
+    private(set) var animationSpeed = 1.0
     /// The timer used to measure time between Timer intervals
     /// Found to be more accurate than using the time interval itself
     private var timer: DispatchTime? = nil
@@ -100,25 +100,17 @@ class SceneModel {
     }
     
     func setAnimationSpeed(to speed: Double) {
-        for node in NodeUtil.getHierarchy(for: self.node) {
-            node.animationKeys.forEach({ key in
-                if let animation = node.animationPlayer(forKey: key) {
-                    animation.speed = speed
-                }
-            })
+        for player in self.animationPlayers {
+            player.speed = speed
         }
         self.animationSpeed = speed
     }
     
     func setAnimationTime(to proportion: Double) {
         assert(isLessOrEqual(proportion, 1.0) && isGreaterOrEqualZero(proportion), "Proportion argument must be in the range [0, 1]")
-        for node in NodeUtil.getHierarchy(for: self.node) {
-            node.animationKeys.forEach({ key in
-                if let animation = node.animationPlayer(forKey: key) {
-                    animation.animation.timeOffset = proportion*animation.animation.duration
-                    animation.play()
-                }
-            })
+        for player in self.animationPlayers {
+            player.animation.timeOffset = proportion*player.animation.duration
+            player.play()
         }
         self.animationProgress = proportion*self.animationDuration
     }

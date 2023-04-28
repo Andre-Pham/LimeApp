@@ -88,15 +88,17 @@ class SceneModel {
     }
     
     func play() {
-        self.node.isPaused = false
+        self.setModelPause(to: false)
     }
     
     func pause() {
-        self.node.isPaused = true
+        self.setModelPause(to: true)
     }
     
     func setModelPause(to isPaused: Bool) {
         self.node.isPaused = isPaused
+        // Timer shouldn't be timing between pauses
+        self.timer = self.isPlaying ? DispatchTime.now() : nil
     }
     
     func setAnimationSpeed(to speed: Double) {

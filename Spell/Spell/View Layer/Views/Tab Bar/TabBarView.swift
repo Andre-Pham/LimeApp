@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TabBarView: View {
     @EnvironmentObject private var viewRouter: ViewRouter
-    private static let tabBarHeight = 50.0
+    private static let TAB_BAR_HEIGHT = 50.0
     
     var body: some View {
         ZStack {
@@ -27,7 +27,7 @@ struct TabBarView: View {
                 SettingsView()
                     .opacity(self.viewRouter.currentPage == .settings ? 1 : 0)
             }
-            .padding(.bottom, Self.tabBarHeight)
+            .padding(.bottom, Self.TAB_BAR_HEIGHT)
             
             VStack(spacing: 0) {
                 Spacer()
@@ -66,7 +66,7 @@ struct TabBarView: View {
                     )
                 }
                 .padding(.top, 4)
-                .frame(height: Self.tabBarHeight)
+                .frame(height: Self.TAB_BAR_HEIGHT)
                 .background(SpellColors.backgroundFill)
                 .edgesIgnoringSafeArea(.bottom)
             }

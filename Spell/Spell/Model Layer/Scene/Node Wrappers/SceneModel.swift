@@ -10,18 +10,18 @@ import SceneKit
 
 class SceneModel {
     
-    // MARK: Constants
+    // MARK: - Constants
     
     public static let NAME_PREFIX = "model"
     
-    // MARK: Node Properties
+    // MARK: - Node Properties
     
     private var node: SCNNode = SCNNode()
     var name: String {
         return self.node.name!
     }
     
-    // MARK: Animation Properties
+    // MARK: - Animation Properties
     
     /// All animation players used within the model
     private var animationPlayers = [SCNAnimationPlayer]()
@@ -42,6 +42,8 @@ class SceneModel {
     public var animationProgressProportion: Double {
         return self.animationProgress/self.animationDuration
     }
+    
+    // MARK: - Constructors
     
     init(dir: String = "Models.scnassets", fileName: String) {
         if let scene = SCNScene(named: "\(dir)/\(fileName)"){
@@ -78,6 +80,8 @@ class SceneModel {
             self.timer = DispatchTime.now()
         }
     }
+    
+    // MARK: - Methods
     
     func add(to sceneView: SCNView) {
         sceneView.scene?.rootNode.addChildNode(self.node)

@@ -10,7 +10,11 @@ import Foundation
 
 class SceneController {
     
+    // MARK: - Constants
+    
     public static let ROOT_NODE_NAME = "root"
+    
+    // MARK: - Properties
     
     private var scene = SCNScene()
     private var sceneView: SCNView = SCNView()
@@ -19,11 +23,15 @@ class SceneController {
     private var sceneLights = [SceneLight]()
     private var sceneGeometry = [SceneGeometry]()
     
+    // MARK: - Constructors
+    
     init() {
         self.sceneView.scene = self.scene
         self.sceneCamera.add(to: self.sceneView)
         self.scene.rootNode.name = Self.ROOT_NODE_NAME
     }
+    
+    // MARK: - Setup
     
     func attach(to controller: UIViewController) {
         self.sceneView.frame = controller.view.frame

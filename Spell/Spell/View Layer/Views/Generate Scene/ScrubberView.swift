@@ -14,15 +14,15 @@ struct ScrubberView: View {
     /// If the scrubber is currently being adjusted
     @Binding var isTracking: Bool
     /// The diameter of the interactive control
-    private let scrubberDiameter = 30.0
+    private static let SCRUBBER_DIAMETER = 30.0
     
     var body: some View {
         GeometryReader { geometry in
-            let timelineWidth = geometry.size.width - self.scrubberDiameter
+            let timelineWidth = geometry.size.width - Self.SCRUBBER_DIAMETER
             
             ZStack {
                 RoundedRectangle(cornerRadius: 50, style: .continuous)
-                    .frame(width: geometry.size.width, height: self.scrubberDiameter)
+                    .frame(width: geometry.size.width, height: Self.SCRUBBER_DIAMETER)
                     .position(x: geometry.size.width/2, y: geometry.size.height/2)
                     .foregroundColor(SpellColors.component)
                 
@@ -34,14 +34,14 @@ struct ScrubberView: View {
                 
                 Circle()
                     .fill(SpellColors.accent)
-                    .frame(width: self.scrubberDiameter, height: self.scrubberDiameter)
-                    .position(x: self.progressProportion*timelineWidth + self.scrubberDiameter/2, y: geometry.size.height / 2)
+                    .frame(width: Self.SCRUBBER_DIAMETER, height: Self.SCRUBBER_DIAMETER)
+                    .position(x: self.progressProportion*timelineWidth + Self.SCRUBBER_DIAMETER/2, y: geometry.size.height / 2)
             }
             .gesture(
                 DragGesture(minimumDistance: 0)
                     .onChanged({
                         self.isTracking = true
-                        self.progressProportion = min(timelineWidth, max(0, $0.location.x - self.scrubberDiameter/2))/timelineWidth
+                        self.progressProportion = min(timelineWidth, max(0, $0.location.x - Self.SCRUBBER_DIAMETER/2))/timelineWidth
                     })
                     .onEnded({ _ in
                         self.isTracking = false

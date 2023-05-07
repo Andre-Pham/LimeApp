@@ -11,6 +11,13 @@
 		B617D05D29FA184E0090B815 /* ChipMultistate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617D05C29FA184E0090B815 /* ChipMultistate.swift */; };
 		B617D05F29FA22ED0090B815 /* PresetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617D05E29FA22ED0090B815 /* PresetModel.swift */; };
 		B617D06129FA28260090B815 /* ScrubberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617D06029FA28260090B815 /* ScrubberView.swift */; };
+		B61FFC712A06A08600426BDB /* ASLDemoClassifier 2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B61FFC702A06A08600426BDB /* ASLDemoClassifier 2.mlmodel */; };
+		B61FFC782A0768CB00426BDB /* SignRecogniser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61FFC772A0768CB00426BDB /* SignRecogniser.swift */; };
+		B61FFC7A2A076D6700426BDB /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61FFC792A076D6700426BDB /* Label.swift */; };
+		B61FFC7C2A076E5500426BDB /* SignDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61FFC7B2A076E5500426BDB /* SignDelegate.swift */; };
+		B61FFC7E2A077A3100426BDB /* HandPointRecogniser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61FFC7D2A077A3100426BDB /* HandPointRecogniser.swift */; };
+		B61FFC802A077B1100426BDB /* JointPositions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61FFC7F2A077B1100426BDB /* JointPositions.swift */; };
+		B61FFC822A07857800426BDB /* JointPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61FFC812A07857800426BDB /* JointPosition.swift */; };
 		B63E169229C3F49B0083616A /* SceneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E169129C3F49B0083616A /* SceneController.swift */; };
 		B63E169429C3FF240083616A /* SceneCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E169329C3FF240083616A /* SceneCamera.swift */; };
 		B63E169929C4467D0083616A /* SceneGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E169829C4467D0083616A /* SceneGeometry.swift */; };
@@ -92,6 +99,13 @@
 		B617D05C29FA184E0090B815 /* ChipMultistate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipMultistate.swift; sourceTree = "<group>"; };
 		B617D05E29FA22ED0090B815 /* PresetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetModel.swift; sourceTree = "<group>"; };
 		B617D06029FA28260090B815 /* ScrubberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrubberView.swift; sourceTree = "<group>"; };
+		B61FFC702A06A08600426BDB /* ASLDemoClassifier 2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "ASLDemoClassifier 2.mlmodel"; sourceTree = "<group>"; };
+		B61FFC772A0768CB00426BDB /* SignRecogniser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignRecogniser.swift; sourceTree = "<group>"; };
+		B61FFC792A076D6700426BDB /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		B61FFC7B2A076E5500426BDB /* SignDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignDelegate.swift; sourceTree = "<group>"; };
+		B61FFC7D2A077A3100426BDB /* HandPointRecogniser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandPointRecogniser.swift; sourceTree = "<group>"; };
+		B61FFC7F2A077B1100426BDB /* JointPositions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JointPositions.swift; sourceTree = "<group>"; };
+		B61FFC812A07857800426BDB /* JointPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JointPosition.swift; sourceTree = "<group>"; };
 		B63E169129C3F49B0083616A /* SceneController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneController.swift; sourceTree = "<group>"; };
 		B63E169329C3FF240083616A /* SceneCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCamera.swift; sourceTree = "<group>"; };
 		B63E169829C4467D0083616A /* SceneGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneGeometry.swift; sourceTree = "<group>"; };
@@ -181,6 +195,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B61FFC762A07688100426BDB /* Recognition */ = {
+			isa = PBXGroup;
+			children = (
+				B61FFC772A0768CB00426BDB /* SignRecogniser.swift */,
+				B61FFC792A076D6700426BDB /* Label.swift */,
+				B61FFC7B2A076E5500426BDB /* SignDelegate.swift */,
+				B61FFC7D2A077A3100426BDB /* HandPointRecogniser.swift */,
+				B61FFC7F2A077B1100426BDB /* JointPositions.swift */,
+				B61FFC812A07857800426BDB /* JointPosition.swift */,
+			);
+			path = Recognition;
+			sourceTree = "<group>";
+		};
 		B63E169729C445980083616A /* Node Wrappers */ = {
 			isa = PBXGroup;
 			children = (
@@ -332,6 +359,7 @@
 		B6A702A529B55EEB00487A0D /* Model Layer */ = {
 			isa = PBXGroup;
 			children = (
+				B61FFC762A07688100426BDB /* Recognition */,
 				B63E176F29E6CA630083616A /* Video */,
 				B63E175B29E2C6B10083616A /* Scene */,
 			);
@@ -397,6 +425,7 @@
 			children = (
 				B6A702D729B57F5B00487A0D /* Fonts */,
 				B6A7027C29B55DF500487A0D /* Assets.xcassets */,
+				B61FFC702A06A08600426BDB /* ASLDemoClassifier 2.mlmodel */,
 				B6A702F929B8576D00487A0D /* Models.scnassets */,
 			);
 			path = Assets;
@@ -685,10 +714,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B61FFC7A2A076D6700426BDB /* Label.swift in Sources */,
 				B6A702BD29B5765500487A0D /* GenerateSceneView.swift in Sources */,
 				B63E17C329EE80B80083616A /* OverlaidToolbar.swift in Sources */,
 				B6A7030029BEC00000487A0D /* SceneLight.swift in Sources */,
 				B6A702EE29B71A4B00487A0D /* SceneToolbarView.swift in Sources */,
+				B61FFC7C2A076E5500426BDB /* SignDelegate.swift in Sources */,
 				B6A702B029B560FC00487A0D /* ViewRouter.swift in Sources */,
 				B63E169929C4467D0083616A /* SceneGeometry.swift in Sources */,
 				B63E169229C3F49B0083616A /* SceneController.swift in Sources */,
@@ -711,9 +742,11 @@
 				B6A702BF29B5766700487A0D /* GenerateTextView.swift in Sources */,
 				B6A702EC29B5FC1A00487A0D /* AnimateButtonPress.swift in Sources */,
 				B6A702C529B5785900487A0D /* TabBarIconView.swift in Sources */,
+				B61FFC7E2A077A3100426BDB /* HandPointRecogniser.swift in Sources */,
 				B6A702C329B5768500487A0D /* SettingsView.swift in Sources */,
 				B63E177129E6CAC30083616A /* CaptureSession.swift in Sources */,
 				B6A702F429B844E400487A0D /* KeyboardPadding.swift in Sources */,
+				B61FFC782A0768CB00426BDB /* SignRecogniser.swift in Sources */,
 				B6A702CA29B579C800487A0D /* Strings.swift in Sources */,
 				B63E16A429C7F2D80083616A /* SCNNode.swift in Sources */,
 				B6A702F129B8433F00487A0D /* KeyboardHeightPublisher.swift in Sources */,
@@ -732,9 +765,12 @@
 				B63E169429C3FF240083616A /* SceneCamera.swift in Sources */,
 				B6A702C129B5767400487A0D /* InfoView.swift in Sources */,
 				B6A702B429B574A100487A0D /* SpellColors.swift in Sources */,
+				B61FFC712A06A08600426BDB /* ASLDemoClassifier 2.mlmodel in Sources */,
 				B617D06129FA28260090B815 /* ScrubberView.swift in Sources */,
 				B63E17C129EE80610083616A /* SpellCoreGraphics.swift in Sources */,
+				B61FFC802A077B1100426BDB /* JointPositions.swift in Sources */,
 				B617D05D29FA184E0090B815 /* ChipMultistate.swift in Sources */,
+				B61FFC822A07857800426BDB /* JointPosition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

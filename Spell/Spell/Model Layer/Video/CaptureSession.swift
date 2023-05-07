@@ -186,7 +186,6 @@ extension CaptureSession: AVCaptureVideoDataOutputSampleBufferDelegate {
     public func captureOutput(_ output: AVCaptureOutput,
                               didOutput sampleBuffer: CMSampleBuffer,
                               from connection: AVCaptureConnection) {
-        print("Capture received")
         guard let captureDelegate = self.captureDelegate else { return }
 
         if let pixelBuffer = sampleBuffer.imageBuffer {

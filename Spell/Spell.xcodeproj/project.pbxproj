@@ -18,6 +18,7 @@
 		B61FFC7E2A077A3100426BDB /* HandPointRecogniser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61FFC7D2A077A3100426BDB /* HandPointRecogniser.swift */; };
 		B61FFC802A077B1100426BDB /* JointPositions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61FFC7F2A077B1100426BDB /* JointPositions.swift */; };
 		B61FFC822A07857800426BDB /* JointPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61FFC812A07857800426BDB /* JointPosition.swift */; };
+		B61FFC852A0C2D3E00426BDB /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61FFC842A0C2D3E00426BDB /* CGRect.swift */; };
 		B63E169229C3F49B0083616A /* SceneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E169129C3F49B0083616A /* SceneController.swift */; };
 		B63E169429C3FF240083616A /* SceneCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E169329C3FF240083616A /* SceneCamera.swift */; };
 		B63E169929C4467D0083616A /* SceneGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E169829C4467D0083616A /* SceneGeometry.swift */; };
@@ -106,6 +107,7 @@
 		B61FFC7D2A077A3100426BDB /* HandPointRecogniser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandPointRecogniser.swift; sourceTree = "<group>"; };
 		B61FFC7F2A077B1100426BDB /* JointPositions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JointPositions.swift; sourceTree = "<group>"; };
 		B61FFC812A07857800426BDB /* JointPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JointPosition.swift; sourceTree = "<group>"; };
+		B61FFC842A0C2D3E00426BDB /* CGRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
 		B63E169129C3F49B0083616A /* SceneController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneController.swift; sourceTree = "<group>"; };
 		B63E169329C3FF240083616A /* SceneCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCamera.swift; sourceTree = "<group>"; };
 		B63E169829C4467D0083616A /* SceneGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneGeometry.swift; sourceTree = "<group>"; };
@@ -206,6 +208,14 @@
 				B61FFC812A07857800426BDB /* JointPosition.swift */,
 			);
 			path = Recognition;
+			sourceTree = "<group>";
+		};
+		B61FFC832A0C2D2E00426BDB /* CGRect */ = {
+			isa = PBXGroup;
+			children = (
+				B61FFC842A0C2D3E00426BDB /* CGRect.swift */,
+			);
+			path = CGRect;
 			sourceTree = "<group>";
 		};
 		B63E169729C445980083616A /* Node Wrappers */ = {
@@ -348,6 +358,7 @@
 		B6A702A429B55EDF00487A0D /* Swift */ = {
 			isa = PBXGroup;
 			children = (
+				B61FFC832A0C2D2E00426BDB /* CGRect */,
 				B63E169C29C4BE230083616A /* SceneKit */,
 				B63E169F29C7F2390083616A /* Double.swift */,
 				B63E16A129C7F27E0083616A /* Float.swift */,
@@ -717,6 +728,7 @@
 				B61FFC7A2A076D6700426BDB /* Label.swift in Sources */,
 				B6A702BD29B5765500487A0D /* GenerateSceneView.swift in Sources */,
 				B63E17C329EE80B80083616A /* OverlaidToolbar.swift in Sources */,
+				B61FFC852A0C2D3E00426BDB /* CGRect.swift in Sources */,
 				B6A7030029BEC00000487A0D /* SceneLight.swift in Sources */,
 				B6A702EE29B71A4B00487A0D /* SceneToolbarView.swift in Sources */,
 				B61FFC7C2A076E5500426BDB /* SignDelegate.swift in Sources */,

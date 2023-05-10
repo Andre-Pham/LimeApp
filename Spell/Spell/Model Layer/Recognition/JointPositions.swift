@@ -60,11 +60,14 @@ class JointPositions {
     private(set) var littlePIP = JointPosition(name: "little2")
     private(set) var littleDIP = JointPosition(name: "little3")
     private(set) var littleTip = JointPosition(name: "little4")
+    public var littlePositions: [JointPosition] {
+        return [self.littleMCP, self.littlePIP, self.littleDIP, self.littleTip]
+    }
     
     // MARK: - All Properties
     
     var allPositions: [JointPosition] {
-        return [self.wrist] + self.thumbPositions + self.indexPositions + self.middlePositions + self.ringPositions
+        return [self.wrist] + self.thumbPositions + self.indexPositions + self.middlePositions + self.ringPositions + self.littlePositions
     }
     
     func retrievePosition(from joint: VNHumanHandPoseObservation.JointName) -> JointPosition {

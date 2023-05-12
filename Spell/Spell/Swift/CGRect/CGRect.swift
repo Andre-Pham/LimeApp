@@ -13,6 +13,10 @@ extension CGRect {
         CGPoint(x: self.midX, y: self.midY)
     }
     
+    var area: CGFloat {
+        return self.width*self.height
+    }
+    
     func scale(toAspectFillSize size: CGSize) -> CGRect {
         let aspectRatio = size.width / size.height
         let rectRatio = self.width / self.height

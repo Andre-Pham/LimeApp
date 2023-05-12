@@ -11,8 +11,6 @@ import SceneKit
 
 class HandPointRecogniser {
     
-    private static let CONFIDENCE_THRESHOLD: Float = 0.5
-    
     func getHandPosition(observation: VNHumanHandPoseObservation) -> JointPositions {
         assert(!Thread.isMainThread, "Recognition should be made off the main thread")
         let jointPositions = JointPositions()
@@ -21,9 +19,8 @@ class HandPointRecogniser {
         }
         for point in recognisedPoints {
             let jointPosition = jointPositions.retrievePosition(from: point.key)
-            if isGreaterOrEqual(point.value.confidence.magnitude, Self.CONFIDENCE_THRESHOLD) {
-                jointPosition.position = CGPoint(x: point.value.location.x, y: point.value.location.y)
-            }
+            jointPosition.position = CGPoint(x: point.value.location.x, y: point.value.location.y)
+            jointPosition.confidence = point.value.confidence.magnitude
         }
         return jointPositions
     }

@@ -13,6 +13,7 @@ class JointPosition {
     
     public let name: String
     public var position: CGPoint? = nil
+    public var confidence: Float? = nil
     
     init(name: String) {
         self.name = name

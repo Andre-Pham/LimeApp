@@ -72,9 +72,8 @@ class CameraViewController: UIViewController, CaptureDelegate, SignDelegate {
         for position in positions.allPositions {
             let positionVal = position.getDenormalisedPosition(viewWidth: self.overlayView.frame.width, viewHeight: self.overlayView.frame.height)
             if let positionVal {
-                // TODO: Add the confidence data to the positions data and remove the threshold
-                // TODO: Then I can scale the circles by their confidence
-                let circleView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: 12))
+                print(position.confidence!)
+                let circleView = UIView(frame: CGRect(x: 0, y: 0, width: 18.0*CGFloat(position.confidence!), height: 18.0*CGFloat(position.confidence!)))
                 circleView.center = positionVal
                 circleView.backgroundColor = UIColor.green
                 circleView.layer.cornerRadius = circleView.frame.width / 2

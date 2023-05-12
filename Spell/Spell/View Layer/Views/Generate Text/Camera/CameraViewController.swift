@@ -72,7 +72,6 @@ class CameraViewController: UIViewController, CaptureDelegate, SignDelegate {
         for position in positions.allPositions {
             let positionVal = position.getDenormalisedPosition(viewWidth: self.overlayView.frame.width, viewHeight: self.overlayView.frame.height)
             if let positionVal {
-                print(position.confidence!)
                 let circleView = UIView(frame: CGRect(x: 0, y: 0, width: 18.0*CGFloat(position.confidence!), height: 18.0*CGFloat(position.confidence!)))
                 circleView.center = positionVal
                 circleView.backgroundColor = UIColor.green

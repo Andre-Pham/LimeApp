@@ -17,12 +17,21 @@ class SignRecogniser {
     
     private let model = try? ASLDemoClassifier_2(configuration: MLModelConfiguration())
     private let handPointRecogniser = HandPointRecogniser()
+    private let operations = OperationQueue()
     public weak var signDelegate: SignDelegate?
+    
+    init() {
+        self.operations.maxConcurrentOperationCount = 5 // Magic number
+    }
     
     func makePrediction(on frame: CGImage) {
         // Run on non-UI related background thread
         DispatchQueue.global(qos: .userInitiated).async { [self] in
-            self.process(frame: frame)
+            // Use operations to manage number of concurrent processes
+            // Otherwise main thread can throttle
+            self.operations.addOperation {
+                self.process(frame: frame)
+            }
         }
     }
     

@@ -46,7 +46,7 @@ class SceneModel {
     // MARK: - Constructors
     
     init(dir: String = "Models.scnassets", fileName: String) {
-        if let scene = SCNScene(named: "\(dir)/\(fileName)"){
+        if let scene = SCNScene(named: "\(dir)/\(fileName)") {
             for childNode in scene.rootNode.childNodes {
                 self.node.addChildNode(childNode)
             }

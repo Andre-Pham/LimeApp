@@ -147,7 +147,7 @@ class SceneController {
     
     // MARK: - Camera
     
-    func positionCameraFacing(node: PresetNode, distance: Float = 120.0) {
+    func positionCameraFacing(node: PresetNode, distance: Float = 1.5) {
         self.positionCameraFacing(nodeName: node.name, distance: distance)
     }
     
@@ -170,8 +170,28 @@ class SceneController {
     
     // MARK: - Geometry
     
+    /// Shows the bounding box in 3D geometry for all provided preset nodes.
+    /// If no nodes are provided, shows boxes for all nodes.
+    /// - Parameters:
+    ///   - nodes: The nodes to have their boxes shown (provide none to show all)
     func showBox(for nodes: PresetNode...) {
+        guard !nodes.isEmpty else {
+            self.showAllBoxes()
+            return
+        }
         for node in nodes { self.showBox(for: node.name) }
+    }
+    
+    /// Shows the presentation position as a sphere in 3D geometry for all provided preset nodes.
+    /// If no nodes are provided, shows positions for all nodes.
+    /// - Parameters:
+    ///   - nodes: The nodes to have their positions shown (provide none to show all)
+    func showPosition(for nodes: PresetNode...) {
+        guard !nodes.isEmpty else {
+            self.showAllNodePositions()
+            return
+        }
+        for node in nodes { self.showPosition(for: node.name) }
     }
     
     private func showBox(for nodeNames: String...) {
@@ -185,7 +205,7 @@ class SceneController {
                 continue
             }
             for edge in edges {
-                let geometry = SceneGeometry(geometry: GeometryBuilder.cylinder(origin: edge.0, end: edge.1, radius: 0.2))
+                let geometry = SceneGeometry(geometry: GeometryBuilder.cylinder(origin: edge.0, end: edge.1, radius: 0.002))
                     .setLightingModel(to: .constant)
                     .setColor(to: .red)
                 self.addGeometry(geometry)
@@ -193,23 +213,7 @@ class SceneController {
         }
     }
     
-    func showPosition(for nodes: PresetNode...) {
-        for node in nodes { self.showPosition(for: node.name) }
-    }
-    
-    private func showPosition(for nodeNames: String...) {
-        for name in nodeNames {
-            guard let node = self.scene.rootNode.childNode(withName: name, recursively: true) else {
-                continue
-            }
-            let circle = SceneGeometry(geometry: GeometryBuilder.sphere(position: node.presentation.position, radius: 10))
-                .setLightingModel(to: .constant)
-                .setColor(to: UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 0.2))
-            self.addGeometry(circle)
-        }
-    }
-    
-    func showAllBoxes() {
+    private func showAllBoxes() {
         let nodes = NodeUtil.getHierarchy(for: self.scene.rootNode)
         for node in nodes {
             guard let edges = SCNBox(node: node)?.edges else {
@@ -224,10 +228,22 @@ class SceneController {
         }
     }
     
-    func showAllNodePositions() {
+    private func showPosition(for nodeNames: String...) {
+        for name in nodeNames {
+            guard let node = self.scene.rootNode.childNode(withName: name, recursively: true) else {
+                continue
+            }
+            let circle = SceneGeometry(geometry: GeometryBuilder.sphere(position: node.presentation.position, radius: 0.05))
+                .setLightingModel(to: .constant)
+                .setColor(to: UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 0.2))
+            self.addGeometry(circle)
+        }
+    }
+    
+    private func showAllNodePositions() {
         let nodes = NodeUtil.getHierarchy(for: self.scene.rootNode)
         for node in nodes {
-            let circle = SceneGeometry(geometry: GeometryBuilder.sphere(position: node.presentation.position, radius: 10))
+            let circle = SceneGeometry(geometry: GeometryBuilder.sphere(position: node.presentation.position, radius: 0.05))
                 .setLightingModel(to: .constant)
                 .setColor(to: UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 0.2))
             self.addGeometry(circle)

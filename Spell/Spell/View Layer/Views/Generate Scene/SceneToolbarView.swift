@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SceneToolbarView: View {
-    let sceneViewController: SceneViewController
     
     /// If the prompt tool is visible
     @State private var promptToolActive = false
@@ -45,23 +44,23 @@ struct SceneToolbarView: View {
                         .frame(height: 25.0)
                         .onChange(of: self.isTracking) { isTracking in
                             if isTracking {
-                                self.pauseCache = !(self.sceneViewController.scene.getModel(.hands)?.isPlaying ?? false)
-                                self.animationSpeedCache = self.sceneViewController.scene.getModel(.hands)?.animationSpeed ?? 1.0
-                                // The model appears in the starting position during tracking unless playing
-                                // Slow down the animation so it appears not to play
-                                self.sceneViewController.scene.getModel(.hands)?.setAnimationSpeed(to: 0.01)
-                                self.sceneViewController.scene.getModel(.hands)?.play()
+//                                self.pauseCache = !(self.sceneViewController.scene.getModel(.hands)?.isPlaying ?? false)
+//                                self.animationSpeedCache = self.sceneViewController.scene.getModel(.hands)?.animationSpeed ?? 1.0
+//                                // The model appears in the starting position during tracking unless playing
+//                                // Slow down the animation so it appears not to play
+//                                self.sceneViewController.scene.getModel(.hands)?.setAnimationSpeed(to: 0.01)
+//                                self.sceneViewController.scene.getModel(.hands)?.play()
                             } else {
                                 // Resume state - delay to guarantee model doesn't appear in starting position
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-                                    self.sceneViewController.scene.getModel(.hands)?.setModelPause(to: self.pauseCache)
-                                    self.sceneViewController.scene.getModel(.hands)?.setAnimationSpeed(to: self.animationSpeedCache)
-                                }
+//                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+//                                    self.sceneViewController.scene.getModel(.hands)?.setModelPause(to: self.pauseCache)
+//                                    self.sceneViewController.scene.getModel(.hands)?.setAnimationSpeed(to: self.animationSpeedCache)
+//                                }
                             }
                         }
                         .onChange(of: self.scrubberProgressProportion) { proportion in
                             if self.isTracking {
-                                self.sceneViewController.scene.getModel(.hands)?.setAnimationTime(to: proportion)
+//                                self.sceneViewController.scene.getModel(.hands)?.setAnimationTime(to: proportion)
                             }
                         }
                     
@@ -72,7 +71,7 @@ struct SceneToolbarView: View {
                         labels: ["1x", "1.5x", "100x", "0.25x", "0.5x"],
                         minWidth: 50
                     ) { animationSpeed in
-                        self.sceneViewController.scene.getModel(.hands)?.setAnimationSpeed(to: animationSpeed)
+//                        SpellSession.inst.sceneController.getModel(.hands)?.setAnimationSpeed(to: animationSpeed)
                     }
                 }
             }
@@ -112,7 +111,9 @@ struct SceneToolbarView: View {
                     color: SpellColors.secondaryButtonFill,
                     textColor: SpellColors.secondaryButtonText
                 ) {
-                    self.sceneViewController.scene.positionCameraFacing(node: .hands)
+                    if let activeModel = SpellSession.inst.sequence?.activeModel {
+                        SpellSession.inst.sceneController.positionCameraFacing(model: activeModel)
+                    }
                 }
                 
                 Spacer()
@@ -125,21 +126,18 @@ struct SceneToolbarView: View {
                     textColor: SpellColors.primaryButtonText
                 ) { isPlaying in
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                    let model = SceneModel(subDir: "alphabet", fileName: "a.dae", name: "a")
-                    self.sceneViewController.scene.addModel(model)
-                    self.sceneViewController.scene.getModel(.a)?.setModelPause(to: !isPlaying)
-//                    self.sceneViewController.scene.getModel(.hands)?.setModelPause(to: !isPlaying)
+                    SpellSession.inst.sequence?.setSequencePause(to: !isPlaying)
                 }
             }
         }
         .animation(.interpolatingSpring(stiffness: 60, damping: 60, initialVelocity: 10), value: self.toolsOpenCount)
         .onAppear {
             // TODO: Try this with the SwiftUI timer to see if performance increases
-            Timer.scheduledTimer(withTimeInterval: 1/60, repeats: true) { timer in
-                if !self.isTracking, let proportion = self.sceneViewController.scene.getModel(.hands)?.animationProgressProportion {
-                    self.scrubberProgressProportion = proportion
-                }
-            }
+//            Timer.scheduledTimer(withTimeInterval: 1/60, repeats: true) { timer in
+//                if !self.isTracking, let proportion = self.sceneViewController.scene.getModel(.hands)?.animationProgressProportion {
+//                    self.scrubberProgressProportion = proportion
+//                }
+//            }
         }
     }
 }
@@ -150,7 +148,7 @@ struct Toolbar3DView_Previews: PreviewProvider {
             Color.green
                 .ignoresSafeArea()
             
-            SceneToolbarView(sceneViewController: SceneViewController())
+            SceneToolbarView()
         }
     }
 }

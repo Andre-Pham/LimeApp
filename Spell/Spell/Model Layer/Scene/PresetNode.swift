@@ -19,11 +19,11 @@ enum PresetNode {
     case hands
     /// Animated right hand model
     /// - Invalid bounding box
-    /// - Valid position
+    /// - Static position
     case rightHand
     /// Animated left hand model
     /// - Invalid bounding box
-    /// - Valid position
+    /// - Static position
     case leftHand
     
     var name: String {
@@ -33,11 +33,11 @@ enum PresetNode {
         case .camera:
             return SceneCamera.NAME
         case .hands:
-            return "\(SceneModel.NAME_PREFIX)-alphabet.dae"
+            return "Hands2"
         case .rightHand:
-            return "WorkGlove_R"
+            return "hand-R"
         case .leftHand:
-            return "WorkGlove_L"
+            return "hand-L"
         }
     }
     

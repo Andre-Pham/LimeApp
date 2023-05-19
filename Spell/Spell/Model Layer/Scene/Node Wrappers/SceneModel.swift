@@ -158,56 +158,6 @@ class SceneModel {
         }*/
     }
     
-    func receiveAnimations(from model: SceneModel) {
-        let otherAnimationPlayers = model.animationPlayers
-        assert(self.animationPlayers.count == otherAnimationPlayers.count, "Something went wrong")
-        for index in 0..<self.animatedNodes.count {
-            let oldAnimation = self.animationPlayers[index].animation
-            let newAnimation = otherAnimationPlayers[index].animation
-            let newPlayer = self.mergeSCNAnimations(oldAnimation, newAnimation)
-            self.animatedNodes[index].removeAllAnimations()
-            self.animatedNodes[index].addAnimationPlayer(newPlayer, forKey: "new")
-            newPlayer.play()
-        }
-    }
-    
-    func mergeSCNAnimations(_ animation1: SCNAnimation, _ animation2: SCNAnimation) -> SCNAnimationPlayer {
-        let player = SCNAnimationPlayer()
-        player.addAnimation(animation1, forKey: "a1")
-        player.addAnimation(animation2, forKey: "a2")
-        return player
-    }
-    
-    func move() {
-        let node = self.node.childNode(withName: "f_index-02-R", recursively: true)!
-//        let rotateAction = SCNAction.rotate(toAxisAngle: targetRotation, duration: 1.0)
-//        let rotateAction = SCNAction.rotateTo(
-//            x: CGFloat(node.presentation.rotation.x) + 0.5,
-//            y: CGFloat(node.presentation.rotation.y),
-//            z: CGFloat(node.presentation.rotation.z),
-//            duration: 1.0
-//        )
-//        let rotateAction = SCNAction.rotate(
-//            toAxisAngle: SCNVector4(
-//                CGFloat(node.presentation.rotation.x) + 2.0,
-//                CGFloat(node.presentation.rotation.y),
-//                CGFloat(node.presentation.rotation.z),
-//                CGFloat(node.presentation.rotation.w)
-//            ),
-//            duration: 1.0
-//        )
-        let rotateAction = SCNAction.rotateBy(x: 0.5, y: 0.5, z: 0.5, duration: 1.0)
-        node.presentation.runAction(rotateAction)
-    }
-    
-    func testPrint() {
-        for node in NodeUtil.getHierarchy(for: self.node) {
-            print(node.name!)
-            print(node.presentation.rotation.toString())
-            print("===")
-        }
-    }
-    
     func match(_ model: SceneModel, animationDuration: Double? = nil) {
         // Obviously inefficient, will review later
         for node in NodeUtil.getHierarchy(for: self.node) {

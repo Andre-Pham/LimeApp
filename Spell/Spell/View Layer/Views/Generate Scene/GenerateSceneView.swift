@@ -9,74 +9,46 @@ import SwiftUI
 import SceneKit
 
 struct GenerateSceneView: View {
-    private let sceneViewController: SceneViewController
-    private let sequence: SceneModelSequence
     
     init() {
-        let sceneController = SceneController()
-//        sceneController.addModel(SceneModel(fileName: "alphabet.dae"))
-        self.sceneViewController = SceneViewController()
-        self.sceneViewController.attach(scene: sceneController)
-        self.sceneViewController.setupScene()
-        
-        self.sequence = SceneModelSequence([
-            SceneModel(subDir: "alphabet", fileName: "a.dae"),
-            SceneModel(subDir: "alphabet", fileName: "b.dae"),
-            SceneModel(subDir: "alphabet", fileName: "c.dae"),
-            SceneModel(subDir: "alphabet", fileName: "d.dae"),
-        ])
-        self.sequence.mount(to: self.sceneViewController.scene)
+        SpellSession.inst.addLetterSequence(prompt: "abdc")
     }
     
     var body: some View {
         ZStack {
-            SceneView(self.sceneViewController)
+            SceneView(SpellSession.inst.sceneViewController)
                 .ignoresSafeArea()
             
-            SceneToolbarView(sceneViewController: self.sceneViewController)
+            SceneToolbarView()
             
             VStack {
                 Button("print") {
-                    self.sceneViewController.scene.printNames()
+                    SpellSession.inst.sceneController.printNames()
                 }
                 
                 Button("camera") {
-//                    self.sceneViewController.scene.positionCameraFacing(node: .hands)
-                    self.sceneViewController.scene.positionCameraFacing(model: self.sequence.activeModel)
+                    if let activeModel = SpellSession.inst.sequence?.activeModel {
+                        SpellSession.inst.sceneController.positionCameraFacing(model: activeModel)
+                    }
                 }
                 
                 Button("boxes") {
-                    self.sceneViewController.scene.clearGeometry()
-                    self.sceneViewController.scene.showBox(for: .hands)
+                    if let activeModel = SpellSession.inst.sequence?.activeModel { SpellSession.inst.sceneController.clearGeometry()
+                        SpellSession.inst.sceneController.showBox(for: activeModel)
+                    }
                 }
                 
                 Button("dots") {
-                    self.sceneViewController.scene.clearGeometry()
-                    self.sceneViewController.scene.showPosition(for: .rightHand, .leftHand)
+                    SpellSession.inst.sceneController.clearGeometry()
+                    SpellSession.inst.sceneController.showPosition(for: .rightHand, .leftHand)
                 }
                 
                 Button("origin") {
-                    let sphere = GeometryBuilder.sphere(position: SCNVector3(), radius: 10.0)
+                    let sphere = GeometryBuilder.sphere(position: SCNVector3(), radius: 0.5)
                     let sceneSphere = SceneGeometry(id: "origin", geometry: sphere)
                         .setColor(to: .green)
                         .setOpacity(to: 0.2)
-                    self.sceneViewController.scene.addGeometry(sceneSphere)
-                }
-                
-                Button("add") {
-                    self.sceneViewController.scene.addModel(SceneModel(subDir: "alphabet", fileName: "a.dae"))
-                }
-                
-                Button("sequence") {
-                    self.sequence.setSequencePause(to: false)
-                }
-                
-                Button("move") {
-                    self.sequence.activeModel.move()
-                }
-                
-                Button("print") {
-                    self.sequence.activeModel.testPrint()
+                    SpellSession.inst.sceneController.addGeometry(sceneSphere)
                 }
                 
                 Spacer()

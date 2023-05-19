@@ -12,7 +12,7 @@ class SceneController {
     
     // MARK: - Constants
     
-    public static let ROOT_NODE_NAME = "root"
+    public static let ROOT_NODE_NAME = "scene-root"
     
     // MARK: - Properties
     
@@ -209,6 +209,14 @@ class SceneController {
         for node in nodes { self.showBox(for: node.name) }
     }
     
+    func showBox(for models: SceneModel...) {
+        guard !models.isEmpty else {
+            self.showAllBoxes()
+            return
+        }
+        for model in models { self.showBox(for: model.name) }
+    }
+    
     /// Shows the presentation position as a sphere in 3D geometry for all provided preset nodes.
     /// If no nodes are provided, shows positions for all nodes.
     /// - Parameters:
@@ -258,11 +266,12 @@ class SceneController {
     private func showPosition(for nodeNames: String...) {
         for name in nodeNames {
             guard let node = self.scene.rootNode.childNode(withName: name, recursively: true) else {
+                assertionFailure("Failed to discover node provided to show position on")
                 continue
             }
-            let circle = SceneGeometry(geometry: GeometryBuilder.sphere(position: node.presentation.position, radius: 0.05))
+            let circle = SceneGeometry(geometry: GeometryBuilder.sphere(position: node.presentation.position, radius: 0.1))
                 .setLightingModel(to: .constant)
-                .setColor(to: UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 0.2))
+                .setColor(to: UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 0.2))
             self.addGeometry(circle)
         }
     }

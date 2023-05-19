@@ -79,6 +79,7 @@
 		B6DE83A02A145ADF00F36075 /* BindingChipToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DE839F2A145ADF00F36075 /* BindingChipToggle.swift */; };
 		B6DE83A22A1460DE00F36075 /* SceneModelSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DE83A12A1460DE00F36075 /* SceneModelSequence.swift */; };
 		B6DE83A42A161DFC00F36075 /* SCNVector4.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DE83A32A161DFC00F36075 /* SCNVector4.swift */; };
+		B6DE83A62A1718A300F36075 /* SpellSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DE83A52A1718A300F36075 /* SpellSession.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,6 +177,7 @@
 		B6DE839F2A145ADF00F36075 /* BindingChipToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingChipToggle.swift; sourceTree = "<group>"; };
 		B6DE83A12A1460DE00F36075 /* SceneModelSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneModelSequence.swift; sourceTree = "<group>"; };
 		B6DE83A32A161DFC00F36075 /* SCNVector4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNVector4.swift; sourceTree = "<group>"; };
+		B6DE83A52A1718A300F36075 /* SpellSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -381,6 +383,7 @@
 				B61FFC762A07688100426BDB /* Recognition */,
 				B63E176F29E6CA630083616A /* Video */,
 				B63E175B29E2C6B10083616A /* Scene */,
+				B6DE83A52A1718A300F36075 /* SpellSession.swift */,
 			);
 			path = "Model Layer";
 			sourceTree = "<group>";
@@ -785,6 +788,7 @@
 				B6A702CE29B57AD600487A0D /* SpellText.swift in Sources */,
 				B6A7027929B55DF400487A0D /* SpellApp.swift in Sources */,
 				B6A702B629B5758300487A0D /* TabBarView.swift in Sources */,
+				B6DE83A62A1718A300F36075 /* SpellSession.swift in Sources */,
 				B63E16A229C7F27E0083616A /* Float.swift in Sources */,
 				B63E169429C3FF240083616A /* SceneCamera.swift in Sources */,
 				B6A702C129B5767400487A0D /* InfoView.swift in Sources */,

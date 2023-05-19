@@ -72,11 +72,11 @@ class SceneModelSequence {
     }
     
     private func onAnimationTick(progress: Double) {
+        return // TODO: Implement below later
         if isGreaterOrEqual(progress, self.idleStart) && !self.isIdle {
             self.isIdle = true
             print("REAL ENDING HERE")
 //            self.onActiveAnimationCompletion()
-//            self.activeModel.receiveAnimations(from: self.nextModel)
             self.activeModel.pause()
             self.controller?.addModel(self.nextModel)
             self.nextModel.play()

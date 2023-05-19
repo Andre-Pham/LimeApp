@@ -32,7 +32,7 @@ class SpellSession {
         }
         var sceneModels = [SceneModel]()
         for char in prompt {
-            sceneModels.append(SceneModel(subDir: "alphabet", fileName: "\(char).dae"))
+            sceneModels.append(SceneModel(subDir: "alphabet", fileName: "\(char).dae", endTrim: 2.7))
         }
         self.sequence = SceneModelSequence(sceneModels)
         self.sequence?.mount(to: self.sceneController)

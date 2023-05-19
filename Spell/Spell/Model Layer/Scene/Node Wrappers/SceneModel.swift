@@ -48,10 +48,21 @@ class SceneModel {
     public var animationProgressProportion: Double {
         return self.animationProgress/self.animationDuration
     }
+    /// Trim the beginning of the animation (seconds)
+    private let startTrim: Double
+    /// Trim the end of the animation (seconds)
+    private let endTrim: Double
     
     // MARK: - Constructors
     
-    init(dir: String = "Models.scnassets", subDir: String? = nil, fileName: String, name: String? = nil) {
+    init(
+        dir: String = "Models.scnassets",
+        subDir: String? = nil,
+        fileName: String,
+        name: String? = nil,
+        startTrim: Double = 0.0,
+        endTrim: Double = 0.0
+    ) {
         let directory = subDir == nil ? "\(dir)/\(fileName)" : "\(dir)/\(subDir!)/\(fileName)"
         if let scene = SCNScene(named: directory) {
             for childNode in scene.rootNode.childNodes {
@@ -75,7 +86,14 @@ class SceneModel {
             }
         }
         
-        self.animationDuration = self.animationPlayers.first?.animation.duration ?? 0.0
+        self.startTrim = startTrim
+        self.endTrim = endTrim
+        
+        if let totalDuration = self.animationPlayers.first?.animation.duration {
+            self.animationDuration = totalDuration - self.endTrim - self.startTrim
+        } else {
+            self.animationDuration = 0.0
+        }
         
         Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { timer in
             guard self.isPlaying, let timer = self.timer else {
@@ -93,6 +111,9 @@ class SceneModel {
             self.timer = DispatchTime.now()
         }
         
+        if isGreater(self.startTrim, 0.0) {
+            self.setAnimationTime(to: 0.0)
+        }
         self.pause()
     }
     
@@ -137,7 +158,7 @@ class SceneModel {
     func setAnimationTime(to proportion: Double) {
         assert(isLessOrEqual(proportion, 1.0) && isGreaterOrEqualZero(proportion), "Proportion argument must be in the range [0, 1]")
         for player in self.animationPlayers {
-            player.animation.timeOffset = proportion*player.animation.duration
+            player.animation.timeOffset = self.startTrim + proportion*player.animation.duration
             player.play()
         }
         self.animationProgress = proportion*self.animationDuration

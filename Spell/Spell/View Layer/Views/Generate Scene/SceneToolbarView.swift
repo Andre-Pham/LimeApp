@@ -44,23 +44,23 @@ struct SceneToolbarView: View {
                         .frame(height: 25.0)
                         .onChange(of: self.isTracking) { isTracking in
                             if isTracking {
-//                                self.pauseCache = !(self.sceneViewController.scene.getModel(.hands)?.isPlaying ?? false)
-//                                self.animationSpeedCache = self.sceneViewController.scene.getModel(.hands)?.animationSpeed ?? 1.0
-//                                // The model appears in the starting position during tracking unless playing
-//                                // Slow down the animation so it appears not to play
-//                                self.sceneViewController.scene.getModel(.hands)?.setAnimationSpeed(to: 0.01)
-//                                self.sceneViewController.scene.getModel(.hands)?.play()
+                                self.pauseCache = !(SpellSession.inst.sequence?.isPlaying ?? false)
+                                self.animationSpeedCache = SpellSession.inst.sequence?.animationSpeed ?? 1.0
+                                // The model appears in the starting position during tracking unless playing
+                                // Slow down the animation so it appears not to play
+                                SpellSession.inst.sequence?.setSequenceAnimationSpeed(to: 0.01)
+                                SpellSession.inst.sequence?.playSequence()
                             } else {
                                 // Resume state - delay to guarantee model doesn't appear in starting position
-//                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-//                                    self.sceneViewController.scene.getModel(.hands)?.setModelPause(to: self.pauseCache)
-//                                    self.sceneViewController.scene.getModel(.hands)?.setAnimationSpeed(to: self.animationSpeedCache)
-//                                }
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                                    SpellSession.inst.sequence?.setSequencePause(to: self.pauseCache)
+                                    SpellSession.inst.sequence?.setSequenceAnimationSpeed(to: self.animationSpeedCache)
+                                }
                             }
                         }
                         .onChange(of: self.scrubberProgressProportion) { proportion in
                             if self.isTracking {
-//                                self.sceneViewController.scene.getModel(.hands)?.setAnimationTime(to: proportion)
+                                SpellSession.inst.sequence?.setAnimationTime(to: proportion)
                             }
                         }
                     
@@ -133,11 +133,11 @@ struct SceneToolbarView: View {
         .animation(.interpolatingSpring(stiffness: 60, damping: 60, initialVelocity: 10), value: self.toolsOpenCount)
         .onAppear {
             // TODO: Try this with the SwiftUI timer to see if performance increases
-//            Timer.scheduledTimer(withTimeInterval: 1/60, repeats: true) { timer in
-//                if !self.isTracking, let proportion = self.sceneViewController.scene.getModel(.hands)?.animationProgressProportion {
-//                    self.scrubberProgressProportion = proportion
-//                }
-//            }
+            Timer.scheduledTimer(withTimeInterval: 1/60, repeats: true) { timer in
+                if !self.isTracking, let proportion = SpellSession.inst.sequence?.animationProgressProportion {
+                    self.scrubberProgressProportion = proportion
+                }
+            }
         }
     }
 }

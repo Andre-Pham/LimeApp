@@ -30,7 +30,7 @@ class SceneModel {
     /// The total length of the animation (seconds)
     public let animationDuration: Double
     /// The progress through the model's animation (seconds)
-    private var animationProgress: Double = 0.0
+    private(set) var animationProgress: Double = 0.0
     /// The speed multiplier on the model's animation
     private(set) var animationSpeed = 1.0
     /// The timer used to measure time between Timer intervals

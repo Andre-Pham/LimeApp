@@ -67,11 +67,11 @@ struct SceneToolbarView: View {
                     Spacer()
                     
                     ChipMultistate(
-                        states: [1.0, 1.5, 100.0, 0.25, 0.5],
-                        labels: ["1x", "1.5x", "100x", "0.25x", "0.5x"],
+                        states: [1.0, 1.5, 0.25, 0.5],
+                        labels: ["1x", "1.5x", "0.25x", "0.5x"],
                         minWidth: 50
                     ) { animationSpeed in
-//                        SpellSession.inst.sceneController.getModel(.hands)?.setAnimationSpeed(to: animationSpeed)
+                        SpellSession.inst.sequence?.setSequenceAnimationSpeed(to: animationSpeed)
                     }
                 }
             }

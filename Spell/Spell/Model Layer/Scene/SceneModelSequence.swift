@@ -55,6 +55,10 @@ class SceneModelSequence {
         self.activeModel.setModelPause(to: isPaused)
     }
     
+    func setSequenceAnimationSpeed(to speed: Double) {
+        self.sceneModels.forEach({ $0.setAnimationSpeed(to: speed) })
+    }
+    
     private func onActiveAnimationCompletion() {
         print("COMPLETED: \(self.activeModel.name)")
         self.activeModel.pause()

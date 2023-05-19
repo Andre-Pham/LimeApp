@@ -10,13 +10,22 @@ import SceneKit
 
 struct GenerateSceneView: View {
     private let sceneViewController: SceneViewController
+    private let sequence: SceneModelSequence
     
     init() {
         let sceneController = SceneController()
-        sceneController.addModel(SceneModel(fileName: "alphabet.dae"))
+//        sceneController.addModel(SceneModel(fileName: "alphabet.dae"))
         self.sceneViewController = SceneViewController()
         self.sceneViewController.attach(scene: sceneController)
         self.sceneViewController.setupScene()
+        
+        self.sequence = SceneModelSequence([
+            SceneModel(subDir: "alphabet", fileName: "a.dae"),
+            SceneModel(subDir: "alphabet", fileName: "b.dae"),
+            SceneModel(subDir: "alphabet", fileName: "c.dae"),
+            SceneModel(subDir: "alphabet", fileName: "d.dae"),
+        ])
+        self.sequence.mount(to: self.sceneViewController.scene)
     }
     
     var body: some View {
@@ -32,7 +41,8 @@ struct GenerateSceneView: View {
                 }
                 
                 Button("camera") {
-                    self.sceneViewController.scene.positionCameraFacing(node: .hands)
+//                    self.sceneViewController.scene.positionCameraFacing(node: .hands)
+                    self.sceneViewController.scene.positionCameraFacing(model: self.sequence.activeModel)
                 }
                 
                 Button("boxes") {
@@ -51,6 +61,22 @@ struct GenerateSceneView: View {
                         .setColor(to: .green)
                         .setOpacity(to: 0.2)
                     self.sceneViewController.scene.addGeometry(sceneSphere)
+                }
+                
+                Button("add") {
+                    self.sceneViewController.scene.addModel(SceneModel(subDir: "alphabet", fileName: "a.dae"))
+                }
+                
+                Button("sequence") {
+                    self.sequence.setSequencePause(to: false)
+                }
+                
+                Button("move") {
+                    self.sequence.activeModel.move()
+                }
+                
+                Button("print") {
+                    self.sequence.activeModel.testPrint()
                 }
                 
                 Spacer()

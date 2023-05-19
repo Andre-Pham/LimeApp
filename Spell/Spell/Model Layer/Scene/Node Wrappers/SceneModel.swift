@@ -23,10 +23,12 @@ class SceneModel {
     
     // MARK: - Animation Properties
     
+    /// All animated nodes used within the model (corresponds to `animationPlayers`)
+    private var animatedNodes = [SCNNode]()
     /// All animation players used within the model
     private var animationPlayers = [SCNAnimationPlayer]()
     /// The total length of the animation (seconds)
-    private let animationDuration: Double
+    public let animationDuration: Double
     /// The progress through the model's animation (seconds)
     private var animationProgress: Double = 0.0
     /// The speed multiplier on the model's animation
@@ -34,6 +36,10 @@ class SceneModel {
     /// The timer used to measure time between Timer intervals
     /// Found to be more accurate than using the time interval itself
     private var timer: DispatchTime? = nil
+    /// Callback for when the animation completes
+    public var onAnimationCompletion: (() -> Void)? = nil
+    /// Callback triggered for every animation tick
+    public var onAnimationTick: ((_ progress: Double) -> Void)? = nil
     /// True if the animation is playing
     public var isPlaying: Bool {
         return !self.node.isPaused
@@ -45,21 +51,27 @@ class SceneModel {
     
     // MARK: - Constructors
     
-    init(dir: String = "Models.scnassets", fileName: String) {
-        if let scene = SCNScene(named: "\(dir)/\(fileName)") {
+    init(dir: String = "Models.scnassets", subDir: String? = nil, fileName: String, name: String? = nil) {
+        let directory = subDir == nil ? "\(dir)/\(fileName)" : "\(dir)/\(subDir!)/\(fileName)"
+        if let scene = SCNScene(named: directory) {
             for childNode in scene.rootNode.childNodes {
                 self.node.addChildNode(childNode)
             }
         } else {
             assertionFailure("File '\(fileName)' could not be loaded from \(dir)")
         }
-        self.node.name = "\(Self.NAME_PREFIX)-\(fileName)"
+        self.node.name = (name == nil ? "\(Self.NAME_PREFIX)-\(fileName)" : "\(Self.NAME_PREFIX)-\(name!)")
         
         for node in NodeUtil.getHierarchy(for: self.node) {
+            var isAnimated = false
             for key in node.animationKeys {
                 if let animationPlayer = node.animationPlayer(forKey: key) {
                     self.animationPlayers.append(animationPlayer)
+                    isAnimated = true
                 }
+            }
+            if isAnimated {
+                self.animatedNodes.append(node)
             }
         }
         
@@ -72,11 +84,16 @@ class SceneModel {
             }
             let addition = Double(DispatchTime.now().uptimeNanoseconds - timer.uptimeNanoseconds)/1_000_000_000.0
             self.animationProgress = (self.animationProgress + addition*self.animationSpeed)
+            self.onAnimationTick?(self.animationProgress)
+            // TODO: Should this be isGreater or isGreaterOrEqual ?
             if isGreater(self.animationProgress, self.animationDuration) {
+                self.onAnimationCompletion?()
                 self.setAnimationTime(to: 0.0) // Also resets animation progress
             }
             self.timer = DispatchTime.now()
         }
+        
+        self.pause()
     }
     
     // MARK: - Methods
@@ -99,6 +116,13 @@ class SceneModel {
     
     func setModelPause(to isPaused: Bool) {
         self.node.isPaused = isPaused
+        for player in self.animationPlayers {
+            if isPaused {
+                player.paused = true
+            } else {
+                player.play()
+            }
+        }
         // Timer shouldn't be timing between pauses
         self.timer = self.isPlaying ? DispatchTime.now() : nil
     }
@@ -134,18 +158,75 @@ class SceneModel {
         }*/
     }
     
-//    func match(_ model: SceneModel, animationDuration: Double? = nil) {
-//        // Obviously inefficient, will review later
-//        for node in NodeUtil.getHierarchy(for: self.node) {
-//            for otherNode in NodeUtil.getHierarchy(for: model.node) {
-//                if node.name == otherNode.name {
-//                    let translation = otherNode.presentation.position - node.presentation.position
-//                    let action = SCNAction.move(by: translation, duration: animationDuration ?? 0.0)
-//                    let sequence = SCNAction.sequence([action])
-//                    node.presentation.runAction(sequence)
-//                }
-//            }
-//        }
-//    }
+    func receiveAnimations(from model: SceneModel) {
+        let otherAnimationPlayers = model.animationPlayers
+        assert(self.animationPlayers.count == otherAnimationPlayers.count, "Something went wrong")
+        for index in 0..<self.animatedNodes.count {
+            let oldAnimation = self.animationPlayers[index].animation
+            let newAnimation = otherAnimationPlayers[index].animation
+            let newPlayer = self.mergeSCNAnimations(oldAnimation, newAnimation)
+            self.animatedNodes[index].removeAllAnimations()
+            self.animatedNodes[index].addAnimationPlayer(newPlayer, forKey: "new")
+            newPlayer.play()
+        }
+    }
+    
+    func mergeSCNAnimations(_ animation1: SCNAnimation, _ animation2: SCNAnimation) -> SCNAnimationPlayer {
+        let player = SCNAnimationPlayer()
+        player.addAnimation(animation1, forKey: "a1")
+        player.addAnimation(animation2, forKey: "a2")
+        return player
+    }
+    
+    func move() {
+        let node = self.node.childNode(withName: "f_index-02-R", recursively: true)!
+//        let rotateAction = SCNAction.rotate(toAxisAngle: targetRotation, duration: 1.0)
+//        let rotateAction = SCNAction.rotateTo(
+//            x: CGFloat(node.presentation.rotation.x) + 0.5,
+//            y: CGFloat(node.presentation.rotation.y),
+//            z: CGFloat(node.presentation.rotation.z),
+//            duration: 1.0
+//        )
+//        let rotateAction = SCNAction.rotate(
+//            toAxisAngle: SCNVector4(
+//                CGFloat(node.presentation.rotation.x) + 2.0,
+//                CGFloat(node.presentation.rotation.y),
+//                CGFloat(node.presentation.rotation.z),
+//                CGFloat(node.presentation.rotation.w)
+//            ),
+//            duration: 1.0
+//        )
+        let rotateAction = SCNAction.rotateBy(x: 0.5, y: 0.5, z: 0.5, duration: 1.0)
+        node.presentation.runAction(rotateAction)
+    }
+    
+    func testPrint() {
+        for node in NodeUtil.getHierarchy(for: self.node) {
+            print(node.name!)
+            print(node.presentation.rotation.toString())
+            print("===")
+        }
+    }
+    
+    func match(_ model: SceneModel, animationDuration: Double? = nil) {
+        // Obviously inefficient, will review later
+        for node in NodeUtil.getHierarchy(for: self.node) {
+            for otherNode in NodeUtil.getHierarchy(for: model.node) {
+                if node.name == otherNode.name {
+                    if node.presentation.rotation != otherNode.presentation.rotation {
+                        let targetRotation = otherNode.presentation.rotation
+
+                        SCNTransaction.begin()
+                        SCNTransaction.animationDuration = 1.0 // replace with desired animation duration
+
+                        // Set the node's rotation within the transaction
+                        node.rotation = targetRotation
+
+                        SCNTransaction.commit()
+                    }
+                }
+            }
+        }
+    }
     
 }

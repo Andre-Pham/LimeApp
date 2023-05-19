@@ -14,6 +14,11 @@ struct SceneToolbarView: View {
     @State private var promptToolActive = false
     /// Prompt text
     @State private var prompt: String = ""
+    /// Prompt input text is focused
+    @FocusState private var promptFocused: Bool
+    
+    /// If the current model's animation is playing
+    @State private var isPlaying = false
     
     /// If the timeline tool is visible
     @State private var timelineToolActive = false
@@ -80,6 +85,12 @@ struct SceneToolbarView: View {
                         .padding(16) // Padding around text
                         .background(SpellColors.secondaryButtonFill)
                         .cornerRadius(SpellCoreGraphics.foregroundCornerRadius)
+                        .focused(self.$promptFocused)
+                        .onChange(of: self.promptFocused) { isFocused in
+                            if isFocused && self.isPlaying {
+                                self.isPlaying = false
+                            }
+                        }
                 }
             }
             
@@ -106,13 +117,18 @@ struct SceneToolbarView: View {
                 
                 Spacer()
                 
-                ChipToggle(
+                BindingChipToggle(
+                    isSelected: self.$isPlaying,
                     icon: SpellIcon(image: Image(systemName: "play.fill")),
                     selectedIcon: SpellIcon(image: Image(systemName: "pause.fill"), scale: 0.85),
                     color: SpellColors.primaryButtonFill,
                     textColor: SpellColors.primaryButtonText
                 ) { isPlaying in
-                    self.sceneViewController.scene.getModel(.hands)?.setModelPause(to: !isPlaying)
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                    let model = SceneModel(subDir: "alphabet", fileName: "a.dae", name: "a")
+                    self.sceneViewController.scene.addModel(model)
+                    self.sceneViewController.scene.getModel(.a)?.setModelPause(to: !isPlaying)
+//                    self.sceneViewController.scene.getModel(.hands)?.setModelPause(to: !isPlaying)
                 }
             }
         }

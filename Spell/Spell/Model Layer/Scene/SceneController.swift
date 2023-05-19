@@ -50,7 +50,7 @@ class SceneController {
     
     func getModel(_ preset: PresetModel) -> SceneModel? {
         let model: SceneModel? = self.sceneModels.first(where: { $0.name == preset.name })
-        assert(model != nil, "Preset model \(preset.name) has no corresponding model in the scene")
+        //assert(model != nil, "Preset model \(preset.name) has no corresponding model in the scene")
         return model
     }
     
@@ -105,12 +105,24 @@ class SceneController {
         }
     }
     
+    func removeModel(_ model: SceneModel) {
+        for index in stride(from: self.sceneModels.count - 1, through: 0, by: -1) {
+            let sceneModel = self.sceneModels[index]
+            if sceneModel.name == model.name {
+                sceneModel.remove()
+                self.sceneModels.remove(at: index)
+                return
+            }
+        }
+    }
+    
     private func removeNode(named name: String) {
         for index in stride(from: self.sceneLights.count - 1, through: 0, by: -1) {
             let sceneLight = self.sceneLights[index]
             if sceneLight.name == name {
                 sceneLight.remove()
                 self.sceneLights.remove(at: index)
+                return
             }
         }
         for index in stride(from: self.sceneGeometry.count - 1, through: 0, by: -1) {
@@ -118,15 +130,26 @@ class SceneController {
             if sceneGeometry.name == name {
                 sceneGeometry.remove()
                 self.sceneGeometry.remove(at: index)
+                return
+            }
+        }
+        for index in stride(from: self.sceneModels.count - 1, through: 0, by: -1) {
+            let sceneModel = self.sceneModels[index]
+            if sceneModel.name == name {
+                sceneModel.remove()
+                self.sceneModels.remove(at: index)
+                return
             }
         }
         if self.sceneCamera.name == name {
             self.sceneCamera.remove()
             self.sceneCamera = SceneCamera()
+            return
         }
         self.scene.rootNode.enumerateChildNodes { (node, _) in
             if node.name == name {
                 node.removeFromParentNode()
+                return
             }
         }
     }
@@ -149,6 +172,10 @@ class SceneController {
     
     func positionCameraFacing(node: PresetNode, distance: Float = 1.5) {
         self.positionCameraFacing(nodeName: node.name, distance: distance)
+    }
+    
+    func positionCameraFacing(model: SceneModel, distance: Float = 1.5) {
+        self.positionCameraFacing(nodeName: model.name, distance: distance)
     }
     
     private func positionCameraFacing(nodeName: String, distance: Float = 120.0) {

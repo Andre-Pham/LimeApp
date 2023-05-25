@@ -8,7 +8,7 @@
 import Foundation
 import SceneKit
 
-class SceneModel {
+class SceneModel: Clonable {
     
     // MARK: - Constants
     
@@ -115,6 +115,46 @@ class SceneModel {
             self.setAnimationTime(to: 0.0)
         }
         self.pause()
+    }
+    
+    required init(_ original: SceneModel) {
+        self.node = original.node.clone()
+        self.animatedNodes = original.animatedNodes.map({ $0.clone() })
+        self.animationPlayers = original.animationPlayers.map({ SCNAnimationPlayer(animation: $0.animation.copy() as! SCNAnimation) })
+        self.animationDuration = original.animationDuration
+        self.animationProgress = original.animationProgress
+        self.animationSpeed = original.animationSpeed
+        self.timer = nil
+        self.onAnimationCompletion = nil
+        self.onAnimationTick = nil
+        self.startTrim = original.startTrim
+        self.endTrim = original.endTrim
+        
+        Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { timer in
+            guard self.isPlaying, let timer = self.timer else {
+                self.timer = DispatchTime.now()
+                return
+            }
+            let addition = Double(DispatchTime.now().uptimeNanoseconds - timer.uptimeNanoseconds)/1_000_000_000.0
+            self.animationProgress = (self.animationProgress + addition*self.animationSpeed)
+            self.onAnimationTick?(self.animationProgress)
+            // TODO: Should this be isGreater or isGreaterOrEqual ?
+            if isGreater(self.animationProgress, self.animationDuration) {
+                self.onAnimationCompletion?()
+                self.setAnimationTime(to: 0.0) // Also resets animation progress
+            }
+            self.timer = DispatchTime.now()
+        }
+        
+        let animationPlayer: SCNAnimationPlayer = self.animationPlayers.first!
+        let animation = animationPlayer.animation
+        animation.animationDidStart = { animation, animatableNode in
+            // This gets the initial position for the hand!!!
+//            NodeUtil.getHierarchy(for: animatableNode as! SCNNode).forEach({ node in
+//                print(node.toString())
+//            })
+            print("COPIED ANIMATION STARTED")
+        }
     }
     
     // MARK: - Methods

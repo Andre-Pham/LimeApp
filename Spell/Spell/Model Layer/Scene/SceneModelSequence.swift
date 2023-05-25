@@ -145,19 +145,24 @@ class SceneModelSequence {
     }
     
     private func onActiveAnimationCompletion() {
-        print("COMPLETED: \(self.activeModel.name)")
-        self.activeModel.pause()
-        self.activeModel.setAnimationTime(to: 0.0)
-        self.activeModel.onAnimationCompletion = nil
-        self.activeModel.onAnimationTick = nil
-        self.controller?.removeModel(self.activeModel)
-        self.activeModelIndex = (self.activeModelIndex + 1)%self.sceneModels.count
-        self.controller?.addModel(self.activeModel)
-        self.activeModel.play()
-        self.activeModel.onAnimationCompletion = self.onActiveAnimationCompletion
-        self.activeModel.onAnimationTick = self.onAnimationTick
-        self.isIdle = false
-        print("STARTING: \(self.activeModel.name)")
+        print("completed")
+        let nextAnimationModel = self.nextModel.clone()
+        nextAnimationModel.add(to: <#T##SCNView#>)
+        nextAnimationModel.play()
+        
+//        print("COMPLETED: \(self.activeModel.name)")
+//        self.activeModel.pause()
+//        self.activeModel.setAnimationTime(to: 0.0)
+//        self.activeModel.onAnimationCompletion = nil
+//        self.activeModel.onAnimationTick = nil
+//        self.controller?.removeModel(self.activeModel)
+//        self.activeModelIndex = (self.activeModelIndex + 1)%self.sceneModels.count
+//        self.controller?.addModel(self.activeModel)
+//        self.activeModel.play()
+//        self.activeModel.onAnimationCompletion = self.onActiveAnimationCompletion
+//        self.activeModel.onAnimationTick = self.onAnimationTick
+//        self.isIdle = false
+//        print("STARTING: \(self.activeModel.name)")
     }
     
     private func onAnimationTick(progress: Double) {

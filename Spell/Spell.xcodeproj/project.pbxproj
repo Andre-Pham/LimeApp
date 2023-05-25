@@ -40,6 +40,7 @@
 		B63E17BE29EE7F650083616A /* ToolbarRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E17BD29EE7F650083616A /* ToolbarRow.swift */; };
 		B63E17C129EE80610083616A /* SpellCoreGraphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E17C029EE80610083616A /* SpellCoreGraphics.swift */; };
 		B63E17C329EE80B80083616A /* OverlaidToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E17C229EE80B80083616A /* OverlaidToolbar.swift */; };
+		B653A4622A1E2E1E0059013B /* Clonable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B653A4612A1E2E1E0059013B /* Clonable.swift */; };
 		B6A7027929B55DF400487A0D /* SpellApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A7027829B55DF400487A0D /* SpellApp.swift */; };
 		B6A7027B29B55DF400487A0D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A7027A29B55DF400487A0D /* ContentView.swift */; };
 		B6A7027D29B55DF500487A0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6A7027C29B55DF500487A0D /* Assets.xcassets */; };
@@ -133,6 +134,7 @@
 		B63E17BD29EE7F650083616A /* ToolbarRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarRow.swift; sourceTree = "<group>"; };
 		B63E17C029EE80610083616A /* SpellCoreGraphics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellCoreGraphics.swift; sourceTree = "<group>"; };
 		B63E17C229EE80B80083616A /* OverlaidToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlaidToolbar.swift; sourceTree = "<group>"; };
+		B653A4612A1E2E1E0059013B /* Clonable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clonable.swift; sourceTree = "<group>"; };
 		B6A7027529B55DF400487A0D /* Spell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6A7027829B55DF400487A0D /* SpellApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellApp.swift; sourceTree = "<group>"; };
 		B6A7027A29B55DF400487A0D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -298,6 +300,14 @@
 			path = Toolbar;
 			sourceTree = "<group>";
 		};
+		B653A4602A1E2E120059013B /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B653A4612A1E2E1E0059013B /* Clonable.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 		B6A7026C29B55DF400487A0D = {
 			isa = PBXGroup;
 			children = (
@@ -380,6 +390,7 @@
 		B6A702A529B55EEB00487A0D /* Model Layer */ = {
 			isa = PBXGroup;
 			children = (
+				B653A4602A1E2E120059013B /* Core */,
 				B61FFC762A07688100426BDB /* Recognition */,
 				B63E176F29E6CA630083616A /* Video */,
 				B63E175B29E2C6B10083616A /* Scene */,
@@ -762,6 +773,7 @@
 				B63E176E29E6C9340083616A /* CameraViewController.swift in Sources */,
 				B6DE83A22A1460DE00F36075 /* SceneModelSequence.swift in Sources */,
 				B617D05F29FA22ED0090B815 /* PresetModel.swift in Sources */,
+				B653A4622A1E2E1E0059013B /* Clonable.swift in Sources */,
 				B63E17BC29EE7E980083616A /* Toolbar.swift in Sources */,
 				B63E169E29C4BE370083616A /* SCNVector3.swift in Sources */,
 				B6A702BF29B5766700487A0D /* GenerateTextView.swift in Sources */,

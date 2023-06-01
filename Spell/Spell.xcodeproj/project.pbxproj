@@ -80,6 +80,7 @@
 		B6DE83A22A1460DE00F36075 /* SceneModelSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DE83A12A1460DE00F36075 /* SceneModelSequence.swift */; };
 		B6DE83A42A161DFC00F36075 /* SCNVector4.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DE83A32A161DFC00F36075 /* SCNVector4.swift */; };
 		B6DE83A62A1718A300F36075 /* SpellSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DE83A52A1718A300F36075 /* SpellSession.swift */; };
+		B6DE86E42A28601D00CF4CBD /* PredictionOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DE86E32A28601D00CF4CBD /* PredictionOutcome.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -178,6 +179,7 @@
 		B6DE83A12A1460DE00F36075 /* SceneModelSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneModelSequence.swift; sourceTree = "<group>"; };
 		B6DE83A32A161DFC00F36075 /* SCNVector4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNVector4.swift; sourceTree = "<group>"; };
 		B6DE83A52A1718A300F36075 /* SpellSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellSession.swift; sourceTree = "<group>"; };
+		B6DE86E32A28601D00CF4CBD /* PredictionOutcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionOutcome.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +216,7 @@
 				B61FFC7D2A077A3100426BDB /* HandPointRecogniser.swift */,
 				B61FFC7F2A077B1100426BDB /* JointPositions.swift */,
 				B61FFC812A07857800426BDB /* JointPosition.swift */,
+				B6DE86E32A28601D00CF4CBD /* PredictionOutcome.swift */,
 			);
 			path = Recognition;
 			sourceTree = "<group>";
@@ -782,6 +785,7 @@
 				B6DE83A42A161DFC00F36075 /* SCNVector4.swift in Sources */,
 				B6DE83A02A145ADF00F36075 /* BindingChipToggle.swift in Sources */,
 				B6A702D429B57BFF00487A0D /* SpellTextFont.swift in Sources */,
+				B6DE86E42A28601D00CF4CBD /* PredictionOutcome.swift in Sources */,
 				B617D05B29FA13A50090B815 /* SpellButton.swift in Sources */,
 				B63E177529E6CEF90083616A /* CaptureDelegate.swift in Sources */,
 				B6A702FE29B85A5800487A0D /* TopSafeAreaInsetFill.swift in Sources */,

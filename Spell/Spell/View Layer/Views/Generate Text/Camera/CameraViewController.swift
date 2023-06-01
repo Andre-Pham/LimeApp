@@ -60,23 +60,25 @@ class CameraViewController: UIViewController, CaptureDelegate, SignDelegate {
         }
     }
     
-    func onPrediction(outcome: Label) {
+    func onPrediction(outcome: PredictionOutcome) {
         assert(Thread.isMainThread, "Predictions should be received on the main thread")
         // Do nothing
     }
     
-    func onPredictionPositions(outcome: Label, positions: JointPositions) {
+    func onPredictionPositions(outcome: PredictionOutcome) {
         assert(Thread.isMainThread, "Predictions should be received on the main thread")
         self.overlayView.subviews.forEach({ $0.removeFromSuperview() })
         
-        for position in positions.allPositions {
-            let positionVal = position.getDenormalisedPosition(viewWidth: self.overlayView.frame.width, viewHeight: self.overlayView.frame.height)
-            if let positionVal {
-                let circleView = UIView(frame: CGRect(x: 0, y: 0, width: 18.0*CGFloat(position.confidence!), height: 18.0*CGFloat(position.confidence!)))
-                circleView.center = positionVal
-                circleView.backgroundColor = UIColor.green
-                circleView.layer.cornerRadius = circleView.frame.width / 2
-                self.overlayView.addSubview(circleView)
+        for positions in [outcome.hand1Positions, outcome.hand2Positions] {
+            for position in positions.allPositions {
+                let positionVal = position.getDenormalisedPosition(viewWidth: self.overlayView.frame.width, viewHeight: self.overlayView.frame.height)
+                if let positionVal {
+                    let circleView = UIView(frame: CGRect(x: 0, y: 0, width: 18.0*CGFloat(position.confidence!), height: 18.0*CGFloat(position.confidence!)))
+                    circleView.center = positionVal
+                    circleView.backgroundColor = UIColor.green
+                    circleView.layer.cornerRadius = circleView.frame.width / 2
+                    self.overlayView.addSubview(circleView)
+                }
             }
         }
     }

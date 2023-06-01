@@ -81,6 +81,7 @@
 		B6DE83A22A1460DE00F36075 /* SceneModelSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DE83A12A1460DE00F36075 /* SceneModelSequence.swift */; };
 		B6DE83A42A161DFC00F36075 /* SCNVector4.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DE83A32A161DFC00F36075 /* SCNVector4.swift */; };
 		B6DE83A62A1718A300F36075 /* SpellSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DE83A52A1718A300F36075 /* SpellSession.swift */; };
+		B6DE86E62A286A9100CF4CBD /* ModelRotationsIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DE86E52A286A9100CF4CBD /* ModelRotationsIndex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -180,6 +181,7 @@
 		B6DE83A12A1460DE00F36075 /* SceneModelSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneModelSequence.swift; sourceTree = "<group>"; };
 		B6DE83A32A161DFC00F36075 /* SCNVector4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNVector4.swift; sourceTree = "<group>"; };
 		B6DE83A52A1718A300F36075 /* SpellSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellSession.swift; sourceTree = "<group>"; };
+		B6DE86E52A286A9100CF4CBD /* ModelRotationsIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelRotationsIndex.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,6 +262,7 @@
 				B63E17B829EE6BEB0083616A /* PresetNode.swift */,
 				B617D05E29FA22ED0090B815 /* PresetModel.swift */,
 				B6DE83A12A1460DE00F36075 /* SceneModelSequence.swift */,
+				B6DE86E52A286A9100CF4CBD /* ModelRotationsIndex.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -785,6 +788,7 @@
 				B6A702F429B844E400487A0D /* KeyboardPadding.swift in Sources */,
 				B61FFC782A0768CB00426BDB /* SignRecogniser.swift in Sources */,
 				B6A702CA29B579C800487A0D /* Strings.swift in Sources */,
+				B6DE86E62A286A9100CF4CBD /* ModelRotationsIndex.swift in Sources */,
 				B63E16A429C7F2D80083616A /* SCNNode.swift in Sources */,
 				B6A702F129B8433F00487A0D /* KeyboardHeightPublisher.swift in Sources */,
 				B63E17BE29EE7F650083616A /* ToolbarRow.swift in Sources */,

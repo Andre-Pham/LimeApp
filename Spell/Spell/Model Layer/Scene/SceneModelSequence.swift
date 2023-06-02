@@ -169,8 +169,7 @@ class SceneModelSequence {
             nextModel.onAnimationStart = {
                 nextModel.onAnimationStart = nil // Only trigger once
                 nextModel.pause()
-                let rotations = nextModel.getRotationsIndex()
-                self.activeModel.match(rotations, animationDuration: 0.8)
+                self.activeModel.match(nextModel, animationDuration: 0.8)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
                     self.switchActiveModel(to: (self.activeModelIndex + 1)%self.sceneModels.count)
                     self.controller?.removeModel(nextModel)

@@ -248,25 +248,7 @@ class SceneModel: Clonable {
     }
     
     func match(_ model: SceneModel, animationDuration: Double = 1.0) {
-        assert(isGreaterZero(animationDuration), "Animation duration must be >= 0.0")
-        // Obviously inefficient, will review later
-        for node in NodeUtil.getHierarchy(for: self.node) {
-            for otherNode in NodeUtil.getHierarchy(for: model.node) {
-                if node.name == otherNode.name {
-                    if node.presentation.rotation != otherNode.presentation.rotation {
-                        let targetRotation = otherNode.presentation.rotation
-
-                        SCNTransaction.begin()
-                        SCNTransaction.animationDuration = animationDuration
-
-                        // Set the node's rotation within the transaction
-                        node.rotation = targetRotation
-
-                        SCNTransaction.commit()
-                    }
-                }
-            }
-        }
+        self.match(model.getRotationsIndex(), animationDuration: animationDuration)
     }
     
     func match(_ modelRotationIndex: ModelRotationsIndex, animationDuration: Double = 1.0) {

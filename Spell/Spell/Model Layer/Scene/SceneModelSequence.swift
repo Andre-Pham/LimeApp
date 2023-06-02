@@ -64,7 +64,7 @@ class SceneModelSequence {
     }
     /// The progress (s) at which the active model becomes idle
     private var idleStart: Double {
-        return self.activeModel.animationDuration - 3.3 //2.8
+        return self.activeModel.animationDuration - 0.8 //2.8
     }
     /// If the current animation playing is idle
     private var isIdle = false
@@ -145,39 +145,40 @@ class SceneModelSequence {
     }
     
     private func onActiveAnimationCompletion() {
-        print("completed")
-        let nextAnimationModel = self.nextModel.clone()
-        nextAnimationModel.add(to: <#T##SCNView#>)
-        nextAnimationModel.play()
-        
-//        print("COMPLETED: \(self.activeModel.name)")
-//        self.activeModel.pause()
-//        self.activeModel.setAnimationTime(to: 0.0)
-//        self.activeModel.onAnimationCompletion = nil
-//        self.activeModel.onAnimationTick = nil
-//        self.controller?.removeModel(self.activeModel)
-//        self.activeModelIndex = (self.activeModelIndex + 1)%self.sceneModels.count
-//        self.controller?.addModel(self.activeModel)
-//        self.activeModel.play()
-//        self.activeModel.onAnimationCompletion = self.onActiveAnimationCompletion
-//        self.activeModel.onAnimationTick = self.onAnimationTick
-//        self.isIdle = false
-//        print("STARTING: \(self.activeModel.name)")
+        print("COMPLETED: \(self.activeModel.name)")
+        self.activeModel.pause()
+        self.activeModel.setAnimationTime(to: 0.0)
+        self.activeModel.onAnimationCompletion = nil
+        self.activeModel.onAnimationTick = nil
+        self.controller?.removeModel(self.activeModel)
+        self.activeModelIndex = (self.activeModelIndex + 1)%self.sceneModels.count
+        self.controller?.addModel(self.activeModel)
+        self.activeModel.play()
+        self.activeModel.onAnimationCompletion = self.onActiveAnimationCompletion
+        self.activeModel.onAnimationTick = self.onAnimationTick
+        self.isIdle = false
+        print("STARTING: \(self.activeModel.name)")
     }
     
     private func onAnimationTick(progress: Double) {
-        return // TODO: Implement below later
         if isGreaterOrEqual(progress, self.idleStart) && !self.isIdle {
             self.isIdle = true
-            print("REAL ENDING HERE")
-//            self.onActiveAnimationCompletion()
             self.activeModel.pause()
-            self.controller?.addModel(self.nextModel)
-            self.nextModel.play()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                self.nextModel.pause()
-                self.activeModel.match(self.nextModel)
+            
+            let nextModel = self.nextModel.clone()
+            nextModel.onAnimationStart = {
+                nextModel.onAnimationStart = nil // Only trigger once
+                nextModel.pause()
+                let rotations = nextModel.getRotationsIndex()
+                self.activeModel.match(rotations, animationDuration: 0.8)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                    self.switchActiveModel(to: (self.activeModelIndex + 1)%self.sceneModels.count)
+                    self.controller?.removeModel(nextModel)
+                }
             }
+            nextModel.setOpacity(to: 0.0)
+            self.controller?.addModel(nextModel)
+            nextModel.play()
         }
     }
     

@@ -51,6 +51,12 @@ struct GenerateSceneView: View {
                     SpellSession.inst.sceneController.addGeometry(sceneSphere)
                 }
                 
+                Button("positions") {
+                    if let activeModel = SpellSession.inst.sequence?.activeModel { SpellSession.inst.sceneController.clearGeometry()
+                        print(activeModel.getRotationsIndex().getRotation(nodeName: "f_index-01-L")!.toString())
+                    }
+                }
+                
                 Spacer()
             }
         }

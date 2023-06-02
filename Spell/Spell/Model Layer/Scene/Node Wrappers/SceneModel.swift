@@ -40,6 +40,22 @@ class SceneModel: Clonable {
     public var onAnimationCompletion: (() -> Void)? = nil
     /// Callback triggered for every animation tick
     public var onAnimationTick: ((_ progress: Double) -> Void)? = nil
+    /// Callback triggered when the animation starts
+    public var onAnimationStart: (() -> Void)? = nil {
+        didSet {
+            self.animationPlayers.first?.animation.animationDidStart = { animation, animatableNode in
+                self.onAnimationStart?()
+            }
+        }
+    }
+    /// Callback triggered when the animation ends
+    public var onAnimationStop: (() -> Void)? = nil {
+        didSet {
+            self.animationPlayers.first?.animation.animationDidStop = { animation, animatableNode, finished in
+                self.onAnimationStop?()
+            }
+        }
+    }
     /// True if the animation is playing
     public var isPlaying: Bool {
         return !self.node.isPaused
@@ -119,8 +135,20 @@ class SceneModel: Clonable {
     
     required init(_ original: SceneModel) {
         self.node = original.node.clone()
-        self.animatedNodes = original.animatedNodes.map({ $0.clone() })
-        self.animationPlayers = original.animationPlayers.map({ SCNAnimationPlayer(animation: $0.animation.copy() as! SCNAnimation) })
+        self.node.name = original.name + "-clone"
+        // Can't directly clone the animation players and animated nodes - they need to be attached to this model's root node
+        for node in NodeUtil.getHierarchy(for: self.node) {
+            var isAnimated = false
+            for key in node.animationKeys {
+                if let animationPlayer = node.animationPlayer(forKey: key) {
+                    self.animationPlayers.append(animationPlayer)
+                    isAnimated = true
+                }
+            }
+            if isAnimated {
+                self.animatedNodes.append(node)
+            }
+        }
         self.animationDuration = original.animationDuration
         self.animationProgress = original.animationProgress
         self.animationSpeed = original.animationSpeed
@@ -144,16 +172,6 @@ class SceneModel: Clonable {
                 self.setAnimationTime(to: 0.0) // Also resets animation progress
             }
             self.timer = DispatchTime.now()
-        }
-        
-        let animationPlayer: SCNAnimationPlayer = self.animationPlayers.first!
-        let animation = animationPlayer.animation
-        animation.animationDidStart = { animation, animatableNode in
-            // This gets the initial position for the hand!!!
-//            NodeUtil.getHierarchy(for: animatableNode as! SCNNode).forEach({ node in
-//                print(node.toString())
-//            })
-            print("COPIED ANIMATION STARTED")
         }
     }
     
@@ -204,6 +222,16 @@ class SceneModel: Clonable {
         self.animationProgress = proportion*self.animationDuration
     }
     
+    func getRotationsIndex() -> ModelRotationsIndex {
+        let index = ModelRotationsIndex()
+        for node in NodeUtil.getHierarchy(for: self.node) {
+            if let nodeName = node.name {
+                index.addRotation(nodeName: nodeName, rotation: node.presentation.rotation)
+            }
+        }
+        return index
+    }
+    
     func translate(_ translation: SCNVector3, animationDuration: Double? = nil) {
         if let duration = animationDuration {
             let action = SCNAction.move(by: translation, duration: duration)
@@ -219,7 +247,8 @@ class SceneModel: Clonable {
         }*/
     }
     
-    func match(_ model: SceneModel, animationDuration: Double? = nil) {
+    func match(_ model: SceneModel, animationDuration: Double = 1.0) {
+        assert(isGreaterZero(animationDuration), "Animation duration must be >= 0.0")
         // Obviously inefficient, will review later
         for node in NodeUtil.getHierarchy(for: self.node) {
             for otherNode in NodeUtil.getHierarchy(for: model.node) {
@@ -228,7 +257,7 @@ class SceneModel: Clonable {
                         let targetRotation = otherNode.presentation.rotation
 
                         SCNTransaction.begin()
-                        SCNTransaction.animationDuration = 1.0 // replace with desired animation duration
+                        SCNTransaction.animationDuration = animationDuration
 
                         // Set the node's rotation within the transaction
                         node.rotation = targetRotation
@@ -238,6 +267,27 @@ class SceneModel: Clonable {
                 }
             }
         }
+    }
+    
+    func match(_ modelRotationIndex: ModelRotationsIndex, animationDuration: Double = 1.0) {
+        assert(isGreaterZero(animationDuration), "Animation duration must be >= 0.0")
+        for node in NodeUtil.getHierarchy(for: self.node) {
+            if let nodeName = node.name,
+               let targetRotation = modelRotationIndex.getRotation(nodeName: nodeName),
+               node.presentation.rotation != targetRotation {
+                SCNTransaction.begin()
+                SCNTransaction.animationDuration = animationDuration
+
+                // Set the node's rotation within the transaction
+                node.rotation = targetRotation
+
+                SCNTransaction.commit()
+            }
+        }
+    }
+    
+    func setOpacity(to opacity: Double) {
+        self.node.opacity = opacity
     }
     
 }

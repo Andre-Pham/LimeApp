@@ -11,7 +11,7 @@ import SceneKit
 struct GenerateSceneView: View {
     
     init() {
-        SpellSession.inst.addLetterSequence(prompt: "abdc")
+        SpellSession.inst.addLetterSequence(prompt: "abcdefghijklmnop")
     }
     
     var body: some View {

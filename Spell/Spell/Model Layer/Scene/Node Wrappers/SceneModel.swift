@@ -247,22 +247,31 @@ class SceneModel: Clonable {
         }*/
     }
     
-    func match(_ model: SceneModel, animationDuration: Double = 1.0) {
-        self.match(model.getRotationsIndex(), animationDuration: animationDuration)
+    func match(_ model: SceneModel, animationDuration: Double = 1.0, onCompletion: @escaping () -> Void) {
+        self.match(model.getRotationsIndex(), animationDuration: animationDuration, onCompletion: onCompletion)
     }
     
-    func match(_ modelRotationIndex: ModelRotationsIndex, animationDuration: Double = 1.0) {
+    func match(_ modelRotationIndex: ModelRotationsIndex, animationDuration: Double = 1.0, onCompletion: @escaping () -> Void) {
         assert(isGreaterZero(animationDuration), "Animation duration must be >= 0.0")
+        var remainingTransactions = 0
         for node in NodeUtil.getHierarchy(for: self.node) {
             if let nodeName = node.name,
                let targetRotation = modelRotationIndex.getRotation(nodeName: nodeName),
                node.presentation.rotation != targetRotation {
+                remainingTransactions += 1
                 SCNTransaction.begin()
+                SCNTransaction.animationTimingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
                 SCNTransaction.animationDuration = animationDuration
 
                 // Set the node's rotation within the transaction
                 node.rotation = targetRotation
 
+                SCNTransaction.completionBlock = {
+                    remainingTransactions -= 1
+                    if remainingTransactions == 0 {
+                        onCompletion()
+                    }
+                }
                 SCNTransaction.commit()
             }
         }

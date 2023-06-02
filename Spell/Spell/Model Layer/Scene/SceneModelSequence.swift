@@ -164,17 +164,29 @@ class SceneModelSequence {
         if isGreaterOrEqual(progress, self.idleStart) && !self.isIdle {
             self.isIdle = true
             self.activeModel.pause()
-            
             let nextModel = self.nextModel.clone()
             nextModel.onAnimationStart = {
                 nextModel.onAnimationStart = nil // Only trigger once
                 nextModel.pause()
-                self.activeModel.match(nextModel, animationDuration: 0.8)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                // TODO: Define timings with functions and constants
+                let activeModelRotation = self.activeModel.getRotationsIndex()
+                let nextModelRotation = nextModel.getRotationsIndex()
+                let rotationMagnitude = activeModelRotation.getHandRotation(relativeTo: nextModelRotation)
+                // All these numbers are magic
+                var duration = Double(rotationMagnitude/3.5)
+                if isGreater(duration, 0.65) {
+                    duration = 0.6 + (duration - 0.6)/5
+                } else if isLess(duration, 0.3) {
+                    duration = 0.3 - (0.3 - duration)/2
+                }
+                duration /= self.animationSpeed
+                self.activeModel.match(nextModelRotation, animationDuration: duration) {
                     self.switchActiveModel(to: (self.activeModelIndex + 1)%self.sceneModels.count)
                     self.controller?.removeModel(nextModel)
                 }
             }
+            // The model has to be in a scene to have its animation rotations rendered
+            // Add it to the scene and make its opacity 0 so it can't be seen
             nextModel.setOpacity(to: 0.0)
             self.controller?.addModel(nextModel)
             nextModel.play()

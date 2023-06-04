@@ -1,30 +1,35 @@
 import Foundation
 import CreateML
+import CoreML
 
-// Define the path to the folders
-let trainingDataURL = URL(fileURLWithPath: "/Users/andrepham/Desktop/Repos/SpellApp/Data/output-04.06.2023-08.20")
+var augmentationParameters = MLHandPoseClassifier.ImageAugmentationOptions()
+augmentationParameters.insert(.rotate)
+augmentationParameters.insert(.translate)
+augmentationParameters.insert(.horizontallyFlip)
+augmentationParameters.insert(.scale)
 
-// Define parameters for the model
-let modelParameters = MLImageClassifier.ModelParameters(validationData: nil, maxIterations: 80, augmentationOptions: .flip)
+var modelParameters = MLHandPoseClassifier.ModelParameters()
+modelParameters.validation = .none
+modelParameters.maximumIterations = 80
+modelParameters.augmentationOptions = augmentationParameters
 
-// Train the image classifier model
-let handPoseModel: MLImageClassifier
+let trainingDataURL = URL(fileURLWithPath: "/Users/andrepham/Desktop/Repos/SpellApp/Data/Training/output-04.06.2023-08.20")
+let trainingDataSource: MLHandPoseClassifier.DataSource = MLHandPoseClassifier.DataSource.labeledDirectories(at: trainingDataURL)
+let model: MLHandPoseClassifier
 do {
-    handPoseModel = try MLImageClassifier(trainingData: .labeledDirectories(at: trainingDataURL), parameters: modelParameters)
+    model = try MLHandPoseClassifier(trainingData: trainingDataSource, parameters: modelParameters)
 } catch {
     fatalError("Failed to train the model: \(error)")
 }
 
-// Evaluate the model
-let trainingAccuracy = (1.0 - handPoseModel.trainingMetrics.classificationError) * 100
-let validationAccuracy = (1.0 - handPoseModel.validationMetrics.classificationError) * 100
+let trainingAccuracy = (1.0 - model.trainingMetrics.classificationError) * 100
+let validationAccuracy = (1.0 - model.validationMetrics.classificationError) * 100
 print("Training Accuracy: \(trainingAccuracy)%")
 print("Validation Accuracy: \(validationAccuracy)%")
 
-// Save the model
 let metadata = MLModelMetadata(author: "Andre Pham", shortDescription: "Auslan pose classifier.", version: "1.0")
 do {
-    try handPoseModel.write(to: URL(fileURLWithPath: "/Users/andrepham/Desktop/Repos/SpellApp/Data/output.mlmodel"), metadata: metadata)
+    try model.write(to: URL(fileURLWithPath: "/Users/andrepham/Desktop/Repos/SpellApp/Data/AuslanClassifier.mlmodel"), metadata: metadata)
 } catch {
     fatalError("Failed to save the model: \(error)")
 }

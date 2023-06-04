@@ -18,7 +18,7 @@ def extract_frames(video_path, output_dir, n, prefix):
     cv2.destroyAllWindows()
     print("COMPLETED SET: " + prefix + " (" + video_path + ")")
 
-absolute = os.path.dirname(os.path.realpath(__file__))
+absolute = os.path.join(os.path.dirname(os.path.realpath(__file__)), "Training")
 current_datetime = datetime.now()
 formatted_datetime = current_datetime.strftime("%d.%m.%Y-%H.%M")
 OUTPUT_DIR = os.path.join(absolute, "output-" + formatted_datetime)
@@ -38,11 +38,11 @@ for category_folder in all_category_folders:
     except:
         print("> directory '" + output_dir + "' already exists")
     all_videos = os.listdir(os.path.join(CATEGORIES_DIR, category_folder))
-    for video in all_videos:
+    for index, video in enumerate(all_videos):
         if not video.upper().endswith(".MOV"):
             continue
         video_path = os.path.join(CATEGORIES_DIR, category_folder, video)
-        extract_frames(video_path, output_dir, 30, category_folder)
+        extract_frames(video_path, output_dir, 30, category_folder + str(index))
 print("COMPLETED CATEGORIES")
 
 print("STARTING BACKGROUND")
@@ -57,9 +57,9 @@ for background_folder in all_background_folders:
     except:
         pass
     all_videos = os.listdir(os.path.join(BACKGROUND_DIR, background_folder))
-    for video in all_videos:
+    for index, video in enumerate(all_videos):
         if not video.upper().endswith(".MOV"):
             continue
         video_path = os.path.join(BACKGROUND_DIR, background_folder, video)
-        extract_frames(video_path, output_dir, 30, background_folder)
+        extract_frames(video_path, output_dir, 30, background_folder + str(index))
 print("COMPLETED BACKGROUND")

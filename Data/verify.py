@@ -1,8 +1,10 @@
 import cv2
 import os
 
+folder_name = input("What is the name of the output folder?\n")
+
 absolute = os.path.dirname(os.path.realpath(__file__))
-output_dir = os.path.join(absolute, "output-04.06.2023-05.38")
+output_dir = os.path.join(absolute, "Training", folder_name)
 for folder in os.listdir(output_dir):
     if "." in folder:
         continue

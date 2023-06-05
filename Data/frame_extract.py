@@ -42,7 +42,7 @@ for category_folder in all_category_folders:
         if not video.upper().endswith(".MOV"):
             continue
         video_path = os.path.join(CATEGORIES_DIR, category_folder, video)
-        extract_frames(video_path, output_dir, 30, category_folder + str(index))
+        extract_frames(video_path, output_dir, 90, category_folder + str(index))
 print("COMPLETED CATEGORIES")
 
 print("STARTING BACKGROUND")
@@ -61,5 +61,5 @@ for background_folder in all_background_folders:
         if not video.upper().endswith(".MOV"):
             continue
         video_path = os.path.join(BACKGROUND_DIR, background_folder, video)
-        extract_frames(video_path, output_dir, 30, background_folder + str(index))
+        extract_frames(video_path, output_dir, 90, background_folder + str(index))
 print("COMPLETED BACKGROUND")

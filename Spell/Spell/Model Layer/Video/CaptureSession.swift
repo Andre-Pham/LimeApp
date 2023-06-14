@@ -71,7 +71,7 @@ class CaptureSession: NSObject {
             self.captureSession.stopRunning()
         }
         self.captureSession.beginConfiguration()
-        self.captureSession.sessionPreset = .vga640x480
+        self.captureSession.sessionPreset = .hd1920x1080
         try setCaptureSessionInput()
         try setCaptureSessionOutput()
         self.captureSession.commitConfiguration()
@@ -91,13 +91,12 @@ class CaptureSession: NSObject {
             self.captureSession.removeInput(input)
         }
 
-        // Create an instance of AVCaptureDeviceInput to capture the data from
-        // the capture device.
+        // Create an instance of AVCaptureDeviceInput to capture the data from the capture device.
         guard let videoInput = try? AVCaptureDeviceInput(device: captureDevice) else {
             throw CaptureError.invalidInput
         }
 
-        guard captureSession.canAddInput(videoInput) else {
+        guard self.captureSession.canAddInput(videoInput) else {
             throw CaptureError.invalidInput
         }
 
@@ -106,8 +105,8 @@ class CaptureSession: NSObject {
     
     private func setCaptureSessionOutput() throws {
         // Remove any previous outputs.
-        captureSession.outputs.forEach { output in
-            captureSession.removeOutput(output)
+        self.captureSession.outputs.forEach { output in
+            self.captureSession.removeOutput(output)
         }
 
         // Set the pixel type.
@@ -123,7 +122,7 @@ class CaptureSession: NSObject {
 
         self.videoOutput.setSampleBufferDelegate(self, queue: sessionQueue)
 
-        guard captureSession.canAddOutput(videoOutput) else {
+        guard self.captureSession.canAddOutput(videoOutput) else {
             throw CaptureError.invalidOutput
         }
 
@@ -152,8 +151,7 @@ class CaptureSession: NSObject {
     public func startCapturing(completion completionHandler: (() -> Void)? = nil) {
         self.sessionQueue.async {
             if !self.captureSession.isRunning {
-                // Invoke the startRunning method of the captureSession to start the
-                // flow of data from the inputs to the outputs.
+                // Invoke the startRunning method of the captureSession to start the flow of data from the inputs to the outputs.
                 self.captureSession.startRunning()
             }
 

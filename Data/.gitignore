@@ -1,1 +1,12 @@
-Training/
+*.HEIC
+*.png
+*.mov
+*.jpeg
+*.xml
+*.json
+*.mlproj
+*.jpg
+*.zip
+*.mlmodel
+README.dataset.txt
+README.roboflow.txt

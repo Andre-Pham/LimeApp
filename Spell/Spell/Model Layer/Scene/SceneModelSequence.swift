@@ -18,6 +18,10 @@ class SceneModelSequence {
         case interlaced
     }
     
+    /// Each model animation has a period at the end where it holds an "idle pose" - this defines the length of that period
+    /// Animation transitions between models begin at the start of the idle period
+    private static let IDLE_PERIOD = 0.3
+    
     /// The sequence models, in order of play
     private let sceneModels: [SceneModel]
     /// The index of the active model in the sequence
@@ -62,9 +66,9 @@ class SceneModelSequence {
         durationProgress += self.activeModel.animationProgress
         return durationProgress/self.totalDuration
     }
-    /// The progress (s) at which the active model becomes idle
+    /// The progress (seconds) at which the active model becomes idle
     private var idleStart: Double {
-        return self.activeModel.animationDuration - 0.8 //2.8
+        return self.activeModel.animationDuration - Self.IDLE_PERIOD
     }
     /// If the current animation playing is idle
     private var isIdle = false
@@ -173,16 +177,21 @@ class SceneModelSequence {
                 let nextModelRotation = nextModel.getRotationsIndex()
                 let rotationMagnitude = activeModelRotation.getHandRotation(relativeTo: nextModelRotation)
                 // All these numbers are magic
-                var duration = Double(rotationMagnitude/3.5)
+                var duration = Double(rotationMagnitude/5.0)
                 if isGreater(duration, 0.65) {
                     duration = 0.6 + (duration - 0.6)/5
-                } else if isLess(duration, 0.3) {
-                    duration = 0.3 - (0.3 - duration)/2
+                } else if isLess(duration, 0.2) {
+                    duration = 0.2 - (0.2 - duration)/2
                 }
                 duration /= self.animationSpeed
                 self.activeModel.match(nextModelRotation, animationDuration: duration) {
                     self.switchActiveModel(to: (self.activeModelIndex + 1)%self.sceneModels.count)
                     self.controller?.removeModel(nextModel)
+                    let activeModel = self.activeModel
+                    activeModel.setAnimationMultiplier(to: 0.5)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+                        activeModel.setAnimationMultiplier(to: 1.0)
+                    }
                 }
             }
             // The model has to be in a scene to have its animation rotations rendered

@@ -31,6 +31,8 @@ class SceneModel: Clonable {
     public let animationDuration: Double
     /// The progress through the model's animation (seconds)
     private(set) var animationProgress: Double = 0.0
+    /// The multiplier used when setting the animation speed
+    private(set) var animationSpeedMultiplier = 1.0
     /// The speed multiplier on the model's animation
     private(set) var animationSpeed = 1.0
     /// The timer used to measure time between Timer intervals
@@ -208,9 +210,15 @@ class SceneModel: Clonable {
     
     func setAnimationSpeed(to speed: Double) {
         for player in self.animationPlayers {
-            player.speed = speed
+            player.speed = speed*self.animationSpeedMultiplier
         }
-        self.animationSpeed = speed
+        self.animationSpeed = speed*self.animationSpeedMultiplier
+    }
+    
+    func setAnimationMultiplier(to product: Double) {
+        let rawAnimationSpeed = self.animationSpeed/self.animationSpeedMultiplier // Animation speed without multiplier
+        self.animationSpeedMultiplier = product
+        self.setAnimationSpeed(to: rawAnimationSpeed)
     }
     
     func setAnimationTime(to proportion: Double) {

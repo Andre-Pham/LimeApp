@@ -192,7 +192,7 @@ class SceneModelSequence {
                     self.switchActiveModel(to: (self.activeModelIndex + 1)%self.sceneModels.count)
                     self.controller?.removeModel(nextModel)
                     let activeModel = self.activeModel
-                    activeModel.setAnimationMultiplier(to: 0.5)
+                    activeModel.setAnimationMultiplier(to: 0.8)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
                         activeModel.setAnimationMultiplier(to: 1.0)
                     }

@@ -268,7 +268,7 @@ class SceneModel: Clonable {
                node.presentation.rotation != targetRotation {
                 remainingTransactions += 1
                 SCNTransaction.begin()
-                SCNTransaction.animationTimingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+                SCNTransaction.animationTimingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
                 SCNTransaction.animationDuration = animationDuration
 
                 // Set the node's rotation within the transaction

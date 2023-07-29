@@ -14,8 +14,8 @@ class SceneModelSequence {
         case sequential
         /// Play each animation one after the other but transition with linear interpolations
         case interpolated
-        /// Begin playing the next animation before the previous has finished using padded frames
-        case interlaced
+        /// Begin playing the next animation before the previous has finished using padded frames (play both animations at once)
+        //case interlaced // CURRENTLY NOT SUPPORTED
     }
     
     /// Each model animation has a period at the end where it holds an "idle pose" - this defines the length of that period
@@ -43,7 +43,7 @@ class SceneModelSequence {
     /// The scene that hosts the models
     private weak var controller: SceneController? = nil
     /// How the transition should be handled between signs
-    private var transitionStyle: TransitionStyle = .sequential
+    private var transitionStyle: TransitionStyle
     /// True if the animation is playing
     public var isPlaying: Bool {
         return self.activeModel.isPlaying
@@ -73,7 +73,8 @@ class SceneModelSequence {
     /// If the current animation playing is idle
     private var isIdle = false
     
-    init(_ sceneModels: [SceneModel]) {
+    init(transition: TransitionStyle, _ sceneModels: [SceneModel]) {
+        self.transitionStyle = transition
         assert(!sceneModels.isEmpty, "Scene model sequence must be provided with at least one model")
         self.sceneModels = sceneModels
         self.activeModel.onAnimationCompletion = self.onActiveAnimationCompletion
@@ -167,6 +168,9 @@ class SceneModelSequence {
     private func onAnimationTick(progress: Double) {
         if isGreaterOrEqual(progress, self.idleStart) && !self.isIdle {
             self.isIdle = true
+            guard self.transitionStyle == .interpolated else {
+                return
+            }
             self.activeModel.pause()
             let nextModel = self.nextModel.clone()
             nextModel.onAnimationStart = {

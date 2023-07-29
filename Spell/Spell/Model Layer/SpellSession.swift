@@ -25,7 +25,20 @@ class SpellSession {
         self.sceneViewController.setupScene()
     }
     
-    func addLetterSequence(prompt: String) {
+    func addSequentialLetterSequence(prompt: String) {
+        guard !prompt.isEmpty else {
+            self.sequence = nil
+            return
+        }
+        var sceneModels = [SceneModel]()
+        for char in prompt {
+            sceneModels.append(SceneModel(subDir: "alphabet1", fileName: "\(char)_1.dae"))
+        }
+        self.sequence = SceneModelSequence(transition: .sequential, sceneModels)
+        self.sequence?.mount(to: self.sceneController)
+    }
+    
+    func addInterpolatedLetterSequence(prompt: String) {
         guard !prompt.isEmpty else {
             self.sequence = nil
             return
@@ -34,7 +47,7 @@ class SpellSession {
         for char in prompt {
             sceneModels.append(SceneModel(subDir: "alphabet1", fileName: "\(char)_1.dae", startTrim: 0.2, endTrim: 0.0))
         }
-        self.sequence = SceneModelSequence(sceneModels)
+        self.sequence = SceneModelSequence(transition: .interpolated, sceneModels)
         self.sequence?.mount(to: self.sceneController)
     }
     

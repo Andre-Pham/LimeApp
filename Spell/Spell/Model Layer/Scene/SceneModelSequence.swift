@@ -208,7 +208,6 @@ class SceneModelSequence {
     }
     
     private func onActiveAnimationCompletion() {
-        print("COMPLETED: \(self.activeModel.name)")
         self.activeModel.pause()
         self.activeModel.setAnimationTime(to: 0.0)
         self.activeModel.onAnimationCompletion = nil
@@ -220,7 +219,6 @@ class SceneModelSequence {
         self.activeModel.onAnimationCompletion = self.onActiveAnimationCompletion
         self.activeModel.onAnimationTick = self.onAnimationTick
         self.isIdle = false
-        print("STARTING: \(self.activeModel.name)")
     }
     
     private func onAnimationTick(progress: Double) {

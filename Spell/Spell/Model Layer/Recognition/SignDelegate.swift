@@ -9,8 +9,8 @@ import Foundation
 
 protocol SignDelegate: AnyObject {
     
-    func onPrediction(outcome: Label)
+    func onPrediction(outcome: PredictionOutcome)
     
-    func onPredictionPositions(outcome: Label, positions: JointPositions)
+    func onPredictionPositions(outcome: PredictionOutcome)
     
 }

@@ -49,45 +49,55 @@ class SignRecogniser {
             assertionFailure("Handler failed with error: \(error)")
         }
         
-        guard let handPoses = handPoseRequest.results, !handPoses.isEmpty,
-              let keyPointsMultiArray = try? handPoses.first!.keypointsMultiArray() else {
-            self.delegateOutcome(.none)
+        let predictionOutcome = PredictionOutcome()
+        guard let handPoses = handPoseRequest.results, !handPoses.isEmpty else {
+            self.delegateOutcome(predictionOutcome)
             return
         }
+        assert(handPoses.count <= 2, "The request should only ever process two hands (even if more are in frame)")
         
-        let observation = handPoses.first!
-        let prediction = try? self.model?.prediction(poses: keyPointsMultiArray)
-        if let label = prediction?.label, let confidence = prediction?.labelProbabilities[label] {
-            guard isGreaterOrEqual(confidence, Self.CONFIDENCE_THRESHOLD) else {
-                self.delegateOutcome(.none)
-                self.delegatePositions(.none, observation: observation)
-                return
+        // Delegate outcomes
+        for (handIndex, observation) in handPoses.enumerated() {
+            guard let keyPointsMultiArray = try? observation.keypointsMultiArray() else {
+                continue
             }
-            for labelCase in Label.allCases {
-                if label == labelCase.rawValue {
-                    self.delegateOutcome(labelCase)
-                    self.delegatePositions(labelCase, observation: observation)
-                    return
+            let prediction = try? self.model?.prediction(poses: keyPointsMultiArray)
+            if let label = prediction?.label, let confidence = prediction?.labelProbabilities[label] {
+                guard isGreaterOrEqual(confidence, Self.CONFIDENCE_THRESHOLD) else {
+                    continue
                 }
+                var labelFound = false
+                for labelCase in Label.allCases {
+                    if label == labelCase.rawValue {
+                        predictionOutcome.setHandOutcome(hand: handIndex, label: labelCase)
+                        labelFound = true
+                        break
+                    }
+                }
+                assert(labelFound, "Prediction found \(label) however no matching Label case was found")
             }
-            assertionFailure("Prediction found \(label) however no matching Label case was found")
         }
+        self.delegateOutcome(predictionOutcome)
         
-        assertionFailure("Label and/or confidence could not be read")
+        // Delegate positions
+        for (handIndex, observation) in handPoses.enumerated() {
+            let positions = self.handPointRecogniser.getHandPosition(observation: observation)
+            predictionOutcome.setHandPosition(hand: handIndex, positions: positions)
+        }
+        self.delegatePositions(predictionOutcome)
     }
     
-    private func delegateOutcome(_ outcome: Label) {
+    private func delegateOutcome(_ outcome: PredictionOutcome) {
         // Jump back to main thread
         DispatchQueue.main.async {
             self.signDelegate?.onPrediction(outcome: outcome)
         }
     }
     
-    private func delegatePositions(_ outcome: Label, observation: VNHumanHandPoseObservation) {
-        let positions = self.handPointRecogniser.getHandPosition(observation: observation)
+    private func delegatePositions(_ outcome: PredictionOutcome) {
         // Jump back to main thread
         DispatchQueue.main.async {
-            self.signDelegate?.onPredictionPositions(outcome: outcome, positions: positions)
+            self.signDelegate?.onPredictionPositions(outcome: outcome)
         }
     }
     

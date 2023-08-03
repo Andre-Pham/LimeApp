@@ -1,13 +1,13 @@
 //
-//  SpellUITestsLaunchTests.swift
-//  SpellUITests
+//  LimeUITestsLaunchTests.swift
+//  LimeUITests
 //
 //  Created by Andre Pham on 4/8/2023.
 //
 
 import XCTest
 
-final class SpellUITestsLaunchTests: XCTestCase {
+final class LimeUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

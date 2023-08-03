@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  Spell
+//  Lime
 //
 //  Created by Andre Pham on 4/8/2023.
 //
@@ -12,8 +12,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.view.backgroundColor = UIColor.red
     }
-
 
 }
 

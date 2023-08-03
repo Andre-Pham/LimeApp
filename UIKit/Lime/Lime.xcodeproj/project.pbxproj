@@ -7,66 +7,66 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B6DC10302A7BF24F00C10100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC102F2A7BF24F00C10100 /* AppDelegate.swift */; };
-		B6DC10322A7BF24F00C10100 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10312A7BF24F00C10100 /* SceneDelegate.swift */; };
-		B6DC10342A7BF24F00C10100 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10332A7BF24F00C10100 /* ViewController.swift */; };
-		B6DC10372A7BF24F00C10100 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6DC10352A7BF24F00C10100 /* Main.storyboard */; };
-		B6DC10392A7BF25000C10100 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6DC10382A7BF25000C10100 /* Assets.xcassets */; };
-		B6DC103C2A7BF25000C10100 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6DC103A2A7BF25000C10100 /* LaunchScreen.storyboard */; };
-		B6DC10472A7BF25000C10100 /* SpellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10462A7BF25000C10100 /* SpellTests.swift */; };
-		B6DC10512A7BF25000C10100 /* SpellUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10502A7BF25000C10100 /* SpellUITests.swift */; };
-		B6DC10532A7BF25000C10100 /* SpellUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10522A7BF25000C10100 /* SpellUITestsLaunchTests.swift */; };
+		B6DC10A82A7BF6E600C10100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */; };
+		B6DC10AA2A7BF6E600C10100 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */; };
+		B6DC10AC2A7BF6E600C10100 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10AB2A7BF6E600C10100 /* ViewController.swift */; };
+		B6DC10AF2A7BF6E600C10100 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6DC10AD2A7BF6E600C10100 /* Main.storyboard */; };
+		B6DC10B12A7BF6E700C10100 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6DC10B02A7BF6E700C10100 /* Assets.xcassets */; };
+		B6DC10B42A7BF6E700C10100 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6DC10B22A7BF6E700C10100 /* LaunchScreen.storyboard */; };
+		B6DC10BF2A7BF6E700C10100 /* LimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10BE2A7BF6E700C10100 /* LimeTests.swift */; };
+		B6DC10C92A7BF6E700C10100 /* LimeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10C82A7BF6E700C10100 /* LimeUITests.swift */; };
+		B6DC10CB2A7BF6E700C10100 /* LimeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10CA2A7BF6E700C10100 /* LimeUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B6DC10432A7BF25000C10100 /* PBXContainerItemProxy */ = {
+		B6DC10BB2A7BF6E700C10100 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = B6DC10242A7BF24F00C10100 /* Project object */;
+			containerPortal = B6DC109C2A7BF6E600C10100 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = B6DC102B2A7BF24F00C10100;
-			remoteInfo = Spell;
+			remoteGlobalIDString = B6DC10A32A7BF6E600C10100;
+			remoteInfo = Lime;
 		};
-		B6DC104D2A7BF25000C10100 /* PBXContainerItemProxy */ = {
+		B6DC10C52A7BF6E700C10100 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = B6DC10242A7BF24F00C10100 /* Project object */;
+			containerPortal = B6DC109C2A7BF6E600C10100 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = B6DC102B2A7BF24F00C10100;
-			remoteInfo = Spell;
+			remoteGlobalIDString = B6DC10A32A7BF6E600C10100;
+			remoteInfo = Lime;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B6DC102C2A7BF24F00C10100 /* Spell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spell.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B6DC102F2A7BF24F00C10100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B6DC10312A7BF24F00C10100 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B6DC10332A7BF24F00C10100 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B6DC10362A7BF24F00C10100 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B6DC10382A7BF25000C10100 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B6DC103B2A7BF25000C10100 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		B6DC103D2A7BF25000C10100 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B6DC10422A7BF25000C10100 /* SpellTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpellTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B6DC10462A7BF25000C10100 /* SpellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellTests.swift; sourceTree = "<group>"; };
-		B6DC104C2A7BF25000C10100 /* SpellUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpellUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B6DC10502A7BF25000C10100 /* SpellUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellUITests.swift; sourceTree = "<group>"; };
-		B6DC10522A7BF25000C10100 /* SpellUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B6DC10A42A7BF6E600C10100 /* Lime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lime.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		B6DC10AB2A7BF6E600C10100 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B6DC10AE2A7BF6E600C10100 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B6DC10B02A7BF6E700C10100 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B6DC10B32A7BF6E700C10100 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B6DC10B52A7BF6E700C10100 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6DC10BA2A7BF6E700C10100 /* LimeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LimeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6DC10BE2A7BF6E700C10100 /* LimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeTests.swift; sourceTree = "<group>"; };
+		B6DC10C42A7BF6E700C10100 /* LimeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LimeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6DC10C82A7BF6E700C10100 /* LimeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeUITests.swift; sourceTree = "<group>"; };
+		B6DC10CA2A7BF6E700C10100 /* LimeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B6DC10292A7BF24F00C10100 /* Frameworks */ = {
+		B6DC10A12A7BF6E600C10100 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B6DC103F2A7BF25000C10100 /* Frameworks */ = {
+		B6DC10B72A7BF6E700C10100 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B6DC10492A7BF25000C10100 /* Frameworks */ = {
+		B6DC10C12A7BF6E700C10100 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -76,137 +76,137 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B6DC10232A7BF24F00C10100 = {
+		B6DC109B2A7BF6E600C10100 = {
 			isa = PBXGroup;
 			children = (
-				B6DC102E2A7BF24F00C10100 /* Spell */,
-				B6DC10452A7BF25000C10100 /* SpellTests */,
-				B6DC104F2A7BF25000C10100 /* SpellUITests */,
-				B6DC102D2A7BF24F00C10100 /* Products */,
+				B6DC10A62A7BF6E600C10100 /* Lime */,
+				B6DC10BD2A7BF6E700C10100 /* LimeTests */,
+				B6DC10C72A7BF6E700C10100 /* LimeUITests */,
+				B6DC10A52A7BF6E600C10100 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		B6DC102D2A7BF24F00C10100 /* Products */ = {
+		B6DC10A52A7BF6E600C10100 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B6DC102C2A7BF24F00C10100 /* Spell.app */,
-				B6DC10422A7BF25000C10100 /* SpellTests.xctest */,
-				B6DC104C2A7BF25000C10100 /* SpellUITests.xctest */,
+				B6DC10A42A7BF6E600C10100 /* Lime.app */,
+				B6DC10BA2A7BF6E700C10100 /* LimeTests.xctest */,
+				B6DC10C42A7BF6E700C10100 /* LimeUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B6DC102E2A7BF24F00C10100 /* Spell */ = {
+		B6DC10A62A7BF6E600C10100 /* Lime */ = {
 			isa = PBXGroup;
 			children = (
-				B6DC102F2A7BF24F00C10100 /* AppDelegate.swift */,
-				B6DC10312A7BF24F00C10100 /* SceneDelegate.swift */,
-				B6DC10332A7BF24F00C10100 /* ViewController.swift */,
-				B6DC10352A7BF24F00C10100 /* Main.storyboard */,
-				B6DC10382A7BF25000C10100 /* Assets.xcassets */,
-				B6DC103A2A7BF25000C10100 /* LaunchScreen.storyboard */,
-				B6DC103D2A7BF25000C10100 /* Info.plist */,
+				B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */,
+				B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */,
+				B6DC10AB2A7BF6E600C10100 /* ViewController.swift */,
+				B6DC10AD2A7BF6E600C10100 /* Main.storyboard */,
+				B6DC10B02A7BF6E700C10100 /* Assets.xcassets */,
+				B6DC10B22A7BF6E700C10100 /* LaunchScreen.storyboard */,
+				B6DC10B52A7BF6E700C10100 /* Info.plist */,
 			);
-			path = Spell;
+			path = Lime;
 			sourceTree = "<group>";
 		};
-		B6DC10452A7BF25000C10100 /* SpellTests */ = {
+		B6DC10BD2A7BF6E700C10100 /* LimeTests */ = {
 			isa = PBXGroup;
 			children = (
-				B6DC10462A7BF25000C10100 /* SpellTests.swift */,
+				B6DC10BE2A7BF6E700C10100 /* LimeTests.swift */,
 			);
-			path = SpellTests;
+			path = LimeTests;
 			sourceTree = "<group>";
 		};
-		B6DC104F2A7BF25000C10100 /* SpellUITests */ = {
+		B6DC10C72A7BF6E700C10100 /* LimeUITests */ = {
 			isa = PBXGroup;
 			children = (
-				B6DC10502A7BF25000C10100 /* SpellUITests.swift */,
-				B6DC10522A7BF25000C10100 /* SpellUITestsLaunchTests.swift */,
+				B6DC10C82A7BF6E700C10100 /* LimeUITests.swift */,
+				B6DC10CA2A7BF6E700C10100 /* LimeUITestsLaunchTests.swift */,
 			);
-			path = SpellUITests;
+			path = LimeUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B6DC102B2A7BF24F00C10100 /* Spell */ = {
+		B6DC10A32A7BF6E600C10100 /* Lime */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B6DC10562A7BF25000C10100 /* Build configuration list for PBXNativeTarget "Spell" */;
+			buildConfigurationList = B6DC10CE2A7BF6E700C10100 /* Build configuration list for PBXNativeTarget "Lime" */;
 			buildPhases = (
-				B6DC10282A7BF24F00C10100 /* Sources */,
-				B6DC10292A7BF24F00C10100 /* Frameworks */,
-				B6DC102A2A7BF24F00C10100 /* Resources */,
+				B6DC10A02A7BF6E600C10100 /* Sources */,
+				B6DC10A12A7BF6E600C10100 /* Frameworks */,
+				B6DC10A22A7BF6E600C10100 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Spell;
-			productName = Spell;
-			productReference = B6DC102C2A7BF24F00C10100 /* Spell.app */;
+			name = Lime;
+			productName = Lime;
+			productReference = B6DC10A42A7BF6E600C10100 /* Lime.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B6DC10412A7BF25000C10100 /* SpellTests */ = {
+		B6DC10B92A7BF6E700C10100 /* LimeTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B6DC10592A7BF25000C10100 /* Build configuration list for PBXNativeTarget "SpellTests" */;
+			buildConfigurationList = B6DC10D12A7BF6E700C10100 /* Build configuration list for PBXNativeTarget "LimeTests" */;
 			buildPhases = (
-				B6DC103E2A7BF25000C10100 /* Sources */,
-				B6DC103F2A7BF25000C10100 /* Frameworks */,
-				B6DC10402A7BF25000C10100 /* Resources */,
+				B6DC10B62A7BF6E700C10100 /* Sources */,
+				B6DC10B72A7BF6E700C10100 /* Frameworks */,
+				B6DC10B82A7BF6E700C10100 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B6DC10442A7BF25000C10100 /* PBXTargetDependency */,
+				B6DC10BC2A7BF6E700C10100 /* PBXTargetDependency */,
 			);
-			name = SpellTests;
-			productName = SpellTests;
-			productReference = B6DC10422A7BF25000C10100 /* SpellTests.xctest */;
+			name = LimeTests;
+			productName = LimeTests;
+			productReference = B6DC10BA2A7BF6E700C10100 /* LimeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		B6DC104B2A7BF25000C10100 /* SpellUITests */ = {
+		B6DC10C32A7BF6E700C10100 /* LimeUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B6DC105C2A7BF25000C10100 /* Build configuration list for PBXNativeTarget "SpellUITests" */;
+			buildConfigurationList = B6DC10D42A7BF6E700C10100 /* Build configuration list for PBXNativeTarget "LimeUITests" */;
 			buildPhases = (
-				B6DC10482A7BF25000C10100 /* Sources */,
-				B6DC10492A7BF25000C10100 /* Frameworks */,
-				B6DC104A2A7BF25000C10100 /* Resources */,
+				B6DC10C02A7BF6E700C10100 /* Sources */,
+				B6DC10C12A7BF6E700C10100 /* Frameworks */,
+				B6DC10C22A7BF6E700C10100 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B6DC104E2A7BF25000C10100 /* PBXTargetDependency */,
+				B6DC10C62A7BF6E700C10100 /* PBXTargetDependency */,
 			);
-			name = SpellUITests;
-			productName = SpellUITests;
-			productReference = B6DC104C2A7BF25000C10100 /* SpellUITests.xctest */;
+			name = LimeUITests;
+			productName = LimeUITests;
+			productReference = B6DC10C42A7BF6E700C10100 /* LimeUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		B6DC10242A7BF24F00C10100 /* Project object */ = {
+		B6DC109C2A7BF6E600C10100 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
-					B6DC102B2A7BF24F00C10100 = {
+					B6DC10A32A7BF6E600C10100 = {
 						CreatedOnToolsVersion = 14.3;
 					};
-					B6DC10412A7BF25000C10100 = {
+					B6DC10B92A7BF6E700C10100 = {
 						CreatedOnToolsVersion = 14.3;
-						TestTargetID = B6DC102B2A7BF24F00C10100;
+						TestTargetID = B6DC10A32A7BF6E600C10100;
 					};
-					B6DC104B2A7BF25000C10100 = {
+					B6DC10C32A7BF6E700C10100 = {
 						CreatedOnToolsVersion = 14.3;
-						TestTargetID = B6DC102B2A7BF24F00C10100;
+						TestTargetID = B6DC10A32A7BF6E600C10100;
 					};
 				};
 			};
-			buildConfigurationList = B6DC10272A7BF24F00C10100 /* Build configuration list for PBXProject "Spell" */;
+			buildConfigurationList = B6DC109F2A7BF6E600C10100 /* Build configuration list for PBXProject "Lime" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -214,37 +214,37 @@
 				en,
 				Base,
 			);
-			mainGroup = B6DC10232A7BF24F00C10100;
-			productRefGroup = B6DC102D2A7BF24F00C10100 /* Products */;
+			mainGroup = B6DC109B2A7BF6E600C10100;
+			productRefGroup = B6DC10A52A7BF6E600C10100 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B6DC102B2A7BF24F00C10100 /* Spell */,
-				B6DC10412A7BF25000C10100 /* SpellTests */,
-				B6DC104B2A7BF25000C10100 /* SpellUITests */,
+				B6DC10A32A7BF6E600C10100 /* Lime */,
+				B6DC10B92A7BF6E700C10100 /* LimeTests */,
+				B6DC10C32A7BF6E700C10100 /* LimeUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		B6DC102A2A7BF24F00C10100 /* Resources */ = {
+		B6DC10A22A7BF6E600C10100 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6DC103C2A7BF25000C10100 /* LaunchScreen.storyboard in Resources */,
-				B6DC10392A7BF25000C10100 /* Assets.xcassets in Resources */,
-				B6DC10372A7BF24F00C10100 /* Main.storyboard in Resources */,
+				B6DC10B42A7BF6E700C10100 /* LaunchScreen.storyboard in Resources */,
+				B6DC10B12A7BF6E700C10100 /* Assets.xcassets in Resources */,
+				B6DC10AF2A7BF6E600C10100 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B6DC10402A7BF25000C10100 /* Resources */ = {
+		B6DC10B82A7BF6E700C10100 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B6DC104A2A7BF25000C10100 /* Resources */ = {
+		B6DC10C22A7BF6E700C10100 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -254,61 +254,61 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		B6DC10282A7BF24F00C10100 /* Sources */ = {
+		B6DC10A02A7BF6E600C10100 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6DC10342A7BF24F00C10100 /* ViewController.swift in Sources */,
-				B6DC10302A7BF24F00C10100 /* AppDelegate.swift in Sources */,
-				B6DC10322A7BF24F00C10100 /* SceneDelegate.swift in Sources */,
+				B6DC10AC2A7BF6E600C10100 /* ViewController.swift in Sources */,
+				B6DC10A82A7BF6E600C10100 /* AppDelegate.swift in Sources */,
+				B6DC10AA2A7BF6E600C10100 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B6DC103E2A7BF25000C10100 /* Sources */ = {
+		B6DC10B62A7BF6E700C10100 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6DC10472A7BF25000C10100 /* SpellTests.swift in Sources */,
+				B6DC10BF2A7BF6E700C10100 /* LimeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B6DC10482A7BF25000C10100 /* Sources */ = {
+		B6DC10C02A7BF6E700C10100 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6DC10512A7BF25000C10100 /* SpellUITests.swift in Sources */,
-				B6DC10532A7BF25000C10100 /* SpellUITestsLaunchTests.swift in Sources */,
+				B6DC10C92A7BF6E700C10100 /* LimeUITests.swift in Sources */,
+				B6DC10CB2A7BF6E700C10100 /* LimeUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B6DC10442A7BF25000C10100 /* PBXTargetDependency */ = {
+		B6DC10BC2A7BF6E700C10100 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B6DC102B2A7BF24F00C10100 /* Spell */;
-			targetProxy = B6DC10432A7BF25000C10100 /* PBXContainerItemProxy */;
+			target = B6DC10A32A7BF6E600C10100 /* Lime */;
+			targetProxy = B6DC10BB2A7BF6E700C10100 /* PBXContainerItemProxy */;
 		};
-		B6DC104E2A7BF25000C10100 /* PBXTargetDependency */ = {
+		B6DC10C62A7BF6E700C10100 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B6DC102B2A7BF24F00C10100 /* Spell */;
-			targetProxy = B6DC104D2A7BF25000C10100 /* PBXContainerItemProxy */;
+			target = B6DC10A32A7BF6E600C10100 /* Lime */;
+			targetProxy = B6DC10C52A7BF6E700C10100 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B6DC10352A7BF24F00C10100 /* Main.storyboard */ = {
+		B6DC10AD2A7BF6E600C10100 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B6DC10362A7BF24F00C10100 /* Base */,
+				B6DC10AE2A7BF6E600C10100 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		B6DC103A2A7BF25000C10100 /* LaunchScreen.storyboard */ = {
+		B6DC10B22A7BF6E700C10100 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B6DC103B2A7BF25000C10100 /* Base */,
+				B6DC10B32A7BF6E700C10100 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -316,7 +316,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		B6DC10542A7BF25000C10100 /* Debug */ = {
+		B6DC10CC2A7BF6E700C10100 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -376,7 +376,7 @@
 			};
 			name = Debug;
 		};
-		B6DC10552A7BF25000C10100 /* Release */ = {
+		B6DC10CD2A7BF6E700C10100 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -430,7 +430,7 @@
 			};
 			name = Release;
 		};
-		B6DC10572A7BF25000C10100 /* Debug */ = {
+		B6DC10CF2A7BF6E700C10100 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -439,7 +439,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W9DP42NB5D;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Spell/Info.plist;
+				INFOPLIST_FILE = Lime/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -450,7 +450,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = andrepham.Spell;
+				PRODUCT_BUNDLE_IDENTIFIER = andrepham.Lime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -458,7 +458,7 @@
 			};
 			name = Debug;
 		};
-		B6DC10582A7BF25000C10100 /* Release */ = {
+		B6DC10D02A7BF6E700C10100 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -467,7 +467,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W9DP42NB5D;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Spell/Info.plist;
+				INFOPLIST_FILE = Lime/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -478,7 +478,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = andrepham.Spell;
+				PRODUCT_BUNDLE_IDENTIFIER = andrepham.Lime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -486,7 +486,7 @@
 			};
 			name = Release;
 		};
-		B6DC105A2A7BF25000C10100 /* Debug */ = {
+		B6DC10D22A7BF6E700C10100 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -497,16 +497,16 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = andrepham.SpellTests;
+				PRODUCT_BUNDLE_IDENTIFIER = andrepham.LimeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Spell.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Spell";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lime.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Lime";
 			};
 			name = Debug;
 		};
-		B6DC105B2A7BF25000C10100 /* Release */ = {
+		B6DC10D32A7BF6E700C10100 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -517,16 +517,16 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = andrepham.SpellTests;
+				PRODUCT_BUNDLE_IDENTIFIER = andrepham.LimeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Spell.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Spell";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lime.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Lime";
 			};
 			name = Release;
 		};
-		B6DC105D2A7BF25000C10100 /* Debug */ = {
+		B6DC10D52A7BF6E700C10100 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -535,16 +535,16 @@
 				DEVELOPMENT_TEAM = W9DP42NB5D;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = andrepham.SpellUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = andrepham.LimeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Spell;
+				TEST_TARGET_NAME = Lime;
 			};
 			name = Debug;
 		};
-		B6DC105E2A7BF25000C10100 /* Release */ = {
+		B6DC10D62A7BF6E700C10100 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -553,55 +553,55 @@
 				DEVELOPMENT_TEAM = W9DP42NB5D;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = andrepham.SpellUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = andrepham.LimeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Spell;
+				TEST_TARGET_NAME = Lime;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B6DC10272A7BF24F00C10100 /* Build configuration list for PBXProject "Spell" */ = {
+		B6DC109F2A7BF6E600C10100 /* Build configuration list for PBXProject "Lime" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B6DC10542A7BF25000C10100 /* Debug */,
-				B6DC10552A7BF25000C10100 /* Release */,
+				B6DC10CC2A7BF6E700C10100 /* Debug */,
+				B6DC10CD2A7BF6E700C10100 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B6DC10562A7BF25000C10100 /* Build configuration list for PBXNativeTarget "Spell" */ = {
+		B6DC10CE2A7BF6E700C10100 /* Build configuration list for PBXNativeTarget "Lime" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B6DC10572A7BF25000C10100 /* Debug */,
-				B6DC10582A7BF25000C10100 /* Release */,
+				B6DC10CF2A7BF6E700C10100 /* Debug */,
+				B6DC10D02A7BF6E700C10100 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B6DC10592A7BF25000C10100 /* Build configuration list for PBXNativeTarget "SpellTests" */ = {
+		B6DC10D12A7BF6E700C10100 /* Build configuration list for PBXNativeTarget "LimeTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B6DC105A2A7BF25000C10100 /* Debug */,
-				B6DC105B2A7BF25000C10100 /* Release */,
+				B6DC10D22A7BF6E700C10100 /* Debug */,
+				B6DC10D32A7BF6E700C10100 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B6DC105C2A7BF25000C10100 /* Build configuration list for PBXNativeTarget "SpellUITests" */ = {
+		B6DC10D42A7BF6E700C10100 /* Build configuration list for PBXNativeTarget "LimeUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B6DC105D2A7BF25000C10100 /* Debug */,
-				B6DC105E2A7BF25000C10100 /* Release */,
+				B6DC10D52A7BF6E700C10100 /* Debug */,
+				B6DC10D62A7BF6E700C10100 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = B6DC10242A7BF24F00C10100 /* Project object */;
+	rootObject = B6DC109C2A7BF6E600C10100 /* Project object */;
 }

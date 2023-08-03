@@ -1,14 +1,14 @@
 //
-//  SpellTests.swift
-//  SpellTests
+//  LimeTests.swift
+//  LimeTests
 //
 //  Created by Andre Pham on 4/8/2023.
 //
 
 import XCTest
-@testable import Spell
+@testable import Lime
 
-final class SpellTests: XCTestCase {
+final class LimeTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

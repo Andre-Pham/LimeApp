@@ -1,13 +1,13 @@
 //
-//  SpellUITests.swift
-//  SpellUITests
+//  LimeUITests.swift
+//  LimeUITests
 //
 //  Created by Andre Pham on 4/8/2023.
 //
 
 import XCTest
 
-final class SpellUITests: XCTestCase {
+final class LimeUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

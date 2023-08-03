@@ -96,8 +96,16 @@ class SceneModelSequence {
         self.setSequencePause(to: true)
     }
     
+    func interruptTransition() {
+        self.isTransitioning = false
+        // Technically unnecessary, this just ensures we're at the correct animation multiplier (immediately)
+        self.setSequenceAnimationMultiplier(to: 1.0)
+    }
+    
     func setSequencePause(to isPaused: Bool) {
         if self.isTransitioning && isPaused {
+            // We're trying to pause during a transition, so clamp to the start of the model we're transitioning to
+            //
             // The following code is strange...
             // A working alternative is as follows:
             // ``` self.isTransitioning = false
@@ -106,7 +114,7 @@ class SceneModelSequence {
             // However it causes a flicker that isn't pleasant to the eye
             // This odd sequence of timings fix that
             // All timings are magic numbers, and the smallest interval that worked that I've tried is 0.02
-            self.isTransitioning = false
+            self.interruptTransition()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.03) {
                 self.switchActiveModel(to: (self.activeModelIndex + 1)%self.sceneModels.count)
             }

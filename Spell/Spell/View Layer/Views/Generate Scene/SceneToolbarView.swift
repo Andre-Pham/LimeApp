@@ -51,8 +51,9 @@ struct SceneToolbarView: View {
                                 // We can't trust !(SpellSession.inst.sequence?.isPlaying ?? false) in case we are mid-transition
                                 // (In which case it will state that it is paused when really it's mid-transition)
                                 self.pauseCache = (self.isPausedTracker)
-                                // If we're mid transition we need to reset the animation multiplier
-                                SpellSession.inst.sequence?.setSequenceAnimationMultiplier(to: 1.0)
+                                // If we're mid transition we need to interrupt it
+                                SpellSession.inst.sequence?.interruptTransition()
+                                // Save the animation speed because we're about to slow the model down
                                 self.animationSpeedCache = SpellSession.inst.sequence?.animationSpeed ?? 1.0
                                 // The model appears in the starting position during tracking unless playing
                                 // Slow down the animation so it appears not to play
@@ -128,6 +129,7 @@ struct SceneToolbarView: View {
                 
                 Spacer()
                 
+                // TODO: If I want to display this outside the tool bar, I'll need to create a ViewModel
                 SpellText(text: self.activeLetter, font: .bodyBold, size: .body)
                 
                 Spacer()

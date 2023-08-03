@@ -17,7 +17,11 @@ class SceneModel: Clonable {
     // MARK: - Node Properties
     
     private var node: SCNNode = SCNNode()
-    var name: String {
+    private var setDescription: String? = nil
+    public var description: String {
+        return self.setDescription ?? self.name
+    }
+    public var name: String {
         return self.node.name!
     }
     
@@ -78,6 +82,7 @@ class SceneModel: Clonable {
         subDir: String? = nil,
         fileName: String,
         name: String? = nil,
+        description: String? = nil,
         startTrim: Double = 0.0,
         endTrim: Double = 0.0
     ) {
@@ -90,6 +95,7 @@ class SceneModel: Clonable {
             assertionFailure("File '\(fileName)' could not be loaded from \(dir)")
         }
         self.node.name = (name == nil ? "\(Self.NAME_PREFIX)-\(fileName)" : "\(Self.NAME_PREFIX)-\(name!)")
+        self.setDescription = description
         
         for node in NodeUtil.getHierarchy(for: self.node) {
             var isAnimated = false
@@ -138,6 +144,7 @@ class SceneModel: Clonable {
     required init(_ original: SceneModel) {
         self.node = original.node.clone()
         self.node.name = original.name + "-clone"
+        self.setDescription = original.setDescription
         // Can't directly clone the animation players and animated nodes - they need to be attached to this model's root node
         for node in NodeUtil.getHierarchy(for: self.node) {
             var isAnimated = false
@@ -196,7 +203,6 @@ class SceneModel: Clonable {
     }
     
     func setModelPause(to isPaused: Bool) {
-//        print("Setting model \(self.name) to isPaused: \(isPaused)")
         self.node.isPaused = isPaused
         for player in self.animationPlayers {
             if isPaused {
@@ -210,7 +216,6 @@ class SceneModel: Clonable {
     }
     
     func setAnimationSpeed(to speed: Double) {
-//        print("<> SETTING ANIMATION SPEED \(self.name) TO \(speed)")
         for player in self.animationPlayers {
             player.speed = speed*self.animationSpeedMultiplier
         }
@@ -218,7 +223,6 @@ class SceneModel: Clonable {
     }
     
     func setAnimationMultiplier(to product: Double) {
-//        print("setAnimationMultiplier \(self.name) | multiplier: \(self.animationSpeedMultiplier) -> \(product) | speed: \(self.animationSpeed) -> \(self.animationSpeed/self.animationSpeedMultiplier*product)")
         let rawAnimationSpeed = self.animationSpeed/self.animationSpeedMultiplier // Animation speed without multiplier
         self.animationSpeedMultiplier = product
         self.setAnimationSpeed(to: rawAnimationSpeed)

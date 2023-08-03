@@ -32,7 +32,7 @@ class SpellSession {
         }
         var sceneModels = [SceneModel]()
         for char in prompt {
-            sceneModels.append(SceneModel(subDir: "alphabet1", fileName: "\(char)_1.dae"))
+            sceneModels.append(SceneModel(subDir: "alphabet1", fileName: "\(char)_1.dae", description: char.uppercased()))
         }
         self.sequence = SceneModelSequence(transition: .sequential, sceneModels)
         self.sequence?.mount(to: self.sceneController)
@@ -45,7 +45,7 @@ class SpellSession {
         }
         var sceneModels = [SceneModel]()
         for char in prompt {
-            sceneModels.append(SceneModel(subDir: "alphabet1", fileName: "\(char)_1.dae", startTrim: 0.2, endTrim: 0.0))
+            sceneModels.append(SceneModel(subDir: "alphabet1", fileName: "\(char)_1.dae", description: char.uppercased(), startTrim: 0.2, endTrim: 0.0))
         }
         self.sequence = SceneModelSequence(transition: .interpolated, sceneModels)
         self.sequence?.mount(to: self.sceneController)

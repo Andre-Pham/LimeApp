@@ -77,6 +77,7 @@
 		B6A702FC29B857A800487A0D /* SceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A702FB29B857A800487A0D /* SceneView.swift */; };
 		B6A702FE29B85A5800487A0D /* TopSafeAreaInsetFill.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A702FD29B85A5800487A0D /* TopSafeAreaInsetFill.swift */; };
 		B6A7030029BEC00000487A0D /* SceneLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A702FF29BEC00000487A0D /* SceneLight.swift */; };
+		B6DC10202A7920C000C10100 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC101F2A7920C000C10100 /* Array.swift */; };
 		B6DE83A02A145ADF00F36075 /* BindingChipToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DE839F2A145ADF00F36075 /* BindingChipToggle.swift */; };
 		B6DE83A22A1460DE00F36075 /* SceneModelSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DE83A12A1460DE00F36075 /* SceneModelSequence.swift */; };
 		B6DE83A42A161DFC00F36075 /* SCNVector4.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DE83A32A161DFC00F36075 /* SCNVector4.swift */; };
@@ -177,6 +178,7 @@
 		B6A702FB29B857A800487A0D /* SceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneView.swift; sourceTree = "<group>"; };
 		B6A702FD29B85A5800487A0D /* TopSafeAreaInsetFill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopSafeAreaInsetFill.swift; sourceTree = "<group>"; };
 		B6A702FF29BEC00000487A0D /* SceneLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneLight.swift; sourceTree = "<group>"; };
+		B6DC101F2A7920C000C10100 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		B6DE839F2A145ADF00F36075 /* BindingChipToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingChipToggle.swift; sourceTree = "<group>"; };
 		B6DE83A12A1460DE00F36075 /* SceneModelSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneModelSequence.swift; sourceTree = "<group>"; };
 		B6DE83A32A161DFC00F36075 /* SCNVector4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNVector4.swift; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 				B63E169F29C7F2390083616A /* Double.swift */,
 				B63E16A129C7F27E0083616A /* Float.swift */,
 				B63E176029E2DF740083616A /* Math.swift */,
+				B6DC101F2A7920C000C10100 /* Array.swift */,
 			);
 			path = Swift;
 			sourceTree = "<group>";
@@ -812,6 +815,7 @@
 				B61FFC712A06A08600426BDB /* ASLDemoClassifier 2.mlmodel in Sources */,
 				B617D06129FA28260090B815 /* ScrubberView.swift in Sources */,
 				B63E17C129EE80610083616A /* SpellCoreGraphics.swift in Sources */,
+				B6DC10202A7920C000C10100 /* Array.swift in Sources */,
 				B61FFC802A077B1100426BDB /* JointPositions.swift in Sources */,
 				B617D05D29FA184E0090B815 /* ChipMultistate.swift in Sources */,
 				B61FFC822A07857800426BDB /* JointPosition.swift in Sources */,

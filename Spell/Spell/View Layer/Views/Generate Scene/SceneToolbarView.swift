@@ -36,6 +36,10 @@ struct SceneToolbarView: View {
         return prompt + timeline
     }
     
+    @State private var isPausedTracker = false
+    
+    @State private var activeLetter = ""
+    
     var body: some View {
         OverlaidToolbar {
             if self.timelineToolActive {
@@ -44,23 +48,32 @@ struct SceneToolbarView: View {
                         .frame(height: 25.0)
                         .onChange(of: self.isTracking) { isTracking in
                             if isTracking {
-                                self.pauseCache = !(SpellSession.inst.sequence?.isPlaying ?? false)
+//                                print("MOVING TRACK WHILE PAUSED: \(self.pauseCache)")
+                                self.pauseCache = (self.isPausedTracker)
+                                SpellSession.inst.sequence?.setSequenceAnimationMultiplier(to: 1.0)
                                 self.animationSpeedCache = SpellSession.inst.sequence?.animationSpeed ?? 1.0
                                 // The model appears in the starting position during tracking unless playing
                                 // Slow down the animation so it appears not to play
-                                SpellSession.inst.sequence?.setSequenceAnimationSpeed(to: 0.01)
+                                SpellSession.inst.sequence?.setSequenceAnimationSpeed(to: 0.001)
                                 SpellSession.inst.sequence?.playSequence()
                             } else {
                                 // Resume state - delay to guarantee model doesn't appear in starting position
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+//                                    print("Toolbar setting sequence pause to: \(self.pauseCache)")
+//                                    print("SpellSession.inst.sequence?.setSequencePause(to: \(self.pauseCache))")
+//                                    print("SpellSession.inst.sequence?.setSequenceAnimationSpeed(to: \(self.animationSpeedCache))")
                                     SpellSession.inst.sequence?.setSequencePause(to: self.pauseCache)
                                     SpellSession.inst.sequence?.setSequenceAnimationSpeed(to: self.animationSpeedCache)
+                                    print("> > > > > > > > LET GO OF TIMELINE")
                                 }
                             }
                         }
                         .onChange(of: self.scrubberProgressProportion) { proportion in
                             if self.isTracking {
-                                SpellSession.inst.sequence?.setAnimationTime(to: proportion)
+//                                print(">>>> PROPORTION SET TO: \(proportion)")
+//                                SpellSession.inst.sequence?.setAnimationTime(to: proportion)
+                                let clampedProportion = SpellSession.inst.sequence?.clampToAnimationStart(proportion: proportion) ?? 0.0
+                                self.scrubberProgressProportion = clampedProportion
                             }
                         }
                     
@@ -116,6 +129,8 @@ struct SceneToolbarView: View {
                     }
                 }
                 
+                Text(self.activeLetter)
+                
                 Spacer()
                 
                 BindingChipToggle(
@@ -126,6 +141,7 @@ struct SceneToolbarView: View {
                     textColor: SpellColors.primaryButtonText
                 ) { isPlaying in
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                    self.isPausedTracker = !isPlaying
                     SpellSession.inst.sequence?.setSequencePause(to: !isPlaying)
                 }
             }
@@ -136,6 +152,7 @@ struct SceneToolbarView: View {
             Timer.scheduledTimer(withTimeInterval: 1/60, repeats: true) { timer in
                 if !self.isTracking, let proportion = SpellSession.inst.sequence?.animationProgressProportion {
                     self.scrubberProgressProportion = proportion
+                    self.activeLetter = SpellSession.inst.sequence?.activeModel.name ?? ""
                 }
             }
         }

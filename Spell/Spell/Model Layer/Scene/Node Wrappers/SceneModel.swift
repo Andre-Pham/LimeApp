@@ -196,6 +196,7 @@ class SceneModel: Clonable {
     }
     
     func setModelPause(to isPaused: Bool) {
+//        print("Setting model \(self.name) to isPaused: \(isPaused)")
         self.node.isPaused = isPaused
         for player in self.animationPlayers {
             if isPaused {
@@ -209,6 +210,7 @@ class SceneModel: Clonable {
     }
     
     func setAnimationSpeed(to speed: Double) {
+//        print("<> SETTING ANIMATION SPEED \(self.name) TO \(speed)")
         for player in self.animationPlayers {
             player.speed = speed*self.animationSpeedMultiplier
         }
@@ -216,6 +218,7 @@ class SceneModel: Clonable {
     }
     
     func setAnimationMultiplier(to product: Double) {
+//        print("setAnimationMultiplier \(self.name) | multiplier: \(self.animationSpeedMultiplier) -> \(product) | speed: \(self.animationSpeed) -> \(self.animationSpeed/self.animationSpeedMultiplier*product)")
         let rawAnimationSpeed = self.animationSpeed/self.animationSpeedMultiplier // Animation speed without multiplier
         self.animationSpeedMultiplier = product
         self.setAnimationSpeed(to: rawAnimationSpeed)

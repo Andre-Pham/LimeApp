@@ -88,6 +88,13 @@ class SceneModelSequence {
         self.controller?.addModel(self.activeModel)
     }
     
+    func unmount() {
+        for model in self.sceneModels {
+            self.controller?.removeModel(model)
+        }
+        self.controller = nil
+    }
+    
     func playSequence() {
         self.setSequencePause(to: false)
     }

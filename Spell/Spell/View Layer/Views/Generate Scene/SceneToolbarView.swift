@@ -35,8 +35,6 @@ struct SceneToolbarView: View {
         let timeline = self.timelineToolActive ? 1 : 0
         return prompt + timeline
     }
-    /// Tracks if the scene model sequence is currently paused
-    @State private var isPausedTracker = true
     /// The active letter of the model being played
     @State private var activeLetter = ""
     
@@ -44,13 +42,14 @@ struct SceneToolbarView: View {
         OverlaidToolbar {
             if self.timelineToolActive {
                 ToolbarRow {
+                    // Timeline
                     ScrubberView(progressProportion: self.$scrubberProgressProportion, isTracking: self.$isTracking)
                         .frame(height: 25.0)
                         .onChange(of: self.isTracking) { isTracking in
                             if isTracking {
                                 // We can't trust !(SpellSession.inst.sequence?.isPlaying ?? false) in case we are mid-transition
                                 // (In which case it will state that it is paused when really it's mid-transition)
-                                self.pauseCache = (self.isPausedTracker)
+                                self.pauseCache = !self.isPlaying
                                 // If we're mid transition we need to interrupt it
                                 SpellSession.inst.sequence?.interruptTransition()
                                 // Save the animation speed because we're about to slow the model down
@@ -77,6 +76,7 @@ struct SceneToolbarView: View {
                     
                     Spacer()
                     
+                    // Animation speed
                     ChipMultistate(
                         states: [1.0, 1.5, 0.25, 0.5],
                         labels: ["1x", "1.5x", "0.25x", "0.5x"],
@@ -88,9 +88,10 @@ struct SceneToolbarView: View {
             }
             
             if self.promptToolActive {
+                // Prompt entry
                 ToolbarRow {
                     TextField("Prompt", text: self.$prompt)
-                        .submitLabel(.done)
+                        .submitLabel(.go)
                         .font(SpellTextFont.bodyBold.value(size: .body))
                         .padding(16) // Padding around text
                         .background(SpellColors.secondaryButtonFill)
@@ -99,24 +100,36 @@ struct SceneToolbarView: View {
                         .onChange(of: self.promptFocused) { isFocused in
                             if isFocused && self.isPlaying {
                                 self.isPlaying = false
+                                SpellSession.inst.sequence?.pauseSequence()
+                            } else {
+                                self.prompt = SpellSession.inst.activePrompt
+                            }
+                        }
+                        .onSubmit {
+                            let newSequenceMounted = SpellSession.inst.addInterpolatedLetterSequence(prompt: self.prompt)
+                            if newSequenceMounted {
+                                self.activeLetter = "-"
                             }
                         }
                 }
             }
             
             ToolbarRow {
+                // Toggle prompt entry
                 ChipToggle(
                     icon: SpellIcon(image: Image(systemName: "character.cursor.ibeam"))
                 ) { isSelected in
                     self.promptToolActive = isSelected
                 }
 
+                // Toggle timeline
                 ChipToggle(
                     icon: SpellIcon(image: Image(systemName: "slider.horizontal.below.rectangle"))
                 ) { isSelected in
                     self.timelineToolActive = isSelected
                 }
                 
+                // Position camera
                 SpellButton(
                     icon: SpellIcon(image: Image(systemName: "cube.transparent")),
                     color: SpellColors.secondaryButtonFill,
@@ -134,6 +147,7 @@ struct SceneToolbarView: View {
                 
                 Spacer()
                 
+                // Pause/Play
                 BindingChipToggle(
                     isSelected: self.$isPlaying,
                     icon: SpellIcon(image: Image(systemName: "play.fill")),
@@ -141,8 +155,8 @@ struct SceneToolbarView: View {
                     color: SpellColors.primaryButtonFill,
                     textColor: SpellColors.primaryButtonText
                 ) { isPlaying in
+                    // Dismiss keyboard first
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                    self.isPausedTracker = !isPlaying
                     SpellSession.inst.sequence?.setSequencePause(to: !isPlaying)
                 }
             }

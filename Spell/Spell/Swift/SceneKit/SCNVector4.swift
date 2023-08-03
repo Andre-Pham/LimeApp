@@ -10,12 +10,28 @@ import SceneKit
 
 extension SCNVector4 {
     
-    public static func == (lhs: SCNVector4, rhs: SCNVector4) -> Bool {
-        return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z && lhs.w == rhs.w
+    static func == (lhs: SCNVector4, rhs: SCNVector4) -> Bool {
+        return isEqual(lhs.x, rhs.x) && isEqual(lhs.y, rhs.y) && isEqual(lhs.z, rhs.z) && isEqual(lhs.w, rhs.w)
     }
     
-    public static func != (lhs: SCNVector4, rhs: SCNVector4) -> Bool {
+    static func != (lhs: SCNVector4, rhs: SCNVector4) -> Bool {
         return !(lhs == rhs)
+    }
+    
+    var normalized: SCNVector4 {
+        let length = sqrt(self.x*self.x + self.y*self.y + self.z*self.z + self.w*self.w)
+        guard length > 0 else { return self }
+        return SCNVector4(x: self.x/length, y: self.y/length, z: self.z/length, w: self.w/length)
+    }
+    
+    func dotProduct(_ v: SCNVector4) -> Float {
+        return self.x * v.x + self.y * v.y + self.z * v.z + self.w * v.w
+    }
+    
+    func rotationMagnitude(_ v: SCNVector4) -> Float {
+        let dotProductVal = self.normalized.dotProduct(v.normalized).rounded(decimalPlaces: 5)
+        let angle = acos(2 * pow(dotProductVal, 2) - 1)
+        return angle
     }
     
     func toString() -> String {

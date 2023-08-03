@@ -40,6 +40,7 @@
 		B63E17BE29EE7F650083616A /* ToolbarRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E17BD29EE7F650083616A /* ToolbarRow.swift */; };
 		B63E17C129EE80610083616A /* SpellCoreGraphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E17C029EE80610083616A /* SpellCoreGraphics.swift */; };
 		B63E17C329EE80B80083616A /* OverlaidToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E17C229EE80B80083616A /* OverlaidToolbar.swift */; };
+		B653A4622A1E2E1E0059013B /* Clonable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B653A4612A1E2E1E0059013B /* Clonable.swift */; };
 		B6A7027929B55DF400487A0D /* SpellApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A7027829B55DF400487A0D /* SpellApp.swift */; };
 		B6A7027B29B55DF400487A0D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A7027A29B55DF400487A0D /* ContentView.swift */; };
 		B6A7027D29B55DF500487A0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6A7027C29B55DF500487A0D /* Assets.xcassets */; };
@@ -76,11 +77,12 @@
 		B6A702FC29B857A800487A0D /* SceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A702FB29B857A800487A0D /* SceneView.swift */; };
 		B6A702FE29B85A5800487A0D /* TopSafeAreaInsetFill.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A702FD29B85A5800487A0D /* TopSafeAreaInsetFill.swift */; };
 		B6A7030029BEC00000487A0D /* SceneLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A702FF29BEC00000487A0D /* SceneLight.swift */; };
+		B6DC10202A7920C000C10100 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC101F2A7920C000C10100 /* Array.swift */; };
 		B6DE83A02A145ADF00F36075 /* BindingChipToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DE839F2A145ADF00F36075 /* BindingChipToggle.swift */; };
 		B6DE83A22A1460DE00F36075 /* SceneModelSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DE83A12A1460DE00F36075 /* SceneModelSequence.swift */; };
 		B6DE83A42A161DFC00F36075 /* SCNVector4.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DE83A32A161DFC00F36075 /* SCNVector4.swift */; };
 		B6DE83A62A1718A300F36075 /* SpellSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DE83A52A1718A300F36075 /* SpellSession.swift */; };
-		B6DE86E42A28601D00CF4CBD /* PredictionOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DE86E32A28601D00CF4CBD /* PredictionOutcome.swift */; };
+		B6DE86E62A286A9100CF4CBD /* ModelRotationsIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DE86E52A286A9100CF4CBD /* ModelRotationsIndex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +136,7 @@
 		B63E17BD29EE7F650083616A /* ToolbarRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarRow.swift; sourceTree = "<group>"; };
 		B63E17C029EE80610083616A /* SpellCoreGraphics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellCoreGraphics.swift; sourceTree = "<group>"; };
 		B63E17C229EE80B80083616A /* OverlaidToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlaidToolbar.swift; sourceTree = "<group>"; };
+		B653A4612A1E2E1E0059013B /* Clonable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clonable.swift; sourceTree = "<group>"; };
 		B6A7027529B55DF400487A0D /* Spell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6A7027829B55DF400487A0D /* SpellApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellApp.swift; sourceTree = "<group>"; };
 		B6A7027A29B55DF400487A0D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -175,11 +178,12 @@
 		B6A702FB29B857A800487A0D /* SceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneView.swift; sourceTree = "<group>"; };
 		B6A702FD29B85A5800487A0D /* TopSafeAreaInsetFill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopSafeAreaInsetFill.swift; sourceTree = "<group>"; };
 		B6A702FF29BEC00000487A0D /* SceneLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneLight.swift; sourceTree = "<group>"; };
+		B6DC101F2A7920C000C10100 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		B6DE839F2A145ADF00F36075 /* BindingChipToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingChipToggle.swift; sourceTree = "<group>"; };
 		B6DE83A12A1460DE00F36075 /* SceneModelSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneModelSequence.swift; sourceTree = "<group>"; };
 		B6DE83A32A161DFC00F36075 /* SCNVector4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNVector4.swift; sourceTree = "<group>"; };
 		B6DE83A52A1718A300F36075 /* SpellSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellSession.swift; sourceTree = "<group>"; };
-		B6DE86E32A28601D00CF4CBD /* PredictionOutcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionOutcome.swift; sourceTree = "<group>"; };
+		B6DE86E52A286A9100CF4CBD /* ModelRotationsIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelRotationsIndex.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +265,7 @@
 				B63E17B829EE6BEB0083616A /* PresetNode.swift */,
 				B617D05E29FA22ED0090B815 /* PresetModel.swift */,
 				B6DE83A12A1460DE00F36075 /* SceneModelSequence.swift */,
+				B6DE86E52A286A9100CF4CBD /* ModelRotationsIndex.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -299,6 +304,14 @@
 				B63E17C229EE80B80083616A /* OverlaidToolbar.swift */,
 			);
 			path = Toolbar;
+			sourceTree = "<group>";
+		};
+		B653A4602A1E2E120059013B /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B653A4612A1E2E1E0059013B /* Clonable.swift */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 		B6A7026C29B55DF400487A0D = {
@@ -376,6 +389,7 @@
 				B63E169F29C7F2390083616A /* Double.swift */,
 				B63E16A129C7F27E0083616A /* Float.swift */,
 				B63E176029E2DF740083616A /* Math.swift */,
+				B6DC101F2A7920C000C10100 /* Array.swift */,
 			);
 			path = Swift;
 			sourceTree = "<group>";
@@ -383,6 +397,7 @@
 		B6A702A529B55EEB00487A0D /* Model Layer */ = {
 			isa = PBXGroup;
 			children = (
+				B653A4602A1E2E120059013B /* Core */,
 				B61FFC762A07688100426BDB /* Recognition */,
 				B63E176F29E6CA630083616A /* Video */,
 				B63E175B29E2C6B10083616A /* Scene */,
@@ -765,6 +780,7 @@
 				B63E176E29E6C9340083616A /* CameraViewController.swift in Sources */,
 				B6DE83A22A1460DE00F36075 /* SceneModelSequence.swift in Sources */,
 				B617D05F29FA22ED0090B815 /* PresetModel.swift in Sources */,
+				B653A4622A1E2E1E0059013B /* Clonable.swift in Sources */,
 				B63E17BC29EE7E980083616A /* Toolbar.swift in Sources */,
 				B63E169E29C4BE370083616A /* SCNVector3.swift in Sources */,
 				B6A702BF29B5766700487A0D /* GenerateTextView.swift in Sources */,
@@ -776,6 +792,7 @@
 				B6A702F429B844E400487A0D /* KeyboardPadding.swift in Sources */,
 				B61FFC782A0768CB00426BDB /* SignRecogniser.swift in Sources */,
 				B6A702CA29B579C800487A0D /* Strings.swift in Sources */,
+				B6DE86E62A286A9100CF4CBD /* ModelRotationsIndex.swift in Sources */,
 				B63E16A429C7F2D80083616A /* SCNNode.swift in Sources */,
 				B6A702F129B8433F00487A0D /* KeyboardHeightPublisher.swift in Sources */,
 				B63E17BE29EE7F650083616A /* ToolbarRow.swift in Sources */,
@@ -800,6 +817,7 @@
 				B61FFC712A06A08600426BDB /* ASLDemoClassifier 2.mlmodel in Sources */,
 				B617D06129FA28260090B815 /* ScrubberView.swift in Sources */,
 				B63E17C129EE80610083616A /* SpellCoreGraphics.swift in Sources */,
+				B6DC10202A7920C000C10100 /* Array.swift in Sources */,
 				B61FFC802A077B1100426BDB /* JointPositions.swift in Sources */,
 				B617D05D29FA184E0090B815 /* ChipMultistate.swift in Sources */,
 				B61FFC822A07857800426BDB /* JointPosition.swift in Sources */,

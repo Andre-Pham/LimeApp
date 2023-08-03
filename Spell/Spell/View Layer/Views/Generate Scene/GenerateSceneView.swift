@@ -11,7 +11,7 @@ import SceneKit
 struct GenerateSceneView: View {
     
     init() {
-        SpellSession.inst.addLetterSequence(prompt: "abdc")
+        SpellSession.inst.addInterpolatedLetterSequence(prompt: "abcd")
     }
     
     var body: some View {
@@ -49,6 +49,12 @@ struct GenerateSceneView: View {
                         .setColor(to: .green)
                         .setOpacity(to: 0.2)
                     SpellSession.inst.sceneController.addGeometry(sceneSphere)
+                }
+                
+                Button("positions") {
+                    if let activeModel = SpellSession.inst.sequence?.activeModel { SpellSession.inst.sceneController.clearGeometry()
+                        print(activeModel.getRotationsIndex().getRotation(nodeName: "f_index-01-L")!.toString())
+                    }
                 }
                 
                 Spacer()

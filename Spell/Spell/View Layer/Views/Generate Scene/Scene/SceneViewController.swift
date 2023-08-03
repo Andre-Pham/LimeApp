@@ -26,7 +26,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
     func setupScene() {
         let camera = SceneCamera()
             .setPosition(to: SCNVector3(x: 0, y: 0, z: 15))
-            .setRenderDistance(far: 500.0)
+            .setRenderDistance(far: 500.0, near: 0.0)
         self.scene.setCamera(to: camera)
         
         let mainLight = SceneLight(id: "main")

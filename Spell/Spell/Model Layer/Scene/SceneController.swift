@@ -170,11 +170,11 @@ class SceneController {
     
     // MARK: - Camera
     
-    func positionCameraFacing(node: PresetNode, distance: Float = 1.5) {
+    func positionCameraFacing(node: PresetNode, distance: Float = 1.0) {
         self.positionCameraFacing(nodeName: node.name, distance: distance)
     }
     
-    func positionCameraFacing(model: SceneModel, distance: Float = 1.5) {
+    func positionCameraFacing(model: SceneModel, distance: Float = 1.0) {
         self.positionCameraFacing(nodeName: model.name, distance: distance)
     }
     

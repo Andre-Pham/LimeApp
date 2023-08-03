@@ -35,7 +35,7 @@ struct ScrubberView: View {
                 Circle()
                     .fill(SpellColors.accent)
                     .frame(width: Self.SCRUBBER_DIAMETER, height: Self.SCRUBBER_DIAMETER)
-                    .position(x: self.progressProportion*timelineWidth + Self.SCRUBBER_DIAMETER/2, y: geometry.size.height / 2)
+                    .position(x: max(0.0, min(self.progressProportion, 1.0))*timelineWidth + Self.SCRUBBER_DIAMETER/2, y: geometry.size.height / 2)
             }
             .gesture(
                 DragGesture(minimumDistance: 0)

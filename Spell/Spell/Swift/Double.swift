@@ -1,6 +1,6 @@
 //
 //  Double.swift
-//  Spell
+//  Lime
 //
 //  Created by Andre Pham on 20/3/2023.
 //
@@ -21,6 +21,24 @@ extension Double {
     func rounded(decimalPlaces: Int) -> Double {
         let multiplier = pow(10.0, Double(decimalPlaces))
         return Darwin.round(self*multiplier)/multiplier
+    }
+    
+    /// Retrieves the nearest double that's a multiple of x.
+    /// Example:
+    /// ``` 0.32.nearest(0.05) -> 0.3
+    ///     0.33.nearest(0.05) -> 0.35
+    /// ```
+    /// - Parameters:
+    ///   - x: The magnitude that the return value has to be a multiple of.
+    /// - Returns: The nearest double `y` where `y%x == 0`
+    func nearest(_ x: Double) -> Double {
+        let decimals = String(x).split(separator: ".")[1]
+        let decimalCount = decimals == "0" ? 0 : decimals.count
+        let remainder = self.truncatingRemainder(dividingBy: x)
+        let divisor = pow(10.0, Double(decimalCount))
+        let lower = Darwin.round((self - remainder)*divisor)/divisor
+        let upper = Darwin.round((self - remainder)*divisor)/divisor + x
+        return (self - lower < upper - self) ? lower : upper
     }
     
 }

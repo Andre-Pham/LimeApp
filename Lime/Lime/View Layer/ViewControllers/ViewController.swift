@@ -70,7 +70,7 @@ class ViewController: UITabBarController {
         self.tabBarStack
             .setBackgroundColor(to: .white)
             .constrainBottom(respectSafeArea: true)
-            .constrainHorizontal(padding: 30, respectSafeArea: false)
+            .constrainHorizontal(padding: 16, respectSafeArea: false)
             .setHeightConstraint(to: Self.TAB_BAR_HEIGHT ?? Self.DEFAULT_TAB_BAR_HEIGHT)
             .setDistribution(to: .equalSpacing)
             .addView(self.item1Button)
@@ -78,19 +78,35 @@ class ViewController: UITabBarController {
             .addView(self.item3Button)
             .addView(self.item4Button)
         
+        let tabBarItemLabels = ["3D", "Camera", "Info", "Settings"]
+        
         for (index, itemButton) in self.itemButtons.enumerated() {
+            let label = LimeText()
+            
             itemButton
                 .setIcon(to: Self.itemIcons[index])
+                .setIconSize(to: .mini)
                 .setColor(to: .white)
                 .setIconColor(to: .black)
                 .setHeightConstraint(to: 40)
                 .setWidthConstraint(to: 70)
+                .addSubview(label)
                 .setOnTap({
                     self.getActiveItemButton().setIcon(to: Self.itemIcons[self.selectedIndex])
                     self.selectedIndex = index
                     itemButton.setIcon(to: Self.selectedItemIcons[index])
                 })
+            
+            label
+                .setText(to: tabBarItemLabels[index])
+                .setSize(to: 10)
+                .setTextAlignment(to: .center)
+                .constrainHorizontal()
+                .constrainTop(padding: 37, respectSafeArea: false)
         }
+        
+        self.item1Button
+            .setIcon(to: Self.selectedItemIcons[0])
     }
     
     func getActiveItemButton() -> LimeIconButton {

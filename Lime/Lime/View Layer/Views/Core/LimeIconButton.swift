@@ -76,6 +76,14 @@ class LimeIconButton: LimeUIView {
     }
     
     @discardableResult
+    func setIconSize(to size: UIButton.Configuration.Size) -> Self {
+        var config = self.button.configuration ?? self.newConfig
+        config.buttonSize = .mini
+        self.button.configuration = config
+        return self
+    }
+    
+    @discardableResult
     func setAccessibilityLabel(to label: String) -> Self {
         self.button.accessibilityLabel = label
         return self

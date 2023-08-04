@@ -59,29 +59,10 @@ class ViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tabBar.isTranslucent = false
-        
-        g.title = "green"
-        
-        r.title = "red"
-        
-        b.title = "blue"
+        self.tabBar.isTranslucent = false
+        self.tabBar.backgroundColor = UIColor.white
         
         self.setViewControllers([g, r, b], animated: false)
-        
-        self.tabBar.backgroundColor = UIColor.gray
-        
-        
-//        UITabBar.appearance().tintColor = UIColor.black
-//        UITabBar.appearance().unselectedItemTintColor = UIColor.black
-//
-//        guard let items = self.tabBar.items else { return }
-//        let images = ["cube.transparent", "hand.wave", "info.circle", "gearshape"]
-//        let selectedImages = ["cube.transparent.fill", "hand.wave.fill", "info.circle.fill", "gearshape.fill"]
-//        for (index, item) in items.enumerated() {
-//            item.image = UIImage(systemName: images[index])
-//            item.selectedImage = UIImage(systemName: selectedImages[index])
-//        }
         
         self.root
             .addSubview(self.tabBarStack)
@@ -89,7 +70,7 @@ class ViewController: UITabBarController {
         self.tabBarStack
             .setBackgroundColor(to: .white)
             .constrainBottom(respectSafeArea: true)
-            .constrainHorizontal(padding: 36, respectSafeArea: false)
+            .constrainHorizontal(padding: 30, respectSafeArea: false)
             .setHeightConstraint(to: Self.TAB_BAR_HEIGHT ?? Self.DEFAULT_TAB_BAR_HEIGHT)
             .setDistribution(to: .equalSpacing)
             .addView(self.item1Button)
@@ -110,35 +91,6 @@ class ViewController: UITabBarController {
                     itemButton.setIcon(to: Self.selectedItemIcons[index])
                 })
         }
-        
-        
-        
-//        let yourCustomView = UIView()
-//        yourCustomView.backgroundColor = .orange
-//        let screenHeight = UIScreen.main.bounds.size.height
-//        let viewHeight: CGFloat = 100
-//        let bottomSafeAreaInset = UIApplication.shared.windows.first(where: { $0.isKeyWindow })?.safeAreaInsets.bottom ?? 0
-//        yourCustomView.frame = CGRect(x: 0, y: screenHeight - viewHeight - bottomSafeAreaInset, width: UIScreen.main.bounds.size.width, height: viewHeight)
-//
-//        let yourButton = UIButton(type: .system)
-//        let buttonWidth: CGFloat = 100
-//        let buttonHeight: CGFloat = 50
-//        let buttonX: CGFloat = (yourCustomView.bounds.width - buttonWidth) / 2
-//        let buttonY: CGFloat = (yourCustomView.bounds.height - buttonHeight) / 2
-//        yourButton.frame = CGRect(x: buttonX, y: buttonY, width: buttonWidth, height: buttonHeight)
-//        yourButton.setTitle("Switch Tab", for: .normal)
-//        yourButton.addTarget(self, action: #selector(switchTab), for: .touchUpInside)
-//        yourCustomView.addSubview(yourButton)
-//
-//        self.view.addSubview(yourCustomView)
-        
-        // HERE'S THE STRAT
-        // 1. Setup the tab bar as normal (without icons or text)
-        // 2. Add on top my own tab bar ui
-        // 3. Add buttons to my own tab bar ui
-        // 4. have the buttons programmatically switch between tab bars
-
-
     }
     
     func getActiveItemButton() -> LimeIconButton {
@@ -155,12 +107,6 @@ class ViewController: UITabBarController {
             fatalError("Not enough item buttons implemented to support selected index \(self.selectedIndex)")
         }
     }
-    
-    @objc func switchTab() {
-        self.selectedIndex = 2
-//        tabBarController?.selectedIndex = 2 // Change this to the index of the tab you want to switch to
-    }
-
     
 }
 

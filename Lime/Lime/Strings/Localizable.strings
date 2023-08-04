@@ -1,0 +1,52 @@
+/* 
+  Localizable.strings
+  Lemon
+
+  Created by Andre Pham on 7/7/2023.
+  
+*/
+
+// Strings that take in parameters should be marked with an "XParam" suffix.
+// Example: "car.description1Param" = "The car has %@ wheels";
+// Numbers typically should be displayed using `YonderNumeral` and related, rather than be embedded into a string.
+
+// MARK: - Commands
+
+"command.name" = "name";
+"command.information" = "information";
+"command.pause" = "pause";
+"command.stop" = "stop";
+"command.repeat" = "repeat";
+"command.faster" = "faster";
+"command.slower" = "slower";
+"command.complete" = "complete";
+
+// MARK: - Names
+
+"tagma.head" = "Head";
+"tagma.thorax" = "Thorax";
+"tagma.leftWing" = "Left Wing";
+"tamga.rightWing" = "Right Wing";
+"tagma.abdomen" = "Abdomen";
+
+// MARK: - Descriptions
+
+"description.head" = "My head is where my main receptor parts are located. You will find my eyes, mouthparts constituting my mouth and biting parts (which also serve to guide food into my mouth), and a pair of antennae, which are sensory organs that allow me to smell, taste, and touch. Like many of my insect friends my head is the most powerful part of my body and is built from several connecting plates. My eyes are known as 'compound eyes' meaning that they are made up of several smaller eyes functioning in unison.";
+
+"description.thorax" = "The thorax, or my mid-section, holds my wings and is the central location of the more powerful muscles used in operating my wings and six legs. My feet-tips contain sticky pads which allow me to cling to various types of surfaces or to clasp onto prey.";
+
+"description.leftWing" = "My left wing comprises the forewing and hindwing. The forewing muscles generate the main power for the flight, whereas the hindwings, with their less powerful muscles generate less power.";
+
+"description.rightWing" = "My right wing comprises the forewing and hindwing. The forewing muscles generate the main power for the flight, whereas the hindwings, with their less powerful muscles generate less power.";
+
+"description.abdomen" = "My abdomen stores my digestive system and reproductive organs. My abdomen is a reactive part of my insect body, meaning that it can expand when I feed.";
+
+// MARK: - Completed
+
+"completion.success" = "Yes! The insect is complete.";
+"completion.failure" = "No, the insect is not complete.";
+"completion.wrongWings" = "Almost, but the wings need to be switched.";
+
+// MARK: - Tips
+
+"tip.twoHands" = "Try only holding one at a time.";

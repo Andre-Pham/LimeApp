@@ -54,6 +54,12 @@ extension LimeUIViewProtocol {
         return self
     }
     
+    @discardableResult
+    func removeFromSuperView() -> Self {
+        self.view.removeFromSuperview()
+        return self
+    }
+    
     // MARK: - Frame
     
     @discardableResult
@@ -244,6 +250,12 @@ extension LimeUIViewProtocol {
         return self
     }
     
+    @discardableResult
+    func setOpacity(to opacity: Double) -> Self {
+        self.view.alpha = opacity
+        return self
+    }
+    
     // MARK: - Animations
     
     @discardableResult
@@ -271,6 +283,14 @@ extension LimeUIViewProtocol {
         UIView.animate(withDuration: 0.35, delay: 0, options: [.curveEaseInOut, .allowUserInteraction, .beginFromCurrentState], animations: {
             self.view.alpha = 1.0
         }, completion: nil)
+        return self
+    }
+    
+    // MARK: - Transformations
+    
+    @discardableResult
+    func setTransformation(to transformation: CGAffineTransform) -> Self {
+        self.view.transform = transformation
         return self
     }
     

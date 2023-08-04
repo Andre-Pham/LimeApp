@@ -38,6 +38,32 @@ class LimeVStack: LimeUIView {
     }
     
     @discardableResult
+    func addViewAnimated(_ view: LimeUIView, position: Int? = nil) -> Self {
+        view.setHidden(to: true)
+        if let position {
+            let validatedPosition = min(position, self.stack.arrangedSubviews.count)
+            self.stack.insertArrangedSubview(view.view, at: validatedPosition)
+        } else {
+            self.stack.addArrangedSubview(view.view)
+        }
+        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseInOut], animations: {
+            view.setHidden(to: false)
+        })
+        return self
+    }
+    
+    @discardableResult
+    func removeViewAnimated(_ view: LimeUIView) -> Self {
+        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseInOut], animations: {
+            view.setHidden(to: true)
+        }) { _ in
+            view.removeFromSuperView()
+            view.setHidden(to: false)
+        }
+        return self
+    }
+    
+    @discardableResult
     func setSpacing(to spacing: CGFloat) -> Self {
         self.stack.spacing = spacing
         return self

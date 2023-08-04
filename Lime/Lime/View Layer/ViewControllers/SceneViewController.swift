@@ -15,7 +15,9 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
     private let toolbarContainer = LimeView()
     private let toolbarStack = LimeVStack()
     private let toolbarRow1 = LimeHStack()
-    private let promptToggle = LimeChipButton()
+    private let promptToggle = LimeChipToggle()
+    private let timelineToggle = LimeChipToggle()
+    private let cameraButton = LimeChipButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,11 +40,20 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
 
         self.toolbarRow1
             .constrainHorizontal()
+            .setSpacing(to: 10)
             .addView(self.promptToggle)
+            .addView(self.timelineToggle)
+            .addView(self.cameraButton)
             .addSpacer()
         
         self.promptToggle
             .setIcon(to: "character.cursor.ibeam")
+        
+        self.timelineToggle
+            .setIcon(to: "slider.horizontal.below.rectangle")
+        
+        self.cameraButton
+            .setIcon(to: "cube.transparent")
     }
     
     func attach(scene: SceneController) {

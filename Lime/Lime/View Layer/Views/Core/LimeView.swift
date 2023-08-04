@@ -15,6 +15,7 @@ class LimeView: LimeUIView {
     override init() {
         self.view = UIView()
         super.init()
+        self.view.translatesAutoresizingMaskIntoConstraints = false
     }
     
     init(_ view: UIView) {

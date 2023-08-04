@@ -25,7 +25,6 @@ class LimeIconButton: LimeUIView {
     override init() {
         super.init()
         self.button.translatesAutoresizingMaskIntoConstraints = false
-        self.button.widthAnchor.constraint(equalTo: self.button.heightAnchor).isActive = true
         var config = UIButton.Configuration.filled()
         config.contentInsets = NSDirectionalEdgeInsets(
             top: 6,
@@ -39,6 +38,12 @@ class LimeIconButton: LimeUIView {
     }
     
     @discardableResult
+    func enableSquareAspectRatio() -> Self {
+        self.button.widthAnchor.constraint(equalTo: self.button.heightAnchor).isActive = true
+        return self
+    }
+    
+    @discardableResult
     func setRadius(to radius: Double) -> Self {
         self.button.heightAnchor.constraint(equalToConstant: radius/2).isActive = true
         var config = self.button.configuration ?? self.newConfig
@@ -49,7 +54,7 @@ class LimeIconButton: LimeUIView {
     
     @discardableResult
     func setIcon(to icon: String) -> Self {
-        if let image = UIImage(named: "YourImageName") {
+        if let image = UIImage(named: icon) {
             self.button.setImage(image, for: .normal)
         } else if let image = UIImage(systemName: icon) {
             self.button.setImage(image, for: .normal)

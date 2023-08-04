@@ -71,10 +71,10 @@ class ViewController: UITabBarController {
         
         self.tabBarStack
             .setBackgroundColor(to: .white)
-            .constrainBottom(respectSafeArea: true)
-            .constrainHorizontal(padding: 16, respectSafeArea: false)
+            .constrainBottom()
+            .matchWidthConstraint()
             .setHeightConstraint(to: Self.TAB_BAR_HEIGHT ?? Self.DEFAULT_TAB_BAR_HEIGHT)
-            .setDistribution(to: .equalSpacing)
+            .setDistribution(to: .fillEqually)
             .addView(self.item1Button)
             .addView(self.item2Button)
             .addView(self.item3Button)
@@ -90,8 +90,7 @@ class ViewController: UITabBarController {
                 .setIconSize(to: .mini)
                 .setColor(to: .white)
                 .setIconColor(to: .black)
-                .setHeightConstraint(to: 40)
-                .setWidthConstraint(to: 70)
+                .constrainVertical()
                 .addSubview(label)
                 .setOnTap({
                     self.getActiveItemButton().setIcon(to: Self.itemIcons[self.selectedIndex])
@@ -104,7 +103,7 @@ class ViewController: UITabBarController {
                 .setSize(to: 10)
                 .setTextAlignment(to: .center)
                 .constrainHorizontal()
-                .constrainTop(padding: 37, respectSafeArea: false)
+                .constrainToUnderneath(padding: -6)
         }
         
         self.item1Button

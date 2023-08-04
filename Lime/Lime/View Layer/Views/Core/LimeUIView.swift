@@ -166,6 +166,28 @@ extension LimeUIViewProtocol {
     }
     
     @discardableResult
+    func constrainToUnderneath(of other: LimeUIView? = nil, padding: CGFloat = 0.0, respectSafeArea: Bool = true) -> Self {
+        assert(!self.view.translatesAutoresizingMaskIntoConstraints, "Constraints requirement failed")
+        guard let target = other?.view ?? self.view.superview else {
+            fatalError("No constraint target found")
+        }
+        let anchor = respectSafeArea ? target.safeAreaLayoutGuide.bottomAnchor : target.bottomAnchor
+        self.view.topAnchor.constraint(equalTo: anchor, constant: padding).isActive = true
+        return self
+    }
+    
+    @discardableResult
+    func constrainToTop(of other: LimeUIView? = nil, padding: CGFloat = 0.0, respectSafeArea: Bool = true) -> Self {
+        assert(!self.view.translatesAutoresizingMaskIntoConstraints, "Constraints requirement failed")
+        guard let target = other?.view ?? self.view.superview else {
+            fatalError("No constraint target found")
+        }
+        let anchor = respectSafeArea ? target.safeAreaLayoutGuide.topAnchor : target.topAnchor
+        self.view.bottomAnchor.constraint(equalTo: anchor, constant: -padding).isActive = true
+        return self
+    }
+    
+    @discardableResult
     func setPadding(top: CGFloat? = nil, bottom: CGFloat? = nil, left: CGFloat? = nil, right: CGFloat? = nil) -> Self {
         self.view.layoutMargins = UIEdgeInsets(
             top: top ?? self.view.layoutMargins.top,
@@ -219,6 +241,36 @@ extension LimeUIViewProtocol {
     @discardableResult
     func setHidden(to isHidden: Bool) -> Self {
         self.view.isHidden = isHidden
+        return self
+    }
+    
+    // MARK: - Animations
+    
+    @discardableResult
+    func animateOpacityInteraction() -> Self {
+        UIView.animate(withDuration: 0.1, delay: 0, options: [.curveEaseInOut, .allowUserInteraction], animations: {
+            self.view.alpha = 0.25
+        }) { _ in
+            UIView.animate(withDuration: 0.35, delay: 0, options: [.curveEaseInOut, .allowUserInteraction, .beginFromCurrentState], animations: {
+                self.view.alpha = 1.0
+            }, completion: nil)
+        }
+        return self
+    }
+    
+    @discardableResult
+    func animatePressedOpacity() -> Self {
+        UIView.animate(withDuration: 0.1, delay: 0, options: [.curveEaseInOut, .allowUserInteraction], animations: {
+            self.view.alpha = 0.25
+        }, completion: nil)
+        return self
+    }
+    
+    @discardableResult
+    func animateReleaseOpacity() -> Self {
+        UIView.animate(withDuration: 0.35, delay: 0, options: [.curveEaseInOut, .allowUserInteraction, .beginFromCurrentState], animations: {
+            self.view.alpha = 1.0
+        }, completion: nil)
         return self
     }
     

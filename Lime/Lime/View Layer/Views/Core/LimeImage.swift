@@ -20,12 +20,25 @@ class LimeImage: LimeUIView {
     
     override init() {
         super.init()
+        self.imageView.translatesAutoresizingMaskIntoConstraints = false
         self.imageView.contentMode = .scaleAspectFill
+    }
+    
+    @discardableResult
+    func setImage(_ image: UIImage) -> Self {
+        self.imageView.image = image
+        return self
     }
     
     @discardableResult
     func setImage(_ image: CGImage) -> Self {
         self.imageView.image = UIImage(cgImage: image)
+        return self
+    }
+    
+    @discardableResult
+    func setColor(to color: UIColor) -> Self {
+        self.imageView.tintColor = color
         return self
     }
     

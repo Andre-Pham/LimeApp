@@ -18,6 +18,8 @@ class ViewController: UITabBarController {
     /// The selected tab bar item icons
     private static let selectedItemIcons = ["cube.transparent.fill", "hand.wave.fill", "info.circle.fill", "gearshape.fill"]
     
+    private let sceneViewController = SceneViewController()
+    
     private var root: LimeView { return LimeView(self.view) }
     private let tabBarStack = LimeHStack()
     private let item1Button = LimeIconButton()
@@ -62,7 +64,7 @@ class ViewController: UITabBarController {
         self.tabBar.isTranslucent = false
         self.tabBar.backgroundColor = UIColor.white
         
-        self.setViewControllers([g, r, b], animated: false)
+        self.setViewControllers([self.sceneViewController, g, r, b], animated: false)
         
         self.root
             .addSubview(self.tabBarStack)
@@ -117,7 +119,7 @@ class ViewController: UITabBarController {
             return self.item2Button
         case 2:
             return self.item3Button
-        case 4:
+        case 3:
             return self.item4Button
         default:
             fatalError("Not enough item buttons implemented to support selected index \(self.selectedIndex)")

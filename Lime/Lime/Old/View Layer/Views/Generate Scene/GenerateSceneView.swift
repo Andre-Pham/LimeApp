@@ -16,8 +16,8 @@ struct GenerateSceneView: View {
     
     var body: some View {
         ZStack {
-            SceneView(SpellSession.inst.sceneViewController)
-                .ignoresSafeArea()
+            //SceneView(SpellSession.inst.sceneViewController)
+                //.ignoresSafeArea()
             
             SceneToolbarView()
             

@@ -6,25 +6,38 @@
 //
 
 import Foundation
+import SceneKit
 
 class SpellSession {
     
     /// Singleton instance
     public static let inst = SpellSession()
     
-    private(set) var activePrompt: String
-    public let sceneViewController: SceneViewController
+    public let sceneController = SceneController()
+    private(set) var activePrompt: String = ""
     private(set) var sequence: SceneModelSequence? = nil
-    public var sceneController: SceneController {
-        return self.sceneViewController.scene
-    }
     
-    private init() {
-        self.activePrompt = ""
-        let sceneController = SceneController()
-        self.sceneViewController = SceneViewController()
-        self.sceneViewController.attach(scene: sceneController)
-        self.sceneViewController.setupScene()
+    private init() { }
+    
+    func setupScene() {
+        let camera = SceneCamera()
+            .setPosition(to: SCNVector3(x: 0, y: 0, z: 15))
+            .setRenderDistance(far: 500.0, near: 0.0)
+        self.sceneController.setCamera(to: camera)
+        
+        let mainLight = SceneLight(id: "main")
+            .setType(to: .omni)
+            .setColor(to: UIColor.green)
+            .setPosition(to: SCNVector3(x: 0, y: 10, z: 10))
+        self.sceneController.addLight(mainLight)
+        
+        let ambientLight = SceneLight(id: "ambient")
+            .setType(to: .ambient)
+            .setColor(to: UIColor.red)
+        self.sceneController.addLight(ambientLight)
+        
+        self.sceneController.setCameraControl(allowed: true)
+        self.sceneController.setBackgroundColor(to: UIColor(red: 0.95, green: 0.95, blue: 0.96, alpha: 1.00))
     }
     
     func addSequentialLetterSequence(prompt: String) -> Bool {

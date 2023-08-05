@@ -22,8 +22,8 @@ class LimeChipButton: LimeUIView {
         super.init()
         
         self.container
-            .setWidthConstraint(to: 60)
-            .setHeightConstraint(to: 48)
+            .setWidthConstraint(to: LimeDimensions.chipWidth)
+            .setHeightConstraint(to: LimeDimensions.chipHeight)
             .setBackgroundColor(to: LimeColors.secondaryButtonFill)
             .setCornerRadius(to: LimeDimensions.foregroundCornerRadius)
             .addSubview(self.button)
@@ -40,8 +40,8 @@ class LimeChipButton: LimeUIView {
             })
         
         self.imageView
-            .constrainHorizontal(padding: 17)
-            .constrainVertical(padding: 14)
+            .constrainHorizontal(padding: LimeDimensions.chipPaddingHorizontal)
+            .constrainVertical(padding: LimeDimensions.chipPaddingVertical)
             .setColor(to: LimeColors.secondaryButtonText)
     }
     

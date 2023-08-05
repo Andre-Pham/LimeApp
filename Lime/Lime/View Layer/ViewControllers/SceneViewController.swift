@@ -11,6 +11,9 @@ import SceneKit
 
 class SceneViewController: UIViewController, SCNSceneRendererDelegate {
     
+    /// The constraint used to anchor the toolbar - adjustable and animatable for keyboard avoidance
+    private var toolbarConstraint: NSLayoutConstraint!
+    
     private var root: LimeView { return LimeView(self.view) }
     private let toolbarContainer = LimeView()
     private let toolbarStack = LimeVStack()
@@ -35,27 +38,33 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
             .addSubview(self.toolbarContainer)
         
         self.toolbarContainer
-            .constrainHorizontal(padding: 15)
-//            .constrainBottom(padding: 20)
+            .constrainHorizontal(padding: LimeDimensions.toolbarPaddingHorizontal)
             .setBackgroundColor(to: .white)
-            .setCornerRadius(to: 30)
+            .setCornerRadius(to: LimeDimensions.backgroundCornerRadius)
             .addSubview(self.toolbarStack)
+        
+        // Setup constraint for keyboard avoidance
+        self.toolbarConstraint = self.toolbarContainer.bottomAnchor.constraint(
+            equalTo: self.root.bottomAnchor,
+            constant: -LimeDimensions.toolbarPaddingBottom
+        )
+        self.toolbarConstraint.isActive = true
 
         self.toolbarStack
-            .constrainAllSides(padding: 15)
-            .setSpacing(to: 10)
+            .constrainAllSides(padding: LimeDimensions.toolbarInnerPadding)
+            .setSpacing(to: LimeDimensions.toolbarSpacing)
             .addView(self.toolbarRowDefault)
 
         self.toolbarRowDefault
             .constrainHorizontal()
-            .setSpacing(to: 10)
+            .setSpacing(to: LimeDimensions.toolbarSpacing)
             .addView(self.promptToggle)
             .addView(self.timelineToggle)
             .addView(self.cameraButton)
             .addSpacer()
         
         self.toolbarRowPrompt
-            .setSpacing(to: 10)
+            .setSpacing(to: LimeDimensions.toolbarSpacing)
             .addView(self.promptInput)
         
         self.promptToggle
@@ -81,9 +90,6 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
         // Register for keyboard notifications
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        self.bottomConstraint = self.toolbarContainer.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
-        self.bottomConstraint.isActive = true
-        
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
                 tapGesture.cancelsTouchesInView = false
@@ -91,10 +97,8 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
     }
     
     @objc func dismissKeyboard() {
-            view.endEditing(true)
-        }
-    
-    var bottomConstraint: NSLayoutConstraint!
+        view.endEditing(true)
+    }
     
     func attach(scene: SceneController) {
         scene.attach(to: self)
@@ -102,33 +106,24 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
     
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-                let keyboardHeight = keyboardSize.height
-            
+            let keyboardHeight = keyboardSize.height
             let viewControllerHeight = self.view.frame.size.height
             let screenHeight = UIScreen.main.bounds.height
             let tabBarHeight = screenHeight - viewControllerHeight
             
-            print(self.view.frame.size.height)
-            print(self.view.superview?.frame.size.height)
-            print(self.toolbarContainer.view.frame.origin.y)
-            print(self.toolbarContainer.view.frame.origin.y + self.toolbarContainer.view.frame.height)
-            
             let viewFrameInViewControllerView = self.view.convert(self.toolbarContainer.frame, from: self.view.superview)
             let viewBottomY = self.toolbarContainer.view.frame.origin.y + (self.view.superview?.frame.origin.y ?? 0.0)
             let distanceFromBottom = self.view.frame.size.height - viewBottomY
-//            print(distanceFromBottom)
-
-
-                UIView.animate(withDuration: 0.3) { [weak self] in
-                    self?.bottomConstraint.constant = -keyboardHeight + tabBarHeight - 20
-                    self?.view.layoutIfNeeded()
-                }
+            UIView.animate(withDuration: 0.3) { [weak self] in
+                self?.toolbarConstraint.constant = -keyboardHeight + tabBarHeight - LimeDimensions.toolbarPaddingBottom
+                self?.view.layoutIfNeeded()
             }
+        }
     }
 
     @objc func keyboardWillHide(notification: NSNotification) {
         UIView.animate(withDuration: 0.3) { [weak self] in
-            self?.bottomConstraint.constant = -20
+            self?.toolbarConstraint.constant = -LimeDimensions.toolbarPaddingBottom
             self?.view.layoutIfNeeded()
         }
     }

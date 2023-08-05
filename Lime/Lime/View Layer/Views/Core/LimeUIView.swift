@@ -39,6 +39,22 @@ extension LimeUIViewProtocol {
         return self.view.frame
     }
     
+    public var bottomAnchor: NSLayoutYAxisAnchor {
+        return self.view.bottomAnchor
+    }
+    
+    public var topAnchor: NSLayoutYAxisAnchor {
+        return self.view.topAnchor
+    }
+    
+    public var leftAnchor: NSLayoutXAxisAnchor {
+        return self.view.leftAnchor
+    }
+    
+    public var rightAnchor: NSLayoutXAxisAnchor {
+        return self.view.rightAnchor
+    }
+    
     // MARK: - Views
     
     @discardableResult

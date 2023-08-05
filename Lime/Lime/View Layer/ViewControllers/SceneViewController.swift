@@ -19,11 +19,13 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
     private let toolbarStack = LimeVStack()
     private let toolbarRowDefault = LimeHStack()
     private let toolbarRowPrompt = LimeHStack()
+    private let toolbarRowTimeline = LimeHStack()
     private let promptToggle = LimeChipToggle()
     private let timelineToggle = LimeChipToggle()
     private let cameraButton = LimeChipButton()
     private let playButton = LimeChipToggle()
     private let promptInput = LimeTextInput()
+    private let animationSpeedMultiState = LimeChipMultiState<Double>()
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -69,11 +71,29 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
             .setSpacing(to: LimeDimensions.toolbarSpacing)
             .addView(self.promptInput)
         
+        self.toolbarRowTimeline
+            .setSpacing(to: LimeDimensions.toolbarSpacing)
+            .addSpacer()
+            .addView(self.animationSpeedMultiState)
+        
+        self.animationSpeedMultiState
+            .setFixedWidth(width: 90)
+            .addState(value: 1.0, label: "1x")
+            .addState(value: 1.5, label: "1.5x")
+            .addState(value: 0.25, label: "0.25x")
+            .addState(value: 0.5, label: "0.5x")
+            .setOnChange({ playbackSpeed in
+                
+            })
+        
         self.promptToggle
             .setIcon(to: "character.cursor.ibeam")
             .setOnTap({ isEnabled in
                 if isEnabled {
-                    self.toolbarStack.addViewAnimated(self.toolbarRowPrompt, position: 0)
+                    self.toolbarStack.addViewAnimated(
+                        self.toolbarRowPrompt,
+                        position: self.toolbarStack.viewCount == 1 ? 0 : 1
+                    )
                     self.toolbarRowPrompt.constrainHorizontal()
                 } else {
                     self.toolbarStack.removeViewAnimated(self.toolbarRowPrompt)
@@ -82,6 +102,15 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
         
         self.timelineToggle
             .setIcon(to: "slider.horizontal.below.rectangle")
+            .setOnTap({ isEnabled in
+                if isEnabled {
+                    print(self.toolbarStack.viewCount)
+                    self.toolbarStack.addViewAnimated(self.toolbarRowTimeline,position: 0)
+                    self.toolbarRowTimeline.constrainHorizontal()
+                } else {
+                    self.toolbarStack.removeViewAnimated(self.toolbarRowTimeline)
+                }
+            })
         
         self.cameraButton
             .setIcon(to: "cube.transparent")

@@ -68,6 +68,7 @@
 		B60A3A872A7DDD9C00499484 /* IBMPlexMono-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A742A7DDD9C00499484 /* IBMPlexMono-BoldItalic.ttf */; };
 		B60A3A882A7DDD9C00499484 /* Poppins-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A752A7DDD9C00499484 /* Poppins-SemiBoldItalic.ttf */; };
 		B60A3A8A2A7DE00800499484 /* LimeFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A892A7DE00800499484 /* LimeFonts.swift */; };
+		B60A3A8F2A7DF19600499484 /* LimeChipMultiState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A8E2A7DF19600499484 /* LimeChipMultiState.swift */; };
 		B6DC10A82A7BF6E600C10100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */; };
 		B6DC10AA2A7BF6E600C10100 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */; };
 		B6DC10AC2A7BF6E600C10100 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10AB2A7BF6E600C10100 /* ViewController.swift */; };
@@ -173,6 +174,7 @@
 		B60A3A742A7DDD9C00499484 /* IBMPlexMono-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-BoldItalic.ttf"; sourceTree = "<group>"; };
 		B60A3A752A7DDD9C00499484 /* Poppins-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		B60A3A892A7DE00800499484 /* LimeFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeFonts.swift; sourceTree = "<group>"; };
+		B60A3A8E2A7DF19600499484 /* LimeChipMultiState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeChipMultiState.swift; sourceTree = "<group>"; };
 		B6DC10A42A7BF6E600C10100 /* Lime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -511,6 +513,7 @@
 				B60A3A582A7CEECF00499484 /* LimeControl.swift */,
 				B60A3A5F2A7D106600499484 /* LimeChipToggle.swift */,
 				B60A3A612A7D1B9F00499484 /* LimeTextInput.swift */,
+				B60A3A8E2A7DF19600499484 /* LimeChipMultiState.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -686,6 +689,7 @@
 				B60A39E52A7CA4A600499484 /* SceneGeometry.swift in Sources */,
 				B6DC10F92A7C87E300C10100 /* LimeImage.swift in Sources */,
 				B60A39AD2A7CA49900499484 /* Array.swift in Sources */,
+				B60A3A8F2A7DF19600499484 /* LimeChipMultiState.swift in Sources */,
 				B6DC10F32A7C87E300C10100 /* LimeIconButton.swift in Sources */,
 				B6DC10F42A7C87E300C10100 /* LimeSwitch.swift in Sources */,
 				B6DC10AC2A7BF6E600C10100 /* ViewController.swift in Sources */,

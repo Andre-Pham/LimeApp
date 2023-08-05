@@ -25,6 +25,12 @@ class LimeImage: LimeUIView {
     }
     
     @discardableResult
+    func setContentMode(to contentMode: UIView.ContentMode) -> Self {
+        self.imageView.contentMode = contentMode
+        return self
+    }
+    
+    @discardableResult
     func setImage(_ image: UIImage) -> Self {
         self.imageView.image = image
         return self

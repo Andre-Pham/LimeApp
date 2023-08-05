@@ -50,7 +50,7 @@ class LimeVStack: LimeUIView {
         } else {
             self.stack.addArrangedSubview(view.view)
         }
-        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseOut], animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 2, options: [.curveEaseOut], animations: {
             view.setOpacity(to: 1.0)
             view.setHidden(to: false)
         })
@@ -59,7 +59,7 @@ class LimeVStack: LimeUIView {
     
     @discardableResult
     func removeViewAnimated(_ view: LimeUIView) -> Self {
-        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseOut], animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 2, options: [.curveEaseOut], animations: {
             view.setOpacity(to: 0.0)
             view.setHidden(to: true)
         }) { _ in

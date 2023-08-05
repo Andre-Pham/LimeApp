@@ -20,12 +20,12 @@ class LimeText: LimeUIView {
         return self.label.text ?? ""
     }
     
-    init(text: String? = nil, font: UIFont? = UIFont.boldSystemFont(ofSize: 13.0)) {
+    override init() {
         super.init()
         self.view.translatesAutoresizingMaskIntoConstraints = false
         self.toggleWordWrapping(to: true)
         self.setText(to: text)
-        self.setFont(to: font)
+        self.setFont(to: UIFont.boldSystemFont(ofSize: 13.0))
     }
     
     @discardableResult

@@ -30,7 +30,7 @@ class LimeChipToggle: LimeUIView {
             .setWidthConstraint(to: 60)
             .setHeightConstraint(to: 48)
             .setBackgroundColor(to: self.disabledColor)
-            .setCornerRadius(to: 20)
+            .setCornerRadius(to: LimeDimensions.foregroundCornerRadius)
             .addSubview(self.button)
             .addSubview(self.imageView)
         

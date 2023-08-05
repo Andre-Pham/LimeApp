@@ -14,6 +14,9 @@ class LimeVStack: LimeUIView {
     public var view: UIView {
         return self.stack
     }
+    public var viewCount: Int {
+        return self.stack.arrangedSubviews.count
+    }
     private var verticalSpacer: UIView {
         let spacerView = UIView()
         spacerView.translatesAutoresizingMaskIntoConstraints = false
@@ -39,6 +42,7 @@ class LimeVStack: LimeUIView {
     
     @discardableResult
     func addViewAnimated(_ view: LimeUIView, position: Int? = nil) -> Self {
+        view.setOpacity(to: 0.0)
         view.setHidden(to: true)
         if let position {
             let validatedPosition = min(position, self.stack.arrangedSubviews.count)
@@ -46,7 +50,8 @@ class LimeVStack: LimeUIView {
         } else {
             self.stack.addArrangedSubview(view.view)
         }
-        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseInOut], animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseOut], animations: {
+            view.setOpacity(to: 1.0)
             view.setHidden(to: false)
         })
         return self
@@ -54,10 +59,12 @@ class LimeVStack: LimeUIView {
     
     @discardableResult
     func removeViewAnimated(_ view: LimeUIView) -> Self {
-        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseInOut], animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseOut], animations: {
+            view.setOpacity(to: 0.0)
             view.setHidden(to: true)
         }) { _ in
             view.removeFromSuperView()
+            view.setOpacity(to: 1.0)
             view.setHidden(to: false)
         }
         return self

@@ -69,6 +69,8 @@
 		B60A3A882A7DDD9C00499484 /* Poppins-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A752A7DDD9C00499484 /* Poppins-SemiBoldItalic.ttf */; };
 		B60A3A8A2A7DE00800499484 /* LimeFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A892A7DE00800499484 /* LimeFonts.swift */; };
 		B60A3A8F2A7DF19600499484 /* LimeChipMultiState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A8E2A7DF19600499484 /* LimeChipMultiState.swift */; };
+		B60A3A912A7E1CEE00499484 /* ScrubberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A902A7E1CEE00499484 /* ScrubberView.swift */; };
+		B60A3A932A7E29D300499484 /* LimeGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A922A7E29D300499484 /* LimeGestureView.swift */; };
 		B6DC10A82A7BF6E600C10100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */; };
 		B6DC10AA2A7BF6E600C10100 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */; };
 		B6DC10AC2A7BF6E600C10100 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10AB2A7BF6E600C10100 /* ViewController.swift */; };
@@ -175,6 +177,8 @@
 		B60A3A752A7DDD9C00499484 /* Poppins-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		B60A3A892A7DE00800499484 /* LimeFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeFonts.swift; sourceTree = "<group>"; };
 		B60A3A8E2A7DF19600499484 /* LimeChipMultiState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeChipMultiState.swift; sourceTree = "<group>"; };
+		B60A3A902A7E1CEE00499484 /* ScrubberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrubberView.swift; sourceTree = "<group>"; };
+		B60A3A922A7E29D300499484 /* LimeGestureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeGestureView.swift; sourceTree = "<group>"; };
 		B6DC10A42A7BF6E600C10100 /* Lime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -514,6 +518,7 @@
 				B60A3A5F2A7D106600499484 /* LimeChipToggle.swift */,
 				B60A3A612A7D1B9F00499484 /* LimeTextInput.swift */,
 				B60A3A8E2A7DF19600499484 /* LimeChipMultiState.swift */,
+				B60A3A922A7E29D300499484 /* LimeGestureView.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -521,6 +526,7 @@
 		B6DC10E42A7C878C00C10100 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				B60A3A902A7E1CEE00499484 /* ScrubberView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -698,6 +704,7 @@
 				B6DC10F62A7C87E300C10100 /* LimeVStack.swift in Sources */,
 				B60A39B12A7CA49900499484 /* CGRect.swift in Sources */,
 				B60A39B22A7CA49900499484 /* Double.swift in Sources */,
+				B60A3A932A7E29D300499484 /* LimeGestureView.swift in Sources */,
 				B6DC10FC2A7C87E300C10100 /* LimeHStack.swift in Sources */,
 				B60A39D62A7CA4A600499484 /* HandPointRecogniser.swift in Sources */,
 				B6DC10A82A7BF6E600C10100 /* AppDelegate.swift in Sources */,
@@ -722,6 +729,7 @@
 				B60A39AE2A7CA49900499484 /* SCNNode.swift in Sources */,
 				B60A39DD2A7CA4A600499484 /* PresetNode.swift in Sources */,
 				B6DC10AA2A7BF6E600C10100 /* SceneDelegate.swift in Sources */,
+				B60A3A912A7E1CEE00499484 /* ScrubberView.swift in Sources */,
 				B60A39E12A7CA4A600499484 /* PresetModel.swift in Sources */,
 				B60A39D22A7CA4A600499484 /* CaptureDelegate.swift in Sources */,
 				B6DC10DA2A7C027A00C10100 /* Environment.swift in Sources */,

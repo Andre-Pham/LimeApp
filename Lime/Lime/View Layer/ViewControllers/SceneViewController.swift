@@ -26,6 +26,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
     private let playButton = LimeChipToggle()
     private let promptInput = LimeTextInput()
     private let animationSpeedMultiState = LimeChipMultiState<Double>()
+    private let timeline = ScrubberView()
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -73,8 +74,25 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
         
         self.toolbarRowTimeline
             .setSpacing(to: LimeDimensions.toolbarSpacing)
-            .addSpacer()
+            .addView(self.timeline)
             .addView(self.animationSpeedMultiState)
+        
+        self.timeline
+            .constrainVertical()
+            .setOnStartTracking({
+                print("IS TRACKING")
+            })
+            .setOnEndTracking({
+                print("END TRACKING")
+            })
+            .setOnChange({ proportion in
+                print("proportion: \(proportion)")
+                if proportion < 0.5 {
+                    self.timeline.setProgress(to: 0.0)
+                } else {
+                    self.timeline.setProgress(to: 1.0)
+                }
+            })
         
         self.animationSpeedMultiState
             .setFixedWidth(width: 90)
@@ -104,7 +122,6 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
             .setIcon(to: "slider.horizontal.below.rectangle")
             .setOnTap({ isEnabled in
                 if isEnabled {
-                    print(self.toolbarStack.viewCount)
                     self.toolbarStack.addViewAnimated(self.toolbarRowTimeline,position: 0)
                     self.toolbarRowTimeline.constrainHorizontal()
                 } else {

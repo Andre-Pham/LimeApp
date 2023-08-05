@@ -210,6 +210,28 @@ extension LimeUIViewProtocol {
     }
     
     @discardableResult
+    func constrainCenterVertical(to other: LimeUIView? = nil, respectSafeArea: Bool = true) -> Self {
+        assert(!self.view.translatesAutoresizingMaskIntoConstraints, "Constraints requirement failed")
+        guard let target = other?.view ?? self.view.superview else {
+            fatalError("No constraint target found")
+        }
+        let anchor = respectSafeArea ? target.safeAreaLayoutGuide.centerYAnchor : target.centerYAnchor
+        self.view.centerYAnchor.constraint(equalTo: anchor).isActive = true
+        return self
+    }
+    
+    @discardableResult
+    func constrainCenterHorizontal(to other: LimeUIView? = nil, respectSafeArea: Bool = true) -> Self {
+        assert(!self.view.translatesAutoresizingMaskIntoConstraints, "Constraints requirement failed")
+        guard let target = other?.view ?? self.view.superview else {
+            fatalError("No constraint target found")
+        }
+        let anchor = respectSafeArea ? target.safeAreaLayoutGuide.centerXAnchor : target.centerXAnchor
+        self.view.centerXAnchor.constraint(equalTo: anchor).isActive = true
+        return self
+    }
+    
+    @discardableResult
     func setPadding(top: CGFloat? = nil, bottom: CGFloat? = nil, left: CGFloat? = nil, right: CGFloat? = nil) -> Self {
         self.view.layoutMargins = UIEdgeInsets(
             top: top ?? self.view.layoutMargins.top,

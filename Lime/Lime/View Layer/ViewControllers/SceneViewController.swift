@@ -100,12 +100,12 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-                tapGesture.cancelsTouchesInView = false
-                view.addGestureRecognizer(tapGesture)
+        tapGesture.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tapGesture)
     }
     
     @objc func dismissKeyboard() {
-        view.endEditing(true)
+        self.view.endEditing(true)
     }
     
     func attach(scene: SceneController) {

@@ -57,11 +57,6 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
             constant: -LimeDimensions.toolbarPaddingBottom
         )
         self.toolbarConstraint.isActive = true
-        
-        // MARK: - Notes
-        // Pause during transition
-        // Scrub backwards after transition is done
-        // It keeps playing
 
         self.toolbarStack
             .constrainAllSides(padding: LimeDimensions.toolbarInnerPadding)
@@ -107,7 +102,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
             })
             .setOnChange({ proportion in
                 if self.timeline.isTracking {
-                    SpellSession.inst.sequence?.setRestartTransitionWasInterrupted(to: false)
+                    SpellSession.inst.sequence?.uninterruptTransition()
                     let clampedProportion = SpellSession.inst.sequence?.clampToAnimationStart(proportion: proportion) ?? 0.0
                     self.timeline.setProgress(to: clampedProportion)
 //                    self.activeLetter = SpellSession.inst.sequence?.activeModel.description ?? "-"

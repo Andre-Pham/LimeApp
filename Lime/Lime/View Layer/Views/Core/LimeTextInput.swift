@@ -25,7 +25,13 @@ class LimeTextInput: LimeUIView {
         self.setFont(to: UIFont.boldSystemFont(ofSize: 13.0))
         self.setBackgroundColor(to: LimeColors.secondaryButtonFill)
         self.setCornerRadius(to: LimeDimensions.foregroundCornerRadius)
-        self.setHeightConstraint(to: 48)
+        self.setHeightConstraint(to: LimeDimensions.textInputHeight)
+    }
+    
+    @discardableResult
+    func setPlaceholder(to text: String?) -> Self {
+        self.textInput.placeholder = text
+        return self
     }
     
     @discardableResult

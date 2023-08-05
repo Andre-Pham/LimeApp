@@ -80,7 +80,12 @@ class ViewController: UITabBarController {
             .addView(self.item3Button)
             .addView(self.item4Button)
         
-        let tabBarItemLabels = ["3D", "Camera", "Info", "Settings"]
+        let tabBarItemLabels = [
+            Strings("tabBar.generate3D").local,
+            Strings("tabBar.generateText").local,
+            Strings("tabBar.info").local,
+            Strings("tabBar.settings").local
+        ]
         
         for (index, itemButton) in self.itemButtons.enumerated() {
             let label = LimeText()
@@ -100,6 +105,7 @@ class ViewController: UITabBarController {
             
             label
                 .setText(to: tabBarItemLabels[index])
+                .setFont(to: LimeFont(font: LimeFonts.IBMPlexMono.Medium.rawValue, size: 10))
                 .setSize(to: 10)
                 .setTextAlignment(to: .center)
                 .constrainHorizontal()

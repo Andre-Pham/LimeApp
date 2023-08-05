@@ -29,5 +29,7 @@ enum LimeDimensions {
     static let toolbarInnerPadding = 15.0
     /// The spacing between everything within the toolbar
     static let toolbarSpacing = 10.0
+    /// The height of text inputs
+    static let textInputHeight = Self.chipHeight
     
 }

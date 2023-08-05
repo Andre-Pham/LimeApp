@@ -87,7 +87,8 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
             .setIcon(to: "cube.transparent")
         
         self.promptInput
-            .setText(to: "Hello World")
+            .setFont(to: LimeFont(font: LimeFonts.IBMPlexMono.Medium.rawValue, size: 18))
+            .setPlaceholder(to: Strings("label.prompt").local)
         
         self.playButton
             .setColor(enabled: LimeColors.primaryButtonFill, disabled: LimeColors.primaryButtonFill)

@@ -13,6 +13,8 @@ class LimeChipToggle: LimeUIView {
     private let container = LimeView()
     private let button = LimeControl()
     private let imageView = LimeImage()
+    private var enabledIcon: UIImage? = nil
+    private var disabledIcon: UIImage? = nil
     private var disabledColor = LimeColors.secondaryButtonFill
     private var enabledColor = LimeColors.primaryButtonFill
     private var disabledIconColor = LimeColors.secondaryButtonText
@@ -53,15 +55,38 @@ class LimeChipToggle: LimeUIView {
     private func refresh() {
         self.container.setBackgroundColor(to: self.isEnabled ? self.enabledColor : self.disabledColor)
         self.imageView.setColor(to: self.isEnabled ? self.enabledIconColor : self.disabledIconColor)
+        if let newImage = self.isEnabled ? self.enabledIcon : self.disabledIcon {
+            self.imageView.setImage(newImage)
+        }
     }
     
     @discardableResult
-    func setIcon(to icon: String) -> Self {
-        if let image = UIImage(named: icon) {
-            self.imageView.setImage(image)
-        } else if let image = UIImage(systemName: icon) {
-            self.imageView.setImage(image)
+    func setDefaultState(enabled: Bool, trigger: Bool = false) -> Self {
+        self.isEnabled = enabled
+        self.refresh()
+        if trigger {
+            self.onTap?(self.isEnabled)
         }
+        return self
+    }
+    
+    @discardableResult
+    func setIcon(to enabled: String, disabled: String? = nil) -> Self {
+        if let image = UIImage(named: enabled) {
+            self.enabledIcon = image
+        } else if let image = UIImage(systemName: enabled) {
+            self.enabledIcon = image
+        }
+        if let disabled {
+            if let image = UIImage(named: disabled) {
+                self.disabledIcon = image
+            } else if let image = UIImage(systemName: disabled) {
+                self.disabledIcon = image
+            }
+        } else {
+            self.disabledIcon = self.enabledIcon
+        }
+        self.refresh()
         return self
     }
     

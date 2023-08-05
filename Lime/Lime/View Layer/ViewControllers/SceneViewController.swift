@@ -22,6 +22,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
     private let promptToggle = LimeChipToggle()
     private let timelineToggle = LimeChipToggle()
     private let cameraButton = LimeChipButton()
+    private let playButton = LimeChipToggle()
     private let promptInput = LimeTextInput()
     
     deinit {
@@ -62,6 +63,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
             .addView(self.timelineToggle)
             .addView(self.cameraButton)
             .addSpacer()
+            .addView(self.playButton)
         
         self.toolbarRowPrompt
             .setSpacing(to: LimeDimensions.toolbarSpacing)
@@ -86,6 +88,12 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
         
         self.promptInput
             .setText(to: "Hello World")
+        
+        self.playButton
+            .setColor(enabled: LimeColors.primaryButtonFill, disabled: LimeColors.primaryButtonFill)
+            .setIconColor(enabled: LimeColors.primaryButtonText, disabled: LimeColors.primaryButtonText)
+            .setIcon(to: "play.fill", disabled: "pause.fill")
+            .setDefaultState(enabled: true) // Start paused
         
         // Register for keyboard notifications
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)

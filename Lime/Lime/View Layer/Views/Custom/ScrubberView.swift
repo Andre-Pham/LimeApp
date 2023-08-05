@@ -95,7 +95,7 @@ class ScrubberView: LimeUIView {
             let containerWidth = self.container.frame.width
             let lineWidth = containerWidth - Self.SCRUBBER_DIAMETER
             let positionInContainer = gesture.location(in: self.container.view).x
-            var positionInLine = {
+            let positionInLine = {
                 let clampedPosition = min(containerWidth - Self.SCRUBBER_DIAMETER/2.0, max(Self.SCRUBBER_DIAMETER/2.0, positionInContainer))
                 return clampedPosition - Self.SCRUBBER_DIAMETER/2.0
             }()

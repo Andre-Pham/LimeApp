@@ -18,6 +18,12 @@ class SceneModelSequence {
         //case interlaced // CURRENTLY NOT SUPPORTED
     }
     
+    enum TransitionState {
+        case notTransitioning
+        case transitioning
+        case interrupted
+    }
+    
     /// Each model animation has a period at the end where it holds an "idle pose" - this defines the length of that period
     /// Animation transitions between models begin at the start of the idle period
     private static let IDLE_PERIOD = 0.45
@@ -73,7 +79,9 @@ class SceneModelSequence {
     /// If the current animation playing is idle
     private var isIdle = false
     /// If the sequence is transitioning (via interpolation) between two scene models
-    private var isTransitioning = false
+    private var transitionState: TransitionState = .notTransitioning
+    /// If the transition from the last model to the first model was interrupted
+    private(set) var restartTransitionWasInterrupted = false
     
     init(transition: TransitionStyle, _ sceneModels: [SceneModel]) {
         self.transitionStyle = transition
@@ -104,30 +112,41 @@ class SceneModelSequence {
     }
     
     func interruptTransition() {
-        self.isTransitioning = false
+        self.transitionState = .interrupted
         // Technically unnecessary, this just ensures we're at the correct animation multiplier (immediately)
         self.setSequenceAnimationMultiplier(to: 1.0)
     }
     
+    // Let's put break points here to figure out what's going on
+    
     func setSequencePause(to isPaused: Bool) {
-        if self.isTransitioning && isPaused {
+        print(isPaused ? "hit pause" : "hit play")
+        if self.transitionState == .transitioning && isPaused {
             // We're trying to pause during a transition, so clamp to the start of the model we're transitioning to
             //
             // The following code is strange...
             // A working alternative is as follows:
-            // ``` self.isTransitioning = false
+            // ``` self.interruptTransition()
             //     self.switchActiveModel(to: (self.activeModelIndex + 1)%self.sceneModels.count)
+            //     self.activeModel.setModelPause(to: isPaused)
             // ```
             // However it causes a flicker that isn't pleasant to the eye
             // This odd sequence of timings fix that
             // All timings are magic numbers, and the smallest interval that worked that I've tried is 0.02
             self.interruptTransition()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.03) {
-                self.switchActiveModel(to: (self.activeModelIndex + 1)%self.sceneModels.count)
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.06) {
-                self.activeModel.setModelPause(to: true)
-            }
+//            self.activeModel.setModelPause(to: true)
+//            self.activeModel.setModelPause(to: true)
+//            self.activeModel.setAnimationTime(to: 1.0)
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.03) {
+//                self.switchActiveModel(to: (self.activeModelIndex + 1)%self.sceneModels.count)
+//            }
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.06) {
+//                self.activeModel.setAnimationTime(to: 0.0)
+//                self.activeModel.setModelPause(to: true)
+//            }
+        } else if !isPaused && self.transitionState == .interrupted {
+            // If we interrupt (pause) a transition then play again before the interruption has been handled, just resume the transition
+            self.transitionState = .transitioning
         } else {
             self.activeModel.setModelPause(to: isPaused)
         }
@@ -259,13 +278,20 @@ class SceneModelSequence {
                     duration = 0.2 - (0.2 - duration)/2
                 }
                 duration /= self.animationSpeed
-                self.isTransitioning = true
+                self.transitionState = .transitioning
                 self.activeModel.match(nextModelRotation, animationDuration: duration) {
-                    guard self.isTransitioning else {
+                    print("finished matching")
+                    guard self.transitionState == .transitioning else {
+                        print("transition state: \(self.transitionState)")
+                        self.transitionState = .notTransitioning
+                        self.switchActiveModel(to: (self.activeModelIndex + 1)%self.sceneModels.count)
                         self.controller?.removeModel(nextModel)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.03) {
+                            self.activeModel.setModelPause(to: true)
+                        }
                         return
                     }
-                    self.isTransitioning = false
+                    self.transitionState = .notTransitioning
                     self.switchActiveModel(to: (self.activeModelIndex + 1)%self.sceneModels.count)
                     self.controller?.removeModel(nextModel)
                     self.setSequenceAnimationMultiplier(to: 0.8)
@@ -279,6 +305,13 @@ class SceneModelSequence {
             nextModel.setOpacity(to: 0.0)
             self.controller?.addModel(nextModel)
             nextModel.play()
+        }
+    }
+    
+    func setRestartTransitionWasInterrupted(to wasInterrupted: Bool) {
+        self.restartTransitionWasInterrupted = wasInterrupted
+        if !wasInterrupted {
+            self.transitionState = .notTransitioning
         }
     }
     

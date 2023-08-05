@@ -13,6 +13,8 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
     
     /// The constraint used to anchor the toolbar - adjustable and animatable for keyboard avoidance
     private var toolbarConstraint: NSLayoutConstraint!
+    /// Caches the animation speed of the animation
+    private var animationSpeedCache = 1.0
     
     private var root: LimeView { return LimeView(self.view) }
     private let toolbarContainer = LimeView()
@@ -38,6 +40,8 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
         self.attach(scene: SpellSession.inst.sceneController)
         SpellSession.inst.setupScene()
         
+        SpellSession.inst.addInterpolatedLetterSequence(prompt: "arar")
+        
         self.root
             .addSubview(self.toolbarContainer)
         
@@ -53,6 +57,11 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
             constant: -LimeDimensions.toolbarPaddingBottom
         )
         self.toolbarConstraint.isActive = true
+        
+        // MARK: - Notes
+        // Pause during transition
+        // Scrub backwards after transition is done
+        // It keeps playing
 
         self.toolbarStack
             .constrainAllSides(padding: LimeDimensions.toolbarInnerPadding)
@@ -80,17 +89,28 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
         self.timeline
             .constrainVertical()
             .setOnStartTracking({
-                print("IS TRACKING")
+                // If we're mid transition we need to interrupt it
+                SpellSession.inst.sequence?.interruptTransition()
+                // Save the animation speed because we're about to slow the model down
+                self.animationSpeedCache = SpellSession.inst.sequence?.animationSpeed ?? 1.0
+                // The model appears in the starting position during tracking unless playing
+                // Slow down the animation so it appears not to play
+                SpellSession.inst.sequence?.setSequenceAnimationSpeed(to: 0.001)
+                SpellSession.inst.sequence?.playSequence()
             })
             .setOnEndTracking({
-                print("END TRACKING")
+                // Resume state - delay to guarantee model doesn't appear in starting position
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                    SpellSession.inst.sequence?.setSequencePause(to: self.playButton.isEnabled)
+                    SpellSession.inst.sequence?.setSequenceAnimationSpeed(to: self.animationSpeedCache)
+                }
             })
             .setOnChange({ proportion in
-                print("proportion: \(proportion)")
-                if proportion < 0.5 {
-                    self.timeline.setProgress(to: 0.0)
-                } else {
-                    self.timeline.setProgress(to: 1.0)
+                if self.timeline.isTracking {
+                    SpellSession.inst.sequence?.setRestartTransitionWasInterrupted(to: false)
+                    let clampedProportion = SpellSession.inst.sequence?.clampToAnimationStart(proportion: proportion) ?? 0.0
+                    self.timeline.setProgress(to: clampedProportion)
+//                    self.activeLetter = SpellSession.inst.sequence?.activeModel.description ?? "-"
                 }
             })
         
@@ -101,7 +121,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
             .addState(value: 0.25, label: "0.25x")
             .addState(value: 0.5, label: "0.5x")
             .setOnChange({ playbackSpeed in
-                
+                SpellSession.inst.sequence?.setSequenceAnimationSpeed(to: playbackSpeed)
             })
         
         self.promptToggle
@@ -131,6 +151,11 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
         
         self.cameraButton
             .setIcon(to: "cube.transparent")
+            .setOnTap({
+                if let activeModel = SpellSession.inst.sequence?.activeModel {
+                    SpellSession.inst.sceneController.positionCameraFacing(model: activeModel)
+                }
+            })
         
         self.promptInput
             .setFont(to: LimeFont(font: LimeFonts.IBMPlexMono.Medium.rawValue, size: 18))
@@ -141,6 +166,9 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
             .setIconColor(enabled: LimeColors.primaryButtonText, disabled: LimeColors.primaryButtonText)
             .setIcon(to: "play.fill", disabled: "pause.fill")
             .setDefaultState(enabled: true) // Start paused
+            .setOnTap({ isPaused in
+                SpellSession.inst.sequence?.setSequencePause(to: isPaused)
+            })
         
         // Register for keyboard notifications
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -149,6 +177,16 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGesture.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGesture)
+        
+        Timer.scheduledTimer(withTimeInterval: 1/60, repeats: true) { timer in
+            let sequence = SpellSession.inst.sequence
+            if !self.timeline.isTracking, let proportion = sequence?.animationProgressProportion {
+                if !self.playButton.isEnabled {
+                    self.timeline.setProgress(to: proportion)
+                }
+//                self.activeLetter = SpellSession.inst.sequence?.activeModel.description ?? "-"
+            }
+        }
     }
     
     @objc func dismissKeyboard() {

@@ -65,4 +65,16 @@ class LimeText: LimeUIView {
         return self
     }
     
+    @discardableResult
+    func setTextColor(to color: UIColor) -> Self {
+        self.label.textColor = color
+        return self
+    }
+    
+    @discardableResult
+    func setTextOpacity(to opacity: Double) -> Self {
+        self.label.textColor = self.label.textColor.withAlphaComponent(opacity)
+        return self
+    }
+    
 }

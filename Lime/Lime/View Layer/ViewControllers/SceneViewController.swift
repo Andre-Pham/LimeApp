@@ -29,6 +29,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
     private let promptInput = LimeTextInput()
     private let animationSpeedMultiState = LimeChipMultiState<Double>()
     private let timeline = ScrubberView()
+    private let letterDisplay = LetterDisplayView()
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -40,10 +41,9 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
         self.attach(scene: SpellSession.inst.sceneController)
         SpellSession.inst.setupScene()
         
-        SpellSession.inst.addInterpolatedLetterSequence(prompt: "arar")
-        
         self.root
             .addSubview(self.toolbarContainer)
+            .addSubview(self.letterDisplay)
         
         self.toolbarContainer
             .constrainHorizontal(padding: LimeDimensions.toolbarPaddingHorizontal)
@@ -57,6 +57,10 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
             constant: -LimeDimensions.toolbarPaddingBottom
         )
         self.toolbarConstraint.isActive = true
+        
+        self.letterDisplay
+            .constrainCenterHorizontal()
+            .constrainTop(padding: 50)
 
         self.toolbarStack
             .constrainAllSides(padding: LimeDimensions.toolbarInnerPadding)
@@ -105,7 +109,9 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
                     SpellSession.inst.sequence?.uninterruptTransition()
                     let clampedProportion = SpellSession.inst.sequence?.clampToAnimationStart(proportion: proportion) ?? 0.0
                     self.timeline.setProgress(to: clampedProportion)
-//                    self.activeLetter = SpellSession.inst.sequence?.activeModel.description ?? "-"
+                    if let letterIndex = SpellSession.inst.sequence?.activeModelIndex {
+                        self.letterDisplay.centerLetter(letterIndex)
+                    }
                 }
             })
         
@@ -167,7 +173,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
             .setOnSubmit({
                 let newSequenceMounted = SpellSession.inst.addInterpolatedLetterSequence(prompt: self.promptInput.text)
                 if newSequenceMounted {
-//                    self.activeLetter = "-"
+                    self.letterDisplay.setPrompt(to: SpellSession.inst.activePrompt)
                 }
             })
         
@@ -197,7 +203,9 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
                 if !self.playButton.isEnabled {
                     self.timeline.setProgress(to: proportion)
                 }
-//                self.activeLetter = SpellSession.inst.sequence?.activeModel.description ?? "-"
+                if let letterIndex = SpellSession.inst.sequence?.activeModelIndex {
+                    self.letterDisplay.centerLetter(letterIndex)
+                }
             }
         }
     }

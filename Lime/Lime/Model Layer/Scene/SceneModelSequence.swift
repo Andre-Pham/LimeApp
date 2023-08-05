@@ -31,7 +31,7 @@ class SceneModelSequence {
     /// The sequence models, in order of play
     private let sceneModels: [SceneModel]
     /// The index of the active model in the sequence
-    private var activeModelIndex = 0
+    private(set) var activeModelIndex = 0
     /// The active model in the sequence
     public var activeModel: SceneModel {
         return self.sceneModels[self.activeModelIndex]

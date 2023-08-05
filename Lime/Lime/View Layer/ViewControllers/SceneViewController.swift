@@ -155,12 +155,27 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
         self.promptInput
             .setFont(to: LimeFont(font: LimeFonts.IBMPlexMono.Medium.rawValue, size: 18))
             .setPlaceholder(to: Strings("label.prompt").local)
+            .setSubmitLabel(to: .go)
+            .setOnFocus({
+                if !self.playButton.isEnabled {
+                    self.playButton.setState(enabled: true, trigger: true)
+                }
+            })
+            .setOnUnfocus({
+                self.promptInput.setText(to: SpellSession.inst.activePrompt)
+            })
+            .setOnSubmit({
+                let newSequenceMounted = SpellSession.inst.addInterpolatedLetterSequence(prompt: self.promptInput.text)
+                if newSequenceMounted {
+//                    self.activeLetter = "-"
+                }
+            })
         
         self.playButton
             .setColor(enabled: LimeColors.primaryButtonFill, disabled: LimeColors.primaryButtonFill)
             .setIconColor(enabled: LimeColors.primaryButtonText, disabled: LimeColors.primaryButtonText)
             .setIcon(to: "play.fill", disabled: "pause.fill")
-            .setDefaultState(enabled: true) // Start paused
+            .setState(enabled: true) // Start paused
             .setOnTap({ isPaused in
                 SpellSession.inst.sequence?.setSequencePause(to: isPaused)
             })
@@ -169,6 +184,9 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
+        // If the user taps anywhere on-screen, cancel the keyboard
+        // Note the keyboard dismissal callback triggers first, then the tap
+        // E.g. if you press a button while the keyboard is open, the keyboard closes, then the button press is triggered
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGesture.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGesture)

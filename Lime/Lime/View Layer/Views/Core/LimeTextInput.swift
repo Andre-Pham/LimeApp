@@ -11,6 +11,9 @@ import UIKit
 class LimeTextInput: LimeUIView {
     
     private let textInput = PaddedTextField()
+    private var onSubmit: (() -> Void)? = nil
+    private var onFocus: (() -> Void)? = nil
+    private var onUnfocus: (() -> Void)? = nil
     public var view: UIView {
         return self.textInput
     }
@@ -26,6 +29,49 @@ class LimeTextInput: LimeUIView {
         self.setBackgroundColor(to: LimeColors.secondaryButtonFill)
         self.setCornerRadius(to: LimeDimensions.foregroundCornerRadius)
         self.setHeightConstraint(to: LimeDimensions.textInputHeight)
+        self.textInput.addTarget(self, action: #selector(handleSubmit), for: .editingDidEndOnExit)
+        NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidBeginEditing), name: UITextField.textDidBeginEditingNotification, object: self.textInput)
+        NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidEndEditing), name: UITextField.textDidEndEditingNotification, object: self.textInput)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc private func handleSubmit() {
+        self.onSubmit?()
+    }
+    
+    @objc func textFieldDidBeginEditing(notification: NSNotification) {
+        self.onFocus?()
+    }
+
+    @objc func textFieldDidEndEditing(notification: NSNotification) {
+        self.onUnfocus?()
+    }
+    
+    @discardableResult
+    func setOnSubmit(_ callback: (() -> Void)?) -> Self {
+        self.onSubmit = callback
+        return self
+    }
+    
+    @discardableResult
+    func setOnFocus(_ callback: (() -> Void)?) -> Self {
+        self.onFocus = callback
+        return self
+    }
+    
+    @discardableResult
+    func setOnUnfocus(_ callback: (() -> Void)?) -> Self {
+        self.onUnfocus = callback
+        return self
+    }
+    
+    @discardableResult
+    func setSubmitLabel(to label: UIReturnKeyType) -> Self {
+        self.textInput.returnKeyType = label
+        return self
     }
     
     @discardableResult

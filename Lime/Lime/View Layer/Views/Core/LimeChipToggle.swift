@@ -61,7 +61,7 @@ class LimeChipToggle: LimeUIView {
     }
     
     @discardableResult
-    func setDefaultState(enabled: Bool, trigger: Bool = false) -> Self {
+    func setState(enabled: Bool, trigger: Bool = false) -> Self {
         self.isEnabled = enabled
         self.refresh()
         if trigger {

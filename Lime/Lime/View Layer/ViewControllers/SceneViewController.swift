@@ -120,9 +120,6 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
             let screenHeight = UIScreen.main.bounds.height
             let tabBarHeight = screenHeight - viewControllerHeight
             
-            let viewFrameInViewControllerView = self.view.convert(self.toolbarContainer.frame, from: self.view.superview)
-            let viewBottomY = self.toolbarContainer.view.frame.origin.y + (self.view.superview?.frame.origin.y ?? 0.0)
-            let distanceFromBottom = self.view.frame.size.height - viewBottomY
             UIView.animate(withDuration: 0.3) { [weak self] in
                 self?.toolbarConstraint.constant = -keyboardHeight + tabBarHeight - LimeDimensions.toolbarPaddingBottom
                 self?.view.layoutIfNeeded()

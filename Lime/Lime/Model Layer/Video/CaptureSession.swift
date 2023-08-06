@@ -23,7 +23,7 @@ class CaptureSession: NSObject {
     private let captureSession = AVCaptureSession()
     private let videoOutput = AVCaptureVideoDataOutput()
     private var cameraPosition = AVCaptureDevice.Position.front
-    private let sessionQueue = DispatchQueue(label: "andrepham.Spell.sessionqueue")
+    private let sessionQueue = DispatchQueue(label: "andrepham.Lime.sessionqueue")
     public weak var captureDelegate: CaptureDelegate?
     
     public func flipCamera(completion: @escaping (Error?) -> Void) {

@@ -38,8 +38,8 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.attach(scene: SpellSession.inst.sceneController)
-        SpellSession.inst.setupScene()
+        self.attach(scene: LimeSession.inst.sceneController)
+        LimeSession.inst.setupScene()
         
         self.root
             .addSubview(self.toolbarContainer)
@@ -89,27 +89,27 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
             .constrainVertical()
             .setOnStartTracking({
                 // If we're mid transition we need to interrupt it
-                SpellSession.inst.sequence?.interruptTransition()
+                LimeSession.inst.sequence?.interruptTransition()
                 // Save the animation speed because we're about to slow the model down
-                self.animationSpeedCache = SpellSession.inst.sequence?.animationSpeed ?? 1.0
+                self.animationSpeedCache = LimeSession.inst.sequence?.animationSpeed ?? 1.0
                 // The model appears in the starting position during tracking unless playing
                 // Slow down the animation so it appears not to play
-                SpellSession.inst.sequence?.setSequenceAnimationSpeed(to: 0.001)
-                SpellSession.inst.sequence?.playSequence()
+                LimeSession.inst.sequence?.setSequenceAnimationSpeed(to: 0.001)
+                LimeSession.inst.sequence?.playSequence()
             })
             .setOnEndTracking({
                 // Resume state - delay to guarantee model doesn't appear in starting position
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-                    SpellSession.inst.sequence?.setSequencePause(to: self.playButton.isEnabled)
-                    SpellSession.inst.sequence?.setSequenceAnimationSpeed(to: self.animationSpeedCache)
+                    LimeSession.inst.sequence?.setSequencePause(to: self.playButton.isEnabled)
+                    LimeSession.inst.sequence?.setSequenceAnimationSpeed(to: self.animationSpeedCache)
                 }
             })
             .setOnChange({ proportion in
                 if self.timeline.isTracking {
-                    SpellSession.inst.sequence?.uninterruptTransition()
-                    let clampedProportion = SpellSession.inst.sequence?.clampToAnimationStart(proportion: proportion) ?? 0.0
+                    LimeSession.inst.sequence?.uninterruptTransition()
+                    let clampedProportion = LimeSession.inst.sequence?.clampToAnimationStart(proportion: proportion) ?? 0.0
                     self.timeline.setProgress(to: clampedProportion)
-                    if let letterIndex = SpellSession.inst.sequence?.activeModelIndex {
+                    if let letterIndex = LimeSession.inst.sequence?.activeModelIndex {
                         self.letterDisplay.centerLetter(letterIndex)
                     }
                 }
@@ -122,7 +122,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
             .addState(value: 0.25, label: "0.25x")
             .addState(value: 0.5, label: "0.5x")
             .setOnChange({ playbackSpeed in
-                SpellSession.inst.sequence?.setSequenceAnimationSpeed(to: playbackSpeed)
+                LimeSession.inst.sequence?.setSequenceAnimationSpeed(to: playbackSpeed)
             })
         
         self.promptToggle
@@ -153,8 +153,8 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
         self.cameraButton
             .setIcon(to: "cube.transparent")
             .setOnTap({
-                if let activeModel = SpellSession.inst.sequence?.activeModel {
-                    SpellSession.inst.sceneController.positionCameraFacing(model: activeModel)
+                if let activeModel = LimeSession.inst.sequence?.activeModel {
+                    LimeSession.inst.sceneController.positionCameraFacing(model: activeModel)
                 }
             })
         
@@ -168,12 +168,12 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
                 }
             })
             .setOnUnfocus({
-                self.promptInput.setText(to: SpellSession.inst.activePrompt)
+                self.promptInput.setText(to: LimeSession.inst.activePrompt)
             })
             .setOnSubmit({
-                let newSequenceMounted = SpellSession.inst.addInterpolatedLetterSequence(prompt: self.promptInput.text)
+                let newSequenceMounted = LimeSession.inst.addInterpolatedLetterSequence(prompt: self.promptInput.text)
                 if newSequenceMounted {
-                    self.letterDisplay.setPrompt(to: SpellSession.inst.activePrompt)
+                    self.letterDisplay.setPrompt(to: LimeSession.inst.activePrompt)
                 }
             })
         
@@ -183,7 +183,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
             .setIcon(to: "play.fill", disabled: "pause.fill")
             .setState(enabled: true) // Start paused
             .setOnTap({ isPaused in
-                SpellSession.inst.sequence?.setSequencePause(to: isPaused)
+                LimeSession.inst.sequence?.setSequencePause(to: isPaused)
             })
         
         // Register for keyboard notifications
@@ -198,12 +198,12 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
         self.view.addGestureRecognizer(tapGesture)
         
         Timer.scheduledTimer(withTimeInterval: 1/60, repeats: true) { timer in
-            let sequence = SpellSession.inst.sequence
+            let sequence = LimeSession.inst.sequence
             if !self.timeline.isTracking, let proportion = sequence?.animationProgressProportion {
                 if !self.playButton.isEnabled {
                     self.timeline.setProgress(to: proportion)
                 }
-                if let letterIndex = SpellSession.inst.sequence?.activeModelIndex {
+                if let letterIndex = LimeSession.inst.sequence?.activeModelIndex {
                     self.letterDisplay.centerLetter(letterIndex)
                 }
             }

@@ -8,10 +8,10 @@
 import Foundation
 import SceneKit
 
-class SpellSession {
+class LimeSession {
     
     /// Singleton instance
-    public static let inst = SpellSession()
+    public static let inst = LimeSession()
     
     public let sceneController = SceneController()
     private(set) var activePrompt: String = ""

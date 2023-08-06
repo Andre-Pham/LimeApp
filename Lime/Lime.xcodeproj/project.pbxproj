@@ -18,7 +18,7 @@
 		B60A39D12A7CA4A600499484 /* CaptureSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39B62A7CA4A600499484 /* CaptureSession.swift */; };
 		B60A39D22A7CA4A600499484 /* CaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39B72A7CA4A600499484 /* CaptureDelegate.swift */; };
 		B60A39D32A7CA4A600499484 /* Clonable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39B92A7CA4A600499484 /* Clonable.swift */; };
-		B60A39D42A7CA4A600499484 /* SpellSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39BA2A7CA4A600499484 /* SpellSession.swift */; };
+		B60A39D42A7CA4A600499484 /* LimeSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39BA2A7CA4A600499484 /* LimeSession.swift */; };
 		B60A39D52A7CA4A600499484 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39BC2A7CA4A600499484 /* Label.swift */; };
 		B60A39D62A7CA4A600499484 /* HandPointRecogniser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39BD2A7CA4A600499484 /* HandPointRecogniser.swift */; };
 		B60A39D72A7CA4A600499484 /* JointPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39BE2A7CA4A600499484 /* JointPosition.swift */; };
@@ -127,7 +127,7 @@
 		B60A39B62A7CA4A600499484 /* CaptureSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureSession.swift; sourceTree = "<group>"; };
 		B60A39B72A7CA4A600499484 /* CaptureDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureDelegate.swift; sourceTree = "<group>"; };
 		B60A39B92A7CA4A600499484 /* Clonable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clonable.swift; sourceTree = "<group>"; };
-		B60A39BA2A7CA4A600499484 /* SpellSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellSession.swift; sourceTree = "<group>"; };
+		B60A39BA2A7CA4A600499484 /* LimeSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimeSession.swift; sourceTree = "<group>"; };
 		B60A39BC2A7CA4A600499484 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		B60A39BD2A7CA4A600499484 /* HandPointRecogniser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandPointRecogniser.swift; sourceTree = "<group>"; };
 		B60A39BE2A7CA4A600499484 /* JointPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JointPosition.swift; sourceTree = "<group>"; };
@@ -274,7 +274,7 @@
 				B60A39B82A7CA4A600499484 /* Core */,
 				B60A39BB2A7CA4A600499484 /* Recognition */,
 				B60A39C32A7CA4A600499484 /* Scene */,
-				B60A39BA2A7CA4A600499484 /* SpellSession.swift */,
+				B60A39BA2A7CA4A600499484 /* LimeSession.swift */,
 			);
 			path = "Model Layer";
 			sourceTree = "<group>";
@@ -741,7 +741,7 @@
 				B60A39AC2A7CA49900499484 /* Math.swift in Sources */,
 				B60A39DF2A7CA4A600499484 /* SCNBox.swift in Sources */,
 				B60A39E32A7CA4A600499484 /* SceneCamera.swift in Sources */,
-				B60A39D42A7CA4A600499484 /* SpellSession.swift in Sources */,
+				B60A39D42A7CA4A600499484 /* LimeSession.swift in Sources */,
 				B60A39DA2A7CA4A600499484 /* PredictionOutcome.swift in Sources */,
 				B6DC10F52A7C87E300C10100 /* LimeUIView.swift in Sources */,
 				B60A39B32A7CA49900499484 /* Float.swift in Sources */,

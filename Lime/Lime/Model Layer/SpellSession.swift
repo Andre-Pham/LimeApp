@@ -1,6 +1,6 @@
 //
-//  SpellSession.swift
-//  Spell
+//  LimeSession.swift
+//  Lime
 //
 //  Created by Andre Pham on 19/5/2023.
 //

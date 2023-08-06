@@ -1,6 +1,6 @@
 //
 //  CaptureDelegate.swift
-//  Spell
+//  Lime
 //
 //  Created by Andre Pham on 12/4/2023.
 //

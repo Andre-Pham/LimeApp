@@ -1,6 +1,6 @@
 //
 //  HandPointRecogniser.swift
-//  Spell
+//  Lime
 //
 //  Created by Andre Pham on 7/5/2023.
 //

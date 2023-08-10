@@ -59,7 +59,6 @@ class LetterDisplayView: LimeUIView {
     
     override init() {
         self.container
-            .setBackgroundColor(to: LimeColors.toolbarFill)
             .setWidthConstraint(to: 50)
             .setHeightConstraint(to: 64)
             .setCornerRadius(to: 12)
@@ -77,6 +76,12 @@ class LetterDisplayView: LimeUIView {
     
     func setPrompt(to prompt: String) {
         self.resetActiveLetter()
+        
+        if prompt.isEmpty {
+            self.container.setBackgroundColor(to: .clear)
+        } else {
+            self.container.setBackgroundColor(to: LimeColors.toolbarFill)
+        }
         
         let prompt = prompt.uppercased()
         let (lettersToRemove, lettersToInsert) = self.findLetterSwaps(old: self.activePrompt, new: prompt)

@@ -15,6 +15,10 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
     private var toolbarConstraint: NSLayoutConstraint!
     /// Caches the animation speed of the animation
     private var animationSpeedCache = 1.0
+    /// The last position of the scrubber to use as a reference to see if it was just clamped to a new position
+    private var lastPosition: Double? = nil
+    /// A haptic feedback generator to use within the view controller as feedback
+    private let hapticFeedback = UIImpactFeedbackGenerator(style: .light)
     
     private var root: LimeView { return LimeView(self.view) }
     private let toolbarContainer = LimeView()
@@ -109,6 +113,10 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
                     LimeSession.inst.sequence?.uninterruptTransition()
                     let clampedProportion = LimeSession.inst.sequence?.clampToAnimationStart(proportion: proportion) ?? 0.0
                     self.timeline.setProgress(to: clampedProportion)
+                    if let lastPosition = self.lastPosition, !Lime.isEqual(lastPosition, clampedProportion) {
+                        self.hapticFeedback.impactOccurred()
+                    }
+                    self.lastPosition = clampedProportion
                     if let letterIndex = LimeSession.inst.sequence?.activeModelIndex {
                         self.letterDisplay.centerLetter(letterIndex)
                     }
@@ -202,6 +210,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
             if !self.timeline.isTracking, let proportion = sequence?.animationProgressProportion {
                 if !self.playButton.isEnabled {
                     self.timeline.setProgress(to: proportion)
+                    self.lastPosition = proportion
                 }
                 if let letterIndex = LimeSession.inst.sequence?.activeModelIndex {
                     self.letterDisplay.centerLetter(letterIndex)

@@ -11,6 +11,36 @@ import UIKit
 class LetterDisplayView: LimeUIView {
     
     // TODO: This entire thing needs cleaning
+    // Also, rename to focusLetter
+    // TODO: Next I want to make the transitions more timed (read more below)
+    // Right now the timeline goes as such: hand animation -> hand transition -> switch letter -> start new hand animation
+    // I want to make it so when the hands start a transition this also animates for the entire duration of that transition
+    // I would have centerLetter - it takes an animation time (provided by SceneModelSequence) or by default has a default animation time
+    // (for when it's called during timeline scrubbing)
+    // The new sequence would be
+    // hand animation -> hand transition + switch letter (simultaneous and lasting the same time) -> start new hand animation
+    
+    // ALSO to do:
+    // Import other (new) models
+    // Fix sequential mode (vs interpolation)
+    // Remove square at top when there's no prompt
+    // Fix the fact that W and M appear a little too large relative to the square
+    // Set the hand colour to be reasonable
+    // Fix fonts???
+    // Add lighting to the back so if you look at hands from the back it's still lit up
+    // Add a new "rotate" button that allows you to see the hands from the back instead of the front
+    // Add markers in the timeline that seperate the letters
+    // Reset the toolbar when you set a new prompt
+    // BUG: If you set a new prompt, then play, then pause at some point, then show the timeline, the timeline is wrong
+    // Fix rotating the device messes up the frame of the scene
+    // Fix the tab bar implementation, since I really scrapped it together (especially for iPads)
+    
+    // Settings:
+    // Left/Right hands
+    // Interpolate vs sequential
+    // Hand colour
+    // Hide/Show top word
+    // Hide/Show the timeline
     
     typealias LettersToRemove = [(char: Character, index: Int)]
     typealias LettersToInsert = [(char: Character, index: Int)]
@@ -113,7 +143,7 @@ class LetterDisplayView: LimeUIView {
         // Get length from centre of stack to letter
         let offset = ((Double(self.letters.count) - 1.0)*32.0 + 50.0)/2.0 - letterCenter
         
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.2) {
             self.stack.setTransformation(to: CGAffineTransform(translationX: offset, y: 0))
         }
         

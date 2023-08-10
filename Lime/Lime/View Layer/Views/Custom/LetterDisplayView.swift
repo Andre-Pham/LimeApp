@@ -30,7 +30,7 @@ class LetterDisplayView: LimeUIView {
     // [DONE] Add lighting to the back so if you look at hands from the back it's still lit up
     // Add a new "rotate" button that allows you to see the hands from the back instead of the front
     // Add markers in the timeline that seperate the letters
-    // Reset the toolbar when you set a new prompt
+    // [DONE] Reset the toolbar when you set a new prompt
     // BUG: If you set a new prompt, then play, then pause at some point, then show the timeline, the timeline is wrong
     // [DONE] Fix rotating the device messes up the frame of the scene
     // Fix the tab bar implementation, since I really scrapped it together (especially for iPads)

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SceneKit
 
-class SceneViewController: UIViewController, SCNSceneRendererDelegate {
+class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransitionDelegate {
     
     /// The constraint used to anchor the toolbar - adjustable and animatable for keyboard avoidance
     private var toolbarConstraint: NSLayoutConstraint!
@@ -46,6 +46,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
         LimeSession.inst.setupScene()
         
         self.root
+            .setBackgroundColor(to: LimeColors.sceneFill)
             .addSubview(self.toolbarContainer)
             .addSubview(self.letterDisplay)
         
@@ -181,7 +182,9 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
             .setOnSubmit({
                 let newSequenceMounted = LimeSession.inst.addInterpolatedLetterSequence(prompt: self.promptInput.text)
                 if newSequenceMounted {
+                    LimeSession.inst.sequence?.setOnTransitionDelegate(to: self)
                     self.letterDisplay.setPrompt(to: LimeSession.inst.activePrompt)
+                    self.letterDisplay.centerLetter(0, duration: 0.5)
                     self.resetToolbar()
                 }
             })
@@ -213,10 +216,13 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
                     self.timeline.setProgress(to: proportion)
                     self.lastPosition = proportion
                 }
-                if let letterIndex = LimeSession.inst.sequence?.activeModelIndex {
-                    self.letterDisplay.centerLetter(letterIndex, duration: 0.5)
-                }
             }
+        }
+    }
+    
+    func onTransition(duration: Double) {
+        if let letterIndex = LimeSession.inst.sequence?.activeModelIndex {
+            self.letterDisplay.centerLetter(letterIndex, duration: duration)
         }
     }
     

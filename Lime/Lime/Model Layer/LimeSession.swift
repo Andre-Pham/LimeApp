@@ -53,7 +53,7 @@ class LimeSession {
         self.sceneController.addLight(ambientLight)
         
         self.sceneController.setCameraControl(allowed: true)
-        self.sceneController.setBackgroundColor(to: UIColor(red: 0.95, green: 0.95, blue: 0.96, alpha: 1.00))
+        self.sceneController.setBackgroundColor(to: LimeColors.sceneFill)
     }
     
     func addSequentialLetterSequence(prompt: String) -> Bool {

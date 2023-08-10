@@ -48,6 +48,8 @@ class SceneModelSequence {
     }
     /// The scene that hosts the models
     private weak var controller: SceneController? = nil
+    /// The delegate that this notifies of its transitions
+    private weak var transitionDelegate: OnTransitionDelegate? = nil
     /// How the transition should be handled between signs
     private var transitionStyle: TransitionStyle
     /// True if the animation is playing
@@ -99,6 +101,10 @@ class SceneModelSequence {
             self.controller?.removeModel(model)
         }
         self.controller = nil
+    }
+    
+    func setOnTransitionDelegate(to delegate: OnTransitionDelegate?) {
+        self.transitionDelegate = delegate
     }
     
     func playSequence() {
@@ -256,6 +262,10 @@ class SceneModelSequence {
                 }
                 duration /= self.animationSpeed
                 self.transitionState = .transitioning
+                DispatchQueue.main.async {
+                    // Jump back to main thread
+                    self.transitionDelegate?.onTransition(duration: duration)
+                }
                 self.activeModel.match(nextModelRotation, animationDuration: duration) {
                     guard self.transitionState == .transitioning else {
                         self.transitionState = .notTransitioning

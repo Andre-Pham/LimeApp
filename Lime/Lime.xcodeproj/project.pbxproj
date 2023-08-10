@@ -72,6 +72,8 @@
 		B60A3A912A7E1CEE00499484 /* ScrubberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A902A7E1CEE00499484 /* ScrubberView.swift */; };
 		B60A3A932A7E29D300499484 /* LimeGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A922A7E29D300499484 /* LimeGestureView.swift */; };
 		B60A3A952A7E5B3D00499484 /* LetterDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A942A7E5B3D00499484 /* LetterDisplayView.swift */; };
+		B60A3A972A847CAB00499484 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A962A847CAB00499484 /* SettingsViewController.swift */; };
+		B60A3A992A84CCC500499484 /* OnTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A982A84CCC500499484 /* OnTransitionDelegate.swift */; };
 		B6DC10A82A7BF6E600C10100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */; };
 		B6DC10AA2A7BF6E600C10100 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */; };
 		B6DC10AC2A7BF6E600C10100 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10AB2A7BF6E600C10100 /* ViewController.swift */; };
@@ -181,6 +183,8 @@
 		B60A3A902A7E1CEE00499484 /* ScrubberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrubberView.swift; sourceTree = "<group>"; };
 		B60A3A922A7E29D300499484 /* LimeGestureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeGestureView.swift; sourceTree = "<group>"; };
 		B60A3A942A7E5B3D00499484 /* LetterDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterDisplayView.swift; sourceTree = "<group>"; };
+		B60A3A962A847CAB00499484 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		B60A3A982A84CCC500499484 /* OnTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTransitionDelegate.swift; sourceTree = "<group>"; };
 		B6DC10A42A7BF6E600C10100 /* Lime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -322,6 +326,7 @@
 				B60A39C92A7CA4A600499484 /* PresetModel.swift */,
 				B60A39CA2A7CA4A600499484 /* SceneModelSequence.swift */,
 				B60A39D02A7CA4A600499484 /* SceneController.swift */,
+				B60A3A982A84CCC500499484 /* OnTransitionDelegate.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -457,6 +462,7 @@
 			children = (
 				B6DC10AB2A7BF6E600C10100 /* ViewController.swift */,
 				B60A3A542A7CA72C00499484 /* SceneViewController.swift */,
+				B60A3A962A847CAB00499484 /* SettingsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -739,6 +745,7 @@
 				B6DC10DA2A7C027A00C10100 /* Environment.swift in Sources */,
 				B60A3A572A7CD66D00499484 /* LimeChipButton.swift in Sources */,
 				B60A39AC2A7CA49900499484 /* Math.swift in Sources */,
+				B60A3A972A847CAB00499484 /* SettingsViewController.swift in Sources */,
 				B60A39DF2A7CA4A600499484 /* SCNBox.swift in Sources */,
 				B60A39E32A7CA4A600499484 /* SceneCamera.swift in Sources */,
 				B60A39D42A7CA4A600499484 /* LimeSession.swift in Sources */,
@@ -750,6 +757,7 @@
 				B6DC10FE2A7C87E300C10100 /* LimeViewObserver.swift in Sources */,
 				B60A39E62A7CA4A600499484 /* SceneModel.swift in Sources */,
 				B60A3A552A7CA72C00499484 /* SceneViewController.swift in Sources */,
+				B60A3A992A84CCC500499484 /* OnTransitionDelegate.swift in Sources */,
 				B60A39D92A7CA4A600499484 /* JointPositions.swift in Sources */,
 				B6DC10F72A7C87E300C10100 /* LimeLabelledSwitch.swift in Sources */,
 				B60A3A602A7D106600499484 /* LimeChipToggle.swift in Sources */,

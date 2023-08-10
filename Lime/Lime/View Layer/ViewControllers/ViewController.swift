@@ -56,7 +56,7 @@ class ViewController: UITabBarController {
     
     let g = GreenViewController()
     let r = RedViewController()
-    let b = BlueViewController()
+    let b = SettingsViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -192,12 +192,5 @@ class RedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.red
-    }
-}
-
-class BlueViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.backgroundColor = UIColor.blue
     }
 }

@@ -17,6 +17,7 @@ enum LimeColors {
     
     // MARK: - Fill
     
+    static let sceneFill = UIColor(red: 0.95, green: 0.95, blue: 0.96, alpha: 1.00)
     static let backgroundFill = UIColor(named: "Assets#FFFFFF#000000")!
     static let primaryButtonFill = Self.accent
     static let secondaryButtonFill = Self.component

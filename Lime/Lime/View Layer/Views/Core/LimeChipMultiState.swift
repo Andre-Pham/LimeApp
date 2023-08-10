@@ -93,7 +93,7 @@ class LimeChipMultiState<T: Any>: LimeUIView {
     }
     
     @discardableResult
-    func setDefaultState(state: Int, trigger: Bool = false) -> Self {
+    func setState(state: Int, trigger: Bool = false) -> Self {
         self.stateIndex = state
         self.refresh()
         if trigger {

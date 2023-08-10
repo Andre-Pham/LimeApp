@@ -182,6 +182,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
                 let newSequenceMounted = LimeSession.inst.addInterpolatedLetterSequence(prompt: self.promptInput.text)
                 if newSequenceMounted {
                     self.letterDisplay.setPrompt(to: LimeSession.inst.activePrompt)
+                    self.resetToolbar()
                 }
             })
         
@@ -217,6 +218,11 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
                 }
             }
         }
+    }
+    
+    func resetToolbar() {
+        self.timeline.setProgress(to: 0.0)
+        self.animationSpeedMultiState.setState(state: 0)
     }
     
     @objc func dismissKeyboard() {

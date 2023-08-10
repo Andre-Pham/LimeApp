@@ -34,7 +34,6 @@ class SceneController {
     // MARK: - Setup
     
     func attach(to controller: UIViewController) {
-        self.sceneView.frame = controller.view.frame
         controller.view.subviews.forEach({
             if $0 is SCNView {
                 $0.removeFromSuperview()
@@ -44,6 +43,11 @@ class SceneController {
             self.sceneView.delegate = delegate
         }
         controller.view.addSubview(self.sceneView)
+        self.sceneView.translatesAutoresizingMaskIntoConstraints = false
+        self.sceneView.topAnchor.constraint(equalTo: controller.view.topAnchor).isActive = true
+        self.sceneView.bottomAnchor.constraint(equalTo: controller.view.bottomAnchor).isActive = true
+        self.sceneView.leadingAnchor.constraint(equalTo: controller.view.leadingAnchor).isActive = true
+        self.sceneView.trailingAnchor.constraint(equalTo: controller.view.trailingAnchor).isActive = true
     }
     
     // MARK: - Getters

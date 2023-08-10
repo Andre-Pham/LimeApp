@@ -313,6 +313,7 @@
 		B60A39C32A7CA4A600499484 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				B60A39CB2A7CA4A600499484 /* Node Wrappers */,
 				B60A39C42A7CA4A600499484 /* GeometryBuilder.swift */,
 				B60A39C52A7CA4A600499484 /* PresetNode.swift */,
 				B60A39C62A7CA4A600499484 /* NodeUtil.swift */,
@@ -320,7 +321,6 @@
 				B60A39C82A7CA4A600499484 /* ModelRotationsIndex.swift */,
 				B60A39C92A7CA4A600499484 /* PresetModel.swift */,
 				B60A39CA2A7CA4A600499484 /* SceneModelSequence.swift */,
-				B60A39CB2A7CA4A600499484 /* Node Wrappers */,
 				B60A39D02A7CA4A600499484 /* SceneController.swift */,
 			);
 			path = Scene;

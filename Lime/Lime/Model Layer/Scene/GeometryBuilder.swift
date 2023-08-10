@@ -8,6 +8,14 @@
 import Foundation
 import SceneKit
 
+/// A class for building geometry to insert into a scene.
+/// Example:
+/// ``` let sphere = GeometryBuilder.sphere(position: SCNVector3(), radius: 0.5)
+///     let sceneSphere = SceneGeometry(id: "origin", geometry: sphere)
+///         .setColor(to: .green)
+///         .setOpacity(to: 0.2)
+///     sceneController.addGeometry(sceneSphere)
+/// ```
 class GeometryBuilder {
     
     private var applyToNode: (_ node: SCNNode) -> Void = { node in /* Do nothing */ }

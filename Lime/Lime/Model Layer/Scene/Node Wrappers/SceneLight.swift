@@ -48,5 +48,17 @@ class SceneLight {
         self.light.type = type
         return self
     }
+    
+    @discardableResult
+    func direct(to position: SCNVector3) -> Self {
+        self.node.look(at: position)
+        return self
+    }
+    
+    @discardableResult
+    func setIntensity(to lumens: Double = 1000.0) -> Self {
+        self.light.intensity = lumens
+        return self
+    }
 
 }

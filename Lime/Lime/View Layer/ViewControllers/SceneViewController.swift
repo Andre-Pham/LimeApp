@@ -118,7 +118,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
                     }
                     self.lastPosition = clampedProportion
                     if let letterIndex = LimeSession.inst.sequence?.activeModelIndex {
-                        self.letterDisplay.centerLetter(letterIndex)
+                        self.letterDisplay.centerLetter(letterIndex, duration: 0.2)
                     }
                 }
             })
@@ -213,7 +213,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate {
                     self.lastPosition = proportion
                 }
                 if let letterIndex = LimeSession.inst.sequence?.activeModelIndex {
-                    self.letterDisplay.centerLetter(letterIndex)
+                    self.letterDisplay.centerLetter(letterIndex, duration: 0.5)
                 }
             }
         }

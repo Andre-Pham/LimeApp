@@ -104,7 +104,7 @@ class LetterDisplayView: LimeUIView {
         self.activePrompt = prompt
     }
     
-    func centerLetter(_ index: Int) {
+    func centerLetter(_ index: Int, duration: Double) {
         assert(index < self.letters.count, "Invalid index provided")
         guard index != self.activeLetterIndex else { return }
         
@@ -143,7 +143,7 @@ class LetterDisplayView: LimeUIView {
         // Get length from centre of stack to letter
         let offset = ((Double(self.letters.count) - 1.0)*32.0 + 50.0)/2.0 - letterCenter
         
-        UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: duration) {
             self.stack.setTransformation(to: CGAffineTransform(translationX: offset, y: 0))
         }
         

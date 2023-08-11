@@ -42,7 +42,7 @@ class SettingsViewController: UIViewController {
             .setText(to: "Settings")
             .constrainHorizontal()
             .setFont(to: LimeFont(font: LimeFonts.CircularStd.Black.rawValue, size: 48))
-            .setTextColor(to: LimeColors.accent)
+            .setTextColor(to: LimeColors.textDark)
         
         self.chiralitySetting
             .constrainHorizontal()

@@ -216,15 +216,15 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
                     self.timeline.setProgress(to: proportion)
                     self.lastPosition = proportion
                 }
+                if let letterIndex = LimeSession.inst.sequence?.activeModelIndex {
+                    self.letterDisplay.centerLetter(letterIndex, duration: 0.5)
+                }
             }
         }
     }
     
     func onTransition(duration: Double) {
-        if let letterIndex = LimeSession.inst.sequence?.activeModelIndex {
-            let letterCount = LimeSession.inst.activePrompt.count
-            self.letterDisplay.centerLetter((letterIndex + 1)%letterCount, duration: duration)
-        }
+        // Do nothing on transition - however this may become useful in the future
     }
     
     func resetToolbar() {

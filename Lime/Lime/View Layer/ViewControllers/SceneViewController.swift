@@ -222,7 +222,8 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
     
     func onTransition(duration: Double) {
         if let letterIndex = LimeSession.inst.sequence?.activeModelIndex {
-            self.letterDisplay.centerLetter(letterIndex, duration: duration)
+            let letterCount = LimeSession.inst.activePrompt.count
+            self.letterDisplay.centerLetter((letterIndex + 1)%letterCount, duration: duration)
         }
     }
     

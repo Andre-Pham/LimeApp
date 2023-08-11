@@ -63,7 +63,6 @@
 		B60A3A822A7DDD9C00499484 /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A6F2A7DDD9C00499484 /* Poppins-MediumItalic.ttf */; };
 		B60A3A832A7DDD9C00499484 /* CircularStd-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A702A7DDD9C00499484 /* CircularStd-BlackItalic.otf */; };
 		B60A3A842A7DDD9C00499484 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A712A7DDD9C00499484 /* Poppins-Bold.ttf */; };
-		B60A3A852A7DDD9C00499484 /* Gilroy-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A722A7DDD9C00499484 /* Gilroy-ExtraBold.otf */; };
 		B60A3A862A7DDD9C00499484 /* Poppins-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A732A7DDD9C00499484 /* Poppins-BoldItalic.ttf */; };
 		B60A3A872A7DDD9C00499484 /* IBMPlexMono-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A742A7DDD9C00499484 /* IBMPlexMono-BoldItalic.ttf */; };
 		B60A3A882A7DDD9C00499484 /* Poppins-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A752A7DDD9C00499484 /* Poppins-SemiBoldItalic.ttf */; };
@@ -74,6 +73,11 @@
 		B60A3A952A7E5B3D00499484 /* LetterDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A942A7E5B3D00499484 /* LetterDisplayView.swift */; };
 		B60A3A972A847CAB00499484 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A962A847CAB00499484 /* SettingsViewController.swift */; };
 		B60A3A992A84CCC500499484 /* OnTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A982A84CCC500499484 /* OnTransitionDelegate.swift */; };
+		B60A3AA62A86048700499484 /* Quicksand-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3AA22A86048700499484 /* Quicksand-SemiBold.ttf */; };
+		B60A3AA72A86048700499484 /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3AA32A86048700499484 /* Quicksand-Regular.ttf */; };
+		B60A3AA82A86048700499484 /* Quicksand-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3AA42A86048700499484 /* Quicksand-Light.ttf */; };
+		B60A3AA92A86048700499484 /* TiltWarp-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3AA52A86048700499484 /* TiltWarp-Regular.ttf */; };
+		B60A3AAB2A86428400499484 /* SettingsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3AAA2A86428400499484 /* SettingsRowView.swift */; };
 		B6DC10A82A7BF6E600C10100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */; };
 		B6DC10AA2A7BF6E600C10100 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */; };
 		B6DC10AC2A7BF6E600C10100 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10AB2A7BF6E600C10100 /* ViewController.swift */; };
@@ -174,7 +178,6 @@
 		B60A3A6F2A7DDD9C00499484 /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
 		B60A3A702A7DDD9C00499484 /* CircularStd-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-BlackItalic.otf"; sourceTree = "<group>"; };
 		B60A3A712A7DDD9C00499484 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
-		B60A3A722A7DDD9C00499484 /* Gilroy-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-ExtraBold.otf"; sourceTree = "<group>"; };
 		B60A3A732A7DDD9C00499484 /* Poppins-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BoldItalic.ttf"; sourceTree = "<group>"; };
 		B60A3A742A7DDD9C00499484 /* IBMPlexMono-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-BoldItalic.ttf"; sourceTree = "<group>"; };
 		B60A3A752A7DDD9C00499484 /* Poppins-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
@@ -185,6 +188,11 @@
 		B60A3A942A7E5B3D00499484 /* LetterDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterDisplayView.swift; sourceTree = "<group>"; };
 		B60A3A962A847CAB00499484 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		B60A3A982A84CCC500499484 /* OnTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTransitionDelegate.swift; sourceTree = "<group>"; };
+		B60A3AA22A86048700499484 /* Quicksand-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-SemiBold.ttf"; sourceTree = "<group>"; };
+		B60A3AA32A86048700499484 /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.ttf"; sourceTree = "<group>"; };
+		B60A3AA42A86048700499484 /* Quicksand-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Light.ttf"; sourceTree = "<group>"; };
+		B60A3AA52A86048700499484 /* TiltWarp-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TiltWarp-Regular.ttf"; sourceTree = "<group>"; };
+		B60A3AAA2A86428400499484 /* SettingsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRowView.swift; sourceTree = "<group>"; };
 		B6DC10A42A7BF6E600C10100 /* Lime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -345,13 +353,16 @@
 		B60A3A202A7CA50600499484 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				B60A3AA42A86048700499484 /* Quicksand-Light.ttf */,
+				B60A3AA32A86048700499484 /* Quicksand-Regular.ttf */,
+				B60A3AA22A86048700499484 /* Quicksand-SemiBold.ttf */,
+				B60A3AA52A86048700499484 /* TiltWarp-Regular.ttf */,
 				B60A3A632A7DDD9C00499484 /* CircularStd-Black.otf */,
 				B60A3A702A7DDD9C00499484 /* CircularStd-BlackItalic.otf */,
 				B60A3A662A7DDD9C00499484 /* CircularStd-Bold.otf */,
 				B60A3A642A7DDD9C00499484 /* CircularStd-BoldItalic.otf */,
 				B60A3A6B2A7DDD9C00499484 /* CircularStd-Medium.otf */,
 				B60A3A6E2A7DDD9C00499484 /* CircularStd-MediumItalic.otf */,
-				B60A3A722A7DDD9C00499484 /* Gilroy-ExtraBold.otf */,
 				B60A3A6A2A7DDD9C00499484 /* IBMPlexMono-Bold.ttf */,
 				B60A3A742A7DDD9C00499484 /* IBMPlexMono-BoldItalic.ttf */,
 				B60A3A652A7DDD9C00499484 /* IBMPlexMono-Medium.ttf */,
@@ -536,6 +547,7 @@
 			children = (
 				B60A3A902A7E1CEE00499484 /* ScrubberView.swift */,
 				B60A3A942A7E5B3D00499484 /* LetterDisplayView.swift */,
+				B60A3AAA2A86428400499484 /* SettingsRowView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -659,11 +671,13 @@
 				B6DC10B42A7BF6E700C10100 /* LaunchScreen.storyboard in Resources */,
 				B60A3A782A7DDD9C00499484 /* IBMPlexMono-Medium.ttf in Resources */,
 				B6DC11952A7CA28900C10100 /* Localizable.strings in Resources */,
+				B60A3AA92A86048700499484 /* TiltWarp-Regular.ttf in Resources */,
 				B60A3A7F2A7DDD9C00499484 /* IBMPlexMono-SemiBoldItalic.ttf in Resources */,
+				B60A3AA72A86048700499484 /* Quicksand-Regular.ttf in Resources */,
 				B60A3A842A7DDD9C00499484 /* Poppins-Bold.ttf in Resources */,
-				B60A3A852A7DDD9C00499484 /* Gilroy-ExtraBold.otf in Resources */,
 				B60A3A822A7DDD9C00499484 /* Poppins-MediumItalic.ttf in Resources */,
 				B60A3A812A7DDD9C00499484 /* CircularStd-MediumItalic.otf in Resources */,
+				B60A3AA82A86048700499484 /* Quicksand-Light.ttf in Resources */,
 				B60A3A7D2A7DDD9C00499484 /* IBMPlexMono-Bold.ttf in Resources */,
 				B60A3A4B2A7CA50600499484 /* Models.scnassets in Resources */,
 				B60A3A4C2A7CA50600499484 /* Assets.xcassets in Resources */,
@@ -674,6 +688,7 @@
 				B60A3A7A2A7DDD9C00499484 /* IBMPlexMono-MediumItalic.ttf in Resources */,
 				B60A3A832A7DDD9C00499484 /* CircularStd-BlackItalic.otf in Resources */,
 				B60A3A862A7DDD9C00499484 /* Poppins-BoldItalic.ttf in Resources */,
+				B60A3AA62A86048700499484 /* Quicksand-SemiBold.ttf in Resources */,
 				B60A3A872A7DDD9C00499484 /* IBMPlexMono-BoldItalic.ttf in Resources */,
 				B60A3A772A7DDD9C00499484 /* CircularStd-BoldItalic.otf in Resources */,
 				B60A3A7E2A7DDD9C00499484 /* CircularStd-Medium.otf in Resources */,
@@ -763,6 +778,7 @@
 				B60A3A602A7D106600499484 /* LimeChipToggle.swift in Sources */,
 				B60A39D12A7CA4A600499484 /* CaptureSession.swift in Sources */,
 				B60A39D72A7CA4A600499484 /* JointPosition.swift in Sources */,
+				B60A3AAB2A86428400499484 /* SettingsRowView.swift in Sources */,
 				B60A39E22A7CA4A600499484 /* SceneModelSequence.swift in Sources */,
 				B60A3A8A2A7DE00800499484 /* LimeFonts.swift in Sources */,
 			);

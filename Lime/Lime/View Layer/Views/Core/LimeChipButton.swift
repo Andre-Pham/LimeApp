@@ -42,7 +42,7 @@ class LimeChipButton: LimeUIView {
         self.imageView
             .constrainHorizontal(padding: LimeDimensions.chipPaddingHorizontal)
             .constrainVertical(padding: LimeDimensions.chipPaddingVertical)
-            .setColor(to: LimeColors.secondaryButtonText)
+            .setColor(to: LimeColors.textSecondaryButton)
     }
     
     @discardableResult

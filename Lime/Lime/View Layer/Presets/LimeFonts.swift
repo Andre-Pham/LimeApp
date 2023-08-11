@@ -26,12 +26,6 @@ enum LimeFonts {
         
     }
     
-    enum Gilroy: String {
-        
-        case ExtraBold = "Gilroy-ExtraBold"
-        
-    }
-    
     enum IBMPlexMono: String {
         
         case Bold = "IBMPlexMono-Bold"
@@ -51,6 +45,20 @@ enum LimeFonts {
         case MediumItalic = "Poppins-MediumItalic"
         case SemiBold = "Poppins-SemiBold"
         case SemiBoldItalic = "Poppins-SemiBoldItalic"
+        
+    }
+    
+    enum TiltWarp: String {
+        
+        case Regular = "TiltWarp-Regular"
+        
+    }
+    
+    enum Quicksand: String {
+        
+        case Light = "Quicksand-Light"
+        case Regular = "Quicksand-Regular"
+        case SemiBold = "Quicksand-SemiBold"
         
     }
     

@@ -68,10 +68,10 @@ class LimeChipMultiState<T: Any>: LimeUIView {
         
         self.imageView
             .setWidthConstraint(to: 30)
-            .setColor(to: LimeColors.secondaryButtonText)
+            .setColor(to: LimeColors.textSecondaryButton)
         
         self.label
-            .setFont(to: LimeFont(font: LimeFonts.IBMPlexMono.Medium.rawValue, size: 18))
+            .setFont(to: LimeFont(font: LimeFonts.Quicksand.SemiBold.rawValue, size: 20))
             .setTextAlignment(to: .center)
     }
     

@@ -199,13 +199,35 @@ extension LimeUIViewProtocol {
     }
     
     @discardableResult
-    func constrainToTop(of other: LimeUIView? = nil, padding: CGFloat = 0.0, respectSafeArea: Bool = true) -> Self {
+    func constrainToOnTop(of other: LimeUIView? = nil, padding: CGFloat = 0.0, respectSafeArea: Bool = true) -> Self {
         assert(!self.view.translatesAutoresizingMaskIntoConstraints, "Constraints requirement failed")
         guard let target = other?.view ?? self.view.superview else {
             fatalError("No constraint target found")
         }
         let anchor = respectSafeArea ? target.safeAreaLayoutGuide.topAnchor : target.topAnchor
         self.view.bottomAnchor.constraint(equalTo: anchor, constant: -padding).isActive = true
+        return self
+    }
+    
+    @discardableResult
+    func constrainToRightSide(of other: LimeUIView? = nil, padding: CGFloat = 0.0, respectSafeArea: Bool = true) -> Self {
+        assert(!self.view.translatesAutoresizingMaskIntoConstraints, "Constraints requirement failed")
+        guard let target = other?.view ?? self.view.superview else {
+            fatalError("No constraint target found")
+        }
+        let anchor = respectSafeArea ? target.safeAreaLayoutGuide.rightAnchor : target.rightAnchor
+        self.view.leftAnchor.constraint(equalTo: anchor, constant: padding).isActive = true
+        return self
+    }
+    
+    @discardableResult
+    func constrainToLeftSide(of other: LimeUIView? = nil, padding: CGFloat = 0.0, respectSafeArea: Bool = true) -> Self {
+        assert(!self.view.translatesAutoresizingMaskIntoConstraints, "Constraints requirement failed")
+        guard let target = other?.view ?? self.view.superview else {
+            fatalError("No constraint target found")
+        }
+        let anchor = respectSafeArea ? target.safeAreaLayoutGuide.leftAnchor : target.leftAnchor
+        self.view.rightAnchor.constraint(equalTo: anchor, constant: -padding).isActive = true
         return self
     }
     
@@ -277,6 +299,56 @@ extension LimeUIViewProtocol {
     func addBorder(width: CGFloat = 1.0, color: UIColor = UIColor.red) -> Self {
         self.view.layer.borderWidth = width
         self.view.layer.borderColor = color.cgColor
+        return self
+    }
+    
+    @discardableResult
+    func addSidedBorder(
+        width: CGFloat = 1.0,
+        color: UIColor = UIColor.red,
+        padding: Double = 0.0,
+        lengthPadding: Double = 0.0,
+        left: Bool = false,
+        right: Bool = false,
+        top: Bool = false,
+        bottom: Bool = false
+    ) -> Self {
+        if left {
+            let borderView = LimeView()
+            self.addSubview(borderView)
+            borderView
+                .constrainVertical(padding: lengthPadding)
+                .constrainToRightSide(padding: padding)
+                .setWidthConstraint(to: width)
+                .setBackgroundColor(to: color)
+        }
+        if right {
+            let borderView = LimeView()
+            self.addSubview(borderView)
+            borderView
+                .constrainVertical(padding: lengthPadding)
+                .constrainToLeftSide(padding: padding)
+                .setWidthConstraint(to: width)
+                .setBackgroundColor(to: color)
+        }
+        if top {
+            let borderView = LimeView()
+            self.addSubview(borderView)
+            borderView
+                .constrainHorizontal(padding: lengthPadding)
+                .constrainToOnTop(padding: padding)
+                .setHeightConstraint(to: width)
+                .setBackgroundColor(to: color)
+        }
+        if bottom {
+            let borderView = LimeView()
+            self.addSubview(borderView)
+            borderView
+                .constrainHorizontal(padding: lengthPadding)
+                .constrainToUnderneath(padding: padding)
+                .setHeightConstraint(to: width)
+                .setBackgroundColor(to: color)
+        }
         return self
     }
     

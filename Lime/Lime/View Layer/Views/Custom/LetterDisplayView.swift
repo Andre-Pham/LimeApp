@@ -40,7 +40,6 @@ class LetterDisplayView: LimeUIView {
     // Interpolate vs sequential
     // Hand colour
     // Hide/Show top word
-    // Hide/Show the timeline
     
     typealias LettersToRemove = [(char: Character, index: Int)]
     typealias LettersToInsert = [(char: Character, index: Int)]
@@ -117,7 +116,7 @@ class LetterDisplayView: LimeUIView {
         
         let letter = self.letters[index]
         letter
-            .setSize(to: 50)
+            .setSize(to: letter.text == "W" || letter.text == "M" ? 44 : 50)
             .setTextOpacity(to: 1.0)
         self.letterWidthConstraints[index].constant = 50
         

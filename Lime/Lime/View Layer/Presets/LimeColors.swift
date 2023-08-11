@@ -14,6 +14,7 @@ enum LimeColors {
     
     static let accent = UIColor(named: "Assets#FF666F#FF666F")!
     static let component = UIColor(named: "Assets#E4E5EA#E4E5EA")!
+    static let warning = UIColor(named: "Assets#E03131#E03131")!
     
     // MARK: - Fill
     
@@ -25,10 +26,10 @@ enum LimeColors {
     
     // MARK: - Text
     
-    static let bodyText = UIColor(named: "Assets#000000#FFFFFF")!
-    static let primaryButtonText = UIColor(named: "Assets#FFFFFF#000000")!
-    static let secondaryButtonText = UIColor(named: "Assets#000000#FFFFFF")!
-    static let tabBarText = UIColor(named: "Assets#000000#FFFFFF")!
+    static let textDark = UIColor(named: "Assets#000000#FFFFFF")!
+    static let textSemiDark = UIColor(named: "Assets#B2B3C2#818182")!
+    static let textPrimaryButton = UIColor(named: "Assets#FFFFFF#000000")!
+    static let textSecondaryButton = UIColor(named: "Assets#000000#FFFFFF")!
     
     
 }

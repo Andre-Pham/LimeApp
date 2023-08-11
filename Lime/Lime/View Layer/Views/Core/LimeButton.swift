@@ -25,26 +25,15 @@ class LimeButton: LimeUIView {
     override init() {
         super.init()
         var config = UIButton.Configuration.filled()
-        config.background.cornerRadius = 20
+        config.background.cornerRadius = LimeDimensions.foregroundCornerRadius
         config.contentInsets = NSDirectionalEdgeInsets(
-            top: 6,
+            top: 10,
             leading: 22,
-            bottom: 6,
+            bottom: 10,
             trailing: 22
         )
         self.button.configuration = config
         self.button.addTarget(self, action: #selector(self.onTapCallback), for: .touchUpInside)
-    }
-    
-    convenience init(label: String) {
-        self.init()
-        self.setLabel(to: label)
-    }
-    
-    convenience init(label: String, _ callback: @escaping () -> Void) {
-        self.init()
-        self.setLabel(to: label)
-        self.setOnTap(callback)
     }
     
     @discardableResult
@@ -70,6 +59,23 @@ class LimeButton: LimeUIView {
     @discardableResult
     func setAccessibilityLabel(to label: String) -> Self {
         self.button.accessibilityLabel = label
+        return self
+    }
+    
+    @discardableResult
+    func setFont(to font: UIFont, color: UIColor) -> Self {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: font,
+            .foregroundColor: color
+        ]
+        let attributedString = NSAttributedString(string: self.button.configuration?.title ?? "", attributes: attributes)
+        self.button.setAttributedTitle(attributedString, for: .normal)
+        return self
+    }
+    
+    @discardableResult
+    func isDisabled(_ isDisabled: Bool) -> Self {
+        self.button.isEnabled = !isDisabled
         return self
     }
     

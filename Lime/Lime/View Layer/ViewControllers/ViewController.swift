@@ -105,7 +105,7 @@ class ViewController: UITabBarController {
             
             label
                 .setText(to: tabBarItemLabels[index])
-                .setFont(to: LimeFont(font: LimeFonts.IBMPlexMono.Medium.rawValue, size: 10))
+                .setFont(to: LimeFont(font: LimeFonts.Quicksand.SemiBold.rawValue, size: 10))
                 .setSize(to: 10)
                 .setTextAlignment(to: .center)
                 .constrainHorizontal()

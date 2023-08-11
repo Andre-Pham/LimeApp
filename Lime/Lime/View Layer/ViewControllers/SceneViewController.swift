@@ -191,7 +191,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
         
         self.playButton
             .setColor(enabled: LimeColors.primaryButtonFill, disabled: LimeColors.primaryButtonFill)
-            .setIconColor(enabled: LimeColors.primaryButtonText, disabled: LimeColors.primaryButtonText)
+            .setIconColor(enabled: LimeColors.textPrimaryButton, disabled: LimeColors.textPrimaryButton)
             .setIcon(to: "play.fill", disabled: "pause.fill")
             .setState(enabled: true) // Start paused
             .setOnTap({ isPaused in

@@ -17,8 +17,8 @@ class LimeChipToggle: LimeUIView {
     private var disabledIcon: UIImage? = nil
     private var disabledColor = LimeColors.secondaryButtonFill
     private var enabledColor = LimeColors.primaryButtonFill
-    private var disabledIconColor = LimeColors.secondaryButtonText
-    private var enabledIconColor = LimeColors.primaryButtonText
+    private var disabledIconColor = LimeColors.textSecondaryButton
+    private var enabledIconColor = LimeColors.textPrimaryButton
     private(set) var isEnabled = false
     private var onTap: ((_ isEnabled: Bool) -> Void)? = nil
     public var view: UIView {

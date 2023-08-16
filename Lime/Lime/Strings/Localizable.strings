@@ -6,6 +6,10 @@
   
 */
 
+// MARK: - Titles
+
+"title.settings" = "Settings";
+
 // MARK: - Tab Bar
 
 "tabBar.generate3D" = "3D";
@@ -13,4 +17,20 @@
 "tabBar.info" = "Info";
 "tabBar.settings" = "Settings";
 
+// MARK: - Labels
+
 "label.prompt" = "Prompt";
+"label.chiralitySetting" = "Use left-handed Auslan signs";
+"label.interpolateSetting" = "Animate a transition between performed signs";
+"label.hidePromptSetting" = "Hide the letters being performed (above model)";
+
+// MARK: - Settings
+
+"setting.chirality" = "Left Handed Signs";
+"setting.interpolate" = "Interpolate";
+"setting.hidePrompt" = "Hide Prompt";
+
+// MARK: - Buttons
+
+"button.apply" = "Apply";
+"button.cancel" = "Cancel";

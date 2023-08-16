@@ -62,7 +62,7 @@ class ViewController: UITabBarController {
         super.viewDidLoad()
         
         self.tabBar.isTranslucent = false
-        self.tabBar.backgroundColor = UIColor.white
+        self.tabBar.backgroundColor = LimeColors.backgroundFill
         
         self.setViewControllers([self.sceneViewController, g, r, b], animated: false)
         
@@ -70,7 +70,7 @@ class ViewController: UITabBarController {
             .addSubview(self.tabBarStack)
         
         self.tabBarStack
-            .setBackgroundColor(to: .white)
+            .setBackgroundColor(to: LimeColors.backgroundFill)
             .constrainBottom()
             .matchWidthConstraint()
             .setHeightConstraint(to: Self.TAB_BAR_HEIGHT ?? Self.DEFAULT_TAB_BAR_HEIGHT)
@@ -93,19 +93,24 @@ class ViewController: UITabBarController {
             itemButton
                 .setIcon(to: Self.itemIcons[index])
                 .setIconSize(to: .mini)
-                .setColor(to: .white)
-                .setIconColor(to: .black)
+                .setColor(to: LimeColors.backgroundFill)
+                .setIconColor(to: LimeColors.textDark)
                 .constrainVertical()
                 .addSubview(label)
                 .setOnTap({
-                    self.getActiveItemButton().setIcon(to: Self.itemIcons[self.selectedIndex])
+                    self.getActiveItemButton()
+                        .setIcon(to: Self.itemIcons[self.selectedIndex])
+                        .setIconColor(to: LimeColors.textDark)
                     self.selectedIndex = index
-                    itemButton.setIcon(to: Self.selectedItemIcons[index])
+                    itemButton
+                        .setIcon(to: Self.selectedItemIcons[index])
+                        .setIconColor(to: LimeColors.textDark)
                 })
             
             label
                 .setText(to: tabBarItemLabels[index])
                 .setFont(to: LimeFont(font: LimeFonts.Quicksand.SemiBold.rawValue, size: 10))
+                .setTextColor(to: LimeColors.textDark)
                 .setSize(to: 10)
                 .setTextAlignment(to: .center)
                 .constrainHorizontal()
@@ -114,6 +119,7 @@ class ViewController: UITabBarController {
         
         self.item1Button
             .setIcon(to: Self.selectedItemIcons[0])
+            .setIconColor(to: LimeColors.textDark)
     }
     
     func getActiveItemButton() -> LimeIconButton {

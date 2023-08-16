@@ -78,6 +78,10 @@
 		B60A3AA82A86048700499484 /* Quicksand-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3AA42A86048700499484 /* Quicksand-Light.ttf */; };
 		B60A3AA92A86048700499484 /* TiltWarp-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3AA52A86048700499484 /* TiltWarp-Regular.ttf */; };
 		B60A3AAB2A86428400499484 /* SettingsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3AAA2A86428400499484 /* SettingsRowView.swift */; };
+		B60A3AAE2A8C62A700499484 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3AAD2A8C62A700499484 /* UIColor.swift */; };
+		B60A3AB12A8C666600499484 /* LimeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3AB02A8C666600499484 /* LimeSettings.swift */; };
+		B60A3AB32A8C666F00499484 /* SettingsSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3AB22A8C666F00499484 /* SettingsSession.swift */; };
+		B60A3AB52A8C949F00499484 /* OnSettingsChangedPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3AB42A8C949F00499484 /* OnSettingsChangedPublisher.swift */; };
 		B6DC10A82A7BF6E600C10100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */; };
 		B6DC10AA2A7BF6E600C10100 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */; };
 		B6DC10AC2A7BF6E600C10100 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10AB2A7BF6E600C10100 /* ViewController.swift */; };
@@ -193,6 +197,10 @@
 		B60A3AA42A86048700499484 /* Quicksand-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Light.ttf"; sourceTree = "<group>"; };
 		B60A3AA52A86048700499484 /* TiltWarp-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TiltWarp-Regular.ttf"; sourceTree = "<group>"; };
 		B60A3AAA2A86428400499484 /* SettingsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRowView.swift; sourceTree = "<group>"; };
+		B60A3AAD2A8C62A700499484 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		B60A3AB02A8C666600499484 /* LimeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeSettings.swift; sourceTree = "<group>"; };
+		B60A3AB22A8C666F00499484 /* SettingsSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSession.swift; sourceTree = "<group>"; };
+		B60A3AB42A8C949F00499484 /* OnSettingsChangedPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnSettingsChangedPublisher.swift; sourceTree = "<group>"; };
 		B6DC10A42A7BF6E600C10100 /* Lime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -251,10 +259,11 @@
 		B60A39A12A7CA49900499484 /* Swift */ = {
 			isa = PBXGroup;
 			children = (
-				B60A39A22A7CA49900499484 /* Math.swift */,
-				B60A39A32A7CA49900499484 /* Array.swift */,
+				B60A3AAC2A8C629C00499484 /* UIKit */,
 				B60A39A42A7CA49900499484 /* SceneKit */,
 				B60A39A82A7CA49900499484 /* CGRect */,
+				B60A39A22A7CA49900499484 /* Math.swift */,
+				B60A39A32A7CA49900499484 /* Array.swift */,
 				B60A39AA2A7CA49900499484 /* Double.swift */,
 				B60A39AB2A7CA49900499484 /* Float.swift */,
 			);
@@ -282,6 +291,7 @@
 		B60A39B42A7CA4A600499484 /* Model Layer */ = {
 			isa = PBXGroup;
 			children = (
+				B60A3AAF2A8C665900499484 /* Settings */,
 				B60A39B52A7CA4A600499484 /* Video */,
 				B60A39B82A7CA4A600499484 /* Core */,
 				B60A39BB2A7CA4A600499484 /* Recognition */,
@@ -389,6 +399,24 @@
 			path = Presets;
 			sourceTree = "<group>";
 		};
+		B60A3AAC2A8C629C00499484 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				B60A3AAD2A8C62A700499484 /* UIColor.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		B60A3AAF2A8C665900499484 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B60A3AB02A8C666600499484 /* LimeSettings.swift */,
+				B60A3AB22A8C666F00499484 /* SettingsSession.swift */,
+				B60A3AB42A8C949F00499484 /* OnSettingsChangedPublisher.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		B6DC109B2A7BF6E600C10100 = {
 			isa = PBXGroup;
 			children = (
@@ -441,10 +469,10 @@
 		B6DC10DB2A7C86A300C10100 /* View Layer */ = {
 			isa = PBXGroup;
 			children = (
-				B60A3A5A2A7CF6CB00499484 /* Presets */,
 				B6DC10DC2A7C86B600C10100 /* Environment */,
 				B6DC10DD2A7C86CB00C10100 /* Views */,
 				B6DC10DE2A7C86D300C10100 /* ViewControllers */,
+				B60A3A5A2A7CF6CB00499484 /* Presets */,
 				B6DC10DF2A7C86E000C10100 /* Assets */,
 				B6DC10E02A7C86E400C10100 /* Storyboards */,
 			);
@@ -723,6 +751,8 @@
 				B6DC10F32A7C87E300C10100 /* LimeIconButton.swift in Sources */,
 				B6DC10F42A7C87E300C10100 /* LimeSwitch.swift in Sources */,
 				B6DC10AC2A7BF6E600C10100 /* ViewController.swift in Sources */,
+				B60A3AB12A8C666600499484 /* LimeSettings.swift in Sources */,
+				B60A3AAE2A8C62A700499484 /* UIColor.swift in Sources */,
 				B60A39DC2A7CA4A600499484 /* GeometryBuilder.swift in Sources */,
 				B60A39AF2A7CA49900499484 /* SCNVector3.swift in Sources */,
 				B6DC10F62A7C87E300C10100 /* LimeVStack.swift in Sources */,
@@ -751,6 +781,7 @@
 				B60A39D32A7CA4A600499484 /* Clonable.swift in Sources */,
 				B60A39E72A7CA4A600499484 /* SceneController.swift in Sources */,
 				B60A3A4D2A7CA50600499484 /* ASLDemoClassifier 2.mlmodel in Sources */,
+				B60A3AB32A8C666F00499484 /* SettingsSession.swift in Sources */,
 				B60A39AE2A7CA49900499484 /* SCNNode.swift in Sources */,
 				B60A39DD2A7CA4A600499484 /* PresetNode.swift in Sources */,
 				B6DC10AA2A7BF6E600C10100 /* SceneDelegate.swift in Sources */,
@@ -781,6 +812,7 @@
 				B60A3AAB2A86428400499484 /* SettingsRowView.swift in Sources */,
 				B60A39E22A7CA4A600499484 /* SceneModelSequence.swift in Sources */,
 				B60A3A8A2A7DE00800499484 /* LimeFonts.swift in Sources */,
+				B60A3AB52A8C949F00499484 /* OnSettingsChangedPublisher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

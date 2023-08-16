@@ -16,6 +16,12 @@ class LimeSession {
     public let sceneController = SceneController()
     private(set) var activePrompt: String = ""
     private(set) var sequence: SceneModelSequence? = nil
+    private var fileDirectory: String {
+        return SettingsSession.inst.settings.leftHanded ? "alphabet3" : "alphabet1"
+    }
+    private var fileSuffix: String {
+        return SettingsSession.inst.settings.leftHanded ? "_3" : "_1"
+    }
     
     private init() { }
     
@@ -56,7 +62,21 @@ class LimeSession {
         self.sceneController.setBackgroundColor(to: LimeColors.sceneFill)
     }
     
-    func addSequentialLetterSequence(prompt: String) -> Bool {
+    func clearLetterSequence() {
+        self.sequence?.unmount()
+        self.sequence = nil
+        self.activePrompt = ""
+    }
+    
+    func addLetterSequence(prompt: String) -> Bool {
+        if SettingsSession.inst.settings.interpolate {
+            return self.addInterpolatedLetterSequence(prompt: prompt)
+        } else {
+            return self.addSequentialLetterSequence(prompt: prompt)
+        }
+    }
+    
+    private func addSequentialLetterSequence(prompt: String) -> Bool {
         let prompt = self.cleanPrompt(prompt: prompt)
         guard prompt != self.activePrompt else {
             return false
@@ -68,15 +88,17 @@ class LimeSession {
             return true
         }
         var sceneModels = [SceneModel]()
+        let subDir = self.fileDirectory
+        let suffix = self.fileSuffix
         for char in prompt {
-            sceneModels.append(SceneModel(subDir: "alphabet1", fileName: "\(char)_1.dae", description: char.uppercased()))
+            sceneModels.append(SceneModel(subDir: subDir, fileName: "\(char)\(suffix).dae", description: char.uppercased()))
         }
         self.sequence = SceneModelSequence(transition: .sequential, sceneModels)
         self.sequence?.mount(to: self.sceneController)
         return true
     }
     
-    func addInterpolatedLetterSequence(prompt: String) -> Bool {
+    private func addInterpolatedLetterSequence(prompt: String) -> Bool {
         let prompt = self.cleanPrompt(prompt: prompt)
         guard prompt != self.activePrompt else {
             return false
@@ -88,8 +110,10 @@ class LimeSession {
             return true
         }
         var sceneModels = [SceneModel]()
+        let subDir = self.fileDirectory
+        let suffix = self.fileSuffix
         for char in prompt {
-            sceneModels.append(SceneModel(subDir: "alphabet1", fileName: "\(char)_1.dae", description: char.uppercased(), startTrim: 0.2, endTrim: 0.0))
+            sceneModels.append(SceneModel(subDir: subDir, fileName: "\(char)\(suffix).dae", description: char.uppercased(), startTrim: 0.2, endTrim: 0.0))
         }
         self.sequence = SceneModelSequence(transition: .interpolated, sceneModels)
         self.sequence?.mount(to: self.sceneController)

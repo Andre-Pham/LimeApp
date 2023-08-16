@@ -16,6 +16,14 @@ class SceneModelSequence {
         case interpolated
         /// Begin playing the next animation before the previous has finished using padded frames (play both animations at once)
         //case interlaced // CURRENTLY NOT SUPPORTED
+        
+        /// The amount of idle period to be used as a buffer for transitions
+        public var idlePeriod: Double {
+            switch self {
+            case .sequential: return 0.0
+            case .interpolated: return 0.45
+            }
+        }
     }
     
     enum TransitionState {
@@ -23,10 +31,6 @@ class SceneModelSequence {
         case transitioning
         case interrupted
     }
-    
-    /// Each model animation has a period at the end where it holds an "idle pose" - this defines the length of that period
-    /// Animation transitions between models begin at the start of the idle period
-    private static let IDLE_PERIOD = 0.45
     
     /// The sequence models, in order of play
     private let sceneModels: [SceneModel]
@@ -52,6 +56,9 @@ class SceneModelSequence {
     private weak var transitionDelegate: OnTransitionDelegate? = nil
     /// How the transition should be handled between signs
     private var transitionStyle: TransitionStyle
+    /// Each model animation has a period at the end where it holds an "idle pose" - this defines the length of that period
+    /// Animation transitions between models begin at the start of the idle period
+    private let idlePeriod: Double
     /// True if the animation is playing
     public var isPlaying: Bool {
         return self.activeModel.isPlaying
@@ -63,20 +70,20 @@ class SceneModelSequence {
     }
     /// The entire sequence's duration (seconds)
     public var totalDuration: Double {
-        return self.sceneModels.reduce(0.0) { $0 + $1.animationDuration - Self.IDLE_PERIOD }
+        return self.sceneModels.reduce(0.0) { $0 + $1.animationDuration - self.idlePeriod }
     }
     /// The proportion of progress through the the entire sequence's animation, in the range [0, 1]
     public var animationProgressProportion: Double {
         var durationProgress = 0.0
         for index in 0..<self.activeModelIndex {
-            durationProgress += self.sceneModels[index].animationDuration - Self.IDLE_PERIOD
+            durationProgress += self.sceneModels[index].animationDuration - self.idlePeriod
         }
         durationProgress += self.activeModel.animationProgress
         return durationProgress/self.totalDuration
     }
     /// The progress (seconds) at which the active model becomes idle
     private var idleStart: Double {
-        return self.activeModel.animationDuration - Self.IDLE_PERIOD
+        return self.activeModel.animationDuration - self.idlePeriod
     }
     /// If the current animation playing is idle
     private var isIdle = false
@@ -85,6 +92,7 @@ class SceneModelSequence {
     
     init(transition: TransitionStyle, _ sceneModels: [SceneModel]) {
         self.transitionStyle = transition
+        self.idlePeriod = transition.idlePeriod
         assert(!sceneModels.isEmpty, "Scene model sequence must be provided with at least one model")
         self.sceneModels = sceneModels
         self.activeModel.onAnimationCompletion = self.onActiveAnimationCompletion
@@ -152,7 +160,7 @@ class SceneModelSequence {
     func clampToAnimationStart(proportion: Double) -> Double {
         var relativeModelProportions = [Double]()
         for sceneModel in self.sceneModels {
-            relativeModelProportions.append((sceneModel.animationDuration - Self.IDLE_PERIOD)/self.totalDuration)
+            relativeModelProportions.append((sceneModel.animationDuration - self.idlePeriod)/self.totalDuration)
         }
         assert(isEqual(relativeModelProportions.reduce(0.0, +), 1.0), "The sum of the relative proportions of each model should be equal to 1")
         var intervals: [Double] = [0.0]
@@ -170,13 +178,13 @@ class SceneModelSequence {
         guard isLess(proportion, 1.0) else {
             let lastSceneModelIndex = self.sceneModels.count - 1
             let lastSceneModelDuration = self.sceneModels[lastSceneModelIndex].animationDuration
-            let endOfLastAnimation = (lastSceneModelDuration - Self.IDLE_PERIOD)/lastSceneModelDuration
+            let endOfLastAnimation = (lastSceneModelDuration - self.idlePeriod)/lastSceneModelDuration
             self.switchActiveModel(to: lastSceneModelIndex, animationTime: endOfLastAnimation)
             return
         }
         var relativeModelProportions = [Double]()
         for sceneModel in self.sceneModels {
-            relativeModelProportions.append((sceneModel.animationDuration - Self.IDLE_PERIOD)/self.totalDuration)
+            relativeModelProportions.append((sceneModel.animationDuration - self.idlePeriod)/self.totalDuration)
         }
         assert(isEqual(relativeModelProportions.reduce(0.0, +), 1.0), "The sum of the relative proportions of each model should be equal to 1")
         var proportionMeasure = proportion

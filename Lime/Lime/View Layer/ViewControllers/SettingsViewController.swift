@@ -19,6 +19,10 @@ class SettingsViewController: UIViewController {
     private let buttonStack = LimeHStack()
     private let applyButton = LimeButton()
     private let cancelButton = LimeButton()
+    private var resetActive = false
+    private var buttonsActive: Bool {
+        return self.buttonStack.superView != nil
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,18 +39,18 @@ class SettingsViewController: UIViewController {
             .addView(self.chiralitySetting)
             .addView(self.interpolateSetting)
             .addView(self.hidePromptSetting)
-            .addView(self.buttonStack)
+            .addGap(size: 8)
             .addSpacer()
         
         self.mainTitle
-            .setText(to: "Settings")
+            .setText(to: Strings("title.settings").local)
             .constrainHorizontal()
             .setFont(to: LimeFont(font: LimeFonts.CircularStd.Black.rawValue, size: 48))
             .setTextColor(to: LimeColors.textDark)
         
         self.chiralitySetting
             .constrainHorizontal()
-            .setText(label: "Left Handed Signs", subLabel: "Use left-handed Auslan signs")
+            .setText(label: Strings("setting.chirality").local, subLabel: Strings("label.chiralitySetting").local)
         self.chiralitySetting.toggle
             .addState(value: false, icon: "hand.wave")
             .addState(value: true, icon: "hand.wave.fill")
@@ -60,11 +64,15 @@ class SettingsViewController: UIViewController {
                         .setBackgroundColor(to: LimeColors.secondaryButtonFill)
                         .setForegroundColor(to: LimeColors.textSecondaryButton)
                 }
+                if !self.resetActive {
+                    SettingsSession.inst.settings.setLeftHandedSetting(to: isToggled)
+                    self.updateActionButtons()
+                }
             })
         
         self.interpolateSetting
             .constrainHorizontal()
-            .setText(label: "Interpolate", subLabel: "Animate a transition between performed signs")
+            .setText(label: Strings("setting.interpolate").local, subLabel: Strings("label.interpolateSetting").local)
         self.interpolateSetting.toggle
             .addState(value: false, icon: "square.stack.3d.down.right")
             .addState(value: true, icon: "square.stack.3d.down.right.fill")
@@ -78,11 +86,15 @@ class SettingsViewController: UIViewController {
                         .setBackgroundColor(to: LimeColors.secondaryButtonFill)
                         .setForegroundColor(to: LimeColors.textSecondaryButton)
                 }
+                if !self.resetActive {
+                    SettingsSession.inst.settings.setInterpolateSetting(to: isToggled)
+                    self.updateActionButtons()
+                }
             })
         
         self.hidePromptSetting
             .constrainHorizontal()
-            .setText(label: "Hide Prompt", subLabel: "Hide the letters being performed (above model)")
+            .setText(label: Strings("setting.hidePrompt").local, subLabel: Strings("label.hidePromptSetting").local)
         self.hidePromptSetting.toggle
             .addState(value: false, icon: "a.square")
             .addState(value: true, icon: "a.square.fill")
@@ -96,14 +108,13 @@ class SettingsViewController: UIViewController {
                         .setBackgroundColor(to: LimeColors.secondaryButtonFill)
                         .setForegroundColor(to: LimeColors.textSecondaryButton)
                 }
+                if !self.resetActive {
+                    SettingsSession.inst.settings.setHidePromptSetting(to: isToggled)
+                    self.updateActionButtons()
+                }
             })
         
-        // TODO: When the user makes changes, do a addViewAnimated sorta thing with
-        // TODO: the button stack so that when changes are made, the cancel/apply
-        // TODO: buttons are animated in
-        
         self.buttonStack
-            .constrainHorizontal()
             .setDistribution(to: .fillEqually)
             .setSpacing(to: 20)
             .addView(self.cancelButton)
@@ -111,13 +122,58 @@ class SettingsViewController: UIViewController {
         
         self.applyButton
             .setColor(to: LimeColors.primaryButtonFill)
-            .setLabel(to: "Apply Changes")
+            .setLabel(to: Strings("button.apply").local)
             .setFont(to: LimeFont(font: LimeFonts.Poppins.Bold.rawValue, size: 18), color: LimeColors.textPrimaryButton)
+            .setOnTap({
+                SettingsSession.inst.applySettings()
+                self.updateActionButtons()
+            })
         
         self.cancelButton
             .setColor(to: LimeColors.secondaryButtonFill)
-            .setLabel(to: "Cancel Changes")
+            .setLabel(to: Strings("button.cancel").local)
             .setFont(to: LimeFont(font: LimeFonts.Poppins.Bold.rawValue, size: 18), color: LimeColors.warning)
+            .setOnTap({
+                SettingsSession.inst.cancelChanges()
+                self.reset()
+            })
+        
+        self.matchTogglesToSettings()
+    }
+    
+    private func reset() {
+        self.resetActive = true
+        UIView.animate(withDuration: 0.2, animations: {
+            self.matchTogglesToSettings()
+        })
+        self.updateActionButtons()
+        self.resetActive = false
+    }
+    
+    private func matchTogglesToSettings() {
+        self.chiralitySetting.toggle.setState(state: SettingsSession.inst.settings.leftHanded ? 1 : 0, trigger: true)
+        self.interpolateSetting.toggle.setState(state: SettingsSession.inst.settings.interpolate ? 1 : 0, trigger: true)
+        self.hidePromptSetting.toggle.setState(state: SettingsSession.inst.settings.hidePrompt ? 1 : 0, trigger: true)
+    }
+    
+    private func updateActionButtons() {
+        if SettingsSession.inst.isEditing && !self.buttonsActive {
+            self.addActionButtons()
+        } else if !SettingsSession.inst.isEditing && self.buttonsActive {
+            self.removeActionButtons()
+        }
+    }
+    
+    private func addActionButtons() {
+        self.stack.insertView(self.buttonStack, at: self.stack.viewCount - 1)
+        self.buttonStack.constrainHorizontal()
+        self.buttonStack.animateEntrance()
+    }
+    
+    private func removeActionButtons() {
+        self.buttonStack.animateExit() {
+            self.buttonStack.removeFromSuperView()
+        }
     }
     
 }

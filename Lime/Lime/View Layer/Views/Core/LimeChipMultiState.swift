@@ -20,6 +20,7 @@ class LimeChipMultiState<T: Any>: LimeUIView {
     private var icons = [UIImage]()
     private(set) var stateIndex = 0
     private var onChange: ((_ value: T) -> Void)? = nil
+    private var foregroundColor = LimeColors.textSecondaryButton
     public var view: UIView {
         return self.container.view
     }
@@ -82,6 +83,8 @@ class LimeChipMultiState<T: Any>: LimeUIView {
         if let label = self.activeLabel {
             self.label.setText(to: label)
         }
+        self.imageView.setColor(to: self.foregroundColor)
+        self.label.setTextColor(to: self.foregroundColor)
     }
     
     @discardableResult
@@ -138,7 +141,8 @@ class LimeChipMultiState<T: Any>: LimeUIView {
     
     @discardableResult
     func setForegroundColor(to color: UIColor) -> Self {
-        self.imageView.setColor(to: color)
+        self.foregroundColor = color
+        self.refresh()
         return self
     }
     

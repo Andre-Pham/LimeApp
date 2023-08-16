@@ -83,6 +83,22 @@ class LimeHStack: LimeUIView {
     }
     
     @discardableResult
+    func addGap(size: Double, position: Int? = nil, animated: Bool = false) -> Self {
+        let gapView = LimeView()
+            .setWidthConstraint(to: size)
+        if animated {
+            self.addViewAnimated(gapView, position: position)
+        } else {
+            if let position {
+                self.insertView(gapView, at: position)
+            } else {
+                self.addView(gapView)
+            }
+        }
+        return self
+    }
+    
+    @discardableResult
     func insertView(_ view: LimeUIView, at index: Int) -> Self {
         self.stack.insertArrangedSubview(view.view, at: index)
         return self

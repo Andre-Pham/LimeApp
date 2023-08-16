@@ -55,6 +55,13 @@ extension LimeUIViewProtocol {
         return self.view.rightAnchor
     }
     
+    public var superView: LimeView? {
+        if let superView = self.view.superview {
+            return LimeView(superView)
+        }
+        return nil
+    }
+    
     // MARK: - Views
     
     @discardableResult
@@ -393,6 +400,28 @@ extension LimeUIViewProtocol {
         UIView.animate(withDuration: 0.35, delay: 0, options: [.curveEaseInOut, .allowUserInteraction, .beginFromCurrentState], animations: {
             self.view.alpha = 1.0
         }, completion: nil)
+        return self
+    }
+    
+    @discardableResult
+    func animateEntrance() -> Self {
+        self.setOpacity(to: 0.0)
+        self.view.transform = CGAffineTransform(translationX: 0, y: -10)
+        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 2, options: [.curveEaseOut], animations: {
+            self.setOpacity(to: 1.0)
+            self.view.transform = CGAffineTransform(translationX: 0, y: 0)
+        })
+        return self
+    }
+    
+    @discardableResult
+    func animateExit(onCompletion: @escaping () -> Void) -> Self {
+        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 2, options: [.curveEaseOut], animations: {
+            self.setOpacity(to: 0.0)
+            self.view.transform = CGAffineTransform(translationX: 0, y: -10)
+        }) { _ in
+            onCompletion()
+        }
         return self
     }
     

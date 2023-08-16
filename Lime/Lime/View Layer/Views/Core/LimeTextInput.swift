@@ -24,8 +24,8 @@ class LimeTextInput: LimeUIView {
     override init() {
         super.init()
         self.view.translatesAutoresizingMaskIntoConstraints = false
-        self.setText(to: text)
-        self.setFont(to: UIFont.boldSystemFont(ofSize: 13.0))
+        self.setFont(to: LimeFont(font: LimeFonts.Poppins.Medium.rawValue, size: 18))
+        self.setTextColor(to: LimeColors.textDark)
         self.setBackgroundColor(to: LimeColors.secondaryButtonFill)
         self.setCornerRadius(to: LimeDimensions.foregroundCornerRadius)
         self.setHeightConstraint(to: LimeDimensions.textInputHeight)
@@ -83,6 +83,12 @@ class LimeTextInput: LimeUIView {
     @discardableResult
     func setText(to text: String?) -> Self {
         self.textInput.text = text
+        return self
+    }
+    
+    @discardableResult
+    func setTextColor(to color: UIColor) -> Self {
+        self.textInput.textColor = color
         return self
     }
     

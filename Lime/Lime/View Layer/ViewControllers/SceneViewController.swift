@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SceneKit
 
-class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransitionDelegate {
+class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransitionDelegate, OnSettingsChangedSubscriber {
     
     /// The constraint used to anchor the toolbar - adjustable and animatable for keyboard avoidance
     private var toolbarConstraint: NSLayoutConstraint!
@@ -44,6 +44,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
         super.viewDidLoad()
         self.attach(scene: LimeSession.inst.sceneController)
         LimeSession.inst.setupScene()
+        OnSettingsChangedPublisher.subscribe(self)
         
         self.root
             .setBackgroundColor(to: LimeColors.sceneFill)
@@ -52,7 +53,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
         
         self.toolbarContainer
             .constrainHorizontal(padding: LimeDimensions.toolbarPaddingHorizontal)
-            .setBackgroundColor(to: .white)
+            .setBackgroundColor(to: LimeColors.toolbarFill)
             .setCornerRadius(to: LimeDimensions.backgroundCornerRadius)
             .addSubview(self.toolbarStack)
         
@@ -66,6 +67,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
         self.letterDisplay
             .constrainCenterHorizontal()
             .constrainTop(padding: 50)
+            .setHidden(to: SettingsSession.inst.settings.hidePrompt)
 
         self.toolbarStack
             .constrainAllSides(padding: LimeDimensions.toolbarInnerPadding)
@@ -172,15 +174,13 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
             .setPlaceholder(to: Strings("label.prompt").local)
             .setSubmitLabel(to: .go)
             .setOnFocus({
-                if !self.playButton.isEnabled {
-                    self.playButton.setState(enabled: true, trigger: true)
-                }
+                self.pauseScene()
             })
             .setOnUnfocus({
                 self.promptInput.setText(to: LimeSession.inst.activePrompt)
             })
             .setOnSubmit({
-                let newSequenceMounted = LimeSession.inst.addInterpolatedLetterSequence(prompt: self.promptInput.text)
+                let newSequenceMounted = LimeSession.inst.addLetterSequence(prompt: self.promptInput.text)
                 if newSequenceMounted {
                     LimeSession.inst.sequence?.setOnTransitionDelegate(to: self)
                     self.letterDisplay.setPrompt(to: LimeSession.inst.activePrompt)
@@ -232,6 +232,12 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
         self.animationSpeedMultiState.setState(state: 0)
     }
     
+    func pauseScene() {
+        if !self.playButton.isEnabled {
+            self.playButton.setState(enabled: true, trigger: true)
+        }
+    }
+    
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }
@@ -258,6 +264,21 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
         UIView.animate(withDuration: 0.3) { [weak self] in
             self?.toolbarConstraint.constant = -LimeDimensions.toolbarPaddingBottom
             self?.view.layoutIfNeeded()
+        }
+    }
+    
+    func onSettingsChanged(old: LimeSettings, new: LimeSettings) {
+        if old.hidePrompt != new.hidePrompt {
+            self.letterDisplay.setHidden(to: new.hidePrompt)
+        }
+        if old.interpolate != new.interpolate || old.leftHanded != new.leftHanded {
+            self.pauseScene()
+            if !LimeSession.inst.activePrompt.isEmpty {
+                LimeSession.inst.clearLetterSequence()
+                self.promptInput.setText(to: "")
+                self.letterDisplay.setPrompt(to: LimeSession.inst.activePrompt)
+                self.resetToolbar()
+            }
         }
     }
     

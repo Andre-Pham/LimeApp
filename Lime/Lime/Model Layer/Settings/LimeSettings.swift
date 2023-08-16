@@ -6,14 +6,38 @@
 //
 
 import Foundation
+import SwiftSerialization
 
-class LimeSettings: Clonable {
+class LimeSettings: Storable, Clonable {
     
     private(set) var leftHanded = false
     private(set) var interpolate = true
     private(set) var hidePrompt = false
     
     init() { }
+    
+    // MARK: - Serialization
+    
+    private enum Field: String {
+        case leftHanded
+        case interpolate
+        case hidePrompt
+    }
+    
+    required init(dataObject: DataObject) {
+        self.leftHanded = dataObject.get(Field.leftHanded.rawValue, onFail: false)
+        self.interpolate = dataObject.get(Field.interpolate.rawValue, onFail: true)
+        self.hidePrompt = dataObject.get(Field.hidePrompt.rawValue, onFail: false)
+    }
+    
+    func toDataObject() -> DataObject {
+        return DataObject(self)
+            .add(key: Field.leftHanded.rawValue, value: self.leftHanded)
+            .add(key: Field.interpolate.rawValue, value: self.interpolate)
+            .add(key: Field.hidePrompt.rawValue, value: self.hidePrompt)
+    }
+    
+    // MARK: - Functions
     
     required init(_ original: LimeSettings) {
         self.leftHanded = original.leftHanded

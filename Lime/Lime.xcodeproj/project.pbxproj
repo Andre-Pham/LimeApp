@@ -82,6 +82,8 @@
 		B60A3AB12A8C666600499484 /* LimeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3AB02A8C666600499484 /* LimeSettings.swift */; };
 		B60A3AB32A8C666F00499484 /* SettingsSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3AB22A8C666F00499484 /* SettingsSession.swift */; };
 		B60A3AB52A8C949F00499484 /* OnSettingsChangedPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3AB42A8C949F00499484 /* OnSettingsChangedPublisher.swift */; };
+		B60A3B2A2A8D046600499484 /* SwiftSerialization in Frameworks */ = {isa = PBXBuildFile; productRef = B60A3B292A8D046600499484 /* SwiftSerialization */; };
+		B60A3B2D2A8D057100499484 /* DatabaseSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3B2C2A8D057100499484 /* DatabaseSession.swift */; };
 		B6DC10A82A7BF6E600C10100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */; };
 		B6DC10AA2A7BF6E600C10100 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */; };
 		B6DC10AC2A7BF6E600C10100 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10AB2A7BF6E600C10100 /* ViewController.swift */; };
@@ -201,6 +203,7 @@
 		B60A3AB02A8C666600499484 /* LimeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeSettings.swift; sourceTree = "<group>"; };
 		B60A3AB22A8C666F00499484 /* SettingsSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSession.swift; sourceTree = "<group>"; };
 		B60A3AB42A8C949F00499484 /* OnSettingsChangedPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnSettingsChangedPublisher.swift; sourceTree = "<group>"; };
+		B60A3B2C2A8D057100499484 /* DatabaseSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseSession.swift; sourceTree = "<group>"; };
 		B6DC10A42A7BF6E600C10100 /* Lime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -236,6 +239,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B60A3B2A2A8D046600499484 /* SwiftSerialization in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +295,7 @@
 		B60A39B42A7CA4A600499484 /* Model Layer */ = {
 			isa = PBXGroup;
 			children = (
+				B60A3B2B2A8D056700499484 /* Database */,
 				B60A3AAF2A8C665900499484 /* Settings */,
 				B60A39B52A7CA4A600499484 /* Video */,
 				B60A39B82A7CA4A600499484 /* Core */,
@@ -415,6 +420,14 @@
 				B60A3AB42A8C949F00499484 /* OnSettingsChangedPublisher.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		B60A3B2B2A8D056700499484 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				B60A3B2C2A8D057100499484 /* DatabaseSession.swift */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 		B6DC109B2A7BF6E600C10100 = {
@@ -605,6 +618,9 @@
 			dependencies = (
 			);
 			name = Lime;
+			packageProductDependencies = (
+				B60A3B292A8D046600499484 /* SwiftSerialization */,
+			);
 			productName = Lime;
 			productReference = B6DC10A42A7BF6E600C10100 /* Lime.app */;
 			productType = "com.apple.product-type.application";
@@ -677,6 +693,9 @@
 				Base,
 			);
 			mainGroup = B6DC109B2A7BF6E600C10100;
+			packageReferences = (
+				B60A3B282A8D046600499484 /* XCRemoteSwiftPackageReference "SwiftSerialization" */,
+			);
 			productRefGroup = B6DC10A52A7BF6E600C10100 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -773,6 +792,7 @@
 				B60A39E02A7CA4A600499484 /* ModelRotationsIndex.swift in Sources */,
 				B60A3A952A7E5B3D00499484 /* LetterDisplayView.swift in Sources */,
 				B6DC10FB2A7C87E300C10100 /* LimeText.swift in Sources */,
+				B60A3B2D2A8D057100499484 /* DatabaseSession.swift in Sources */,
 				B60A39D82A7CA4A600499484 /* SignRecogniser.swift in Sources */,
 				B60A3A5E2A7CF70000499484 /* LimeDimensions.swift in Sources */,
 				B60A39B02A7CA49900499484 /* SCNVector4.swift in Sources */,
@@ -992,11 +1012,13 @@
 				DEVELOPMENT_TEAM = W9DP42NB5D;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Lime/App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Spell Auslan";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1020,11 +1042,13 @@
 				DEVELOPMENT_TEAM = W9DP42NB5D;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Lime/App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Spell Auslan";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1154,6 +1178,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B60A3B282A8D046600499484 /* XCRemoteSwiftPackageReference "SwiftSerialization" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Andre-Pham/SwiftSerialization";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B60A3B292A8D046600499484 /* SwiftSerialization */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B60A3B282A8D046600499484 /* XCRemoteSwiftPackageReference "SwiftSerialization" */;
+			productName = SwiftSerialization;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B6DC109C2A7BF6E600C10100 /* Project object */;
 }

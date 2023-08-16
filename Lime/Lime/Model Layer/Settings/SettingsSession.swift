@@ -32,12 +32,18 @@ class SettingsSession {
     
     private init() { }
     
+    func restoreFromLocalSave() {
+        if let savedSettings = DatabaseSession.inst.readSettings() {
+            self.storedSettings = savedSettings
+        }
+    }
+    
     func applySettings() {
         guard let editedSettings else {
             return
         }
         OnSettingsChangedPublisher.publish(old: self.storedSettings, new: editedSettings)
-        // TODO: Write settings to storage
+        DatabaseSession.inst.saveSettings(editedSettings, completion: { _ in })
         
         self.storedSettings = editedSettings
         self.editedSettings = nil

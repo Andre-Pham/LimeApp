@@ -10,7 +10,7 @@ import UIKit
 class ViewController: UITabBarController {
     
     /// The height of the tab bar - nil indicates to use the default
-    private static let TAB_BAR_HEIGHT: Double? = nil
+    private var tabBarHeightOverride: Double? = nil
     /// 49 is the default height of UITabBar
     private static let DEFAULT_TAB_BAR_HEIGHT = 49.0
     /// The tab bar item icons
@@ -33,7 +33,7 @@ class ViewController: UITabBarController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        if let height = Self.TAB_BAR_HEIGHT {
+        if let height = self.tabBarHeightOverride {
             var tabFrame = self.tabBar.frame
             tabFrame.size.height = Environment.inst.bottomSafeAreaHeight + height
             tabFrame.origin.y = view.frame.size.height - (Environment.inst.bottomSafeAreaHeight + height)
@@ -44,7 +44,7 @@ class ViewController: UITabBarController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        if let height = Self.TAB_BAR_HEIGHT {
+        if let height = self.tabBarHeightOverride {
             additionalSafeAreaInsets = UIEdgeInsets(
                 top: 0,
                 left: 0,
@@ -61,6 +61,16 @@ class ViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if Environment.inst.bottomSafeAreaHeight < 24 {
+            // If there's very little safe area, the text becomes cramped in proximity to the home indicator
+            // To resolve this, we set a height override
+            self.tabBarHeightOverride = 40.0
+        }
+        
+        if Environment.inst.deviceIsTiny {
+            self.tabBarHeightOverride = nil
+        }
+        
         self.tabBar.isTranslucent = false
         self.tabBar.backgroundColor = LimeColors.backgroundFill
         
@@ -73,7 +83,7 @@ class ViewController: UITabBarController {
             .setBackgroundColor(to: LimeColors.backgroundFill)
             .constrainBottom()
             .matchWidthConstraint()
-            .setHeightConstraint(to: Self.TAB_BAR_HEIGHT ?? Self.DEFAULT_TAB_BAR_HEIGHT)
+            .setHeightConstraint(to: self.tabBarHeightOverride ?? Self.DEFAULT_TAB_BAR_HEIGHT)
             .setDistribution(to: .fillEqually)
             .addView(self.item1Button)
             .addView(self.item2Button)
@@ -107,14 +117,17 @@ class ViewController: UITabBarController {
                         .setIconColor(to: LimeColors.textDark)
                 })
             
-            label
-                .setText(to: tabBarItemLabels[index])
-                .setFont(to: LimeFont(font: LimeFonts.Quicksand.SemiBold.rawValue, size: 10))
-                .setTextColor(to: LimeColors.textDark)
-                .setSize(to: 10)
-                .setTextAlignment(to: .center)
-                .constrainHorizontal()
-                .constrainToUnderneath(padding: -6)
+            if !Environment.inst.deviceIsTiny {
+                label
+                    .setText(to: tabBarItemLabels[index])
+                    .setFont(to: LimeFont(font: LimeFonts.Quicksand.SemiBold.rawValue, size: 10))
+                    .setTextColor(to: LimeColors.textDark)
+                    .setSize(to: 10)
+                    .setTextAlignment(to: .center)
+                    .constrainHorizontal()
+                    .setHeightConstraint(to: 20) // Set height constraint so underneath padding is consistent across devices
+                    .constrainToUnderneath(padding: -8)
+            }
         }
         
         self.item1Button
@@ -164,7 +177,7 @@ class GreenViewController: UIViewController {
             myView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
             // Set constant height for myView
-            myView.heightAnchor.constraint(equalToConstant: 50)
+            myView.heightAnchor.constraint(equalToConstant: 5)
         ])
         
         if true {
@@ -188,7 +201,7 @@ class GreenViewController: UIViewController {
                 myView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
                 
                 // Set constant height for myView
-                myView.heightAnchor.constraint(equalToConstant: 50)
+                myView.heightAnchor.constraint(equalToConstant: 5)
             ])
         }
     }

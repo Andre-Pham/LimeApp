@@ -27,6 +27,18 @@ class Environment {
         return self.safeAreaInsets?.bottom ?? 0.0
     }
     
+    public var screenHeight: CGFloat {
+        return UIScreen.main.bounds.height
+    }
+    
+    public var screenWidth: CGFloat {
+        return UIScreen.main.bounds.width
+    }
+    
+    public var deviceIsTiny: Bool {
+        return isLessOrEqual(self.screenHeight, 667)
+    }
+    
     private init() { }
     
 }

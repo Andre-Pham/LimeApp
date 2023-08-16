@@ -86,7 +86,7 @@
 		B60A3B2D2A8D057100499484 /* DatabaseSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3B2C2A8D057100499484 /* DatabaseSession.swift */; };
 		B6DC10A82A7BF6E600C10100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */; };
 		B6DC10AA2A7BF6E600C10100 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */; };
-		B6DC10AC2A7BF6E600C10100 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10AB2A7BF6E600C10100 /* ViewController.swift */; };
+		B6DC10AC2A7BF6E600C10100 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10AB2A7BF6E600C10100 /* TabBarViewController.swift */; };
 		B6DC10AF2A7BF6E600C10100 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6DC10AD2A7BF6E600C10100 /* Main.storyboard */; };
 		B6DC10B42A7BF6E700C10100 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6DC10B22A7BF6E700C10100 /* LaunchScreen.storyboard */; };
 		B6DC10BF2A7BF6E700C10100 /* LimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10BE2A7BF6E700C10100 /* LimeTests.swift */; };
@@ -207,7 +207,7 @@
 		B6DC10A42A7BF6E600C10100 /* Lime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B6DC10AB2A7BF6E600C10100 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B6DC10AB2A7BF6E600C10100 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		B6DC10AE2A7BF6E600C10100 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B6DC10B32A7BF6E700C10100 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B6DC10B52A7BF6E700C10100 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -512,7 +512,7 @@
 		B6DC10DE2A7C86D300C10100 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				B6DC10AB2A7BF6E600C10100 /* ViewController.swift */,
+				B6DC10AB2A7BF6E600C10100 /* TabBarViewController.swift */,
 				B60A3A542A7CA72C00499484 /* SceneViewController.swift */,
 				B60A3A962A847CAB00499484 /* SettingsViewController.swift */,
 			);
@@ -769,7 +769,7 @@
 				B60A3A8F2A7DF19600499484 /* LimeChipMultiState.swift in Sources */,
 				B6DC10F32A7C87E300C10100 /* LimeIconButton.swift in Sources */,
 				B6DC10F42A7C87E300C10100 /* LimeSwitch.swift in Sources */,
-				B6DC10AC2A7BF6E600C10100 /* ViewController.swift in Sources */,
+				B6DC10AC2A7BF6E600C10100 /* TabBarViewController.swift in Sources */,
 				B60A3AB12A8C666600499484 /* LimeSettings.swift in Sources */,
 				B60A3AAE2A8C62A700499484 /* UIColor.swift in Sources */,
 				B60A39DC2A7CA4A600499484 /* GeometryBuilder.swift in Sources */,

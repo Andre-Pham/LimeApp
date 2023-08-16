@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TabBarViewController.swift
 //  Lime
 //
 //  Created by Andre Pham on 4/8/2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UITabBarController {
+class TabBarViewController: UITabBarController {
     
     /// The height of the tab bar - nil indicates to use the default
     private var tabBarHeightOverride: Double? = nil
@@ -19,6 +19,7 @@ class ViewController: UITabBarController {
     private static let selectedItemIcons = ["cube.transparent.fill", "hand.wave.fill", "info.circle.fill", "gearshape.fill"]
     
     private let sceneViewController = SceneViewController()
+    private let settingsViewController = SettingsViewController()
     
     private var root: LimeView { return LimeView(self.view) }
     private let tabBarStack = LimeHStack()
@@ -56,7 +57,6 @@ class ViewController: UITabBarController {
     
     let g = GreenViewController()
     let r = RedViewController()
-    let b = SettingsViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +74,7 @@ class ViewController: UITabBarController {
         self.tabBar.isTranslucent = false
         self.tabBar.backgroundColor = LimeColors.backgroundFill
         
-        self.setViewControllers([self.sceneViewController, g, r, b], animated: false)
+        self.setViewControllers([self.sceneViewController, g, r, self.settingsViewController], animated: false)
         
         self.root
             .addSubview(self.tabBarStack)
@@ -108,9 +108,16 @@ class ViewController: UITabBarController {
                 .constrainVertical()
                 .addSubview(label)
                 .setOnTap({
-                    self.getActiveItemButton()
-                        .setIcon(to: Self.itemIcons[self.selectedIndex])
-                        .setIconColor(to: LimeColors.textDark)
+                    // Very occasionally if you switch fast enough you can skip an update if you only update the selected item icon
+                    // To avoid this we just refresh all of them
+                    for itemButtonIndex in self.itemButtons.indices {
+                        guard itemButtonIndex != index else {
+                            continue
+                        }
+                        self.itemButtons[itemButtonIndex]
+                            .setIcon(to: Self.itemIcons[itemButtonIndex])
+                            .setIconColor(to: LimeColors.textDark)
+                    }
                     self.selectedIndex = index
                     itemButton
                         .setIcon(to: Self.selectedItemIcons[index])
@@ -133,21 +140,6 @@ class ViewController: UITabBarController {
         self.item1Button
             .setIcon(to: Self.selectedItemIcons[0])
             .setIconColor(to: LimeColors.textDark)
-    }
-    
-    func getActiveItemButton() -> LimeIconButton {
-        switch self.selectedIndex {
-        case 0:
-            return self.item1Button
-        case 1:
-            return self.item2Button
-        case 2:
-            return self.item3Button
-        case 3:
-            return self.item4Button
-        default:
-            fatalError("Not enough item buttons implemented to support selected index \(self.selectedIndex)")
-        }
     }
     
 }

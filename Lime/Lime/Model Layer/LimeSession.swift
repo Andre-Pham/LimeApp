@@ -25,11 +25,26 @@ class LimeSession {
     
     private init() { }
     
+    func resetCamera() {
+        self.sceneController.positionCameraFacing(
+            position: SCNVector3(0.04, 1.66, 0.39),
+            positionOffset: SCNVector3(0.0, 0.06, 0.0),
+            targetOffset: SCNVector3(0.0, 0.06, 0.0),
+            distance: 0.8
+        )
+    }
+    
+    func pointCameraToModel() {
+        if let activeModel = self.sequence?.activeModel {
+            self.sceneController.positionCameraFacing(model: activeModel)
+        }
+    }
+    
     func setupScene() {
         let camera = SceneCamera()
-            .setPosition(to: SCNVector3(x: 0, y: 0, z: 15))
             .setRenderDistance(far: 500.0, near: 0.0)
         self.sceneController.setCamera(to: camera)
+        self.resetCamera()
         
         let highlights = SceneLight(id: "highlights")
             .setType(to: .omni)

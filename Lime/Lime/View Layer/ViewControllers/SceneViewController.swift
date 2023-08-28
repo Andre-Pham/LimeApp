@@ -164,9 +164,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
         self.cameraButton
             .setIcon(to: "cube.transparent")
             .setOnTap({
-                if let activeModel = LimeSession.inst.sequence?.activeModel {
-                    LimeSession.inst.sceneController.positionCameraFacing(model: activeModel)
-                }
+                LimeSession.inst.resetCamera()
             })
         
         self.promptInput

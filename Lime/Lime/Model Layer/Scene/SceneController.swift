@@ -174,6 +174,24 @@ class SceneController {
     
     // MARK: - Camera
     
+    func positionCameraFacing(
+        position: SCNVector3,
+        positionOffset: SCNVector3 = SCNVector3(),
+        targetOffset: SCNVector3 = SCNVector3(),
+        distance: Float = 1.0
+    ) {
+        self.sceneCamera
+            .setPosition(to: SCNVector3Make(
+                position.x + positionOffset.x,
+                position.y + positionOffset.y,
+                position.z + positionOffset.z + distance
+            ))
+            .direct(to: position + targetOffset)
+        // If not set, camera control can be affected by other scene nodes
+        // https://github.com/Andre-Pham/SpellApp/issues/1
+        self.sceneView.defaultCameraController.target = position
+    }
+    
     func positionCameraFacing(node: PresetNode, distance: Float = 1.0) {
         self.positionCameraFacing(nodeName: node.name, distance: distance)
     }
@@ -182,7 +200,7 @@ class SceneController {
         self.positionCameraFacing(nodeName: model.name, distance: distance)
     }
     
-    private func positionCameraFacing(nodeName: String, distance: Float = 120.0) {
+    private func positionCameraFacing(nodeName: String, distance: Float = 1.0) {
         guard let node = self.scene.rootNode.childNode(withName: nodeName, recursively: true)?.presentation else {
             assertionFailure("Node '\(nodeName)' could not be found")
             return

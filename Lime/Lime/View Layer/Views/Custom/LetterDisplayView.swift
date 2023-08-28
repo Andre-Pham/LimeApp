@@ -22,11 +22,11 @@ class LetterDisplayView: LimeUIView {
     
     // ALSO to do:
     // Import other (new) models
-    // Fix sequential mode (vs interpolation)
+    // [DONE] Fix sequential mode (vs interpolation)
     // [DONE] Remove square at top when there's no prompt
-    // Fix the fact that W and M appear a little too large relative to the square
+    // [DONE] Fix the fact that W and M appear a little too large relative to the square
     // [DONE] Set the hand colour to be reasonable
-    // Fix fonts???
+    // [DONE] Fix fonts???
     // [DONE] Add lighting to the back so if you look at hands from the back it's still lit up
     // Add a new "rotate" button that allows you to see the hands from the back instead of the front
     // Add markers in the timeline that seperate the letters
@@ -34,12 +34,9 @@ class LetterDisplayView: LimeUIView {
     // BUG: If you set a new prompt, then play, then pause at some point, then show the timeline, the timeline is wrong
     // [DONE] Fix rotating the device messes up the frame of the scene
     // Fix the tab bar implementation, since I really scrapped it together (especially for iPads)
-    
-    // Settings:
-    // Left/Right hands
-    // Interpolate vs sequential
-    // Hand colour
-    // Hide/Show top word
+    // Fix unbalanced spacing for letter display, e.g. TWAT has odd spacing
+    // Fix dark mode buttons
+    // Fix the fact that when you first start an animation, you are zoomed out
     
     typealias LettersToRemove = [(char: Character, index: Int)]
     typealias LettersToInsert = [(char: Character, index: Int)]

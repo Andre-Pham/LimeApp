@@ -93,7 +93,7 @@ class LetterDisplayView: LimeUIView {
         
         for letter in lettersToInsert {
             let view = LimeText()
-                .setFont(to: LimeFont(font: LimeFonts.CircularStd.Black.rawValue, size: 32))
+                .setFont(to: LimeFont(font: LimeFonts.Poppins.Bold.rawValue, size: 32))
                 .setText(to: String(letter.char))
                 .setTextAlignment(to: .center)
                 .setTextOpacity(to: 0.4)

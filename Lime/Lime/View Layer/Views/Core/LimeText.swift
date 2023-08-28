@@ -26,6 +26,7 @@ class LimeText: LimeUIView {
         self.toggleWordWrapping(to: true)
         self.setText(to: text)
         self.setFont(to: UIFont.boldSystemFont(ofSize: 13.0))
+        self.setTextColor(to: LimeColors.textDark)
     }
     
     @discardableResult

@@ -15,14 +15,16 @@ public func LimeFont(font: String, size: Double) -> UIFont {
 
 enum LimeFonts {
     
-    enum CircularStd: String {
+    enum PlusJakartaSans: String {
         
-        case Black = "CircularStd-Black"
-        case BlackItalic = "CircularStd-BlackItalic"
-        case Bold = "CircularStd-Bold"
-        case BoldItalic = "CircularStd-BoldItalic"
-        case Medium = "CircularStd-Medium"
-        case MediumItalic = "CircularStd-Italic"
+        case ExtraBold = "PlusJakartaSans-ExtraBold"
+        case ExtraBoldItalic = "PlusJakartaSans-ExtraBoldItalic"
+        case Bold = "PlusJakartaSans-Bold"
+        case BoldItalic = "PlusJakartaSans-BoldItalic"
+        case SemiBold = "PlusJakartaSans-SemiBold"
+        case SemiBoldItalic = "PlusJakartaSans-SemiBoldItalic"
+        case Medium = "PlusJakartaSans-Medium"
+        case MediumBoldItalic = "PlusJakartaSans-MediumItalic"
         
     }
     
@@ -45,12 +47,6 @@ enum LimeFonts {
         case MediumItalic = "Poppins-MediumItalic"
         case SemiBold = "Poppins-SemiBold"
         case SemiBoldItalic = "Poppins-SemiBoldItalic"
-        
-    }
-    
-    enum TiltWarp: String {
-        
-        case Regular = "TiltWarp-Regular"
         
     }
     

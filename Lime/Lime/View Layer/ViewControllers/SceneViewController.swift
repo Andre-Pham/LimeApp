@@ -184,7 +184,9 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
                 if newSequenceMounted {
                     LimeSession.inst.sequence?.setOnTransitionDelegate(to: self)
                     self.letterDisplay.setPrompt(to: LimeSession.inst.activePrompt)
-                    self.letterDisplay.centerLetter(0, duration: 0.5)
+                    if !LimeSession.inst.activePrompt.isEmpty {
+                        self.letterDisplay.centerLetter(0, duration: 0.5)
+                    }
                     self.resetToolbar()
                 }
             })

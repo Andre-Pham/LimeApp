@@ -45,7 +45,7 @@ class SettingsViewController: UIViewController {
         self.mainTitle
             .setText(to: Strings("title.settings").local)
             .constrainHorizontal()
-            .setFont(to: LimeFont(font: LimeFonts.CircularStd.Black.rawValue, size: 48))
+            .setFont(to: LimeFont(font: LimeFonts.PlusJakartaSans.ExtraBold.rawValue, size: 48))
             .setTextColor(to: LimeColors.textDark)
         
         self.chiralitySetting
@@ -132,7 +132,7 @@ class SettingsViewController: UIViewController {
         self.cancelButton
             .setColor(to: LimeColors.secondaryButtonFill)
             .setLabel(to: Strings("button.cancel").local)
-            .setFont(to: LimeFont(font: LimeFonts.Poppins.Bold.rawValue, size: 18), color: LimeColors.warning)
+            .setFont(to: LimeFont(font: LimeFonts.Poppins.Bold.rawValue, size: 18), color: LimeColors.accent)
             .setOnTap({
                 SettingsSession.inst.cancelChanges()
                 self.reset()

@@ -48,20 +48,14 @@
 		B60A3A5E2A7CF70000499484 /* LimeDimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A5D2A7CF70000499484 /* LimeDimensions.swift */; };
 		B60A3A602A7D106600499484 /* LimeChipToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A5F2A7D106600499484 /* LimeChipToggle.swift */; };
 		B60A3A622A7D1B9F00499484 /* LimeTextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A612A7D1B9F00499484 /* LimeTextInput.swift */; };
-		B60A3A762A7DDD9C00499484 /* CircularStd-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A632A7DDD9C00499484 /* CircularStd-Black.otf */; };
-		B60A3A772A7DDD9C00499484 /* CircularStd-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A642A7DDD9C00499484 /* CircularStd-BoldItalic.otf */; };
 		B60A3A782A7DDD9C00499484 /* IBMPlexMono-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A652A7DDD9C00499484 /* IBMPlexMono-Medium.ttf */; };
-		B60A3A792A7DDD9C00499484 /* CircularStd-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A662A7DDD9C00499484 /* CircularStd-Bold.otf */; };
 		B60A3A7A2A7DDD9C00499484 /* IBMPlexMono-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A672A7DDD9C00499484 /* IBMPlexMono-MediumItalic.ttf */; };
 		B60A3A7B2A7DDD9C00499484 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A682A7DDD9C00499484 /* Poppins-Medium.ttf */; };
 		B60A3A7C2A7DDD9C00499484 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A692A7DDD9C00499484 /* Poppins-SemiBold.ttf */; };
 		B60A3A7D2A7DDD9C00499484 /* IBMPlexMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A6A2A7DDD9C00499484 /* IBMPlexMono-Bold.ttf */; };
-		B60A3A7E2A7DDD9C00499484 /* CircularStd-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A6B2A7DDD9C00499484 /* CircularStd-Medium.otf */; };
 		B60A3A7F2A7DDD9C00499484 /* IBMPlexMono-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A6C2A7DDD9C00499484 /* IBMPlexMono-SemiBoldItalic.ttf */; };
 		B60A3A802A7DDD9C00499484 /* IBMPlexMono-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A6D2A7DDD9C00499484 /* IBMPlexMono-SemiBold.ttf */; };
-		B60A3A812A7DDD9C00499484 /* CircularStd-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A6E2A7DDD9C00499484 /* CircularStd-MediumItalic.otf */; };
 		B60A3A822A7DDD9C00499484 /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A6F2A7DDD9C00499484 /* Poppins-MediumItalic.ttf */; };
-		B60A3A832A7DDD9C00499484 /* CircularStd-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A702A7DDD9C00499484 /* CircularStd-BlackItalic.otf */; };
 		B60A3A842A7DDD9C00499484 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A712A7DDD9C00499484 /* Poppins-Bold.ttf */; };
 		B60A3A862A7DDD9C00499484 /* Poppins-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A732A7DDD9C00499484 /* Poppins-BoldItalic.ttf */; };
 		B60A3A872A7DDD9C00499484 /* IBMPlexMono-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A742A7DDD9C00499484 /* IBMPlexMono-BoldItalic.ttf */; };
@@ -76,7 +70,6 @@
 		B60A3AA62A86048700499484 /* Quicksand-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3AA22A86048700499484 /* Quicksand-SemiBold.ttf */; };
 		B60A3AA72A86048700499484 /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3AA32A86048700499484 /* Quicksand-Regular.ttf */; };
 		B60A3AA82A86048700499484 /* Quicksand-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3AA42A86048700499484 /* Quicksand-Light.ttf */; };
-		B60A3AA92A86048700499484 /* TiltWarp-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3AA52A86048700499484 /* TiltWarp-Regular.ttf */; };
 		B60A3AAB2A86428400499484 /* SettingsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3AAA2A86428400499484 /* SettingsRowView.swift */; };
 		B60A3AAE2A8C62A700499484 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3AAD2A8C62A700499484 /* UIColor.swift */; };
 		B60A3AB12A8C666600499484 /* LimeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3AB02A8C666600499484 /* LimeSettings.swift */; };
@@ -84,6 +77,14 @@
 		B60A3AB52A8C949F00499484 /* OnSettingsChangedPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3AB42A8C949F00499484 /* OnSettingsChangedPublisher.swift */; };
 		B60A3B2A2A8D046600499484 /* SwiftSerialization in Frameworks */ = {isa = PBXBuildFile; productRef = B60A3B292A8D046600499484 /* SwiftSerialization */; };
 		B60A3B2D2A8D057100499484 /* DatabaseSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3B2C2A8D057100499484 /* DatabaseSession.swift */; };
+		B67F06722A9CD97500591789 /* PlusJakartaSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06702A9CD97500591789 /* PlusJakartaSans-ExtraBold.ttf */; };
+		B67F06732A9CD97500591789 /* PlusJakartaSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06712A9CD97500591789 /* PlusJakartaSans-ExtraBoldItalic.ttf */; };
+		B67F067A2A9CDA9E00591789 /* PlusJakartaSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06742A9CDA9E00591789 /* PlusJakartaSans-SemiBoldItalic.ttf */; };
+		B67F067B2A9CDA9E00591789 /* PlusJakartaSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06752A9CDA9E00591789 /* PlusJakartaSans-Medium.ttf */; };
+		B67F067C2A9CDA9E00591789 /* PlusJakartaSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06762A9CDA9E00591789 /* PlusJakartaSans-SemiBold.ttf */; };
+		B67F067D2A9CDA9E00591789 /* PlusJakartaSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06772A9CDA9E00591789 /* PlusJakartaSans-MediumItalic.ttf */; };
+		B67F067E2A9CDA9E00591789 /* PlusJakartaSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06782A9CDA9E00591789 /* PlusJakartaSans-Bold.ttf */; };
+		B67F067F2A9CDA9E00591789 /* PlusJakartaSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06792A9CDA9E00591789 /* PlusJakartaSans-BoldItalic.ttf */; };
 		B6DC10A82A7BF6E600C10100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */; };
 		B6DC10AA2A7BF6E600C10100 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */; };
 		B6DC10AC2A7BF6E600C10100 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10AB2A7BF6E600C10100 /* TabBarViewController.swift */; };
@@ -169,20 +170,14 @@
 		B60A3A5D2A7CF70000499484 /* LimeDimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeDimensions.swift; sourceTree = "<group>"; };
 		B60A3A5F2A7D106600499484 /* LimeChipToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeChipToggle.swift; sourceTree = "<group>"; };
 		B60A3A612A7D1B9F00499484 /* LimeTextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeTextInput.swift; sourceTree = "<group>"; };
-		B60A3A632A7DDD9C00499484 /* CircularStd-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Black.otf"; sourceTree = "<group>"; };
-		B60A3A642A7DDD9C00499484 /* CircularStd-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-BoldItalic.otf"; sourceTree = "<group>"; };
 		B60A3A652A7DDD9C00499484 /* IBMPlexMono-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-Medium.ttf"; sourceTree = "<group>"; };
-		B60A3A662A7DDD9C00499484 /* CircularStd-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Bold.otf"; sourceTree = "<group>"; };
 		B60A3A672A7DDD9C00499484 /* IBMPlexMono-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-MediumItalic.ttf"; sourceTree = "<group>"; };
 		B60A3A682A7DDD9C00499484 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		B60A3A692A7DDD9C00499484 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		B60A3A6A2A7DDD9C00499484 /* IBMPlexMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-Bold.ttf"; sourceTree = "<group>"; };
-		B60A3A6B2A7DDD9C00499484 /* CircularStd-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Medium.otf"; sourceTree = "<group>"; };
 		B60A3A6C2A7DDD9C00499484 /* IBMPlexMono-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		B60A3A6D2A7DDD9C00499484 /* IBMPlexMono-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-SemiBold.ttf"; sourceTree = "<group>"; };
-		B60A3A6E2A7DDD9C00499484 /* CircularStd-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-MediumItalic.otf"; sourceTree = "<group>"; };
 		B60A3A6F2A7DDD9C00499484 /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
-		B60A3A702A7DDD9C00499484 /* CircularStd-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-BlackItalic.otf"; sourceTree = "<group>"; };
 		B60A3A712A7DDD9C00499484 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		B60A3A732A7DDD9C00499484 /* Poppins-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BoldItalic.ttf"; sourceTree = "<group>"; };
 		B60A3A742A7DDD9C00499484 /* IBMPlexMono-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -197,13 +192,20 @@
 		B60A3AA22A86048700499484 /* Quicksand-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-SemiBold.ttf"; sourceTree = "<group>"; };
 		B60A3AA32A86048700499484 /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.ttf"; sourceTree = "<group>"; };
 		B60A3AA42A86048700499484 /* Quicksand-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Light.ttf"; sourceTree = "<group>"; };
-		B60A3AA52A86048700499484 /* TiltWarp-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TiltWarp-Regular.ttf"; sourceTree = "<group>"; };
 		B60A3AAA2A86428400499484 /* SettingsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRowView.swift; sourceTree = "<group>"; };
 		B60A3AAD2A8C62A700499484 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		B60A3AB02A8C666600499484 /* LimeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeSettings.swift; sourceTree = "<group>"; };
 		B60A3AB22A8C666F00499484 /* SettingsSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSession.swift; sourceTree = "<group>"; };
 		B60A3AB42A8C949F00499484 /* OnSettingsChangedPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnSettingsChangedPublisher.swift; sourceTree = "<group>"; };
 		B60A3B2C2A8D057100499484 /* DatabaseSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseSession.swift; sourceTree = "<group>"; };
+		B67F06702A9CD97500591789 /* PlusJakartaSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		B67F06712A9CD97500591789 /* PlusJakartaSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		B67F06742A9CDA9E00591789 /* PlusJakartaSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		B67F06752A9CDA9E00591789 /* PlusJakartaSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-Medium.ttf"; sourceTree = "<group>"; };
+		B67F06762A9CDA9E00591789 /* PlusJakartaSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		B67F06772A9CDA9E00591789 /* PlusJakartaSans-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-MediumItalic.ttf"; sourceTree = "<group>"; };
+		B67F06782A9CDA9E00591789 /* PlusJakartaSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-Bold.ttf"; sourceTree = "<group>"; };
+		B67F06792A9CDA9E00591789 /* PlusJakartaSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		B6DC10A42A7BF6E600C10100 /* Lime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -368,16 +370,17 @@
 		B60A3A202A7CA50600499484 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				B67F06702A9CD97500591789 /* PlusJakartaSans-ExtraBold.ttf */,
+				B67F06712A9CD97500591789 /* PlusJakartaSans-ExtraBoldItalic.ttf */,
+				B67F06782A9CDA9E00591789 /* PlusJakartaSans-Bold.ttf */,
+				B67F06792A9CDA9E00591789 /* PlusJakartaSans-BoldItalic.ttf */,
+				B67F06752A9CDA9E00591789 /* PlusJakartaSans-Medium.ttf */,
+				B67F06772A9CDA9E00591789 /* PlusJakartaSans-MediumItalic.ttf */,
+				B67F06762A9CDA9E00591789 /* PlusJakartaSans-SemiBold.ttf */,
+				B67F06742A9CDA9E00591789 /* PlusJakartaSans-SemiBoldItalic.ttf */,
 				B60A3AA42A86048700499484 /* Quicksand-Light.ttf */,
 				B60A3AA32A86048700499484 /* Quicksand-Regular.ttf */,
 				B60A3AA22A86048700499484 /* Quicksand-SemiBold.ttf */,
-				B60A3AA52A86048700499484 /* TiltWarp-Regular.ttf */,
-				B60A3A632A7DDD9C00499484 /* CircularStd-Black.otf */,
-				B60A3A702A7DDD9C00499484 /* CircularStd-BlackItalic.otf */,
-				B60A3A662A7DDD9C00499484 /* CircularStd-Bold.otf */,
-				B60A3A642A7DDD9C00499484 /* CircularStd-BoldItalic.otf */,
-				B60A3A6B2A7DDD9C00499484 /* CircularStd-Medium.otf */,
-				B60A3A6E2A7DDD9C00499484 /* CircularStd-MediumItalic.otf */,
 				B60A3A6A2A7DDD9C00499484 /* IBMPlexMono-Bold.ttf */,
 				B60A3A742A7DDD9C00499484 /* IBMPlexMono-BoldItalic.ttf */,
 				B60A3A652A7DDD9C00499484 /* IBMPlexMono-Medium.ttf */,
@@ -712,33 +715,34 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B60A3A762A7DDD9C00499484 /* CircularStd-Black.otf in Resources */,
-				B60A3A792A7DDD9C00499484 /* CircularStd-Bold.otf in Resources */,
 				B60A3A7B2A7DDD9C00499484 /* Poppins-Medium.ttf in Resources */,
+				B67F067F2A9CDA9E00591789 /* PlusJakartaSans-BoldItalic.ttf in Resources */,
 				B6DC10B42A7BF6E700C10100 /* LaunchScreen.storyboard in Resources */,
 				B60A3A782A7DDD9C00499484 /* IBMPlexMono-Medium.ttf in Resources */,
 				B6DC11952A7CA28900C10100 /* Localizable.strings in Resources */,
-				B60A3AA92A86048700499484 /* TiltWarp-Regular.ttf in Resources */,
 				B60A3A7F2A7DDD9C00499484 /* IBMPlexMono-SemiBoldItalic.ttf in Resources */,
 				B60A3AA72A86048700499484 /* Quicksand-Regular.ttf in Resources */,
 				B60A3A842A7DDD9C00499484 /* Poppins-Bold.ttf in Resources */,
 				B60A3A822A7DDD9C00499484 /* Poppins-MediumItalic.ttf in Resources */,
-				B60A3A812A7DDD9C00499484 /* CircularStd-MediumItalic.otf in Resources */,
+				B67F06732A9CD97500591789 /* PlusJakartaSans-ExtraBoldItalic.ttf in Resources */,
 				B60A3AA82A86048700499484 /* Quicksand-Light.ttf in Resources */,
 				B60A3A7D2A7DDD9C00499484 /* IBMPlexMono-Bold.ttf in Resources */,
 				B60A3A4B2A7CA50600499484 /* Models.scnassets in Resources */,
+				B67F067C2A9CDA9E00591789 /* PlusJakartaSans-SemiBold.ttf in Resources */,
 				B60A3A4C2A7CA50600499484 /* Assets.xcassets in Resources */,
+				B67F067A2A9CDA9E00591789 /* PlusJakartaSans-SemiBoldItalic.ttf in Resources */,
 				B60A3A802A7DDD9C00499484 /* IBMPlexMono-SemiBold.ttf in Resources */,
 				B6DC10AF2A7BF6E600C10100 /* Main.storyboard in Resources */,
 				B60A3A7C2A7DDD9C00499484 /* Poppins-SemiBold.ttf in Resources */,
+				B67F067E2A9CDA9E00591789 /* PlusJakartaSans-Bold.ttf in Resources */,
+				B67F067D2A9CDA9E00591789 /* PlusJakartaSans-MediumItalic.ttf in Resources */,
 				B60A3A882A7DDD9C00499484 /* Poppins-SemiBoldItalic.ttf in Resources */,
 				B60A3A7A2A7DDD9C00499484 /* IBMPlexMono-MediumItalic.ttf in Resources */,
-				B60A3A832A7DDD9C00499484 /* CircularStd-BlackItalic.otf in Resources */,
+				B67F067B2A9CDA9E00591789 /* PlusJakartaSans-Medium.ttf in Resources */,
 				B60A3A862A7DDD9C00499484 /* Poppins-BoldItalic.ttf in Resources */,
+				B67F06722A9CD97500591789 /* PlusJakartaSans-ExtraBold.ttf in Resources */,
 				B60A3AA62A86048700499484 /* Quicksand-SemiBold.ttf in Resources */,
 				B60A3A872A7DDD9C00499484 /* IBMPlexMono-BoldItalic.ttf in Resources */,
-				B60A3A772A7DDD9C00499484 /* CircularStd-BoldItalic.otf in Resources */,
-				B60A3A7E2A7DDD9C00499484 /* CircularStd-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -83,11 +83,16 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
             .addView(self.cameraButton)
             .addView(self.reverseCameraButton)
             .addSpacer()
-            .addView(self.playButton)
         
         self.toolbarRowPrompt
             .setSpacing(to: LimeDimensions.toolbarSpacing)
             .addView(self.promptInput)
+        
+        if Environment.inst.deviceIsTiny {
+            self.toolbarRowPrompt.addView(self.playButton)
+        } else {
+            self.toolbarRowDefault.addView(self.playButton)
+        }
         
         self.toolbarRowTimeline
             .setSpacing(to: LimeDimensions.toolbarSpacing)

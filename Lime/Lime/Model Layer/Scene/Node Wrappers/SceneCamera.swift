@@ -43,6 +43,20 @@ class SceneCamera {
     }
     
     @discardableResult
+    func setEulerAngles(x: Float? = nil, y: Float? = nil, z: Float? = nil) -> Self {
+        if let x {
+            self.node.eulerAngles.x = x
+        }
+        if let y {
+            self.node.eulerAngles.y = y
+        }
+        if let z {
+            self.node.eulerAngles.z = z
+        }
+        return self
+    }
+    
+    @discardableResult
     func direct(to position: SCNVector3) -> Self {
         self.node.look(at: position)
         self.sceneView?.pointOfView = self.node

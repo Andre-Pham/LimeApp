@@ -29,6 +29,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
     private let promptToggle = LimeChipToggle()
     private let timelineToggle = LimeChipToggle()
     private let cameraButton = LimeChipButton()
+    private let reverseCameraButton = LimeChipButton()
     private let playButton = LimeChipToggle()
     private let promptInput = LimeTextInput()
     private let animationSpeedMultiState = LimeChipMultiState<Double>()
@@ -80,6 +81,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
             .addView(self.promptToggle)
             .addView(self.timelineToggle)
             .addView(self.cameraButton)
+            .addView(self.reverseCameraButton)
             .addSpacer()
             .addView(self.playButton)
         
@@ -165,6 +167,12 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
             .setIcon(to: "cube.transparent")
             .setOnTap({
                 LimeSession.inst.resetCamera()
+            })
+        
+        self.reverseCameraButton
+            .setIcon(to: "arrow.clockwise")
+            .setOnTap({
+                LimeSession.inst.resetCameraFromBack()
             })
         
         self.promptInput

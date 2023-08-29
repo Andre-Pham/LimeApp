@@ -23,22 +23,108 @@ class TabBarViewController: UITabBarController {
     
     private var root: LimeView { return LimeView(self.view) }
     private let tabBarStack = LimeHStack()
-    private let item1Button = LimeIconButton()
-    private let item2Button = LimeIconButton()
-    private let item3Button = LimeIconButton()
-    private let item4Button = LimeIconButton()
-    private var itemButtons: [LimeIconButton] {
+    private let item1Button = LimeTabBarButton()
+    private let item2Button = LimeTabBarButton()
+    private let item3Button = LimeTabBarButton()
+    private let item4Button = LimeTabBarButton()
+    private var itemButtons: [LimeTabBarButton] {
         return [self.item1Button, self.item2Button, self.item3Button, self.item4Button]
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
+        print("DEFAULT: \(self.tabBar.frame.height)")
+        
         if let height = self.tabBarHeightOverride {
+
+            
             var tabFrame = self.tabBar.frame
             tabFrame.size.height = Environment.inst.bottomSafeAreaHeight + height
-            tabFrame.origin.y = view.frame.size.height - (Environment.inst.bottomSafeAreaHeight + height)
+//            tabFrame.origin.y = view.frame.size.height - (Environment.inst.bottomSafeAreaHeight + height)
             self.tabBar.frame = tabFrame
+            print("TAB BAR FRAME: \(self.tabBar.frame) \(self.tabBar.frame.height) \(self.tabBar.frame.origin.y)")
+            
+            print(Environment.inst.screenHeight)
+            print(Environment.inst.topSafeAreaHeight)
+            print(Environment.inst.bottomSafeAreaHeight)
+            print(height)
+            print(Self.DEFAULT_TAB_BAR_HEIGHT)
+            print(view.frame.size.height)
+            print(self.tabBar.frame.size.height)
+            print("> > > > > > > >")
+            
+//            let sub = 85.0
+                        let sub = (Environment.inst.bottomSafeAreaHeight + height) - Self.DEFAULT_TAB_BAR_HEIGHT + self.tabBar.frame.size.height
+            //            let sub = Environment.inst.bottomSafeAreaHeight + height
+                        
+                        self.viewControllers?.forEach({
+                            let view = LimeView($0.view)
+//                            for constraint in view.constraints {
+//                                view.removeConstraint(constraint)
+//                            }
+                            
+                            view.view.translatesAutoresizingMaskIntoConstraints = false
+                            
+                            for constraint in view.view.constraints {
+                                if constraint.firstAttribute == .width && constraint.firstItem as? UIView == view.view {
+                                    view.view.removeConstraint(constraint)
+                                }
+                                if constraint.firstAttribute == .height && constraint.firstItem as? UIView == view.view {
+                                    view.view.removeConstraint(constraint)
+                                }
+                            }
+
+                            view.setWidthConstraint(to: Environment.inst.screenWidth)
+                            view.setHeightConstraint(to: Environment.inst.screenHeight - sub)
+                        })
+            
+            /*
+             > > > > > > > >
+             TAB BAR FRAME: (0.0, 768.0, 414.0, 94.0) 94.0 768.0
+             896.0
+             48.0
+             34.0
+             60.0
+             49.0
+             896.0
+             94.0
+             > > > > > > > >
+             INTO: 139.2
+             */
+            
+            /*
+             > > > > > > > >
+             TAB BAR FRAME: (0.0, 928.0, 1366.0, 80.0) 80.0 928.0
+             1024.0
+             24.0
+             20.0
+             60.0
+             49.0
+             1024.0
+             80.0
+             > > > > > > > >
+             INTO: 111.0
+             */
+            
+            /*
+             TAB BAR FRAME: (0.0, 607.0, 375.0, 60.0) 60.0 607.0
+             667.0  // Environment.inst.screenHeight
+             20.0   // Environment.inst.topSafeAreaHeight
+             0.0    // Environment.inst.bottomSafeAreaHeight
+             60.0   // height
+             49.0   // Self.DEFAULT_TAB_BAR_HEIGHT
+             667.0  // view.frame.size.height
+             60.0   // self.tabBar.frame.size.height
+             INTO: 85.0
+             what i have: 71
+             */
+            
+            /*
+             (Environment.inst.bottomSafeAreaHeight + height) - Self.DEFAULT_TAB_BAR_HEIGHT
+             */
+            let woo = (Environment.inst.bottomSafeAreaHeight + height) - Self.DEFAULT_TAB_BAR_HEIGHT + self.tabBar.frame.size.height
+            print(woo)
         }
     }
 
@@ -55,6 +141,13 @@ class TabBarViewController: UITabBarController {
         }
     }
     
+//    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+//        self.image.setFrame(to: CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height))
+//        // React to change in device orientation
+//        self.setupAndBeginCapturingVideoFrames()
+//        self.overlayFrameSyncRequired = true
+//    }
+    
     let g = GreenViewController()
     let r = RedViewController()
 
@@ -68,11 +161,14 @@ class TabBarViewController: UITabBarController {
         }
         
         if Environment.inst.deviceIsTiny {
-            self.tabBarHeightOverride = nil
+            // WARNING: This makes it so the content inside the child view controllers don't constrain correctly
+            self.tabBarHeightOverride = 44.0
         }
         
+        self.tabBarHeightOverride = 60.0
+        
         self.tabBar.isTranslucent = false
-        self.tabBar.backgroundColor = LimeColors.backgroundFill
+        self.tabBar.backgroundColor = LimeColors.backgroundFill.withAlphaComponent(0.5)
         
         self.setViewControllers([self.sceneViewController, g, r, self.settingsViewController], animated: false)
         
@@ -89,6 +185,7 @@ class TabBarViewController: UITabBarController {
             .addView(self.item2Button)
             .addView(self.item3Button)
             .addView(self.item4Button)
+            .setOpacity(to: 0.5)
         
         let tabBarItemLabels = [
             Strings("tabBar.generate3D").local,
@@ -100,9 +197,14 @@ class TabBarViewController: UITabBarController {
         for (index, itemButton) in self.itemButtons.enumerated() {
             let label = LimeText()
             
+//            if Environment.inst.deviceIsTiny {
+//                itemButton
+//                    .setTransformation(to: CGAffineTransform(translationX: 0.0, y: -14))
+//            }
+            
             itemButton
                 .setIcon(to: Self.itemIcons[index])
-                .setIconSize(to: .mini)
+//                .setIconSize(to: .mini)
                 .setColor(to: LimeColors.backgroundFill)
                 .setIconColor(to: LimeColors.textDark)
                 .constrainVertical()
@@ -143,6 +245,83 @@ class TabBarViewController: UITabBarController {
     }
     
 }
+
+class LimeTabBarButton: LimeUIView {
+    
+    private let container = LimeView()
+    private let button = LimeControl()
+    private let imageView = LimeImage()
+    private var onTap: (() -> Void)? = nil
+    public var view: UIView {
+        return self.container.view
+    }
+    
+    override init() {
+        super.init()
+        
+        self.container
+            .setBackgroundColor(to: LimeColors.secondaryButtonFill)
+            .addSubview(self.button)
+            .addSubview(self.imageView)
+        
+        self.button
+            .constrainAllSides()
+            .setOnRelease({
+                self.onTapCallback()
+            })
+        
+        self.imageView
+            .constrainCenterVertical()
+            .constrainCenterHorizontal()
+            .setColor(to: LimeColors.textSecondaryButton)
+    }
+    
+    @discardableResult
+    func setIcon(to icon: String) -> Self {
+        if let image = UIImage(named: icon) {
+//            let configuration = UIImage.SymbolConfiguration(pointSize: 50, weight: .medium, scale: .large)
+            let configuration = UIImage.SymbolConfiguration(pointSize: 28, weight: .light, scale: .small)
+            self.imageView.setImage(image.withConfiguration(configuration))
+        } else if let image = UIImage(systemName: icon) {
+            let configuration = UIImage.SymbolConfiguration(pointSize: 28, weight: .light, scale: .small)
+            self.imageView.setImage(image.withConfiguration(configuration))
+        }
+        return self
+    }
+    
+//    @discardableResult
+//    func setIconSize(to size: Double) -> Self {
+//        self.imageView.setFrame(to: <#T##CGRect#>)
+//        var config = self.button.configuration ?? self.newConfig
+//        config.buttonSize = .mini
+//        self.button.configuration = config
+//        return self
+//    }
+    
+    @discardableResult
+    func setColor(to color: UIColor) -> Self {
+        self.container.setBackgroundColor(to: color)
+        return self
+    }
+    
+    @discardableResult
+    func setIconColor(to color: UIColor) -> Self {
+        self.imageView.setColor(to: color)
+        return self
+    }
+    
+    @discardableResult
+    func setOnTap(_ callback: (() -> Void)?) -> Self {
+        self.onTap = callback
+        return self
+    }
+    
+    private func onTapCallback() {
+        self.onTap?()
+    }
+    
+}
+
 
 class GreenViewController: UIViewController {
     override func viewDidLoad() {

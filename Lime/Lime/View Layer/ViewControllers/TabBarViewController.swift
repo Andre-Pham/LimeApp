@@ -33,98 +33,33 @@ class TabBarViewController: UITabBarController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        
-        print("DEFAULT: \(self.tabBar.frame.height)")
-        
         if let height = self.tabBarHeightOverride {
-
-            
             var tabFrame = self.tabBar.frame
             tabFrame.size.height = Environment.inst.bottomSafeAreaHeight + height
-//            tabFrame.origin.y = view.frame.size.height - (Environment.inst.bottomSafeAreaHeight + height)
             self.tabBar.frame = tabFrame
-            print("TAB BAR FRAME: \(self.tabBar.frame) \(self.tabBar.frame.height) \(self.tabBar.frame.origin.y)")
-            
-            print(Environment.inst.screenHeight)
-            print(Environment.inst.topSafeAreaHeight)
-            print(Environment.inst.bottomSafeAreaHeight)
-            print(height)
-            print(Self.DEFAULT_TAB_BAR_HEIGHT)
-            print(view.frame.size.height)
-            print(self.tabBar.frame.size.height)
-            print("> > > > > > > >")
-            
-//            let sub = 85.0
-                        let sub = (Environment.inst.bottomSafeAreaHeight + height) - Self.DEFAULT_TAB_BAR_HEIGHT + self.tabBar.frame.size.height
-            //            let sub = Environment.inst.bottomSafeAreaHeight + height
-                        
-                        self.viewControllers?.forEach({
-                            let view = LimeView($0.view)
-//                            for constraint in view.constraints {
-//                                view.removeConstraint(constraint)
-//                            }
-                            
-                            view.view.translatesAutoresizingMaskIntoConstraints = false
-                            
-                            for constraint in view.view.constraints {
-                                if constraint.firstAttribute == .width && constraint.firstItem as? UIView == view.view {
-                                    view.view.removeConstraint(constraint)
-                                }
-                                if constraint.firstAttribute == .height && constraint.firstItem as? UIView == view.view {
-                                    view.view.removeConstraint(constraint)
-                                }
-                            }
-
-                            view.setWidthConstraint(to: Environment.inst.screenWidth)
-                            view.setHeightConstraint(to: Environment.inst.screenHeight - sub)
-                        })
-            
-            /*
-             > > > > > > > >
-             TAB BAR FRAME: (0.0, 768.0, 414.0, 94.0) 94.0 768.0
-             896.0
-             48.0
-             34.0
-             60.0
-             49.0
-             896.0
-             94.0
-             > > > > > > > >
-             INTO: 139.2
-             */
-            
-            /*
-             > > > > > > > >
-             TAB BAR FRAME: (0.0, 928.0, 1366.0, 80.0) 80.0 928.0
-             1024.0
-             24.0
-             20.0
-             60.0
-             49.0
-             1024.0
-             80.0
-             > > > > > > > >
-             INTO: 111.0
-             */
-            
-            /*
-             TAB BAR FRAME: (0.0, 607.0, 375.0, 60.0) 60.0 607.0
-             667.0  // Environment.inst.screenHeight
-             20.0   // Environment.inst.topSafeAreaHeight
-             0.0    // Environment.inst.bottomSafeAreaHeight
-             60.0   // height
-             49.0   // Self.DEFAULT_TAB_BAR_HEIGHT
-             667.0  // view.frame.size.height
-             60.0   // self.tabBar.frame.size.height
-             INTO: 85.0
-             what i have: 71
-             */
-            
-            /*
-             (Environment.inst.bottomSafeAreaHeight + height) - Self.DEFAULT_TAB_BAR_HEIGHT
-             */
-            let woo = (Environment.inst.bottomSafeAreaHeight + height) - Self.DEFAULT_TAB_BAR_HEIGHT + self.tabBar.frame.size.height
-            print(woo)
+            let sub = (Environment.inst.bottomSafeAreaHeight + height) - Self.DEFAULT_TAB_BAR_HEIGHT + self.tabBar.frame.size.height
+            for viewController in self.viewControllers ?? [] {
+                guard let controllerView = viewController.view else {
+                    continue
+                }
+                controllerView.translatesAutoresizingMaskIntoConstraints = false
+                for constraint in controllerView.constraints {
+                    if constraint.firstAttribute == .width && constraint.firstItem as? UIView == controllerView {
+                        // Remove any width constraints
+                        controllerView.removeConstraint(constraint)
+                    }
+                    if constraint.firstAttribute == .height && constraint.firstItem as? UIView == controllerView {
+                        // Remove any height constraints
+                        controllerView.removeConstraint(constraint)
+                    }
+                }
+                controllerView.widthAnchor.constraint(
+                    equalToConstant: Environment.inst.screenWidth
+                ).isActive = true
+                controllerView.heightAnchor.constraint(
+                    equalToConstant: Environment.inst.screenHeight - sub
+                ).isActive = true
+            }
         }
     }
 
@@ -140,13 +75,6 @@ class TabBarViewController: UITabBarController {
             )
         }
     }
-    
-//    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-//        self.image.setFrame(to: CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height))
-//        // React to change in device orientation
-//        self.setupAndBeginCapturingVideoFrames()
-//        self.overlayFrameSyncRequired = true
-//    }
     
     let g = GreenViewController()
     let r = RedViewController()

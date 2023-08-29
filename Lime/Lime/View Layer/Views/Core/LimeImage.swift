@@ -14,6 +14,9 @@ class LimeImage: LimeUIView {
     public var view: UIView {
         return self.imageView
     }
+    public var image: UIImage? {
+        return self.imageView.image
+    }
     public var imageSize: CGSize {
         return self.imageView.image?.size ?? CGSize()
     }

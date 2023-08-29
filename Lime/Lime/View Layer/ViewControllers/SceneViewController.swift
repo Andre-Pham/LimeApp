@@ -26,10 +26,12 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
     private let toolbarRowDefault = LimeHStack()
     private let toolbarRowPrompt = LimeHStack()
     private let toolbarRowTimeline = LimeHStack()
+    private let toolbarRowCamera = LimeHStack()
     private let promptToggle = LimeChipToggle()
     private let timelineToggle = LimeChipToggle()
-    private let cameraButton = LimeChipButton()
-    private let reverseCameraButton = LimeChipButton()
+    private let cameraToggle = LimeChipToggle()
+    private let cameraButton = LimeChipTextButton()
+    private let reverseCameraButton = LimeChipTextButton()
     private let playButton = LimeChipToggle()
     private let promptInput = LimeTextInput()
     private let animationSpeedMultiState = LimeChipMultiState<Double>()
@@ -80,24 +82,30 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
             .setSpacing(to: LimeDimensions.toolbarSpacing)
             .addView(self.promptToggle)
             .addView(self.timelineToggle)
-            .addView(self.cameraButton)
-            .addView(self.reverseCameraButton)
             .addSpacer()
+            .addView(self.playButton)
         
         self.toolbarRowPrompt
             .setSpacing(to: LimeDimensions.toolbarSpacing)
             .addView(self.promptInput)
         
-        if Environment.inst.deviceIsTiny {
-            self.toolbarRowPrompt.addView(self.playButton)
-        } else {
-            self.toolbarRowDefault.addView(self.playButton)
-        }
-        
         self.toolbarRowTimeline
             .setSpacing(to: LimeDimensions.toolbarSpacing)
             .addView(self.timeline)
             .addView(self.animationSpeedMultiState)
+        
+        if Environment.inst.deviceType == .pad {
+            self.toolbarRowDefault
+                .insertView(self.reverseCameraButton, at: 2)
+                .insertView(self.cameraButton, at: 3)
+        } else {
+            self.toolbarRowDefault.insertView(self.cameraToggle, at: 2)
+            self.toolbarRowCamera
+                .setSpacing(to: LimeDimensions.toolbarSpacing)
+                .setDistribution(to: .fillEqually)
+                .addView(self.reverseCameraButton)
+                .addView(self.cameraButton)
+        }
         
         self.timeline
             .constrainVertical()
@@ -147,10 +155,14 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
             .setIcon(to: "character.cursor.ibeam")
             .setOnTap({ isEnabled in
                 if isEnabled {
-                    self.toolbarStack.addViewAnimated(
-                        self.toolbarRowPrompt,
-                        position: self.toolbarStack.viewCount == 1 ? 0 : 1
-                    )
+                    var position = 0
+                    if self.timelineToggle.isEnabled {
+                        position += 1
+                    }
+                    if self.cameraToggle.isEnabled {
+                        position += 1
+                    }
+                    self.toolbarStack.addViewAnimated(self.toolbarRowPrompt, position: position)
                     self.toolbarRowPrompt.constrainHorizontal()
                 } else {
                     self.toolbarStack.removeViewAnimated(self.toolbarRowPrompt)
@@ -161,21 +173,42 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
             .setIcon(to: "slider.horizontal.below.rectangle")
             .setOnTap({ isEnabled in
                 if isEnabled {
-                    self.toolbarStack.addViewAnimated(self.toolbarRowTimeline,position: 0)
+                    var position = 0
+                    if self.cameraToggle.isEnabled {
+                        position += 1
+                    }
+                    self.toolbarStack.addViewAnimated(self.toolbarRowTimeline, position: position)
                     self.toolbarRowTimeline.constrainHorizontal()
                 } else {
                     self.toolbarStack.removeViewAnimated(self.toolbarRowTimeline)
                 }
             })
         
+        self.cameraToggle
+            .setIcon(to: "rotate.3d")
+            .setOnTap({ isEnabled in
+                if isEnabled {
+                    self.toolbarStack.addViewAnimated(self.toolbarRowCamera, position: 0)
+                    self.toolbarRowCamera.constrainHorizontal()
+                } else {
+                    self.toolbarStack.removeViewAnimated(self.toolbarRowCamera)
+                }
+            })
+        
         self.cameraButton
-            .setIcon(to: "cube.transparent")
+            .setIcon(to: "video")
+            .setLabel(to: Strings("label.viewFront").local)
+            .setLabelSize(to: 17)
+            .setIconWidth(to: 32)
             .setOnTap({
                 LimeSession.inst.resetCamera()
             })
         
         self.reverseCameraButton
-            .setIcon(to: "arrow.clockwise")
+            .setIcon(to: "video")
+            .setLabel(to: Strings("label.viewBack").local)
+            .setLabelSize(to: 17)
+            .setIconWidth(to: 32)
             .setOnTap({
                 LimeSession.inst.resetCameraFromBack()
             })

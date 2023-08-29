@@ -288,6 +288,28 @@ extension LimeUIViewProtocol {
         return self
     }
     
+    @discardableResult
+    func removeWidthConstraint() -> Self {
+        for constraint in self.view.constraints {
+            if constraint.firstAttribute == .width && constraint.firstItem as? UIView == self.view {
+                // Remove any width constraints
+                self.view.removeConstraint(constraint)
+            }
+        }
+        return self
+    }
+    
+    @discardableResult
+    func removeHeightConstraint() -> Self {
+        for constraint in self.view.constraints {
+            if constraint.firstAttribute == .height && constraint.firstItem as? UIView == self.view {
+                // Remove any height constraints
+                self.view.removeConstraint(constraint)
+            }
+        }
+        return self
+    }
+    
     // MARK: - Background
     
     @discardableResult

@@ -85,6 +85,7 @@
 		B67F067D2A9CDA9E00591789 /* PlusJakartaSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06772A9CDA9E00591789 /* PlusJakartaSans-MediumItalic.ttf */; };
 		B67F067E2A9CDA9E00591789 /* PlusJakartaSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06782A9CDA9E00591789 /* PlusJakartaSans-Bold.ttf */; };
 		B67F067F2A9CDA9E00591789 /* PlusJakartaSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06792A9CDA9E00591789 /* PlusJakartaSans-BoldItalic.ttf */; };
+		B67F06832A9EA17000591789 /* LimeChipTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67F06822A9EA17000591789 /* LimeChipTextButton.swift */; };
 		B6DC10A82A7BF6E600C10100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */; };
 		B6DC10AA2A7BF6E600C10100 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */; };
 		B6DC10AC2A7BF6E600C10100 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10AB2A7BF6E600C10100 /* TabBarViewController.swift */; };
@@ -206,6 +207,7 @@
 		B67F06772A9CDA9E00591789 /* PlusJakartaSans-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-MediumItalic.ttf"; sourceTree = "<group>"; };
 		B67F06782A9CDA9E00591789 /* PlusJakartaSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-Bold.ttf"; sourceTree = "<group>"; };
 		B67F06792A9CDA9E00591789 /* PlusJakartaSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		B67F06822A9EA17000591789 /* LimeChipTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeChipTextButton.swift; sourceTree = "<group>"; };
 		B6DC10A42A7BF6E600C10100 /* Lime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -577,6 +579,7 @@
 				B6DC10F22A7C87E300C10100 /* LimeViewObserver.swift */,
 				B6DC10EA2A7C87E300C10100 /* LimeVStack.swift */,
 				B60A3A562A7CD66D00499484 /* LimeChipButton.swift */,
+				B67F06822A9EA17000591789 /* LimeChipTextButton.swift */,
 				B60A3A582A7CEECF00499484 /* LimeControl.swift */,
 				B60A3A5F2A7D106600499484 /* LimeChipToggle.swift */,
 				B60A3A612A7D1B9F00499484 /* LimeTextInput.swift */,
@@ -782,6 +785,7 @@
 				B60A39B12A7CA49900499484 /* CGRect.swift in Sources */,
 				B60A39B22A7CA49900499484 /* Double.swift in Sources */,
 				B60A3A932A7E29D300499484 /* LimeGestureView.swift in Sources */,
+				B67F06832A9EA17000591789 /* LimeChipTextButton.swift in Sources */,
 				B6DC10FC2A7C87E300C10100 /* LimeHStack.swift in Sources */,
 				B60A39D62A7CA4A600499484 /* HandPointRecogniser.swift in Sources */,
 				B6DC10A82A7BF6E600C10100 /* AppDelegate.swift in Sources */,

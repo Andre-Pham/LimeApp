@@ -19,6 +19,10 @@ class Environment {
         return windowScene.windows.first?.safeAreaInsets
     }
     
+    public var deviceType: UIUserInterfaceIdiom {
+        return UIDevice.current.userInterfaceIdiom
+    }
+    
     public var topSafeAreaHeight: CGFloat {
         return self.safeAreaInsets?.top ?? 0.0
     }

@@ -23,6 +23,8 @@
 "label.chiralitySetting" = "Use left-handed Auslan signs";
 "label.interpolateSetting" = "Animate a transition between performed signs";
 "label.hidePromptSetting" = "Hide the letters being performed (above model)";
+"label.viewFront" = "Front";
+"label.viewBack" = "Back";
 
 // MARK: - Settings
 

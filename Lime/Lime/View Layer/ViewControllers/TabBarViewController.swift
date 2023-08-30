@@ -14,21 +14,38 @@ class TabBarViewController: UITabBarController {
     /// The default tab bar height, usually 49.0, set in viewDidLoad
     private var defaultTabBarHeight: Double = 49.0
     /// The tab bar item icons
-    private static let itemIcons = ["cube.transparent", "hand.wave", "info.circle", "gearshape"]
+    private static let itemIcons = [
+        "cube.transparent",
+        "gearshape",
+    ]
     /// The selected tab bar item icons
-    private static let selectedItemIcons = ["cube.transparent.fill", "hand.wave.fill", "info.circle.fill", "gearshape.fill"]
+    private static let selectedItemIcons = [
+        "cube.transparent.fill",
+        "gearshape.fill",
+    ]
+    /// The tab bar item labels
+    private static var tabBarItemLabels: [String] {
+        return [
+            Strings("tabBar.generate3D").local,
+            Strings("tabBar.settings").local,
+        ]
+    }
     
     private let sceneViewController = SceneViewController()
     private let settingsViewController = SettingsViewController()
+    private var allViewControllers: [UIViewController] {
+        return [
+            self.sceneViewController,
+            self.settingsViewController
+        ]
+    }
     
     private var root: LimeView { return LimeView(self.view) }
     private let tabBarStack = LimeHStack()
     private let item1Button = LimeTabBarButton()
     private let item2Button = LimeTabBarButton()
-    private let item3Button = LimeTabBarButton()
-    private let item4Button = LimeTabBarButton()
     private var itemButtons: [LimeTabBarButton] {
-        return [self.item1Button, self.item2Button, self.item3Button, self.item4Button]
+        return [self.item1Button, self.item2Button]
     }
     
     override func viewWillLayoutSubviews() {
@@ -77,9 +94,6 @@ class TabBarViewController: UITabBarController {
             )
         }
     }
-    
-    let g = GreenViewController()
-    let r = RedViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,7 +114,7 @@ class TabBarViewController: UITabBarController {
         self.tabBar.isTranslucent = false
         self.tabBar.backgroundColor = LimeColors.backgroundFill
         
-        self.setViewControllers([self.sceneViewController, g, r, self.settingsViewController], animated: false)
+        self.setViewControllers(self.allViewControllers, animated: false)
         
         self.root
             .addSubview(self.tabBarStack)
@@ -111,17 +125,10 @@ class TabBarViewController: UITabBarController {
             .matchWidthConstraint()
             .setHeightConstraint(to: self.tabBarHeightOverride ?? self.defaultTabBarHeight)
             .setDistribution(to: .fillEqually)
-            .addView(self.item1Button)
-            .addView(self.item2Button)
-            .addView(self.item3Button)
-            .addView(self.item4Button)
         
-        let tabBarItemLabels = [
-            Strings("tabBar.generate3D").local,
-            Strings("tabBar.generateText").local,
-            Strings("tabBar.info").local,
-            Strings("tabBar.settings").local
-        ]
+        for itemButton in self.itemButtons {
+            self.tabBarStack.addView(itemButton)
+        }
         
         for (index, itemButton) in self.itemButtons.enumerated() {
             let label = LimeText()
@@ -150,7 +157,7 @@ class TabBarViewController: UITabBarController {
                 })
             
             label
-                .setText(to: tabBarItemLabels[index])
+                .setText(to: Self.tabBarItemLabels[index])
                 .setFont(to: LimeFont(font: LimeFonts.Quicksand.SemiBold.rawValue, size: 10))
                 .setTextColor(to: LimeColors.textDark)
                 .setSize(to: 10)
@@ -169,7 +176,7 @@ class TabBarViewController: UITabBarController {
     
 }
 
-class LimeTabBarButton: LimeUIView {
+fileprivate class LimeTabBarButton: LimeUIView {
     
     private let container = LimeView()
     private let button = LimeControl()
@@ -233,67 +240,4 @@ class LimeTabBarButton: LimeUIView {
         self.onTap?()
     }
     
-}
-
-
-class GreenViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.backgroundColor = UIColor.green
-        
-        // Create UIView
-        let myView = UIView()
-        myView.backgroundColor = .red
-        
-        // Disable autoresizing mask into constraints for myView
-        myView.translatesAutoresizingMaskIntoConstraints = false
-
-        // Add the UIView to the parent view
-        view.addSubview(myView)
-        
-        // Create Constraints
-        NSLayoutConstraint.activate([
-            // Match width of myView to parent view
-            myView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            myView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            
-            // Attach myView to bottom of parent view
-            myView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            
-            // Set constant height for myView
-            myView.heightAnchor.constraint(equalToConstant: 5)
-        ])
-        
-        if true {
-            // Create UIView
-            let myView = UIView()
-            myView.backgroundColor = .red
-            
-            // Disable autoresizing mask into constraints for myView
-            myView.translatesAutoresizingMaskIntoConstraints = false
-
-            // Add the UIView to the parent view
-            view.addSubview(myView)
-            
-            // Create Constraints
-            NSLayoutConstraint.activate([
-                // Match width of myView to parent view
-                myView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                myView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                
-                // Attach myView to bottom of parent view
-                myView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-                
-                // Set constant height for myView
-                myView.heightAnchor.constraint(equalToConstant: 5)
-            ])
-        }
-    }
-}
-
-class RedViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.backgroundColor = UIColor.red
-    }
 }

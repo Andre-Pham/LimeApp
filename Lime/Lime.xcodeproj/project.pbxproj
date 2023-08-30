@@ -7,15 +7,104 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B60A39AC2A7CA49900499484 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39A22A7CA49900499484 /* Math.swift */; };
+		B60A39AD2A7CA49900499484 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39A32A7CA49900499484 /* Array.swift */; };
+		B60A39AE2A7CA49900499484 /* SCNNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39A52A7CA49900499484 /* SCNNode.swift */; };
+		B60A39AF2A7CA49900499484 /* SCNVector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39A62A7CA49900499484 /* SCNVector3.swift */; };
+		B60A39B02A7CA49900499484 /* SCNVector4.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39A72A7CA49900499484 /* SCNVector4.swift */; };
+		B60A39B12A7CA49900499484 /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39A92A7CA49900499484 /* CGRect.swift */; };
+		B60A39B22A7CA49900499484 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39AA2A7CA49900499484 /* Double.swift */; };
+		B60A39B32A7CA49900499484 /* Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39AB2A7CA49900499484 /* Float.swift */; };
+		B60A39D12A7CA4A600499484 /* CaptureSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39B62A7CA4A600499484 /* CaptureSession.swift */; };
+		B60A39D22A7CA4A600499484 /* CaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39B72A7CA4A600499484 /* CaptureDelegate.swift */; };
+		B60A39D32A7CA4A600499484 /* Clonable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39B92A7CA4A600499484 /* Clonable.swift */; };
+		B60A39D42A7CA4A600499484 /* LimeSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39BA2A7CA4A600499484 /* LimeSession.swift */; };
+		B60A39D52A7CA4A600499484 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39BC2A7CA4A600499484 /* Label.swift */; };
+		B60A39D62A7CA4A600499484 /* HandPointRecogniser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39BD2A7CA4A600499484 /* HandPointRecogniser.swift */; };
+		B60A39D72A7CA4A600499484 /* JointPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39BE2A7CA4A600499484 /* JointPosition.swift */; };
+		B60A39D82A7CA4A600499484 /* SignRecogniser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39BF2A7CA4A600499484 /* SignRecogniser.swift */; };
+		B60A39D92A7CA4A600499484 /* JointPositions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39C02A7CA4A600499484 /* JointPositions.swift */; };
+		B60A39DA2A7CA4A600499484 /* PredictionOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39C12A7CA4A600499484 /* PredictionOutcome.swift */; };
+		B60A39DB2A7CA4A600499484 /* SignDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39C22A7CA4A600499484 /* SignDelegate.swift */; };
+		B60A39DC2A7CA4A600499484 /* GeometryBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39C42A7CA4A600499484 /* GeometryBuilder.swift */; };
+		B60A39DD2A7CA4A600499484 /* PresetNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39C52A7CA4A600499484 /* PresetNode.swift */; };
+		B60A39DE2A7CA4A600499484 /* NodeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39C62A7CA4A600499484 /* NodeUtil.swift */; };
+		B60A39DF2A7CA4A600499484 /* SCNBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39C72A7CA4A600499484 /* SCNBox.swift */; };
+		B60A39E02A7CA4A600499484 /* ModelRotationsIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39C82A7CA4A600499484 /* ModelRotationsIndex.swift */; };
+		B60A39E12A7CA4A600499484 /* PresetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39C92A7CA4A600499484 /* PresetModel.swift */; };
+		B60A39E22A7CA4A600499484 /* SceneModelSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39CA2A7CA4A600499484 /* SceneModelSequence.swift */; };
+		B60A39E32A7CA4A600499484 /* SceneCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39CC2A7CA4A600499484 /* SceneCamera.swift */; };
+		B60A39E42A7CA4A600499484 /* SceneLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39CD2A7CA4A600499484 /* SceneLight.swift */; };
+		B60A39E52A7CA4A600499484 /* SceneGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39CE2A7CA4A600499484 /* SceneGeometry.swift */; };
+		B60A39E62A7CA4A600499484 /* SceneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39CF2A7CA4A600499484 /* SceneModel.swift */; };
+		B60A39E72A7CA4A600499484 /* SceneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39D02A7CA4A600499484 /* SceneController.swift */; };
+		B60A3A4B2A7CA50600499484 /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A1D2A7CA50600499484 /* Models.scnassets */; };
+		B60A3A4C2A7CA50600499484 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A1E2A7CA50600499484 /* Assets.xcassets */; };
+		B60A3A4D2A7CA50600499484 /* ASLDemoClassifier 2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A1F2A7CA50600499484 /* ASLDemoClassifier 2.mlmodel */; };
+		B60A3A552A7CA72C00499484 /* SceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A542A7CA72C00499484 /* SceneViewController.swift */; };
+		B60A3A572A7CD66D00499484 /* LimeChipButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A562A7CD66D00499484 /* LimeChipButton.swift */; };
+		B60A3A592A7CEECF00499484 /* LimeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A582A7CEECF00499484 /* LimeControl.swift */; };
+		B60A3A5C2A7CF6EA00499484 /* LimeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A5B2A7CF6EA00499484 /* LimeColors.swift */; };
+		B60A3A5E2A7CF70000499484 /* LimeDimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A5D2A7CF70000499484 /* LimeDimensions.swift */; };
+		B60A3A602A7D106600499484 /* LimeChipToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A5F2A7D106600499484 /* LimeChipToggle.swift */; };
+		B60A3A622A7D1B9F00499484 /* LimeTextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A612A7D1B9F00499484 /* LimeTextInput.swift */; };
+		B60A3A782A7DDD9C00499484 /* IBMPlexMono-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A652A7DDD9C00499484 /* IBMPlexMono-Medium.ttf */; };
+		B60A3A7A2A7DDD9C00499484 /* IBMPlexMono-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A672A7DDD9C00499484 /* IBMPlexMono-MediumItalic.ttf */; };
+		B60A3A7B2A7DDD9C00499484 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A682A7DDD9C00499484 /* Poppins-Medium.ttf */; };
+		B60A3A7C2A7DDD9C00499484 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A692A7DDD9C00499484 /* Poppins-SemiBold.ttf */; };
+		B60A3A7D2A7DDD9C00499484 /* IBMPlexMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A6A2A7DDD9C00499484 /* IBMPlexMono-Bold.ttf */; };
+		B60A3A7F2A7DDD9C00499484 /* IBMPlexMono-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A6C2A7DDD9C00499484 /* IBMPlexMono-SemiBoldItalic.ttf */; };
+		B60A3A802A7DDD9C00499484 /* IBMPlexMono-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A6D2A7DDD9C00499484 /* IBMPlexMono-SemiBold.ttf */; };
+		B60A3A822A7DDD9C00499484 /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A6F2A7DDD9C00499484 /* Poppins-MediumItalic.ttf */; };
+		B60A3A842A7DDD9C00499484 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A712A7DDD9C00499484 /* Poppins-Bold.ttf */; };
+		B60A3A862A7DDD9C00499484 /* Poppins-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A732A7DDD9C00499484 /* Poppins-BoldItalic.ttf */; };
+		B60A3A872A7DDD9C00499484 /* IBMPlexMono-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A742A7DDD9C00499484 /* IBMPlexMono-BoldItalic.ttf */; };
+		B60A3A882A7DDD9C00499484 /* Poppins-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A752A7DDD9C00499484 /* Poppins-SemiBoldItalic.ttf */; };
+		B60A3A8A2A7DE00800499484 /* LimeFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A892A7DE00800499484 /* LimeFonts.swift */; };
+		B60A3A8F2A7DF19600499484 /* LimeChipMultiState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A8E2A7DF19600499484 /* LimeChipMultiState.swift */; };
+		B60A3A912A7E1CEE00499484 /* ScrubberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A902A7E1CEE00499484 /* ScrubberView.swift */; };
+		B60A3A932A7E29D300499484 /* LimeGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A922A7E29D300499484 /* LimeGestureView.swift */; };
+		B60A3A952A7E5B3D00499484 /* LetterDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A942A7E5B3D00499484 /* LetterDisplayView.swift */; };
+		B60A3A972A847CAB00499484 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A962A847CAB00499484 /* SettingsViewController.swift */; };
+		B60A3A992A84CCC500499484 /* OnTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A982A84CCC500499484 /* OnTransitionDelegate.swift */; };
+		B60A3AA62A86048700499484 /* Quicksand-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3AA22A86048700499484 /* Quicksand-SemiBold.ttf */; };
+		B60A3AA72A86048700499484 /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3AA32A86048700499484 /* Quicksand-Regular.ttf */; };
+		B60A3AA82A86048700499484 /* Quicksand-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3AA42A86048700499484 /* Quicksand-Light.ttf */; };
+		B60A3AAB2A86428400499484 /* SettingsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3AAA2A86428400499484 /* SettingsRowView.swift */; };
+		B60A3AAE2A8C62A700499484 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3AAD2A8C62A700499484 /* UIColor.swift */; };
+		B60A3AB12A8C666600499484 /* LimeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3AB02A8C666600499484 /* LimeSettings.swift */; };
+		B60A3AB32A8C666F00499484 /* SettingsSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3AB22A8C666F00499484 /* SettingsSession.swift */; };
+		B60A3AB52A8C949F00499484 /* OnSettingsChangedPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3AB42A8C949F00499484 /* OnSettingsChangedPublisher.swift */; };
+		B60A3B2A2A8D046600499484 /* SwiftSerialization in Frameworks */ = {isa = PBXBuildFile; productRef = B60A3B292A8D046600499484 /* SwiftSerialization */; };
+		B60A3B2D2A8D057100499484 /* DatabaseSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3B2C2A8D057100499484 /* DatabaseSession.swift */; };
+		B67F06722A9CD97500591789 /* PlusJakartaSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06702A9CD97500591789 /* PlusJakartaSans-ExtraBold.ttf */; };
+		B67F06732A9CD97500591789 /* PlusJakartaSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06712A9CD97500591789 /* PlusJakartaSans-ExtraBoldItalic.ttf */; };
+		B67F067A2A9CDA9E00591789 /* PlusJakartaSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06742A9CDA9E00591789 /* PlusJakartaSans-SemiBoldItalic.ttf */; };
+		B67F067B2A9CDA9E00591789 /* PlusJakartaSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06752A9CDA9E00591789 /* PlusJakartaSans-Medium.ttf */; };
+		B67F067C2A9CDA9E00591789 /* PlusJakartaSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06762A9CDA9E00591789 /* PlusJakartaSans-SemiBold.ttf */; };
+		B67F067D2A9CDA9E00591789 /* PlusJakartaSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06772A9CDA9E00591789 /* PlusJakartaSans-MediumItalic.ttf */; };
+		B67F067E2A9CDA9E00591789 /* PlusJakartaSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06782A9CDA9E00591789 /* PlusJakartaSans-Bold.ttf */; };
+		B67F067F2A9CDA9E00591789 /* PlusJakartaSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06792A9CDA9E00591789 /* PlusJakartaSans-BoldItalic.ttf */; };
+		B67F06832A9EA17000591789 /* LimeChipTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67F06822A9EA17000591789 /* LimeChipTextButton.swift */; };
 		B6DC10A82A7BF6E600C10100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */; };
 		B6DC10AA2A7BF6E600C10100 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */; };
-		B6DC10AC2A7BF6E600C10100 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10AB2A7BF6E600C10100 /* ViewController.swift */; };
+		B6DC10AC2A7BF6E600C10100 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10AB2A7BF6E600C10100 /* TabBarViewController.swift */; };
 		B6DC10AF2A7BF6E600C10100 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6DC10AD2A7BF6E600C10100 /* Main.storyboard */; };
-		B6DC10B12A7BF6E700C10100 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6DC10B02A7BF6E700C10100 /* Assets.xcassets */; };
 		B6DC10B42A7BF6E700C10100 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6DC10B22A7BF6E700C10100 /* LaunchScreen.storyboard */; };
 		B6DC10BF2A7BF6E700C10100 /* LimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10BE2A7BF6E700C10100 /* LimeTests.swift */; };
 		B6DC10C92A7BF6E700C10100 /* LimeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10C82A7BF6E700C10100 /* LimeUITests.swift */; };
 		B6DC10CB2A7BF6E700C10100 /* LimeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10CA2A7BF6E700C10100 /* LimeUITestsLaunchTests.swift */; };
+		B6DC10DA2A7C027A00C10100 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10D92A7C027A00C10100 /* Environment.swift */; };
+		B6DC10E62A7C87CF00C10100 /* LimeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10E52A7C87CE00C10100 /* LimeButton.swift */; };
+		B6DC10F32A7C87E300C10100 /* LimeIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10E72A7C87E300C10100 /* LimeIconButton.swift */; };
+		B6DC10F52A7C87E300C10100 /* LimeUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10E92A7C87E300C10100 /* LimeUIView.swift */; };
+		B6DC10F62A7C87E300C10100 /* LimeVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10EA2A7C87E300C10100 /* LimeVStack.swift */; };
+		B6DC10F92A7C87E300C10100 /* LimeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10ED2A7C87E300C10100 /* LimeImage.swift */; };
+		B6DC10FA2A7C87E300C10100 /* LimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10EE2A7C87E300C10100 /* LimeView.swift */; };
+		B6DC10FB2A7C87E300C10100 /* LimeText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10EF2A7C87E300C10100 /* LimeText.swift */; };
+		B6DC10FC2A7C87E300C10100 /* LimeHStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10F02A7C87E300C10100 /* LimeHStack.swift */; };
+		B6DC11942A7CA28900C10100 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC11922A7CA28900C10100 /* Strings.swift */; };
+		B6DC11952A7CA28900C10100 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B6DC11932A7CA28900C10100 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,12 +125,89 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B60A39A22A7CA49900499484 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
+		B60A39A32A7CA49900499484 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		B60A39A52A7CA49900499484 /* SCNNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCNNode.swift; sourceTree = "<group>"; };
+		B60A39A62A7CA49900499484 /* SCNVector3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCNVector3.swift; sourceTree = "<group>"; };
+		B60A39A72A7CA49900499484 /* SCNVector4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCNVector4.swift; sourceTree = "<group>"; };
+		B60A39A92A7CA49900499484 /* CGRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
+		B60A39AA2A7CA49900499484 /* Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		B60A39AB2A7CA49900499484 /* Float.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Float.swift; sourceTree = "<group>"; };
+		B60A39B62A7CA4A600499484 /* CaptureSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureSession.swift; sourceTree = "<group>"; };
+		B60A39B72A7CA4A600499484 /* CaptureDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureDelegate.swift; sourceTree = "<group>"; };
+		B60A39B92A7CA4A600499484 /* Clonable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clonable.swift; sourceTree = "<group>"; };
+		B60A39BA2A7CA4A600499484 /* LimeSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimeSession.swift; sourceTree = "<group>"; };
+		B60A39BC2A7CA4A600499484 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		B60A39BD2A7CA4A600499484 /* HandPointRecogniser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandPointRecogniser.swift; sourceTree = "<group>"; };
+		B60A39BE2A7CA4A600499484 /* JointPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JointPosition.swift; sourceTree = "<group>"; };
+		B60A39BF2A7CA4A600499484 /* SignRecogniser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignRecogniser.swift; sourceTree = "<group>"; };
+		B60A39C02A7CA4A600499484 /* JointPositions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JointPositions.swift; sourceTree = "<group>"; };
+		B60A39C12A7CA4A600499484 /* PredictionOutcome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredictionOutcome.swift; sourceTree = "<group>"; };
+		B60A39C22A7CA4A600499484 /* SignDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignDelegate.swift; sourceTree = "<group>"; };
+		B60A39C42A7CA4A600499484 /* GeometryBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeometryBuilder.swift; sourceTree = "<group>"; };
+		B60A39C52A7CA4A600499484 /* PresetNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetNode.swift; sourceTree = "<group>"; };
+		B60A39C62A7CA4A600499484 /* NodeUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeUtil.swift; sourceTree = "<group>"; };
+		B60A39C72A7CA4A600499484 /* SCNBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCNBox.swift; sourceTree = "<group>"; };
+		B60A39C82A7CA4A600499484 /* ModelRotationsIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelRotationsIndex.swift; sourceTree = "<group>"; };
+		B60A39C92A7CA4A600499484 /* PresetModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetModel.swift; sourceTree = "<group>"; };
+		B60A39CA2A7CA4A600499484 /* SceneModelSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneModelSequence.swift; sourceTree = "<group>"; };
+		B60A39CC2A7CA4A600499484 /* SceneCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneCamera.swift; sourceTree = "<group>"; };
+		B60A39CD2A7CA4A600499484 /* SceneLight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneLight.swift; sourceTree = "<group>"; };
+		B60A39CE2A7CA4A600499484 /* SceneGeometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneGeometry.swift; sourceTree = "<group>"; };
+		B60A39CF2A7CA4A600499484 /* SceneModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneModel.swift; sourceTree = "<group>"; };
+		B60A39D02A7CA4A600499484 /* SceneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneController.swift; sourceTree = "<group>"; };
+		B60A3A1D2A7CA50600499484 /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
+		B60A3A1E2A7CA50600499484 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B60A3A1F2A7CA50600499484 /* ASLDemoClassifier 2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "ASLDemoClassifier 2.mlmodel"; sourceTree = "<group>"; };
+		B60A3A542A7CA72C00499484 /* SceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneViewController.swift; sourceTree = "<group>"; };
+		B60A3A562A7CD66D00499484 /* LimeChipButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeChipButton.swift; sourceTree = "<group>"; };
+		B60A3A582A7CEECF00499484 /* LimeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeControl.swift; sourceTree = "<group>"; };
+		B60A3A5B2A7CF6EA00499484 /* LimeColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeColors.swift; sourceTree = "<group>"; };
+		B60A3A5D2A7CF70000499484 /* LimeDimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeDimensions.swift; sourceTree = "<group>"; };
+		B60A3A5F2A7D106600499484 /* LimeChipToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeChipToggle.swift; sourceTree = "<group>"; };
+		B60A3A612A7D1B9F00499484 /* LimeTextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeTextInput.swift; sourceTree = "<group>"; };
+		B60A3A652A7DDD9C00499484 /* IBMPlexMono-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-Medium.ttf"; sourceTree = "<group>"; };
+		B60A3A672A7DDD9C00499484 /* IBMPlexMono-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-MediumItalic.ttf"; sourceTree = "<group>"; };
+		B60A3A682A7DDD9C00499484 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		B60A3A692A7DDD9C00499484 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		B60A3A6A2A7DDD9C00499484 /* IBMPlexMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-Bold.ttf"; sourceTree = "<group>"; };
+		B60A3A6C2A7DDD9C00499484 /* IBMPlexMono-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		B60A3A6D2A7DDD9C00499484 /* IBMPlexMono-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-SemiBold.ttf"; sourceTree = "<group>"; };
+		B60A3A6F2A7DDD9C00499484 /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
+		B60A3A712A7DDD9C00499484 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		B60A3A732A7DDD9C00499484 /* Poppins-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BoldItalic.ttf"; sourceTree = "<group>"; };
+		B60A3A742A7DDD9C00499484 /* IBMPlexMono-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-BoldItalic.ttf"; sourceTree = "<group>"; };
+		B60A3A752A7DDD9C00499484 /* Poppins-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		B60A3A892A7DE00800499484 /* LimeFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeFonts.swift; sourceTree = "<group>"; };
+		B60A3A8E2A7DF19600499484 /* LimeChipMultiState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeChipMultiState.swift; sourceTree = "<group>"; };
+		B60A3A902A7E1CEE00499484 /* ScrubberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrubberView.swift; sourceTree = "<group>"; };
+		B60A3A922A7E29D300499484 /* LimeGestureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeGestureView.swift; sourceTree = "<group>"; };
+		B60A3A942A7E5B3D00499484 /* LetterDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterDisplayView.swift; sourceTree = "<group>"; };
+		B60A3A962A847CAB00499484 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		B60A3A982A84CCC500499484 /* OnTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTransitionDelegate.swift; sourceTree = "<group>"; };
+		B60A3AA22A86048700499484 /* Quicksand-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-SemiBold.ttf"; sourceTree = "<group>"; };
+		B60A3AA32A86048700499484 /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.ttf"; sourceTree = "<group>"; };
+		B60A3AA42A86048700499484 /* Quicksand-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Light.ttf"; sourceTree = "<group>"; };
+		B60A3AAA2A86428400499484 /* SettingsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRowView.swift; sourceTree = "<group>"; };
+		B60A3AAD2A8C62A700499484 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		B60A3AB02A8C666600499484 /* LimeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeSettings.swift; sourceTree = "<group>"; };
+		B60A3AB22A8C666F00499484 /* SettingsSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSession.swift; sourceTree = "<group>"; };
+		B60A3AB42A8C949F00499484 /* OnSettingsChangedPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnSettingsChangedPublisher.swift; sourceTree = "<group>"; };
+		B60A3B2C2A8D057100499484 /* DatabaseSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseSession.swift; sourceTree = "<group>"; };
+		B67F06702A9CD97500591789 /* PlusJakartaSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		B67F06712A9CD97500591789 /* PlusJakartaSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		B67F06742A9CDA9E00591789 /* PlusJakartaSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		B67F06752A9CDA9E00591789 /* PlusJakartaSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-Medium.ttf"; sourceTree = "<group>"; };
+		B67F06762A9CDA9E00591789 /* PlusJakartaSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		B67F06772A9CDA9E00591789 /* PlusJakartaSans-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-MediumItalic.ttf"; sourceTree = "<group>"; };
+		B67F06782A9CDA9E00591789 /* PlusJakartaSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-Bold.ttf"; sourceTree = "<group>"; };
+		B67F06792A9CDA9E00591789 /* PlusJakartaSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		B67F06822A9EA17000591789 /* LimeChipTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeChipTextButton.swift; sourceTree = "<group>"; };
 		B6DC10A42A7BF6E600C10100 /* Lime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B6DC10AB2A7BF6E600C10100 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B6DC10AB2A7BF6E600C10100 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		B6DC10AE2A7BF6E600C10100 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B6DC10B02A7BF6E700C10100 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B6DC10B32A7BF6E700C10100 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B6DC10B52A7BF6E700C10100 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6DC10BA2A7BF6E700C10100 /* LimeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LimeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +215,17 @@
 		B6DC10C42A7BF6E700C10100 /* LimeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LimeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6DC10C82A7BF6E700C10100 /* LimeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeUITests.swift; sourceTree = "<group>"; };
 		B6DC10CA2A7BF6E700C10100 /* LimeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B6DC10D92A7C027A00C10100 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		B6DC10E52A7C87CE00C10100 /* LimeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimeButton.swift; sourceTree = "<group>"; };
+		B6DC10E72A7C87E300C10100 /* LimeIconButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimeIconButton.swift; sourceTree = "<group>"; };
+		B6DC10E92A7C87E300C10100 /* LimeUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimeUIView.swift; sourceTree = "<group>"; };
+		B6DC10EA2A7C87E300C10100 /* LimeVStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimeVStack.swift; sourceTree = "<group>"; };
+		B6DC10ED2A7C87E300C10100 /* LimeImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimeImage.swift; sourceTree = "<group>"; };
+		B6DC10EE2A7C87E300C10100 /* LimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimeView.swift; sourceTree = "<group>"; };
+		B6DC10EF2A7C87E300C10100 /* LimeText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimeText.swift; sourceTree = "<group>"; };
+		B6DC10F02A7C87E300C10100 /* LimeHStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimeHStack.swift; sourceTree = "<group>"; };
+		B6DC11922A7CA28900C10100 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		B6DC11932A7CA28900C10100 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +233,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B60A3B2A2A8D046600499484 /* SwiftSerialization in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +254,177 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B60A39A12A7CA49900499484 /* Swift */ = {
+			isa = PBXGroup;
+			children = (
+				B60A3AAC2A8C629C00499484 /* UIKit */,
+				B60A39A42A7CA49900499484 /* SceneKit */,
+				B60A39A82A7CA49900499484 /* CGRect */,
+				B60A39A22A7CA49900499484 /* Math.swift */,
+				B60A39A32A7CA49900499484 /* Array.swift */,
+				B60A39AA2A7CA49900499484 /* Double.swift */,
+				B60A39AB2A7CA49900499484 /* Float.swift */,
+			);
+			path = Swift;
+			sourceTree = "<group>";
+		};
+		B60A39A42A7CA49900499484 /* SceneKit */ = {
+			isa = PBXGroup;
+			children = (
+				B60A39A52A7CA49900499484 /* SCNNode.swift */,
+				B60A39A62A7CA49900499484 /* SCNVector3.swift */,
+				B60A39A72A7CA49900499484 /* SCNVector4.swift */,
+			);
+			path = SceneKit;
+			sourceTree = "<group>";
+		};
+		B60A39A82A7CA49900499484 /* CGRect */ = {
+			isa = PBXGroup;
+			children = (
+				B60A39A92A7CA49900499484 /* CGRect.swift */,
+			);
+			path = CGRect;
+			sourceTree = "<group>";
+		};
+		B60A39B42A7CA4A600499484 /* Model Layer */ = {
+			isa = PBXGroup;
+			children = (
+				B60A3B2B2A8D056700499484 /* Database */,
+				B60A3AAF2A8C665900499484 /* Settings */,
+				B60A39B52A7CA4A600499484 /* Video */,
+				B60A39B82A7CA4A600499484 /* Core */,
+				B60A39BB2A7CA4A600499484 /* Recognition */,
+				B60A39C32A7CA4A600499484 /* Scene */,
+				B60A39BA2A7CA4A600499484 /* LimeSession.swift */,
+			);
+			path = "Model Layer";
+			sourceTree = "<group>";
+		};
+		B60A39B52A7CA4A600499484 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				B60A39B62A7CA4A600499484 /* CaptureSession.swift */,
+				B60A39B72A7CA4A600499484 /* CaptureDelegate.swift */,
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
+		B60A39B82A7CA4A600499484 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B60A39B92A7CA4A600499484 /* Clonable.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		B60A39BB2A7CA4A600499484 /* Recognition */ = {
+			isa = PBXGroup;
+			children = (
+				B60A39BC2A7CA4A600499484 /* Label.swift */,
+				B60A39BD2A7CA4A600499484 /* HandPointRecogniser.swift */,
+				B60A39BE2A7CA4A600499484 /* JointPosition.swift */,
+				B60A39BF2A7CA4A600499484 /* SignRecogniser.swift */,
+				B60A39C02A7CA4A600499484 /* JointPositions.swift */,
+				B60A39C12A7CA4A600499484 /* PredictionOutcome.swift */,
+				B60A39C22A7CA4A600499484 /* SignDelegate.swift */,
+			);
+			path = Recognition;
+			sourceTree = "<group>";
+		};
+		B60A39C32A7CA4A600499484 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				B60A39CB2A7CA4A600499484 /* Node Wrappers */,
+				B60A39C42A7CA4A600499484 /* GeometryBuilder.swift */,
+				B60A39C52A7CA4A600499484 /* PresetNode.swift */,
+				B60A39C62A7CA4A600499484 /* NodeUtil.swift */,
+				B60A39C72A7CA4A600499484 /* SCNBox.swift */,
+				B60A39C82A7CA4A600499484 /* ModelRotationsIndex.swift */,
+				B60A39C92A7CA4A600499484 /* PresetModel.swift */,
+				B60A39CA2A7CA4A600499484 /* SceneModelSequence.swift */,
+				B60A39D02A7CA4A600499484 /* SceneController.swift */,
+				B60A3A982A84CCC500499484 /* OnTransitionDelegate.swift */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		B60A39CB2A7CA4A600499484 /* Node Wrappers */ = {
+			isa = PBXGroup;
+			children = (
+				B60A39CC2A7CA4A600499484 /* SceneCamera.swift */,
+				B60A39CD2A7CA4A600499484 /* SceneLight.swift */,
+				B60A39CE2A7CA4A600499484 /* SceneGeometry.swift */,
+				B60A39CF2A7CA4A600499484 /* SceneModel.swift */,
+			);
+			path = "Node Wrappers";
+			sourceTree = "<group>";
+		};
+		B60A3A202A7CA50600499484 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B67F06702A9CD97500591789 /* PlusJakartaSans-ExtraBold.ttf */,
+				B67F06712A9CD97500591789 /* PlusJakartaSans-ExtraBoldItalic.ttf */,
+				B67F06782A9CDA9E00591789 /* PlusJakartaSans-Bold.ttf */,
+				B67F06792A9CDA9E00591789 /* PlusJakartaSans-BoldItalic.ttf */,
+				B67F06752A9CDA9E00591789 /* PlusJakartaSans-Medium.ttf */,
+				B67F06772A9CDA9E00591789 /* PlusJakartaSans-MediumItalic.ttf */,
+				B67F06762A9CDA9E00591789 /* PlusJakartaSans-SemiBold.ttf */,
+				B67F06742A9CDA9E00591789 /* PlusJakartaSans-SemiBoldItalic.ttf */,
+				B60A3AA42A86048700499484 /* Quicksand-Light.ttf */,
+				B60A3AA32A86048700499484 /* Quicksand-Regular.ttf */,
+				B60A3AA22A86048700499484 /* Quicksand-SemiBold.ttf */,
+				B60A3A6A2A7DDD9C00499484 /* IBMPlexMono-Bold.ttf */,
+				B60A3A742A7DDD9C00499484 /* IBMPlexMono-BoldItalic.ttf */,
+				B60A3A652A7DDD9C00499484 /* IBMPlexMono-Medium.ttf */,
+				B60A3A672A7DDD9C00499484 /* IBMPlexMono-MediumItalic.ttf */,
+				B60A3A6D2A7DDD9C00499484 /* IBMPlexMono-SemiBold.ttf */,
+				B60A3A6C2A7DDD9C00499484 /* IBMPlexMono-SemiBoldItalic.ttf */,
+				B60A3A712A7DDD9C00499484 /* Poppins-Bold.ttf */,
+				B60A3A732A7DDD9C00499484 /* Poppins-BoldItalic.ttf */,
+				B60A3A682A7DDD9C00499484 /* Poppins-Medium.ttf */,
+				B60A3A6F2A7DDD9C00499484 /* Poppins-MediumItalic.ttf */,
+				B60A3A692A7DDD9C00499484 /* Poppins-SemiBold.ttf */,
+				B60A3A752A7DDD9C00499484 /* Poppins-SemiBoldItalic.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		B60A3A5A2A7CF6CB00499484 /* Presets */ = {
+			isa = PBXGroup;
+			children = (
+				B60A3A5B2A7CF6EA00499484 /* LimeColors.swift */,
+				B60A3A5D2A7CF70000499484 /* LimeDimensions.swift */,
+				B60A3A892A7DE00800499484 /* LimeFonts.swift */,
+			);
+			path = Presets;
+			sourceTree = "<group>";
+		};
+		B60A3AAC2A8C629C00499484 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				B60A3AAD2A8C62A700499484 /* UIColor.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		B60A3AAF2A8C665900499484 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B60A3AB02A8C666600499484 /* LimeSettings.swift */,
+				B60A3AB22A8C666F00499484 /* SettingsSession.swift */,
+				B60A3AB42A8C949F00499484 /* OnSettingsChangedPublisher.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		B60A3B2B2A8D056700499484 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				B60A3B2C2A8D057100499484 /* DatabaseSession.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
 		B6DC109B2A7BF6E600C10100 = {
 			isa = PBXGroup;
 			children = (
@@ -99,13 +448,11 @@
 		B6DC10A62A7BF6E600C10100 /* Lime */ = {
 			isa = PBXGroup;
 			children = (
-				B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */,
-				B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */,
-				B6DC10AB2A7BF6E600C10100 /* ViewController.swift */,
-				B6DC10AD2A7BF6E600C10100 /* Main.storyboard */,
-				B6DC10B02A7BF6E700C10100 /* Assets.xcassets */,
-				B6DC10B22A7BF6E700C10100 /* LaunchScreen.storyboard */,
-				B6DC10B52A7BF6E700C10100 /* Info.plist */,
+				B60A39A12A7CA49900499484 /* Swift */,
+				B60A39B42A7CA4A600499484 /* Model Layer */,
+				B6DC11912A7CA28900C10100 /* Strings */,
+				B6DC10E12A7C870F00C10100 /* App */,
+				B6DC10DB2A7C86A300C10100 /* View Layer */,
 			);
 			path = Lime;
 			sourceTree = "<group>";
@@ -127,6 +474,125 @@
 			path = LimeUITests;
 			sourceTree = "<group>";
 		};
+		B6DC10DB2A7C86A300C10100 /* View Layer */ = {
+			isa = PBXGroup;
+			children = (
+				B6DC10DC2A7C86B600C10100 /* Environment */,
+				B6DC10DD2A7C86CB00C10100 /* Views */,
+				B6DC10DE2A7C86D300C10100 /* ViewControllers */,
+				B60A3A5A2A7CF6CB00499484 /* Presets */,
+				B6DC10DF2A7C86E000C10100 /* Assets */,
+				B6DC10E02A7C86E400C10100 /* Storyboards */,
+			);
+			path = "View Layer";
+			sourceTree = "<group>";
+		};
+		B6DC10DC2A7C86B600C10100 /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				B6DC10D92A7C027A00C10100 /* Environment.swift */,
+			);
+			path = Environment;
+			sourceTree = "<group>";
+		};
+		B6DC10DD2A7C86CB00C10100 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B6DC10E32A7C878700C10100 /* Core */,
+				B6DC10E42A7C878C00C10100 /* Custom */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B6DC10DE2A7C86D300C10100 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B6DC10AB2A7BF6E600C10100 /* TabBarViewController.swift */,
+				B60A3A542A7CA72C00499484 /* SceneViewController.swift */,
+				B60A3A962A847CAB00499484 /* SettingsViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B6DC10DF2A7C86E000C10100 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				B60A3A1D2A7CA50600499484 /* Models.scnassets */,
+				B60A3A1E2A7CA50600499484 /* Assets.xcassets */,
+				B60A3A1F2A7CA50600499484 /* ASLDemoClassifier 2.mlmodel */,
+				B60A3A202A7CA50600499484 /* Fonts */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		B6DC10E02A7C86E400C10100 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				B6DC10AD2A7BF6E600C10100 /* Main.storyboard */,
+				B6DC10B22A7BF6E700C10100 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		B6DC10E12A7C870F00C10100 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				B6DC10E22A7C871600C10100 /* Lifecycle */,
+				B6DC10B52A7BF6E700C10100 /* Info.plist */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		B6DC10E22A7C871600C10100 /* Lifecycle */ = {
+			isa = PBXGroup;
+			children = (
+				B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */,
+				B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */,
+			);
+			path = Lifecycle;
+			sourceTree = "<group>";
+		};
+		B6DC10E32A7C878700C10100 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B6DC10E52A7C87CE00C10100 /* LimeButton.swift */,
+				B6DC10F02A7C87E300C10100 /* LimeHStack.swift */,
+				B6DC10E72A7C87E300C10100 /* LimeIconButton.swift */,
+				B6DC10ED2A7C87E300C10100 /* LimeImage.swift */,
+				B6DC10EF2A7C87E300C10100 /* LimeText.swift */,
+				B6DC10E92A7C87E300C10100 /* LimeUIView.swift */,
+				B6DC10EE2A7C87E300C10100 /* LimeView.swift */,
+				B6DC10EA2A7C87E300C10100 /* LimeVStack.swift */,
+				B60A3A562A7CD66D00499484 /* LimeChipButton.swift */,
+				B67F06822A9EA17000591789 /* LimeChipTextButton.swift */,
+				B60A3A582A7CEECF00499484 /* LimeControl.swift */,
+				B60A3A5F2A7D106600499484 /* LimeChipToggle.swift */,
+				B60A3A612A7D1B9F00499484 /* LimeTextInput.swift */,
+				B60A3A8E2A7DF19600499484 /* LimeChipMultiState.swift */,
+				B60A3A922A7E29D300499484 /* LimeGestureView.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		B6DC10E42A7C878C00C10100 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				B60A3A902A7E1CEE00499484 /* ScrubberView.swift */,
+				B60A3A942A7E5B3D00499484 /* LetterDisplayView.swift */,
+				B60A3AAA2A86428400499484 /* SettingsRowView.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		B6DC11912A7CA28900C10100 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				B6DC11922A7CA28900C10100 /* Strings.swift */,
+				B6DC11932A7CA28900C10100 /* Localizable.strings */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +609,9 @@
 			dependencies = (
 			);
 			name = Lime;
+			packageProductDependencies = (
+				B60A3B292A8D046600499484 /* SwiftSerialization */,
+			);
 			productName = Lime;
 			productReference = B6DC10A42A7BF6E600C10100 /* Lime.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +684,9 @@
 				Base,
 			);
 			mainGroup = B6DC109B2A7BF6E600C10100;
+			packageReferences = (
+				B60A3B282A8D046600499484 /* XCRemoteSwiftPackageReference "SwiftSerialization" */,
+			);
 			productRefGroup = B6DC10A52A7BF6E600C10100 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -231,9 +703,34 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B60A3A7B2A7DDD9C00499484 /* Poppins-Medium.ttf in Resources */,
+				B67F067F2A9CDA9E00591789 /* PlusJakartaSans-BoldItalic.ttf in Resources */,
 				B6DC10B42A7BF6E700C10100 /* LaunchScreen.storyboard in Resources */,
-				B6DC10B12A7BF6E700C10100 /* Assets.xcassets in Resources */,
+				B60A3A782A7DDD9C00499484 /* IBMPlexMono-Medium.ttf in Resources */,
+				B6DC11952A7CA28900C10100 /* Localizable.strings in Resources */,
+				B60A3A7F2A7DDD9C00499484 /* IBMPlexMono-SemiBoldItalic.ttf in Resources */,
+				B60A3AA72A86048700499484 /* Quicksand-Regular.ttf in Resources */,
+				B60A3A842A7DDD9C00499484 /* Poppins-Bold.ttf in Resources */,
+				B60A3A822A7DDD9C00499484 /* Poppins-MediumItalic.ttf in Resources */,
+				B67F06732A9CD97500591789 /* PlusJakartaSans-ExtraBoldItalic.ttf in Resources */,
+				B60A3AA82A86048700499484 /* Quicksand-Light.ttf in Resources */,
+				B60A3A7D2A7DDD9C00499484 /* IBMPlexMono-Bold.ttf in Resources */,
+				B60A3A4B2A7CA50600499484 /* Models.scnassets in Resources */,
+				B67F067C2A9CDA9E00591789 /* PlusJakartaSans-SemiBold.ttf in Resources */,
+				B60A3A4C2A7CA50600499484 /* Assets.xcassets in Resources */,
+				B67F067A2A9CDA9E00591789 /* PlusJakartaSans-SemiBoldItalic.ttf in Resources */,
+				B60A3A802A7DDD9C00499484 /* IBMPlexMono-SemiBold.ttf in Resources */,
 				B6DC10AF2A7BF6E600C10100 /* Main.storyboard in Resources */,
+				B60A3A7C2A7DDD9C00499484 /* Poppins-SemiBold.ttf in Resources */,
+				B67F067E2A9CDA9E00591789 /* PlusJakartaSans-Bold.ttf in Resources */,
+				B67F067D2A9CDA9E00591789 /* PlusJakartaSans-MediumItalic.ttf in Resources */,
+				B60A3A882A7DDD9C00499484 /* Poppins-SemiBoldItalic.ttf in Resources */,
+				B60A3A7A2A7DDD9C00499484 /* IBMPlexMono-MediumItalic.ttf in Resources */,
+				B67F067B2A9CDA9E00591789 /* PlusJakartaSans-Medium.ttf in Resources */,
+				B60A3A862A7DDD9C00499484 /* Poppins-BoldItalic.ttf in Resources */,
+				B67F06722A9CD97500591789 /* PlusJakartaSans-ExtraBold.ttf in Resources */,
+				B60A3AA62A86048700499484 /* Quicksand-SemiBold.ttf in Resources */,
+				B60A3A872A7DDD9C00499484 /* IBMPlexMono-BoldItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +755,72 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6DC10AC2A7BF6E600C10100 /* ViewController.swift in Sources */,
+				B60A39E52A7CA4A600499484 /* SceneGeometry.swift in Sources */,
+				B6DC10F92A7C87E300C10100 /* LimeImage.swift in Sources */,
+				B60A39AD2A7CA49900499484 /* Array.swift in Sources */,
+				B60A3A8F2A7DF19600499484 /* LimeChipMultiState.swift in Sources */,
+				B6DC10F32A7C87E300C10100 /* LimeIconButton.swift in Sources */,
+				B6DC10AC2A7BF6E600C10100 /* TabBarViewController.swift in Sources */,
+				B60A3AB12A8C666600499484 /* LimeSettings.swift in Sources */,
+				B60A3AAE2A8C62A700499484 /* UIColor.swift in Sources */,
+				B60A39DC2A7CA4A600499484 /* GeometryBuilder.swift in Sources */,
+				B60A39AF2A7CA49900499484 /* SCNVector3.swift in Sources */,
+				B6DC10F62A7C87E300C10100 /* LimeVStack.swift in Sources */,
+				B60A39B12A7CA49900499484 /* CGRect.swift in Sources */,
+				B60A39B22A7CA49900499484 /* Double.swift in Sources */,
+				B60A3A932A7E29D300499484 /* LimeGestureView.swift in Sources */,
+				B67F06832A9EA17000591789 /* LimeChipTextButton.swift in Sources */,
+				B6DC10FC2A7C87E300C10100 /* LimeHStack.swift in Sources */,
+				B60A39D62A7CA4A600499484 /* HandPointRecogniser.swift in Sources */,
 				B6DC10A82A7BF6E600C10100 /* AppDelegate.swift in Sources */,
+				B60A39DB2A7CA4A600499484 /* SignDelegate.swift in Sources */,
+				B60A39E42A7CA4A600499484 /* SceneLight.swift in Sources */,
+				B60A3A592A7CEECF00499484 /* LimeControl.swift in Sources */,
+				B6DC10E62A7C87CF00C10100 /* LimeButton.swift in Sources */,
+				B6DC11942A7CA28900C10100 /* Strings.swift in Sources */,
+				B60A3A622A7D1B9F00499484 /* LimeTextInput.swift in Sources */,
+				B60A39E02A7CA4A600499484 /* ModelRotationsIndex.swift in Sources */,
+				B60A3A952A7E5B3D00499484 /* LetterDisplayView.swift in Sources */,
+				B6DC10FB2A7C87E300C10100 /* LimeText.swift in Sources */,
+				B60A3B2D2A8D057100499484 /* DatabaseSession.swift in Sources */,
+				B60A39D82A7CA4A600499484 /* SignRecogniser.swift in Sources */,
+				B60A3A5E2A7CF70000499484 /* LimeDimensions.swift in Sources */,
+				B60A39B02A7CA49900499484 /* SCNVector4.swift in Sources */,
+				B60A39DE2A7CA4A600499484 /* NodeUtil.swift in Sources */,
+				B60A39D52A7CA4A600499484 /* Label.swift in Sources */,
+				B60A39D32A7CA4A600499484 /* Clonable.swift in Sources */,
+				B60A39E72A7CA4A600499484 /* SceneController.swift in Sources */,
+				B60A3A4D2A7CA50600499484 /* ASLDemoClassifier 2.mlmodel in Sources */,
+				B60A3AB32A8C666F00499484 /* SettingsSession.swift in Sources */,
+				B60A39AE2A7CA49900499484 /* SCNNode.swift in Sources */,
+				B60A39DD2A7CA4A600499484 /* PresetNode.swift in Sources */,
 				B6DC10AA2A7BF6E600C10100 /* SceneDelegate.swift in Sources */,
+				B60A3A912A7E1CEE00499484 /* ScrubberView.swift in Sources */,
+				B60A39E12A7CA4A600499484 /* PresetModel.swift in Sources */,
+				B60A39D22A7CA4A600499484 /* CaptureDelegate.swift in Sources */,
+				B6DC10DA2A7C027A00C10100 /* Environment.swift in Sources */,
+				B60A3A572A7CD66D00499484 /* LimeChipButton.swift in Sources */,
+				B60A39AC2A7CA49900499484 /* Math.swift in Sources */,
+				B60A3A972A847CAB00499484 /* SettingsViewController.swift in Sources */,
+				B60A39DF2A7CA4A600499484 /* SCNBox.swift in Sources */,
+				B60A39E32A7CA4A600499484 /* SceneCamera.swift in Sources */,
+				B60A39D42A7CA4A600499484 /* LimeSession.swift in Sources */,
+				B60A39DA2A7CA4A600499484 /* PredictionOutcome.swift in Sources */,
+				B6DC10F52A7C87E300C10100 /* LimeUIView.swift in Sources */,
+				B60A39B32A7CA49900499484 /* Float.swift in Sources */,
+				B60A3A5C2A7CF6EA00499484 /* LimeColors.swift in Sources */,
+				B6DC10FA2A7C87E300C10100 /* LimeView.swift in Sources */,
+				B60A39E62A7CA4A600499484 /* SceneModel.swift in Sources */,
+				B60A3A552A7CA72C00499484 /* SceneViewController.swift in Sources */,
+				B60A3A992A84CCC500499484 /* OnTransitionDelegate.swift in Sources */,
+				B60A39D92A7CA4A600499484 /* JointPositions.swift in Sources */,
+				B60A3A602A7D106600499484 /* LimeChipToggle.swift in Sources */,
+				B60A39D12A7CA4A600499484 /* CaptureSession.swift in Sources */,
+				B60A39D72A7CA4A600499484 /* JointPosition.swift in Sources */,
+				B60A3AAB2A86428400499484 /* SettingsRowView.swift in Sources */,
+				B60A39E22A7CA4A600499484 /* SceneModelSequence.swift in Sources */,
+				B60A3A8A2A7DE00800499484 /* LimeFonts.swift in Sources */,
+				B60A3AB52A8C949F00499484 /* OnSettingsChangedPublisher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,7 +926,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -420,7 +980,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -439,12 +999,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W9DP42NB5D;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Lime/Info.plist;
+				INFOPLIST_FILE = Lime/App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Spell Auslan";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -467,12 +1029,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W9DP42NB5D;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Lime/Info.plist;
+				INFOPLIST_FILE = Lime/App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Spell Auslan";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -602,6 +1166,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B60A3B282A8D046600499484 /* XCRemoteSwiftPackageReference "SwiftSerialization" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Andre-Pham/SwiftSerialization";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B60A3B292A8D046600499484 /* SwiftSerialization */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B60A3B282A8D046600499484 /* XCRemoteSwiftPackageReference "SwiftSerialization" */;
+			productName = SwiftSerialization;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B6DC109C2A7BF6E600C10100 /* Project object */;
 }

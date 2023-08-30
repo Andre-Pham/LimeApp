@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "swiftserialization",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Andre-Pham/SwiftSerialization",
+      "state" : {
+        "revision" : "a014525541471f7eab8de3be309020778eaae968",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "swiftyjson",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwiftyJSON/SwiftyJSON",
+      "state" : {
+        "revision" : "b3dcd7dbd0d488e1a7077cb33b00f2083e382f07",
+        "version" : "5.0.1"
+      }
+    }
+  ],
+  "version" : 2
+}

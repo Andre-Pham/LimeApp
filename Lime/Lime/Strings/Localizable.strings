@@ -1,0 +1,38 @@
+/*
+  Localizable.strings
+  Lime
+
+  Created by Andre Pham on 6/3/2023.
+  
+*/
+
+// MARK: - Titles
+
+"title.settings" = "Settings";
+
+// MARK: - Tab Bar
+
+"tabBar.generate3D" = "3D";
+"tabBar.generateText" = "Camera";
+"tabBar.info" = "Info";
+"tabBar.settings" = "Settings";
+
+// MARK: - Labels
+
+"label.prompt" = "Prompt";
+"label.chiralitySetting" = "Use left-handed Auslan signs";
+"label.interpolateSetting" = "Animate a transition between performed signs";
+"label.hidePromptSetting" = "Hide the letters being performed (above model)";
+"label.viewFront" = "Front";
+"label.viewBack" = "Back";
+
+// MARK: - Settings
+
+"setting.chirality" = "Left Handed Signs";
+"setting.interpolate" = "Interpolate";
+"setting.hidePrompt" = "Hide Prompt";
+
+// MARK: - Buttons
+
+"button.apply" = "Apply";
+"button.cancel" = "Cancel";

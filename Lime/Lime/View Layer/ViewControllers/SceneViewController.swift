@@ -136,7 +136,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
                     }
                     self.lastPosition = clampedProportion
                     if let letterIndex = LimeSession.inst.sequence?.activeModelIndex {
-                        self.letterDisplay.centerLetter(letterIndex, duration: 0.2)
+                        self.letterDisplay.focusLetter(letterIndex, duration: 0.2)
                     }
                 }
             })
@@ -229,7 +229,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
                     LimeSession.inst.sequence?.setOnTransitionDelegate(to: self)
                     self.letterDisplay.setPrompt(to: LimeSession.inst.activePrompt)
                     if !LimeSession.inst.activePrompt.isEmpty {
-                        self.letterDisplay.centerLetter(0, duration: 0.5)
+                        self.letterDisplay.focusLetter(0, duration: 0.5)
                     }
                     self.resetToolbar()
                 }
@@ -263,7 +263,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
                     self.lastPosition = proportion
                 }
                 if let letterIndex = LimeSession.inst.sequence?.activeModelIndex {
-                    self.letterDisplay.centerLetter(letterIndex, duration: 0.5)
+                    self.letterDisplay.focusLetter(letterIndex, duration: 0.5)
                 }
             }
         }

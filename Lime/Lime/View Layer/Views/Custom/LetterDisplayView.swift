@@ -13,23 +13,33 @@ class LetterDisplayView: LimeUIView {
     typealias LettersToRemove = [(char: Character, index: Int)]
     typealias LettersToInsert = [(char: Character, index: Int)]
     
+    private static let FOCUS_BOX_WIDTH = 50.0
+    private static let FOCUS_BOX_HEIGHT = 64.0
+    private static let FOCUS_BOX_CORNER_RADIUS = 12.0
+    private static let LETTER_SIZE = 32.0
+    private static let LETTER_WIDTH = 32.0
+    private static let LETTER_OPACITY = 0.4
+    private static let FOCUS_LETTER_SIZE = 50.0
+    private static let FOCUS_LETTER_WIDTH = 50.0
+    private static let FOCUS_LARGE_LETTER_SIZE = 44.0
+    
     private let container = LimeView()
     private let stack = LimeHStack()
     private var letters = [LimeText]()
     private var letterWidthConstraints = [NSLayoutConstraint]()
     private let textMode = false
     private var activePrompt = ""
-    private var activeLetter: LimeText? = nil
-    private var activeLetterIndex: Int? = nil
+    private var focusedLetter: LimeText? = nil
+    private var focusedLetterIndex: Int? = nil
     public var view: UIView {
         return self.container.view
     }
     
     override init() {
         self.container
-            .setWidthConstraint(to: 50)
-            .setHeightConstraint(to: 64)
-            .setCornerRadius(to: 12)
+            .setWidthConstraint(to: Self.FOCUS_BOX_WIDTH)
+            .setHeightConstraint(to: Self.FOCUS_BOX_HEIGHT)
+            .setCornerRadius(to: Self.FOCUS_BOX_CORNER_RADIUS)
             .addSubview(self.stack)
         
         self.stack
@@ -38,7 +48,7 @@ class LetterDisplayView: LimeUIView {
     }
     
     func setPrompt(to prompt: String) {
-        self.resetActiveLetter()
+        self.resetFocusedLetter()
         
         if prompt.isEmpty {
             self.container.setBackgroundColor(to: .clear)
@@ -57,11 +67,11 @@ class LetterDisplayView: LimeUIView {
         
         for letter in lettersToInsert {
             let view = LimeText()
-                .setFont(to: LimeFont(font: LimeFonts.Poppins.Bold.rawValue, size: 32))
+                .setFont(to: LimeFont(font: LimeFonts.Poppins.Bold.rawValue, size: Self.LETTER_SIZE))
                 .setText(to: String(letter.char))
                 .setTextAlignment(to: .center)
-                .setTextOpacity(to: 0.4)
-            let widthConstraint = view.view.widthAnchor.constraint(equalToConstant: 32)
+                .setTextOpacity(to: Self.LETTER_OPACITY)
+            let widthConstraint = view.view.widthAnchor.constraint(equalToConstant: Self.LETTER_WIDTH)
             widthConstraint.isActive = true
             self.letterWidthConstraints.insert(widthConstraint, at: letter.index)
             self.stack
@@ -72,53 +82,53 @@ class LetterDisplayView: LimeUIView {
         self.activePrompt = prompt
     }
     
-    func centerLetter(_ index: Int, duration: Double) {
+    func focusLetter(_ index: Int, duration: Double) {
         assert(index < self.letters.count, "Invalid index provided")
-        guard index != self.activeLetterIndex else { return }
+        guard index != self.focusedLetterIndex else { return }
         
-        self.resetActiveLetter()
+        self.resetFocusedLetter()
         
         let letter = self.letters[index]
         letter
-            .setSize(to: letter.text == "W" || letter.text == "M" ? 44 : 50)
+            .setSize(to: letter.text == "W" || letter.text == "M" ? Self.FOCUS_LARGE_LETTER_SIZE : Self.FOCUS_LETTER_SIZE)
             .setTextOpacity(to: 1.0)
-        self.letterWidthConstraints[index].constant = 50
+        self.letterWidthConstraints[index].constant = Self.FOCUS_LETTER_WIDTH
         
         // Calculate total width of all letters to the left
         var leftWidth = 0.0
         for viewIndex in 0..<index {
-            leftWidth += viewIndex == self.activeLetterIndex ? 50 : 32
+            leftWidth += viewIndex == self.focusedLetterIndex ? Self.FOCUS_LETTER_WIDTH : Self.LETTER_WIDTH
         }
         // Calculate total width of all letters to the right
         var rightWidth = 0.0
         for viewIndex in (index + 1)..<self.letters.count {
-            rightWidth += viewIndex == self.activeLetterIndex ? 50 : 32
+            rightWidth += viewIndex == self.focusedLetterIndex ? Self.FOCUS_LETTER_WIDTH : Self.LETTER_WIDTH
         }
         // Get half the width of the letter in question
-        let halfWay = 50/2.0
+        let halfWay = Self.FOCUS_LETTER_WIDTH/2.0
         
         let letterCenter = leftWidth + halfWay
         
         // Get length from centre of stack to letter
-        let offset = ((Double(self.letters.count) - 1.0)*32.0 + 50.0)/2.0 - letterCenter
+        let offset = ((Double(self.letters.count) - 1.0)*Self.LETTER_WIDTH + Self.FOCUS_LETTER_WIDTH)/2.0 - letterCenter
         
         UIView.animate(withDuration: duration) {
             self.stack.setTransformation(to: CGAffineTransform(translationX: offset, y: 0))
         }
         
-        self.activeLetter = letter
-        self.activeLetterIndex = index
+        self.focusedLetter = letter
+        self.focusedLetterIndex = index
     }
     
-    private func resetActiveLetter() {
-        self.activeLetter?
-            .setSize(to: 32)
-            .setTextOpacity(to: 0.4)
-        if let activeLetterIndex {
-            self.letterWidthConstraints[activeLetterIndex].constant = 32
+    private func resetFocusedLetter() {
+        self.focusedLetter?
+            .setSize(to: Self.LETTER_SIZE)
+            .setTextOpacity(to: Self.LETTER_OPACITY)
+        if let focusedLetterIndex {
+            self.letterWidthConstraints[focusedLetterIndex].constant = Self.LETTER_WIDTH
         }
-        self.activeLetter = nil
-        self.activeLetterIndex = nil
+        self.focusedLetter = nil
+        self.focusedLetterIndex = nil
     }
     
     // https://chat.openai.com/share/5363eea3-cc41-4951-a2fc-112b2d62effc

@@ -23,14 +23,19 @@ class LetterDisplayView: LimeUIView {
     private static let FOCUS_LETTER_WIDTH = 50.0
     private static let FOCUS_LARGE_LETTER_SIZE = 44.0
     
+    private var activePrompt = ""
+    private var focusedLetterIndex: Int? = nil
+    private var focusedLetter: LimeText? {
+        guard let index = self.focusedLetterIndex else {
+            return nil
+        }
+        return self.letters[index]
+    }
+    
     private let container = LimeView()
     private let stack = LimeHStack()
     private var letters = [LimeText]()
     private var letterWidthConstraints = [NSLayoutConstraint]()
-    private let textMode = false
-    private var activePrompt = ""
-    private var focusedLetter: LimeText? = nil
-    private var focusedLetterIndex: Int? = nil
     public var view: UIView {
         return self.container.view
     }
@@ -47,6 +52,10 @@ class LetterDisplayView: LimeUIView {
             .constrainCenterHorizontal()
     }
     
+    /// Set a new prompt. Resets focused letter.
+    /// Doesn't reapply a new focus  (`focusLetter` must be recalled).
+    /// - Parameters:
+    ///   - prompt: The new prompt
     func setPrompt(to prompt: String) {
         self.resetFocusedLetter()
         
@@ -66,22 +75,25 @@ class LetterDisplayView: LimeUIView {
         }
         
         for letter in lettersToInsert {
-            let view = LimeText()
+            let letterView = LimeText()
                 .setFont(to: LimeFont(font: LimeFonts.Poppins.Bold.rawValue, size: Self.LETTER_SIZE))
                 .setText(to: String(letter.char))
                 .setTextAlignment(to: .center)
                 .setTextOpacity(to: Self.LETTER_OPACITY)
-            let widthConstraint = view.view.widthAnchor.constraint(equalToConstant: Self.LETTER_WIDTH)
+            let widthConstraint = letterView.view.widthAnchor.constraint(equalToConstant: Self.LETTER_WIDTH)
             widthConstraint.isActive = true
             self.letterWidthConstraints.insert(widthConstraint, at: letter.index)
-            self.stack
-                .addViewAnimated(view, position: letter.index)
-            self.letters.insert(view, at: letter.index)
+            self.stack.addViewAnimated(letterView, position: letter.index)
+            self.letters.insert(letterView, at: letter.index)
         }
         
         self.activePrompt = prompt
     }
     
+    /// Place a letter into focus.
+    /// - Parameters:
+    ///   - index: The position of the letter to focus
+    ///   - duration: The animation duration for switching between the letters
     func focusLetter(_ index: Int, duration: Double) {
         assert(index < self.letters.count, "Invalid index provided")
         guard index != self.focusedLetterIndex else { return }
@@ -116,10 +128,10 @@ class LetterDisplayView: LimeUIView {
             self.stack.setTransformation(to: CGAffineTransform(translationX: offset, y: 0))
         }
         
-        self.focusedLetter = letter
         self.focusedLetterIndex = index
     }
     
+    /// Return the focused letter back to its original styling, then set the focused letter to nil.
     private func resetFocusedLetter() {
         self.focusedLetter?
             .setSize(to: Self.LETTER_SIZE)
@@ -127,11 +139,16 @@ class LetterDisplayView: LimeUIView {
         if let focusedLetterIndex {
             self.letterWidthConstraints[focusedLetterIndex].constant = Self.LETTER_WIDTH
         }
-        self.focusedLetter = nil
         self.focusedLetterIndex = nil
     }
     
-    // https://chat.openai.com/share/5363eea3-cc41-4951-a2fc-112b2d62effc
+    /// Find the letters to swap out (insert and remove) to form a new string from an old string.
+    /// Contains the minimum insert + remove actions to accomplish getting from the old to the new string.
+    /// https://chat.openai.com/share/5363eea3-cc41-4951-a2fc-112b2d62effc
+    /// - Parameters:
+    ///   - old: The old string
+    ///   - new: The new string to be formed from the letters to remove an insert
+    /// - Returns: The minimum letters to insert and remove to form the new string from the old
     private func findLetterSwaps(old: String, new: String) -> (LettersToRemove, LettersToInsert) {
         let oldChars = Array(old)
         let newChars = Array(new)

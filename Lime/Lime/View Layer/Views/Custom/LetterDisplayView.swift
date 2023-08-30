@@ -10,34 +10,6 @@ import UIKit
 
 class LetterDisplayView: LimeUIView {
     
-    // TODO: This entire thing needs cleaning
-    // Also, rename to focusLetter
-    // TODO: Next I want to make the transitions more timed (read more below)
-    // Right now the timeline goes as such: hand animation -> hand transition -> switch letter -> start new hand animation
-    // I want to make it so when the hands start a transition this also animates for the entire duration of that transition
-    // I would have centerLetter - it takes an animation time (provided by SceneModelSequence) or by default has a default animation time
-    // (for when it's called during timeline scrubbing)
-    // The new sequence would be
-    // hand animation -> hand transition + switch letter (simultaneous and lasting the same time) -> start new hand animation
-    
-    // ALSO to do:
-    // Import other (new) models
-    // [DONE] Fix sequential mode (vs interpolation)
-    // [DONE] Remove square at top when there's no prompt
-    // [DONE] Fix the fact that W and M appear a little too large relative to the square
-    // [DONE] Set the hand colour to be reasonable
-    // [DONE] Fix fonts???
-    // [DONE] Add lighting to the back so if you look at hands from the back it's still lit up
-    // Add a new "rotate" button that allows you to see the hands from the back instead of the front
-    // Add markers in the timeline that seperate the letters
-    // [DONE] Reset the toolbar when you set a new prompt
-    // BUG: If you set a new prompt, then play, then pause at some point, then show the timeline, the timeline is wrong
-    // [DONE] Fix rotating the device messes up the frame of the scene
-    // Fix the tab bar implementation, since I really scrapped it together (especially for iPads)
-    // Fix unbalanced spacing for letter display, e.g. TWAT has odd spacing
-    // Fix dark mode buttons
-    // Fix the fact that when you first start an animation, you are zoomed out
-    
     typealias LettersToRemove = [(char: Character, index: Int)]
     typealias LettersToInsert = [(char: Character, index: Int)]
     
@@ -63,11 +35,6 @@ class LetterDisplayView: LimeUIView {
         self.stack
             .constrainVertical()
             .constrainCenterHorizontal()
-//            .addBorder()
-        
-//        self.prompt
-//
-//        self.letter.setFont(to: LimeFont(font: LimeFonts.CircularStd.Black.rawValue, size: 32))
     }
     
     func setPrompt(to prompt: String) {
@@ -117,8 +84,6 @@ class LetterDisplayView: LimeUIView {
             .setTextOpacity(to: 1.0)
         self.letterWidthConstraints[index].constant = 50
         
-        
-        
         // Calculate total width of all letters to the left
         var leftWidth = 0.0
         for viewIndex in 0..<index {
@@ -133,13 +98,6 @@ class LetterDisplayView: LimeUIView {
         let halfWay = 50/2.0
         
         let letterCenter = leftWidth + halfWay
-        
-        
-//        print(leftWidth)
-//        print(rightWidth)
-//        print(halfWay)
-//        print(self.stack.view.frame.width)
-        
         
         // Get length from centre of stack to letter
         let offset = ((Double(self.letters.count) - 1.0)*32.0 + 50.0)/2.0 - letterCenter

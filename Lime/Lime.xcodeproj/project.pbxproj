@@ -997,10 +997,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = W9DP42NB5D;
+				DEVELOPMENT_TEAM = 87FQ6QZ8TZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Lime/App/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Spell Auslan";
+				INFOPLIST_KEY_CFBundleDisplayName = AuslanSpell;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1012,7 +1012,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = andrepham.Lime;
+				PRODUCT_BUNDLE_IDENTIFIER = andrepham.kalinstefanov.Lime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1027,10 +1027,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = W9DP42NB5D;
+				DEVELOPMENT_TEAM = 87FQ6QZ8TZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Lime/App/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Spell Auslan";
+				INFOPLIST_KEY_CFBundleDisplayName = AuslanSpell;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1042,7 +1042,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = andrepham.Lime;
+				PRODUCT_BUNDLE_IDENTIFIER = andrepham.kalinstefanov.Lime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

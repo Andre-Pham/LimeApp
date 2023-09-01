@@ -132,17 +132,19 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
                 // Resume state - delay to guarantee model doesn't appear in starting position
                 LimeSession.inst.sequence?.handModel.setOpacity(to: 1.0)
                 
-                self.idleModel.setOpacity(to: 0.0)
+               
                 
                 LimeSession.inst.sequence?.setSequencePause(to: false, noBlend: true)
                 self.animationSpeedCache = LimeSession.inst.sequence?.animationSpeed ?? 1.0
                 LimeSession.inst.sequence?.setAnimationSpeed(to: 0.001)
                 
-                if isGreaterOrEqual(self.timeline.progressProportion, 1.0) && self.playButton.isEnabled {
+                if self.playButton.isEnabled {
                     LimeSession.inst.sequence?.handModel.setOpacity(to: 0.0)
                     if !LimeSession.inst.activePrompt.isEmpty {
                         self.idleModel.setOpacity(to: 1.0)
                     }
+                } else {
+                    self.idleModel.setOpacity(to: 0.0)
                 }
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
@@ -165,6 +167,10 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
                         clampedProportion = LimeSession.inst.sequence?.clampToAnimationStart(progressProportion: 0.0) ?? 0.0
                     }
                     self.timeline.setProgress(to: clampedProportion)
+                    if let lastPosition = self.lastPosition, !Lime.isEqual(lastPosition, clampedProportion) {
+                        self.hapticFeedback.impactOccurred()
+                    }
+                    self.lastPosition = clampedProportion
                     if let letterIndex = LimeSession.inst.sequence?.lastPlayedIndex {
                         self.letterDisplay.focusLetter(letterIndex, duration: 0.2)
                     }

@@ -162,10 +162,20 @@ class SceneModelSequenceBlend {
             let (startTime, endTime) = self.animationStartEndTimes(animationIndex: animationIndex)
             let startProportion = startTime/self.totalDurationWithBlend
             let endProportion = endTime/self.totalDurationWithBlend
-            if isGreaterOrEqual(progressProportion, startProportion) && isLess(progressProportion, endProportion) {
+            var midProportion = (startProportion + endProportion)/2.0
+            if animationIndex == self.animationPlayers.endIndex - 1 {
+                // If we're at the end animation, we're more biased towards clamping to the second last point
+                midProportion = startProportion + (endProportion - startProportion)*0.75
+            }
+            if isGreaterOrEqual(progressProportion, startProportion) && isLessOrEqual(progressProportion, midProportion) {
                 self.setTotalProgressTo(progress: startTime)
                 self.lastPlayedIndex = animationIndex
                 return startProportion
+            }
+            if isGreater(progressProportion, midProportion) && isLess(progressProportion, endProportion) {
+                self.setTotalProgressTo(progress: endTime)
+                self.lastPlayedIndex = (animationIndex + 1)%self.animationPlayers.count
+                return endProportion
             }
         }
         self.setTotalProgressTo(progress: self.totalDurationWithBlend)
@@ -199,7 +209,7 @@ class SceneModelSequenceBlend {
         for index in 0..<animationIndex {
             priorAnimationDurations += self.handModels[index].animationDurationBlended
         }
-        return (priorAnimationDurations, priorAnimationDurations + (animationIndex == self.handModels.endIndex ? self.handModels[animationIndex].animationDuration : self.handModels[animationIndex].animationDurationBlended))
+        return (priorAnimationDurations, priorAnimationDurations + (animationIndex == self.handModels.endIndex - 1 ? self.handModels[animationIndex].animationDuration : self.handModels[animationIndex].animationDurationBlended))
     }
     
     private func animationShouldPlay(animationIndex: Int, ignorePause: Bool = false) -> Bool {

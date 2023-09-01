@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+/*
 class SceneModelSequence {
     
     enum TransitionStyle {
@@ -303,3 +303,4 @@ class SceneModelSequence {
     }
     
 }
+*/

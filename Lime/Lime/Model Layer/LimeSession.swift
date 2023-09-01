@@ -15,7 +15,7 @@ class LimeSession {
     
     public let sceneController = SceneController()
     private(set) var activePrompt: String = ""
-    private(set) var sequence: SceneModelSequence? = nil
+    private(set) var sequence: SceneModelSequenceBlend? = nil
     private var fileDirectory: String {
         return SettingsSession.inst.settings.leftHanded ? "alphabet3" : "alphabet1"
     }
@@ -52,7 +52,7 @@ class LimeSession {
     }
     
     func pointCameraToModel() {
-        if let activeModel = self.sequence?.activeModel {
+        if let activeModel = self.sequence?.handModel {
             self.sceneController.positionCameraFacing(model: activeModel)
         }
     }
@@ -119,13 +119,13 @@ class LimeSession {
             self.sequence = nil
             return true
         }
-        var sceneModels = [SceneModel]()
+        var handModels = [HandModel]()
         let subDir = self.fileDirectory
         let suffix = self.fileSuffix
         for char in prompt {
-            sceneModels.append(SceneModel(subDir: subDir, fileName: "\(char)\(suffix).dae", description: char.uppercased()))
+            handModels.append(HandModel(subDir: subDir, fileName: "\(char)\(suffix).dae", blendInDuration: 0.0))
         }
-        self.sequence = SceneModelSequence(transition: .sequential, sceneModels)
+        self.sequence = SceneModelSequenceBlend(handModels: handModels)
         self.sequence?.mount(to: self.sceneController)
         return true
     }
@@ -141,13 +141,13 @@ class LimeSession {
             self.sequence = nil
             return true
         }
-        var sceneModels = [SceneModel]()
+        var handModels = [HandModel]()
         let subDir = self.fileDirectory
         let suffix = self.fileSuffix
         for char in prompt {
-            sceneModels.append(SceneModel(subDir: subDir, fileName: "\(char)\(suffix).dae", description: char.uppercased(), startTrim: 0.2, endTrim: 0.0))
+            handModels.append(HandModel(subDir: subDir, fileName: "\(char)\(suffix).dae", blendInDuration: 0.5))
         }
-        self.sequence = SceneModelSequence(transition: .interpolated, sceneModels)
+        self.sequence = SceneModelSequenceBlend(handModels: handModels)
         self.sequence?.mount(to: self.sceneController)
         return true
     }

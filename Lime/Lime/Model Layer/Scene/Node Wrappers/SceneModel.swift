@@ -8,7 +8,26 @@
 import Foundation
 import SceneKit
 
-class SceneModel: Clonable {
+protocol SceneModel {
+    
+    var namePrefix: String { get }
+    var node: SCNNode { get }
+    var name: String { get }
+    
+}
+extension SceneModel {
+    
+    func add(to sceneView: SCNView) {
+        sceneView.scene?.rootNode.addChildNode(self.node)
+    }
+    
+    func remove() {
+        self.node.removeFromParentNode()
+    }
+    
+}
+
+/*class SceneModel: Clonable {
     
     // MARK: - Constants
     
@@ -76,6 +95,13 @@ class SceneModel: Clonable {
     private let endTrim: Double
     
     // MARK: - Constructors
+    
+    init(node: SCNNode) {
+        self.node = node
+        self.animationDuration = 1.0
+        self.startTrim = 0.0
+        self.endTrim = 0.0
+    }
     
     init(
         dir: String = "Models.scnassets",
@@ -297,3 +323,4 @@ class SceneModel: Clonable {
     }
     
 }
+*/

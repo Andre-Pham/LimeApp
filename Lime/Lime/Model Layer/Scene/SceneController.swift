@@ -52,10 +52,8 @@ class SceneController {
     
     // MARK: - Getters
     
-    func getModel(_ preset: PresetModel) -> SceneModel? {
-        let model: SceneModel? = self.sceneModels.first(where: { $0.name == preset.name })
-        //assert(model != nil, "Preset model \(preset.name) has no corresponding model in the scene")
-        return model
+    func getModels() -> [SceneModel] {
+        return Array(self.sceneModels)
     }
     
     func getCamera() -> SceneCamera {
@@ -80,7 +78,6 @@ class SceneController {
         } else {
             self.sceneModels.append(sceneModel)
         }
-        sceneModel.pause()
     }
     
     func setCamera(to sceneCamera: SceneCamera) {

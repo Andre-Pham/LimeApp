@@ -7,8 +7,8 @@
 
 import Foundation
 
-protocol OnTransitionDelegate: AnyObject {
-    
-    func onTransition(duration: Double)
-    
-}
+//protocol OnTransitionDelegate: AnyObject {
+//    
+//    func onTransition(duration: Double)
+//    
+//}

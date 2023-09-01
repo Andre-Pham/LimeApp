@@ -86,6 +86,8 @@
 		B67F067E2A9CDA9E00591789 /* PlusJakartaSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06782A9CDA9E00591789 /* PlusJakartaSans-Bold.ttf */; };
 		B67F067F2A9CDA9E00591789 /* PlusJakartaSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06792A9CDA9E00591789 /* PlusJakartaSans-BoldItalic.ttf */; };
 		B67F06832A9EA17000591789 /* LimeChipTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67F06822A9EA17000591789 /* LimeChipTextButton.swift */; };
+		B697BA112AA20DFB001AC55E /* SceneModelSequenceBlend.swift in Sources */ = {isa = PBXBuildFile; fileRef = B697BA102AA20DFB001AC55E /* SceneModelSequenceBlend.swift */; };
+		B697BA132AA2337C001AC55E /* HandModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B697BA122AA2337C001AC55E /* HandModel.swift */; };
 		B6DC10A82A7BF6E600C10100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */; };
 		B6DC10AA2A7BF6E600C10100 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */; };
 		B6DC10AC2A7BF6E600C10100 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10AB2A7BF6E600C10100 /* TabBarViewController.swift */; };
@@ -203,6 +205,8 @@
 		B67F06782A9CDA9E00591789 /* PlusJakartaSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-Bold.ttf"; sourceTree = "<group>"; };
 		B67F06792A9CDA9E00591789 /* PlusJakartaSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		B67F06822A9EA17000591789 /* LimeChipTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeChipTextButton.swift; sourceTree = "<group>"; };
+		B697BA102AA20DFB001AC55E /* SceneModelSequenceBlend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneModelSequenceBlend.swift; sourceTree = "<group>"; };
+		B697BA122AA2337C001AC55E /* HandModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandModel.swift; sourceTree = "<group>"; };
 		B6DC10A42A7BF6E600C10100 /* Lime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -344,6 +348,8 @@
 				B60A39CA2A7CA4A600499484 /* SceneModelSequence.swift */,
 				B60A39D02A7CA4A600499484 /* SceneController.swift */,
 				B60A3A982A84CCC500499484 /* OnTransitionDelegate.swift */,
+				B697BA102AA20DFB001AC55E /* SceneModelSequenceBlend.swift */,
+				B697BA122AA2337C001AC55E /* HandModel.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -790,6 +796,7 @@
 				B60A39D52A7CA4A600499484 /* Label.swift in Sources */,
 				B60A39D32A7CA4A600499484 /* Clonable.swift in Sources */,
 				B60A39E72A7CA4A600499484 /* SceneController.swift in Sources */,
+				B697BA112AA20DFB001AC55E /* SceneModelSequenceBlend.swift in Sources */,
 				B60A3A4D2A7CA50600499484 /* ASLDemoClassifier 2.mlmodel in Sources */,
 				B60A3AB32A8C666F00499484 /* SettingsSession.swift in Sources */,
 				B60A39AE2A7CA49900499484 /* SCNNode.swift in Sources */,
@@ -804,6 +811,7 @@
 				B60A3A972A847CAB00499484 /* SettingsViewController.swift in Sources */,
 				B60A39DF2A7CA4A600499484 /* SCNBox.swift in Sources */,
 				B60A39E32A7CA4A600499484 /* SceneCamera.swift in Sources */,
+				B697BA132AA2337C001AC55E /* HandModel.swift in Sources */,
 				B60A39D42A7CA4A600499484 /* LimeSession.swift in Sources */,
 				B60A39DA2A7CA4A600499484 /* PredictionOutcome.swift in Sources */,
 				B6DC10F52A7C87E300C10100 /* LimeUIView.swift in Sources */,

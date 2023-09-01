@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SceneKit
 
-class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransitionDelegate, OnSettingsChangedSubscriber {
+class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSettingsChangedSubscriber {
     
     /// The constraint used to anchor the toolbar - adjustable and animatable for keyboard avoidance
     private var toolbarConstraint: NSLayoutConstraint!
@@ -110,35 +110,35 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
         self.timeline
             .constrainVertical()
             .setOnStartTracking({
-                // If we're mid transition we need to interrupt it
-                LimeSession.inst.sequence?.interruptTransition()
-                // Save the animation speed because we're about to slow the model down
-                self.animationSpeedCache = LimeSession.inst.sequence?.animationSpeed ?? 1.0
-                // The model appears in the starting position during tracking unless playing
-                // Slow down the animation so it appears not to play
-                LimeSession.inst.sequence?.setSequenceAnimationSpeed(to: 0.001)
-                LimeSession.inst.sequence?.playSequence()
+//                // If we're mid transition we need to interrupt it
+//                LimeSession.inst.sequence?.interruptTransition()
+//                // Save the animation speed because we're about to slow the model down
+//                self.animationSpeedCache = LimeSession.inst.sequence?.animationSpeed ?? 1.0
+//                // The model appears in the starting position during tracking unless playing
+//                // Slow down the animation so it appears not to play
+//                LimeSession.inst.sequence?.setSequenceAnimationSpeed(to: 0.001)
+//                LimeSession.inst.sequence?.playSequence()
             })
             .setOnEndTracking({
                 // Resume state - delay to guarantee model doesn't appear in starting position
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-                    LimeSession.inst.sequence?.setSequencePause(to: self.playButton.isEnabled)
-                    LimeSession.inst.sequence?.setSequenceAnimationSpeed(to: self.animationSpeedCache)
-                }
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+//                    LimeSession.inst.sequence?.setSequencePause(to: self.playButton.isEnabled)
+//                    LimeSession.inst.sequence?.setSequenceAnimationSpeed(to: self.animationSpeedCache)
+//                }
             })
             .setOnChange({ proportion in
-                if self.timeline.isTracking {
-                    LimeSession.inst.sequence?.uninterruptTransition()
-                    let clampedProportion = LimeSession.inst.sequence?.clampToAnimationStart(proportion: proportion) ?? 0.0
-                    self.timeline.setProgress(to: clampedProportion)
-                    if let lastPosition = self.lastPosition, !Lime.isEqual(lastPosition, clampedProportion) {
-                        self.hapticFeedback.impactOccurred()
-                    }
-                    self.lastPosition = clampedProportion
-                    if let letterIndex = LimeSession.inst.sequence?.activeModelIndex {
-                        self.letterDisplay.focusLetter(letterIndex, duration: 0.2)
-                    }
-                }
+//                if self.timeline.isTracking {
+//                    LimeSession.inst.sequence?.uninterruptTransition()
+//                    let clampedProportion = LimeSession.inst.sequence?.clampToAnimationStart(proportion: proportion) ?? 0.0
+//                    self.timeline.setProgress(to: clampedProportion)
+//                    if let lastPosition = self.lastPosition, !Lime.isEqual(lastPosition, clampedProportion) {
+//                        self.hapticFeedback.impactOccurred()
+//                    }
+//                    self.lastPosition = clampedProportion
+//                    if let letterIndex = LimeSession.inst.sequence?.activeModelIndex {
+//                        self.letterDisplay.focusLetter(letterIndex, duration: 0.2)
+//                    }
+//                }
             })
         
         self.animationSpeedMultiState
@@ -148,7 +148,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
             .addState(value: 0.25, label: "0.25x")
             .addState(value: 0.5, label: "0.5x")
             .setOnChange({ playbackSpeed in
-                LimeSession.inst.sequence?.setSequenceAnimationSpeed(to: playbackSpeed)
+                LimeSession.inst.sequence?.setAnimationSpeed(to: playbackSpeed)
             })
         
         self.promptToggle
@@ -226,7 +226,6 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
             .setOnSubmit({
                 let newSequenceMounted = LimeSession.inst.addLetterSequence(prompt: self.promptInput.text)
                 if newSequenceMounted {
-                    LimeSession.inst.sequence?.setOnTransitionDelegate(to: self)
                     self.letterDisplay.setPrompt(to: LimeSession.inst.activePrompt)
                     if !LimeSession.inst.activePrompt.isEmpty {
                         self.letterDisplay.focusLetter(0, duration: 0.5)
@@ -241,7 +240,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
             .setIcon(to: "play.fill", disabled: "pause.fill")
             .setState(enabled: true) // Start paused
             .setOnTap({ isPaused in
-                LimeSession.inst.sequence?.setSequencePause(to: isPaused)
+                LimeSession.inst.sequence?.setSequencePause(to: isPaused, noBlend: true)
             })
         
         // Register for keyboard notifications
@@ -262,15 +261,22 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
                     self.timeline.setProgress(to: proportion)
                     self.lastPosition = proportion
                 }
-                if let letterIndex = LimeSession.inst.sequence?.activeModelIndex {
+                if let letterIndex = LimeSession.inst.sequence?.lastPlayedIndex {
                     self.letterDisplay.focusLetter(letterIndex, duration: 0.5)
                 }
             }
         }
-    }
-    
-    func onTransition(duration: Double) {
-        // Do nothing on transition - however this may become useful in the future
+        
+        /*let testModel = SceneModel(node: SceneModelSequenceBlend(handModels: [
+            HandModel(subDir: "alphabet1", fileName: "a_1.dae", blendInDuration: 0.4),
+            HandModel(subDir: "alphabet1", fileName: "b_1.dae", blendInDuration: 0.4),
+            HandModel(subDir: "alphabet1", fileName: "c_1.dae", blendInDuration: 0.4),
+            HandModel(subDir: "alphabet1", fileName: "d_1.dae", blendInDuration: 0.4),
+        ]).node)
+        
+        LimeSession.inst.sceneController.addModel(testModel)
+        
+        return*/
     }
     
     func resetToolbar() {

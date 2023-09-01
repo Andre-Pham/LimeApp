@@ -227,6 +227,12 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
                     }
                     self.toolbarStack.addViewAnimated(self.toolbarRowTimeline, position: position)
                     self.toolbarRowTimeline.constrainHorizontal()
+                    // If you add any delay, the code block occurs after the view's update batch
+                    // If you don't, the view isn't updated because it's not "existent" because it hasn't been added yet
+                    // Triggering the code after the animation also works but has a delay - this updates faster
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                        self.timeline.setProgress(to: LimeSession.inst.sequence?.animationProgressProportion ?? 0.0)
+                    }
                 } else {
                     self.toolbarStack.removeViewAnimated(self.toolbarRowTimeline)
                 }

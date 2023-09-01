@@ -25,6 +25,10 @@ extension SceneModel {
         self.node.removeFromParentNode()
     }
     
+    func setOpacity(to opacity: Double) {
+        self.node.opacity = opacity
+    }
+    
 }
 
 /*class SceneModel: Clonable {

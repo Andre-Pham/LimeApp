@@ -56,7 +56,7 @@ class SceneModelSequenceBlend {
             $0 + $1.animationDurationBlended
         } + (self.handModels.last?.animationDuration ?? 0.0)
     }
-    private var animationSpeed: Double {
+    public var animationSpeed: Double {
         return self.animationPlayers.first!.speed
     }
     
@@ -102,6 +102,7 @@ class SceneModelSequenceBlend {
         }
         
         self.setSequencePause(to: true)
+        
         
 //        for i in 0..<4 {
 //            print(self.animationStartEndTimes(animationIndex: i))
@@ -155,12 +156,42 @@ class SceneModelSequenceBlend {
         self.controller = nil
     }
     
+    func clampToAnimationStart(progressProportion: Double) -> Double {
+        let progressProportion = max(0.0, min(1.0, progressProportion))
+        for animationIndex in self.animationPlayers.indices {
+            let (startTime, endTime) = self.animationStartEndTimes(animationIndex: animationIndex)
+            let startProportion = startTime/self.totalDurationWithBlend
+            let endProportion = endTime/self.totalDurationWithBlend
+            if isGreaterOrEqual(progressProportion, startProportion) && isLess(progressProportion, endProportion) {
+                self.setTotalProgressTo(progress: startTime)
+                self.lastPlayedIndex = animationIndex
+                return startProportion
+            }
+        }
+        self.setTotalProgressTo(progress: self.totalDurationWithBlend)
+        self.lastPlayedIndex = self.animationPlayers.endIndex - 1
+        return 1.0
+    }
+    
     private func setTotalProgressTo(progress: Double) {
-        let wasPaused = self.isPaused
-        self.setSequencePause(to: true)
-//        self.animationPlayers.forEach({ $0.stop() })
+//        let wasPaused = self.isPaused
+//        self.setSequencePause(to: true)
+////        self.animationPlayers.forEach({ $0.stop() })
+//        self.totalProgress = progress
+//        self.setSequencePause(to: wasPaused, noBlend: true)
+        
+//        let wasPaused = self.isPaused
+        
+//        self.setSequencePause(to: true)
+        self.animationPlayers.forEach({
+            $0.stop()
+        })
         self.totalProgress = progress
-        self.setSequencePause(to: wasPaused, noBlend: true)
+        if isGreaterOrEqual(progress, 1.0) {
+            print("OPACITY TO 0.0")
+            self.handModel.setOpacity(to: 0.0)
+        }
+//        self.setSequencePause(to: wasPaused, noBlend: true)
     }
     
     private func animationStartEndTimes(animationIndex: Int) -> (Double, Double) {
@@ -208,8 +239,14 @@ class SceneModelSequenceBlend {
         self.getHandModelThatShouldPlay()?.setBlendInDuration(to: noBlend ? 0.0 : nil)
         if isPaused {
             self.animationPlayers.forEach({ $0.paused = true })
+//            if isGreaterOrEqual(self.animationProgressProportion, 1.0) {
+//                self.handModel.setOpacity(to: 0.0)
+//            }
         } else {
+            print("OPACITY TO 1.0")
+            self.handModel.setOpacity(to: 1.0)
             print(">> playing \(self.activeIndex ?? -1) blend: \(self.animationPlayers[self.activeIndex ?? 0].animation.blendInDuration) paused: \(self.animationPlayers[self.activeIndex ?? 0].paused)")
+//            self.handModel.setOpacity(to: 1.0)
             self.lastPlayedIndex = self.activeIndex ?? self.lastPlayedIndex
             self.getAnimationThatShouldPlay()?.play()
         }

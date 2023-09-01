@@ -38,6 +38,8 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
     private let timeline = ScrubberView()
     private let letterDisplay = LetterDisplayView()
     
+    private let idleModel = HandModel(subDir: "alphabet1", fileName: "Idle_1.dae", blendInDuration: 0.0)
+    
     deinit {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -48,6 +50,8 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
         self.attach(scene: LimeSession.inst.sceneController)
         LimeSession.inst.setupScene()
         OnSettingsChangedPublisher.subscribe(self)
+        self.idleModel.setOpacity(to: 0.0)
+        LimeSession.inst.sceneController.addModel(self.idleModel)
         
         self.root
             .setBackgroundColor(to: LimeColors.sceneFill)
@@ -112,21 +116,59 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
             .setOnStartTracking({
 //                // If we're mid transition we need to interrupt it
 //                LimeSession.inst.sequence?.interruptTransition()
-//                // Save the animation speed because we're about to slow the model down
+                // Save the animation speed because we're about to slow the model down
 //                self.animationSpeedCache = LimeSession.inst.sequence?.animationSpeed ?? 1.0
-//                // The model appears in the starting position during tracking unless playing
-//                // Slow down the animation so it appears not to play
-//                LimeSession.inst.sequence?.setSequenceAnimationSpeed(to: 0.001)
-//                LimeSession.inst.sequence?.playSequence()
+                // The model appears in the starting position during tracking unless playing
+                // Slow down the animation so it appears not to play
+//                LimeSession.inst.sequence?.setAnimationSpeed(to: 0.001)
+                LimeSession.inst.sequence?.setSequencePause(to: false, noBlend: true)
+                LimeSession.inst.sequence?.handModel.setOpacity(to: 0.0)
+                
+                if !LimeSession.inst.activePrompt.isEmpty {
+                    self.idleModel.setOpacity(to: 1.0)
+                }
             })
             .setOnEndTracking({
                 // Resume state - delay to guarantee model doesn't appear in starting position
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-//                    LimeSession.inst.sequence?.setSequencePause(to: self.playButton.isEnabled)
-//                    LimeSession.inst.sequence?.setSequenceAnimationSpeed(to: self.animationSpeedCache)
-//                }
+                LimeSession.inst.sequence?.handModel.setOpacity(to: 1.0)
+                
+                self.idleModel.setOpacity(to: 0.0)
+                
+                LimeSession.inst.sequence?.setSequencePause(to: false, noBlend: true)
+                self.animationSpeedCache = LimeSession.inst.sequence?.animationSpeed ?? 1.0
+                LimeSession.inst.sequence?.setAnimationSpeed(to: 0.001)
+                
+                if isGreaterOrEqual(self.timeline.progressProportion, 1.0) && self.playButton.isEnabled {
+                    LimeSession.inst.sequence?.handModel.setOpacity(to: 0.0)
+                    if !LimeSession.inst.activePrompt.isEmpty {
+                        self.idleModel.setOpacity(to: 1.0)
+                    }
+                }
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                    LimeSession.inst.sequence?.setAnimationSpeed(to: self.animationSpeedCache)
+                    LimeSession.inst.sequence?.setSequencePause(to: self.playButton.isEnabled)
+                    
+                }
+                
+                
+//                LimeSession.inst.sequence?.setAnimationSpeed(to: self.animationSpeedCache)
             })
             .setOnChange({ proportion in
+                if self.timeline.isTracking {
+                    if !LimeSession.inst.activePrompt.isEmpty {
+                        self.idleModel.setOpacity(to: 1.0)
+                    }
+                    LimeSession.inst.sequence?.setSequencePause(to: true, noBlend: true)
+                    var clampedProportion = LimeSession.inst.sequence?.clampToAnimationStart(progressProportion: proportion) ?? 0.0
+                    if isGreaterOrEqual(clampedProportion, 1.0) {
+                        clampedProportion = LimeSession.inst.sequence?.clampToAnimationStart(progressProportion: 0.0) ?? 0.0
+                    }
+                    self.timeline.setProgress(to: clampedProportion)
+                    if let letterIndex = LimeSession.inst.sequence?.lastPlayedIndex {
+                        self.letterDisplay.focusLetter(letterIndex, duration: 0.2)
+                    }
+                }
 //                if self.timeline.isTracking {
 //                    LimeSession.inst.sequence?.uninterruptTransition()
 //                    let clampedProportion = LimeSession.inst.sequence?.clampToAnimationStart(proportion: proportion) ?? 0.0
@@ -240,6 +282,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
             .setIcon(to: "play.fill", disabled: "pause.fill")
             .setState(enabled: true) // Start paused
             .setOnTap({ isPaused in
+                self.idleModel.setOpacity(to: 0.0)
                 LimeSession.inst.sequence?.setSequencePause(to: isPaused, noBlend: true)
             })
         

@@ -322,7 +322,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
             }
         }
         
-        /*let testModel = SceneModel(node: SceneModelSequenceBlend(handModels: [
+        /*let testModel = SceneModel(node: HandModelSequence(handModels: [
             HandModel(subDir: "alphabet1", fileName: "a_1.dae", blendInDuration: 0.4),
             HandModel(subDir: "alphabet1", fileName: "b_1.dae", blendInDuration: 0.4),
             HandModel(subDir: "alphabet1", fileName: "c_1.dae", blendInDuration: 0.4),

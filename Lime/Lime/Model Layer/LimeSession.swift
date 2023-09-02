@@ -15,7 +15,7 @@ class LimeSession {
     
     public let sceneController = SceneController()
     private(set) var activePrompt: String = ""
-    private(set) var sequence: SceneModelSequenceBlend? = nil
+    private(set) var sequence: HandModelSequence? = nil
     private var fileDirectory: String {
         return SettingsSession.inst.settings.leftHanded ? "alphabet3" : "alphabet1"
     }
@@ -102,7 +102,7 @@ class LimeSession {
     
     func addLetterSequence(prompt: String) -> Bool {
         if SettingsSession.inst.settings.smoothTransitions {
-            return self.addInterpolatedLetterSequence(prompt: prompt)
+            return self.addBlendedLetterSequence(prompt: prompt)
         } else {
             return self.addSequentialLetterSequence(prompt: prompt)
         }
@@ -125,12 +125,12 @@ class LimeSession {
         for char in prompt {
             handModels.append(HandModel(subDir: subDir, fileName: "\(char)\(suffix).dae", blendInDuration: 0.0))
         }
-        self.sequence = SceneModelSequenceBlend(handModels: handModels)
+        self.sequence = HandModelSequence(handModels: handModels)
         self.sequence?.mount(to: self.sceneController)
         return true
     }
     
-    private func addInterpolatedLetterSequence(prompt: String) -> Bool {
+    private func addBlendedLetterSequence(prompt: String) -> Bool {
         let prompt = self.cleanPrompt(prompt: prompt)
         guard prompt != self.activePrompt else {
             return false
@@ -147,7 +147,7 @@ class LimeSession {
         for char in prompt {
             handModels.append(HandModel(subDir: subDir, fileName: "\(char)\(suffix).dae", blendInDuration: 0.5))
         }
-        self.sequence = SceneModelSequenceBlend(handModels: handModels)
+        self.sequence = HandModelSequence(handModels: handModels)
         self.sequence?.mount(to: self.sceneController)
         return true
     }

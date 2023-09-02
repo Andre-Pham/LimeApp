@@ -1,5 +1,5 @@
 //
-//  SceneModelSequenceBlend.swift
+//  HandModelSequence.swift
 //  Lime
 //
 //  Created by Andre Pham on 1/9/2023.
@@ -8,7 +8,7 @@
 import Foundation
 import SceneKit
 
-class SceneModelSequenceBlend {
+class HandModelSequence {
     
     // MARK: - Constants
     

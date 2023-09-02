@@ -32,7 +32,6 @@
 		B60A39DF2A7CA4A600499484 /* SCNBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39C72A7CA4A600499484 /* SCNBox.swift */; };
 		B60A39E02A7CA4A600499484 /* ModelRotationsIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39C82A7CA4A600499484 /* ModelRotationsIndex.swift */; };
 		B60A39E12A7CA4A600499484 /* PresetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39C92A7CA4A600499484 /* PresetModel.swift */; };
-		B60A39E22A7CA4A600499484 /* SceneModelSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39CA2A7CA4A600499484 /* SceneModelSequence.swift */; };
 		B60A39E32A7CA4A600499484 /* SceneCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39CC2A7CA4A600499484 /* SceneCamera.swift */; };
 		B60A39E42A7CA4A600499484 /* SceneLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39CD2A7CA4A600499484 /* SceneLight.swift */; };
 		B60A39E52A7CA4A600499484 /* SceneGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39CE2A7CA4A600499484 /* SceneGeometry.swift */; };
@@ -86,7 +85,7 @@
 		B67F067E2A9CDA9E00591789 /* PlusJakartaSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06782A9CDA9E00591789 /* PlusJakartaSans-Bold.ttf */; };
 		B67F067F2A9CDA9E00591789 /* PlusJakartaSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06792A9CDA9E00591789 /* PlusJakartaSans-BoldItalic.ttf */; };
 		B67F06832A9EA17000591789 /* LimeChipTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67F06822A9EA17000591789 /* LimeChipTextButton.swift */; };
-		B697BA112AA20DFB001AC55E /* SceneModelSequenceBlend.swift in Sources */ = {isa = PBXBuildFile; fileRef = B697BA102AA20DFB001AC55E /* SceneModelSequenceBlend.swift */; };
+		B697BA112AA20DFB001AC55E /* HandModelSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B697BA102AA20DFB001AC55E /* HandModelSequence.swift */; };
 		B697BA132AA2337C001AC55E /* HandModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B697BA122AA2337C001AC55E /* HandModel.swift */; };
 		B6DC10A82A7BF6E600C10100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */; };
 		B6DC10AA2A7BF6E600C10100 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */; };
@@ -152,7 +151,6 @@
 		B60A39C72A7CA4A600499484 /* SCNBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCNBox.swift; sourceTree = "<group>"; };
 		B60A39C82A7CA4A600499484 /* ModelRotationsIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelRotationsIndex.swift; sourceTree = "<group>"; };
 		B60A39C92A7CA4A600499484 /* PresetModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetModel.swift; sourceTree = "<group>"; };
-		B60A39CA2A7CA4A600499484 /* SceneModelSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneModelSequence.swift; sourceTree = "<group>"; };
 		B60A39CC2A7CA4A600499484 /* SceneCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneCamera.swift; sourceTree = "<group>"; };
 		B60A39CD2A7CA4A600499484 /* SceneLight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneLight.swift; sourceTree = "<group>"; };
 		B60A39CE2A7CA4A600499484 /* SceneGeometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneGeometry.swift; sourceTree = "<group>"; };
@@ -205,7 +203,7 @@
 		B67F06782A9CDA9E00591789 /* PlusJakartaSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-Bold.ttf"; sourceTree = "<group>"; };
 		B67F06792A9CDA9E00591789 /* PlusJakartaSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		B67F06822A9EA17000591789 /* LimeChipTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeChipTextButton.swift; sourceTree = "<group>"; };
-		B697BA102AA20DFB001AC55E /* SceneModelSequenceBlend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneModelSequenceBlend.swift; sourceTree = "<group>"; };
+		B697BA102AA20DFB001AC55E /* HandModelSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandModelSequence.swift; sourceTree = "<group>"; };
 		B697BA122AA2337C001AC55E /* HandModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandModel.swift; sourceTree = "<group>"; };
 		B6DC10A42A7BF6E600C10100 /* Lime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -345,10 +343,9 @@
 				B60A39C72A7CA4A600499484 /* SCNBox.swift */,
 				B60A39C82A7CA4A600499484 /* ModelRotationsIndex.swift */,
 				B60A39C92A7CA4A600499484 /* PresetModel.swift */,
-				B60A39CA2A7CA4A600499484 /* SceneModelSequence.swift */,
 				B60A39D02A7CA4A600499484 /* SceneController.swift */,
 				B60A3A982A84CCC500499484 /* OnTransitionDelegate.swift */,
-				B697BA102AA20DFB001AC55E /* SceneModelSequenceBlend.swift */,
+				B697BA102AA20DFB001AC55E /* HandModelSequence.swift */,
 				B697BA122AA2337C001AC55E /* HandModel.swift */,
 			);
 			path = Scene;
@@ -796,7 +793,7 @@
 				B60A39D52A7CA4A600499484 /* Label.swift in Sources */,
 				B60A39D32A7CA4A600499484 /* Clonable.swift in Sources */,
 				B60A39E72A7CA4A600499484 /* SceneController.swift in Sources */,
-				B697BA112AA20DFB001AC55E /* SceneModelSequenceBlend.swift in Sources */,
+				B697BA112AA20DFB001AC55E /* HandModelSequence.swift in Sources */,
 				B60A3A4D2A7CA50600499484 /* ASLDemoClassifier 2.mlmodel in Sources */,
 				B60A3AB32A8C666F00499484 /* SettingsSession.swift in Sources */,
 				B60A39AE2A7CA49900499484 /* SCNNode.swift in Sources */,
@@ -826,7 +823,6 @@
 				B60A39D12A7CA4A600499484 /* CaptureSession.swift in Sources */,
 				B60A39D72A7CA4A600499484 /* JointPosition.swift in Sources */,
 				B60A3AAB2A86428400499484 /* SettingsRowView.swift in Sources */,
-				B60A39E22A7CA4A600499484 /* SceneModelSequence.swift in Sources */,
 				B60A3A8A2A7DE00800499484 /* LimeFonts.swift in Sources */,
 				B60A3AB52A8C949F00499484 /* OnSettingsChangedPublisher.swift in Sources */,
 			);

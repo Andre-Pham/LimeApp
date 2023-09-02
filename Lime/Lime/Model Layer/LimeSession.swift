@@ -27,23 +27,23 @@ class LimeSession {
     
     func resetCamera() {
         self.sceneController.positionCameraFacing(
-            position: SCNVector3(0.04, 1.66, 0.39),
+            position: SCNVector3(0.015, 1.66, 0.39),
             // Position the camera and look direction +0.06
             // Effectively translates the scene down 0.06 whilst maintaining the defaultCameraController target
             positionOffset: SCNVector3(0.0, 0.06, 0.0),
             targetOffset: SCNVector3(0.0, 0.06, 0.0),
-            distance: 0.7
+            distance: Environment.inst.deviceType == .pad ? 0.5 : 0.7
         )
     }
     
     func resetCameraFromBack() {
         self.sceneController.positionCameraFacing(
-            position: SCNVector3(0.04, 1.66, 0.39),
+            position: SCNVector3(0.015, 1.66, 0.39),
             // Position the camera and look direction +0.4
             // Effectively translates the scene down 0.4 whilst maintaining the defaultCameraController target
-            positionOffset: SCNVector3(0.0, 0.4, 0.0),
-            targetOffset: SCNVector3(0.0, 0.4, 0.0),
-            distance: -0.7
+            positionOffset: SCNVector3(0.0, Environment.inst.deviceType == .pad ? 0.3 : 0.4, 0.0),
+            targetOffset: SCNVector3(0.0, Environment.inst.deviceType == .pad ? 0.3 : 0.4, 0.0),
+            distance: Environment.inst.deviceType == .pad ? -0.5 : -0.7
         )
         self.sceneController.getCamera().setEulerAngles(
             x: -1.0 * .pi * 25.0 / 180.0,   // Look down -25 deg

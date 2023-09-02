@@ -14,7 +14,7 @@ class SettingsViewController: UIViewController {
     private let stack = LimeVStack()
     private let mainTitle = LimeText()
     private let chiralitySetting = SettingsRowView<Bool>()
-    private let interpolateSetting = SettingsRowView<Bool>()
+    private let smoothTransitions = SettingsRowView<Bool>()
     private let hidePromptSetting = SettingsRowView<Bool>()
     private let buttonStack = LimeHStack()
     private let applyButton = LimeButton()
@@ -37,7 +37,7 @@ class SettingsViewController: UIViewController {
             .setSpacing(to: 24)
             .addView(self.mainTitle)
             .addView(self.chiralitySetting)
-            .addView(self.interpolateSetting)
+            .addView(self.smoothTransitions)
             .addView(self.hidePromptSetting)
             .addGap(size: 8)
             .addSpacer()
@@ -70,24 +70,24 @@ class SettingsViewController: UIViewController {
                 }
             })
         
-        self.interpolateSetting
+        self.smoothTransitions
             .constrainHorizontal()
-            .setText(label: Strings("setting.interpolate").local, subLabel: Strings("label.interpolateSetting").local)
-        self.interpolateSetting.toggle
+            .setText(label: Strings("setting.smoothTransitions").local, subLabel: Strings("label.smoothTransitionsSetting").local)
+        self.smoothTransitions.toggle
             .addState(value: false, icon: "square.stack.3d.down.right")
             .addState(value: true, icon: "square.stack.3d.down.right.fill")
             .setOnChange({ isToggled in
                 if isToggled {
-                    self.interpolateSetting.toggle
+                    self.smoothTransitions.toggle
                         .setBackgroundColor(to: LimeColors.primaryButtonFill)
                         .setForegroundColor(to: LimeColors.textPrimaryButton)
                 } else {
-                    self.interpolateSetting.toggle
+                    self.smoothTransitions.toggle
                         .setBackgroundColor(to: LimeColors.secondaryButtonFill)
                         .setForegroundColor(to: LimeColors.textSecondaryButton)
                 }
                 if !self.resetActive {
-                    SettingsSession.inst.settings.setInterpolateSetting(to: isToggled)
+                    SettingsSession.inst.settings.setSmoothTransitionsSetting(to: isToggled)
                     self.updateActionButtons()
                 }
             })
@@ -152,7 +152,7 @@ class SettingsViewController: UIViewController {
     
     private func matchTogglesToSettings() {
         self.chiralitySetting.toggle.setState(state: SettingsSession.inst.settings.leftHanded ? 1 : 0, trigger: true)
-        self.interpolateSetting.toggle.setState(state: SettingsSession.inst.settings.interpolate ? 1 : 0, trigger: true)
+        self.smoothTransitions.toggle.setState(state: SettingsSession.inst.settings.smoothTransitions ? 1 : 0, trigger: true)
         self.hidePromptSetting.toggle.setState(state: SettingsSession.inst.settings.hidePrompt ? 1 : 0, trigger: true)
     }
     

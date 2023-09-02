@@ -21,7 +21,7 @@
 
 "label.prompt" = "Prompt";
 "label.chiralitySetting" = "Use left-handed Auslan signs";
-"label.interpolateSetting" = "Animate a transition between performed signs";
+"label.smoothTransitionsSetting" = "Hands transition smoothly between signs";
 "label.hidePromptSetting" = "Hide the letters being performed (above model)";
 "label.viewFront" = "Front";
 "label.viewBack" = "Back";
@@ -29,7 +29,7 @@
 // MARK: - Settings
 
 "setting.chirality" = "Left Handed Signs";
-"setting.interpolate" = "Interpolate";
+"setting.smoothTransitions" = "Smooth Transitions";
 "setting.hidePrompt" = "Hide Prompt";
 
 // MARK: - Buttons

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SceneKit
 
-class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransitionDelegate, OnSettingsChangedSubscriber {
+class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSettingsChangedSubscriber {
     
     /// The constraint used to anchor the toolbar - adjustable and animatable for keyboard avoidance
     private var toolbarConstraint: NSLayoutConstraint!
@@ -38,6 +38,9 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
     private let timeline = ScrubberView()
     private let letterDisplay = LetterDisplayView()
     
+    /// The idle model - used in place of actual animated model as a visual placeholder during scrubbing
+    private let idleModel = HandModel(subDir: "alphabet1", fileName: "Idle_1.dae", blendInDuration: 0.0)
+    
     deinit {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -48,6 +51,8 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
         self.attach(scene: LimeSession.inst.sceneController)
         LimeSession.inst.setupScene()
         OnSettingsChangedPublisher.subscribe(self)
+        self.idleModel.setOpacity(to: 0.0)
+        LimeSession.inst.sceneController.addModel(self.idleModel)
         
         self.root
             .setBackgroundColor(to: LimeColors.sceneFill)
@@ -110,32 +115,64 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
         self.timeline
             .constrainVertical()
             .setOnStartTracking({
-                // If we're mid transition we need to interrupt it
-                LimeSession.inst.sequence?.interruptTransition()
-                // Save the animation speed because we're about to slow the model down
-                self.animationSpeedCache = LimeSession.inst.sequence?.animationSpeed ?? 1.0
-                // The model appears in the starting position during tracking unless playing
-                // Slow down the animation so it appears not to play
-                LimeSession.inst.sequence?.setSequenceAnimationSpeed(to: 0.001)
-                LimeSession.inst.sequence?.playSequence()
+                // Hide the hand model
+                // It flickers or shows one of the default pose and the initial pose (shared by all models)
+                LimeSession.inst.sequence?.handModel.setOpacity(to: 0.0)
+                if !LimeSession.inst.activePrompt.isEmpty {
+                    // We don't want the hand model disappearing every time we scrub
+                    // We show the idle model in its place - they're in the same pose anyways
+                    self.idleModel.setOpacity(to: 1.0)
+                }
             })
             .setOnEndTracking({
-                // Resume state - delay to guarantee model doesn't appear in starting position
+                // We can show the hand model again
+                LimeSession.inst.sequence?.handModel.setOpacity(to: 1.0)
+                // Play the sequence to get out of the default pose
+                LimeSession.inst.sequence?.setSequencePause(to: false, noBlend: true)
+                // Slow down the animation
+                // We don't actually want to progress, we just want to get out of the default pose
+                self.animationSpeedCache = LimeSession.inst.sequence?.animationSpeed ?? 1.0
+                LimeSession.inst.sequence?.setAnimationSpeed(to: 0.001)
+                if self.playButton.isEnabled {
+                    // We were paused before
+                    // Hide the model and show the idle to avoid visual bugs
+                    // This will be reverted when we press play again
+                    LimeSession.inst.sequence?.handModel.setOpacity(to: 0.0)
+                    if !LimeSession.inst.activePrompt.isEmpty {
+                        self.idleModel.setOpacity(to: 1.0)
+                    }
+                } else {
+                    // We were playing before, so no worries - we'll just continue playing and hide the idle model
+                    self.idleModel.setOpacity(to: 0.0)
+                }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                    // Now that we're out of the default pose
+                    // We can set the animation speed back to normal and resume playing/paused (whatever we were before)
+                    LimeSession.inst.sequence?.setAnimationSpeed(to: self.animationSpeedCache)
                     LimeSession.inst.sequence?.setSequencePause(to: self.playButton.isEnabled)
-                    LimeSession.inst.sequence?.setSequenceAnimationSpeed(to: self.animationSpeedCache)
                 }
             })
             .setOnChange({ proportion in
                 if self.timeline.isTracking {
-                    LimeSession.inst.sequence?.uninterruptTransition()
-                    let clampedProportion = LimeSession.inst.sequence?.clampToAnimationStart(proportion: proportion) ?? 0.0
+                    // We don't want the animation playing during tracking - continuously pause it
+                    LimeSession.inst.sequence?.setSequencePause(to: true, noBlend: true)
+                    // Clamp to the scrubber's progress proportion
+                    var clampedProportion = LimeSession.inst.sequence?.clampToAnimationStart(progressProportion: proportion) ?? 0.0
+                    // If we clamp to the end of the timeline, wrap to the start
+                    // I mean, there's no reason you'd ever clap to the end other than to go back to the start
+                    // And plus, clamping to the end has some funny side effects on seeing the default pose
+                    if isGreaterOrEqual(clampedProportion, 1.0) {
+                        clampedProportion = LimeSession.inst.sequence?.clampToAnimationStart(progressProportion: 0.0) ?? 0.0
+                    }
+                    // Match the timeline with the progression that was clamped to
                     self.timeline.setProgress(to: clampedProportion)
+                    // Provide feedback if we clamped to a new position
                     if let lastPosition = self.lastPosition, !Lime.isEqual(lastPosition, clampedProportion) {
                         self.hapticFeedback.impactOccurred()
                     }
                     self.lastPosition = clampedProportion
-                    if let letterIndex = LimeSession.inst.sequence?.activeModelIndex {
+                    // Focus the relevant letter
+                    if let letterIndex = LimeSession.inst.sequence?.activeHandIndex {
                         self.letterDisplay.focusLetter(letterIndex, duration: 0.2)
                     }
                 }
@@ -148,7 +185,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
             .addState(value: 0.25, label: "0.25x")
             .addState(value: 0.5, label: "0.5x")
             .setOnChange({ playbackSpeed in
-                LimeSession.inst.sequence?.setSequenceAnimationSpeed(to: playbackSpeed)
+                LimeSession.inst.sequence?.setAnimationSpeed(to: playbackSpeed)
             })
         
         self.promptToggle
@@ -179,6 +216,12 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
                     }
                     self.toolbarStack.addViewAnimated(self.toolbarRowTimeline, position: position)
                     self.toolbarRowTimeline.constrainHorizontal()
+                    // If you add any delay, the code block occurs after the view's update batch
+                    // If you don't, the view isn't updated because it's not "existent" because it hasn't been added yet
+                    // Triggering the code after the animation also works but has a delay - this updates faster
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                        self.timeline.setProgress(to: LimeSession.inst.sequence?.progressProportion ?? 0.0)
+                    }
                 } else {
                     self.toolbarStack.removeViewAnimated(self.toolbarRowTimeline)
                 }
@@ -226,7 +269,6 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
             .setOnSubmit({
                 let newSequenceMounted = LimeSession.inst.addLetterSequence(prompt: self.promptInput.text)
                 if newSequenceMounted {
-                    LimeSession.inst.sequence?.setOnTransitionDelegate(to: self)
                     self.letterDisplay.setPrompt(to: LimeSession.inst.activePrompt)
                     if !LimeSession.inst.activePrompt.isEmpty {
                         self.letterDisplay.focusLetter(0, duration: 0.5)
@@ -241,7 +283,9 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
             .setIcon(to: "play.fill", disabled: "pause.fill")
             .setState(enabled: true) // Start paused
             .setOnTap({ isPaused in
-                LimeSession.inst.sequence?.setSequencePause(to: isPaused)
+                // If we were showing the idle previously, we certainly don't want to anymore
+                self.idleModel.setOpacity(to: 0.0)
+                LimeSession.inst.sequence?.setSequencePause(to: isPaused, noBlend: true)
             })
         
         // Register for keyboard notifications
@@ -257,20 +301,16 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
         
         Timer.scheduledTimer(withTimeInterval: 1/60, repeats: true) { timer in
             let sequence = LimeSession.inst.sequence
-            if !self.timeline.isTracking, let proportion = sequence?.animationProgressProportion {
+            if !self.timeline.isTracking, let proportion = sequence?.progressProportion {
                 if !self.playButton.isEnabled {
                     self.timeline.setProgress(to: proportion)
                     self.lastPosition = proportion
                 }
-                if let letterIndex = LimeSession.inst.sequence?.activeModelIndex {
+                if let letterIndex = LimeSession.inst.sequence?.activeHandIndex {
                     self.letterDisplay.focusLetter(letterIndex, duration: 0.5)
                 }
             }
         }
-    }
-    
-    func onTransition(duration: Double) {
-        // Do nothing on transition - however this may become useful in the future
     }
     
     func resetToolbar() {
@@ -317,7 +357,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnTransit
         if old.hidePrompt != new.hidePrompt {
             self.letterDisplay.setHidden(to: new.hidePrompt)
         }
-        if old.interpolate != new.interpolate || old.leftHanded != new.leftHanded {
+        if old.smoothTransitions != new.smoothTransitions || old.leftHanded != new.leftHanded {
             self.pauseScene()
             if !LimeSession.inst.activePrompt.isEmpty {
                 LimeSession.inst.clearLetterSequence()

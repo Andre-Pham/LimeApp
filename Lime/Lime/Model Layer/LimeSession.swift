@@ -15,7 +15,7 @@ class LimeSession {
     
     public let sceneController = SceneController()
     private(set) var activePrompt: String = ""
-    private(set) var sequence: SceneModelSequence? = nil
+    private(set) var sequence: HandModelSequence? = nil
     private var fileDirectory: String {
         return SettingsSession.inst.settings.leftHanded ? "alphabet3" : "alphabet1"
     }
@@ -27,23 +27,23 @@ class LimeSession {
     
     func resetCamera() {
         self.sceneController.positionCameraFacing(
-            position: SCNVector3(0.04, 1.66, 0.39),
+            position: SCNVector3(0.015, 1.66, 0.39),
             // Position the camera and look direction +0.06
             // Effectively translates the scene down 0.06 whilst maintaining the defaultCameraController target
             positionOffset: SCNVector3(0.0, 0.06, 0.0),
             targetOffset: SCNVector3(0.0, 0.06, 0.0),
-            distance: 0.7
+            distance: Environment.inst.deviceType == .pad ? 0.5 : 0.7
         )
     }
     
     func resetCameraFromBack() {
         self.sceneController.positionCameraFacing(
-            position: SCNVector3(0.04, 1.66, 0.39),
+            position: SCNVector3(0.015, 1.66, 0.39),
             // Position the camera and look direction +0.4
             // Effectively translates the scene down 0.4 whilst maintaining the defaultCameraController target
-            positionOffset: SCNVector3(0.0, 0.4, 0.0),
-            targetOffset: SCNVector3(0.0, 0.4, 0.0),
-            distance: -0.7
+            positionOffset: SCNVector3(0.0, Environment.inst.deviceType == .pad ? 0.3 : 0.4, 0.0),
+            targetOffset: SCNVector3(0.0, Environment.inst.deviceType == .pad ? 0.3 : 0.4, 0.0),
+            distance: Environment.inst.deviceType == .pad ? -0.5 : -0.7
         )
         self.sceneController.getCamera().setEulerAngles(
             x: -1.0 * .pi * 25.0 / 180.0,   // Look down -25 deg
@@ -52,7 +52,7 @@ class LimeSession {
     }
     
     func pointCameraToModel() {
-        if let activeModel = self.sequence?.activeModel {
+        if let activeModel = self.sequence?.handModel {
             self.sceneController.positionCameraFacing(model: activeModel)
         }
     }
@@ -101,8 +101,8 @@ class LimeSession {
     }
     
     func addLetterSequence(prompt: String) -> Bool {
-        if SettingsSession.inst.settings.interpolate {
-            return self.addInterpolatedLetterSequence(prompt: prompt)
+        if SettingsSession.inst.settings.smoothTransitions {
+            return self.addBlendedLetterSequence(prompt: prompt)
         } else {
             return self.addSequentialLetterSequence(prompt: prompt)
         }
@@ -119,18 +119,18 @@ class LimeSession {
             self.sequence = nil
             return true
         }
-        var sceneModels = [SceneModel]()
+        var handModels = [HandModel]()
         let subDir = self.fileDirectory
         let suffix = self.fileSuffix
         for char in prompt {
-            sceneModels.append(SceneModel(subDir: subDir, fileName: "\(char)\(suffix).dae", description: char.uppercased()))
+            handModels.append(HandModel(subDir: subDir, fileName: "\(char)\(suffix).dae", blendInDuration: 0.0))
         }
-        self.sequence = SceneModelSequence(transition: .sequential, sceneModels)
+        self.sequence = HandModelSequence(handModels: handModels)
         self.sequence?.mount(to: self.sceneController)
         return true
     }
     
-    private func addInterpolatedLetterSequence(prompt: String) -> Bool {
+    private func addBlendedLetterSequence(prompt: String) -> Bool {
         let prompt = self.cleanPrompt(prompt: prompt)
         guard prompt != self.activePrompt else {
             return false
@@ -141,13 +141,13 @@ class LimeSession {
             self.sequence = nil
             return true
         }
-        var sceneModels = [SceneModel]()
+        var handModels = [HandModel]()
         let subDir = self.fileDirectory
         let suffix = self.fileSuffix
         for char in prompt {
-            sceneModels.append(SceneModel(subDir: subDir, fileName: "\(char)\(suffix).dae", description: char.uppercased(), startTrim: 0.2, endTrim: 0.0))
+            handModels.append(HandModel(subDir: subDir, fileName: "\(char)\(suffix).dae", blendInDuration: 0.5))
         }
-        self.sequence = SceneModelSequence(transition: .interpolated, sceneModels)
+        self.sequence = HandModelSequence(handModels: handModels)
         self.sequence?.mount(to: self.sceneController)
         return true
     }

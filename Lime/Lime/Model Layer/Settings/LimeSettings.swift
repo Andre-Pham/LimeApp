@@ -11,7 +11,7 @@ import SwiftSerialization
 class LimeSettings: Storable, Clonable {
     
     private(set) var leftHanded = false
-    private(set) var interpolate = true
+    private(set) var smoothTransitions = true
     private(set) var hidePrompt = false
     
     init() { }
@@ -20,20 +20,20 @@ class LimeSettings: Storable, Clonable {
     
     private enum Field: String {
         case leftHanded
-        case interpolate
+        case smoothTransitions
         case hidePrompt
     }
     
     required init(dataObject: DataObject) {
         self.leftHanded = dataObject.get(Field.leftHanded.rawValue, onFail: false)
-        self.interpolate = dataObject.get(Field.interpolate.rawValue, onFail: true)
+        self.smoothTransitions = dataObject.get(Field.smoothTransitions.rawValue, onFail: true)
         self.hidePrompt = dataObject.get(Field.hidePrompt.rawValue, onFail: false)
     }
     
     func toDataObject() -> DataObject {
         return DataObject(self)
             .add(key: Field.leftHanded.rawValue, value: self.leftHanded)
-            .add(key: Field.interpolate.rawValue, value: self.interpolate)
+            .add(key: Field.smoothTransitions.rawValue, value: self.smoothTransitions)
             .add(key: Field.hidePrompt.rawValue, value: self.hidePrompt)
     }
     
@@ -41,7 +41,7 @@ class LimeSettings: Storable, Clonable {
     
     required init(_ original: LimeSettings) {
         self.leftHanded = original.leftHanded
-        self.interpolate = original.interpolate
+        self.smoothTransitions = original.smoothTransitions
         self.hidePrompt = original.hidePrompt
     }
     
@@ -49,8 +49,8 @@ class LimeSettings: Storable, Clonable {
         self.leftHanded = state
     }
     
-    func setInterpolateSetting(to state: Bool) {
-        self.interpolate = state
+    func setSmoothTransitionsSetting(to state: Bool) {
+        self.smoothTransitions = state
     }
     
     func setHidePromptSetting(to state: Bool) {
@@ -60,7 +60,7 @@ class LimeSettings: Storable, Clonable {
     func isEquivalent(to other: LimeSettings) -> Bool {
         return (
             self.leftHanded == other.leftHanded &&
-            self.interpolate == other.interpolate &&
+            self.smoothTransitions == other.smoothTransitions &&
             self.hidePrompt == other.hidePrompt
         )
     }

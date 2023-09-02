@@ -86,9 +86,6 @@ class HandModelSequence {
             self.totalProgress += addition*self.animationSpeed
             
             if isGreater(self.totalProgress, self.totalDuration) {
-                print("> set total progress to 0.0")
-//                self.setTotalProgressTo(progress: 0.0)
-                
                 self.setSequencePause(to: true)
                 self.animationPlayers.forEach({
                     $0.stop()
@@ -100,7 +97,6 @@ class HandModelSequence {
             if let animationPlayerThatShouldPlay = self.getAnimationThatShouldPlay() {
                 self.getHandModelThatShouldPlay()?.setBlendInDuration()
                 self.activeHandIndex = self.activeIndex ?? self.activeHandIndex
-                print("> playing \(self.activeIndex ?? -1) blend: \(self.animationPlayers[self.activeIndex ?? 0].animation.blendInDuration) paused: \(self.animationPlayers[self.activeIndex ?? 0].paused)")
                 animationPlayerThatShouldPlay.play()
             }
             
@@ -108,48 +104,6 @@ class HandModelSequence {
         }
         
         self.setSequencePause(to: true)
-        
-        
-//        for i in 0..<4 {
-//            print(self.animationStartEndTimes(animationIndex: i))
-//        }
-        
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//            self.setSequencePause(to: false, noBlend: true)
-//        }
-        
-//        self.setSequencePause(to: false, noBlend: true)
-//
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-//            self.setSequencePause(to: true)
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-//                self.setTotalProgressTo(progress: 0.9333330154418945)
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-//                    self.setSequencePause(to: false)
-//                }
-//            }
-//        }
-        
-        
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-//            self.setSequencePause(to: true)
-//            self.animationPlayers.forEach({ $0.stop() })
-//            self.totalProgress = 0.9333330154418945
-//
-//
-//
-//            self.setSequencePause(to: false, noBlend: true)
-//
-//        }
-        
-        
-//        self.setAnimationSpeed(to: 0.5)
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-//            self.setSequencePause(to: true)
-//        }
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-//            self.setSequencePause(to: false)
-//        }
     }
     
     func mount(to controller: SceneController?) {
@@ -190,24 +144,13 @@ class HandModelSequence {
     }
     
     private func setTotalProgressTo(progress: Double) {
-//        let wasPaused = self.isPaused
-//        self.setSequencePause(to: true)
-////        self.animationPlayers.forEach({ $0.stop() })
-//        self.totalProgress = progress
-//        self.setSequencePause(to: wasPaused, noBlend: true)
-        
-//        let wasPaused = self.isPaused
-        
-//        self.setSequencePause(to: true)
         self.animationPlayers.forEach({
             $0.stop()
         })
         self.totalProgress = progress
         if isGreaterOrEqual(progress, 1.0) {
-            print("OPACITY TO 0.0")
             self.handModel.setOpacity(to: 0.0)
         }
-//        self.setSequencePause(to: wasPaused, noBlend: true)
     }
     
     private func animationStartEndTimes(animationIndex: Int) -> (Double, Double) {
@@ -251,18 +194,11 @@ class HandModelSequence {
     
     func setSequencePause(to isPaused: Bool, noBlend: Bool = false) {
         self.isPaused = isPaused
-        print("set pause status to: \(isPaused)")
         self.getHandModelThatShouldPlay()?.setBlendInDuration(to: noBlend ? 0.0 : nil)
         if isPaused {
             self.animationPlayers.forEach({ $0.paused = true })
-//            if isGreaterOrEqual(self.animationProgressProportion, 1.0) {
-//                self.handModel.setOpacity(to: 0.0)
-//            }
         } else {
-            print("OPACITY TO 1.0")
             self.handModel.setOpacity(to: 1.0)
-            print(">> playing \(self.activeIndex ?? -1) blend: \(self.animationPlayers[self.activeIndex ?? 0].animation.blendInDuration) paused: \(self.animationPlayers[self.activeIndex ?? 0].paused)")
-//            self.handModel.setOpacity(to: 1.0)
             self.activeHandIndex = self.activeIndex ?? self.activeHandIndex
             self.getAnimationThatShouldPlay()?.play()
         }

@@ -23,6 +23,10 @@ class Environment {
         return UIDevice.current.userInterfaceIdiom
     }
     
+    public var deviceIsMac: Bool {
+        return ProcessInfo.processInfo.isiOSAppOnMac
+    }
+    
     public var topSafeAreaHeight: CGFloat {
         return self.safeAreaInsets?.top ?? 0.0
     }
@@ -32,11 +36,23 @@ class Environment {
     }
     
     public var screenHeight: CGFloat {
-        return UIScreen.main.bounds.height
+        if self.deviceIsMac,
+           let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = windowScene.windows.first {
+            return window.frame.size.height
+        } else {
+            return UIScreen.main.bounds.height
+        }
     }
     
     public var screenWidth: CGFloat {
-        return UIScreen.main.bounds.width
+        if self.deviceIsMac,
+           let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = windowScene.windows.first {
+            return window.frame.size.width
+        } else {
+            return UIScreen.main.bounds.width
+        }
     }
     
     public var deviceIsTiny: Bool {

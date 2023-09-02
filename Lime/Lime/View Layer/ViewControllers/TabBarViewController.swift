@@ -111,6 +111,11 @@ class TabBarViewController: UITabBarController {
             self.tabBarHeightOverride = 64.0
         }
         
+        if Environment.inst.deviceIsMac {
+            // If we're running on mac, this size is best
+            self.tabBarHeightOverride = 64.0
+        }
+        
         self.tabBar.isTranslucent = false
         self.tabBar.backgroundColor = LimeColors.backgroundFill
         

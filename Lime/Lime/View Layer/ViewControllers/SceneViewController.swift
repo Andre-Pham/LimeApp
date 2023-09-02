@@ -289,8 +289,10 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
             })
         
         // Register for keyboard notifications
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        if !Environment.inst.deviceIsMac {
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        }
         
         // If the user taps anywhere on-screen, cancel the keyboard
         // Note the keyboard dismissal callback triggers first, then the tap

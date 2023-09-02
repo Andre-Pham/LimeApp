@@ -38,6 +38,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
     private let timeline = ScrubberView()
     private let letterDisplay = LetterDisplayView()
     
+    /// The idle model - used in place of actual animated model as a visual placeholder during scrubbing
     private let idleModel = HandModel(subDir: "alphabet1", fileName: "Idle_1.dae", blendInDuration: 0.0)
     
     deinit {
@@ -310,17 +311,6 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
                 }
             }
         }
-        
-        /*let testModel = SceneModel(node: HandModelSequence(handModels: [
-            HandModel(subDir: "alphabet1", fileName: "a_1.dae", blendInDuration: 0.4),
-            HandModel(subDir: "alphabet1", fileName: "b_1.dae", blendInDuration: 0.4),
-            HandModel(subDir: "alphabet1", fileName: "c_1.dae", blendInDuration: 0.4),
-            HandModel(subDir: "alphabet1", fileName: "d_1.dae", blendInDuration: 0.4),
-        ]).node)
-        
-        LimeSession.inst.sceneController.addModel(testModel)
-        
-        return*/
     }
     
     func resetToolbar() {

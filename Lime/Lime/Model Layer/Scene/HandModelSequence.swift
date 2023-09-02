@@ -69,6 +69,7 @@ class HandModelSequence {
     init(handModels: [HandModel]) {
         self.handModels = handModels
         
+        // Setup the hand model / node
         self.handModel = self.handModels.first!
         self.node.isPaused = true
         self.node.removeAllAnimations()
@@ -77,7 +78,11 @@ class HandModelSequence {
             animationPlayer.paused = true
         }
         
-        Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { timer in
+        Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [weak self] timer in
+            guard let self = self else {
+                timer.invalidate()
+                return
+            }
             guard self.isPlaying, let timer = self.timer else {
                 self.timer = DispatchTime.now()
                 return

@@ -12,25 +12,33 @@ class HandModelSequence {
     
     // MARK: - Node Properties
     
+    /// The hand model mounted onto the scene
     public let handModel: HandModel
+    /// The controller the sequence is mounted to
     private weak var controller: SceneController? = nil
-    public var node: SCNNode {
+    /// The node mounted onto the scene
+    private var node: SCNNode {
         return self.handModel.node
     }
     
     // MARK: - Animation Properties
     
+    /// All hand models provided, which hold the animation players (ordered)
     private let handModels: [HandModel]
+    /// The progress through the entire sequence (seconds)
     private var totalProgress = 0.0
+    /// The timer used to measure time between Timer intervals
+    /// Found to be more accurate than using the time interval itself
     private var timer: DispatchTime? = nil
-    private(set) var lastPlayedIndex: Int = 0
+    /// The index of the hand model that is active
+    private(set) var activeHandIndex: Int = 0
+    /// True if the sequence is paused
     private var isPaused = false
+    /// True if the sequence is playing
     public var isPlaying: Bool {
         return !self.isPaused
     }
-    public var animationProgressProportion: Double {
-        return self.totalProgress/self.totalDurationWithBlend
-    }
+    /// The index of what hand model / animation player should be made active
     private var activeIndex: Int? {
         for animationPlayerIndex in self.animationPlayers.indices {
             if self.animationShouldPlay(animationIndex: animationPlayerIndex, ignorePause: true) {
@@ -39,21 +47,23 @@ class HandModelSequence {
         }
         return nil
     }
+    /// All animation players from hand models (ordered)
     private var animationPlayers: [SCNAnimationPlayer] {
         return self.handModels.map({ $0.animationPlayer })
     }
+    /// The entire sequence's duration (seconds)
     private var totalDuration: Double {
-        return self.handModels.reduce(0.0) {
-            $0 + $1.animationDuration
-        }
-    }
-    private var totalDurationWithBlend: Double {
         return self.handModels.dropLast().reduce(0.0) {
             $0 + $1.animationDurationBlended
         } + (self.handModels.last?.animationDuration ?? 0.0)
     }
+    /// The speed multiplier on every model's animation
     public var animationSpeed: Double {
         return self.animationPlayers.first!.speed
+    }
+    /// The proportion of progress through the the entire sequence's animation, in the range [0, 1]
+    public var progressProportion: Double {
+        return self.totalProgress/self.totalDuration
     }
     
     init(handModels: [HandModel]) {
@@ -75,7 +85,7 @@ class HandModelSequence {
             let addition = Double(DispatchTime.now().uptimeNanoseconds - timer.uptimeNanoseconds)/1_000_000_000.0
             self.totalProgress += addition*self.animationSpeed
             
-            if isGreater(self.totalProgress, self.totalDurationWithBlend) {
+            if isGreater(self.totalProgress, self.totalDuration) {
                 print("> set total progress to 0.0")
 //                self.setTotalProgressTo(progress: 0.0)
                 
@@ -89,7 +99,7 @@ class HandModelSequence {
             
             if let animationPlayerThatShouldPlay = self.getAnimationThatShouldPlay() {
                 self.getHandModelThatShouldPlay()?.setBlendInDuration()
-                self.lastPlayedIndex = self.activeIndex ?? self.lastPlayedIndex
+                self.activeHandIndex = self.activeIndex ?? self.activeHandIndex
                 print("> playing \(self.activeIndex ?? -1) blend: \(self.animationPlayers[self.activeIndex ?? 0].animation.blendInDuration) paused: \(self.animationPlayers[self.activeIndex ?? 0].paused)")
                 animationPlayerThatShouldPlay.play()
             }
@@ -156,8 +166,8 @@ class HandModelSequence {
         let progressProportion = max(0.0, min(1.0, progressProportion))
         for animationIndex in self.animationPlayers.indices {
             let (startTime, endTime) = self.animationStartEndTimes(animationIndex: animationIndex)
-            let startProportion = startTime/self.totalDurationWithBlend
-            let endProportion = endTime/self.totalDurationWithBlend
+            let startProportion = startTime/self.totalDuration
+            let endProportion = endTime/self.totalDuration
             var midProportion = (startProportion + endProportion)/2.0
             if animationIndex == self.animationPlayers.endIndex - 1 {
                 // If we're at the end animation, we're more biased towards clamping to the second last point
@@ -165,17 +175,17 @@ class HandModelSequence {
             }
             if isGreaterOrEqual(progressProportion, startProportion) && isLessOrEqual(progressProportion, midProportion) {
                 self.setTotalProgressTo(progress: startTime)
-                self.lastPlayedIndex = animationIndex
+                self.activeHandIndex = animationIndex
                 return startProportion
             }
             if isGreater(progressProportion, midProportion) && isLess(progressProportion, endProportion) {
                 self.setTotalProgressTo(progress: endTime)
-                self.lastPlayedIndex = (animationIndex + 1)%self.animationPlayers.count
+                self.activeHandIndex = (animationIndex + 1)%self.animationPlayers.count
                 return endProportion
             }
         }
-        self.setTotalProgressTo(progress: self.totalDurationWithBlend)
-        self.lastPlayedIndex = self.animationPlayers.endIndex - 1
+        self.setTotalProgressTo(progress: self.totalDuration)
+        self.activeHandIndex = self.animationPlayers.endIndex - 1
         return 1.0
     }
     
@@ -253,7 +263,7 @@ class HandModelSequence {
             self.handModel.setOpacity(to: 1.0)
             print(">> playing \(self.activeIndex ?? -1) blend: \(self.animationPlayers[self.activeIndex ?? 0].animation.blendInDuration) paused: \(self.animationPlayers[self.activeIndex ?? 0].paused)")
 //            self.handModel.setOpacity(to: 1.0)
-            self.lastPlayedIndex = self.activeIndex ?? self.lastPlayedIndex
+            self.activeHandIndex = self.activeIndex ?? self.activeHandIndex
             self.getAnimationThatShouldPlay()?.play()
         }
         self.timer = self.isPlaying ? DispatchTime.now() : nil

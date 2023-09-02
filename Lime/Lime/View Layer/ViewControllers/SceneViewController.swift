@@ -171,7 +171,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
                         self.hapticFeedback.impactOccurred()
                     }
                     self.lastPosition = clampedProportion
-                    if let letterIndex = LimeSession.inst.sequence?.lastPlayedIndex {
+                    if let letterIndex = LimeSession.inst.sequence?.activeHandIndex {
                         self.letterDisplay.focusLetter(letterIndex, duration: 0.2)
                     }
                 }
@@ -231,7 +231,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
                     // If you don't, the view isn't updated because it's not "existent" because it hasn't been added yet
                     // Triggering the code after the animation also works but has a delay - this updates faster
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-                        self.timeline.setProgress(to: LimeSession.inst.sequence?.animationProgressProportion ?? 0.0)
+                        self.timeline.setProgress(to: LimeSession.inst.sequence?.progressProportion ?? 0.0)
                     }
                 } else {
                     self.toolbarStack.removeViewAnimated(self.toolbarRowTimeline)
@@ -311,12 +311,12 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
         
         Timer.scheduledTimer(withTimeInterval: 1/60, repeats: true) { timer in
             let sequence = LimeSession.inst.sequence
-            if !self.timeline.isTracking, let proportion = sequence?.animationProgressProportion {
+            if !self.timeline.isTracking, let proportion = sequence?.progressProportion {
                 if !self.playButton.isEnabled {
                     self.timeline.setProgress(to: proportion)
                     self.lastPosition = proportion
                 }
-                if let letterIndex = LimeSession.inst.sequence?.lastPlayedIndex {
+                if let letterIndex = LimeSession.inst.sequence?.activeHandIndex {
                     self.letterDisplay.focusLetter(letterIndex, duration: 0.5)
                 }
             }

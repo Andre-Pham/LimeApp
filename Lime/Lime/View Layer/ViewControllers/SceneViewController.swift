@@ -114,79 +114,67 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
         self.timeline
             .constrainVertical()
             .setOnStartTracking({
-//                // If we're mid transition we need to interrupt it
-//                LimeSession.inst.sequence?.interruptTransition()
-                // Save the animation speed because we're about to slow the model down
-//                self.animationSpeedCache = LimeSession.inst.sequence?.animationSpeed ?? 1.0
-                // The model appears in the starting position during tracking unless playing
-                // Slow down the animation so it appears not to play
-//                LimeSession.inst.sequence?.setAnimationSpeed(to: 0.001)
-                LimeSession.inst.sequence?.setSequencePause(to: false, noBlend: true)
+                // Hide the hand model
+                // It flickers or shows one of the default pose and the initial pose (shared by all models)
                 LimeSession.inst.sequence?.handModel.setOpacity(to: 0.0)
-                
                 if !LimeSession.inst.activePrompt.isEmpty {
+                    // We don't want the hand model disappearing every time we scrub
+                    // We show the idle model in its place - they're in the same pose anyways
                     self.idleModel.setOpacity(to: 1.0)
                 }
             })
             .setOnEndTracking({
-                // Resume state - delay to guarantee model doesn't appear in starting position
+                // We can show the hand model again
                 LimeSession.inst.sequence?.handModel.setOpacity(to: 1.0)
-                
-               
-                
+                // Play the sequence to get out of the default pose
                 LimeSession.inst.sequence?.setSequencePause(to: false, noBlend: true)
+                // Slow down the animation
+                // We don't actually want to progress, we just want to get out of the default pose
                 self.animationSpeedCache = LimeSession.inst.sequence?.animationSpeed ?? 1.0
                 LimeSession.inst.sequence?.setAnimationSpeed(to: 0.001)
-                
                 if self.playButton.isEnabled {
+                    // We were paused before
+                    // Hide the model and show the idle to avoid visual bugs
+                    // This will be reverted when we press play again
                     LimeSession.inst.sequence?.handModel.setOpacity(to: 0.0)
                     if !LimeSession.inst.activePrompt.isEmpty {
                         self.idleModel.setOpacity(to: 1.0)
                     }
                 } else {
+                    // We were playing before, so no worries - we'll just continue playing and hide the idle model
                     self.idleModel.setOpacity(to: 0.0)
                 }
-
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                    // Now that we're out of the default pose
+                    // We can set the animation speed back to normal and resume playing/paused (whatever we were before)
                     LimeSession.inst.sequence?.setAnimationSpeed(to: self.animationSpeedCache)
                     LimeSession.inst.sequence?.setSequencePause(to: self.playButton.isEnabled)
-                    
                 }
-                
-                
-//                LimeSession.inst.sequence?.setAnimationSpeed(to: self.animationSpeedCache)
             })
             .setOnChange({ proportion in
                 if self.timeline.isTracking {
-                    if !LimeSession.inst.activePrompt.isEmpty {
-                        self.idleModel.setOpacity(to: 1.0)
-                    }
+                    // We don't want the animation playing during tracking - continuously pause it
                     LimeSession.inst.sequence?.setSequencePause(to: true, noBlend: true)
+                    // Clamp to the scrubber's progress proportion
                     var clampedProportion = LimeSession.inst.sequence?.clampToAnimationStart(progressProportion: proportion) ?? 0.0
+                    // If we clamp to the end of the timeline, wrap to the start
+                    // I mean, there's no reason you'd ever clap to the end other than to go back to the start
+                    // And plus, clamping to the end has some funny side effects on seeing the default pose
                     if isGreaterOrEqual(clampedProportion, 1.0) {
                         clampedProportion = LimeSession.inst.sequence?.clampToAnimationStart(progressProportion: 0.0) ?? 0.0
                     }
+                    // Match the timeline with the progression that was clamped to
                     self.timeline.setProgress(to: clampedProportion)
+                    // Provide feedback if we clamped to a new position
                     if let lastPosition = self.lastPosition, !Lime.isEqual(lastPosition, clampedProportion) {
                         self.hapticFeedback.impactOccurred()
                     }
                     self.lastPosition = clampedProportion
+                    // Focus the relevant letter
                     if let letterIndex = LimeSession.inst.sequence?.activeHandIndex {
                         self.letterDisplay.focusLetter(letterIndex, duration: 0.2)
                     }
                 }
-//                if self.timeline.isTracking {
-//                    LimeSession.inst.sequence?.uninterruptTransition()
-//                    let clampedProportion = LimeSession.inst.sequence?.clampToAnimationStart(proportion: proportion) ?? 0.0
-//                    self.timeline.setProgress(to: clampedProportion)
-//                    if let lastPosition = self.lastPosition, !Lime.isEqual(lastPosition, clampedProportion) {
-//                        self.hapticFeedback.impactOccurred()
-//                    }
-//                    self.lastPosition = clampedProportion
-//                    if let letterIndex = LimeSession.inst.sequence?.activeModelIndex {
-//                        self.letterDisplay.focusLetter(letterIndex, duration: 0.2)
-//                    }
-//                }
             })
         
         self.animationSpeedMultiState
@@ -294,6 +282,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
             .setIcon(to: "play.fill", disabled: "pause.fill")
             .setState(enabled: true) // Start paused
             .setOnTap({ isPaused in
+                // If we were showing the idle previously, we certainly don't want to anymore
                 self.idleModel.setOpacity(to: 0.0)
                 LimeSession.inst.sequence?.setSequencePause(to: isPaused, noBlend: true)
             })

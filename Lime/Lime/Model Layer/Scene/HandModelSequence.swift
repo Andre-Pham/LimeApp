@@ -134,7 +134,7 @@ class HandModelSequence {
             var midProportion = (startProportion + endProportion)/2.0
             if animationIndex == self.animationPlayers.endIndex - 1 {
                 // If we're at the end animation, we're more biased towards clamping to the second last point
-                midProportion = startProportion + (endProportion - startProportion)*0.75
+                midProportion = startProportion + (endProportion - startProportion)*0.9
             }
             if isGreaterOrEqual(progressProportion, startProportion) && isLessOrEqual(progressProportion, midProportion) {
                 self.setTotalProgressTo(progress: startTime)

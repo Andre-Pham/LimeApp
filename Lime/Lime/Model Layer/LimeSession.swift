@@ -145,7 +145,7 @@ class LimeSession {
         let subDir = self.fileDirectory
         let suffix = self.fileSuffix
         for char in prompt {
-            handModels.append(HandModel(subDir: subDir, fileName: "\(char)\(suffix).dae", blendInDuration: 0.5))
+            handModels.append(HandModel(subDir: subDir, fileName: "\(char)\(suffix).dae", blendInDuration: 0.55))
         }
         self.sequence = HandModelSequence(handModels: handModels)
         self.sequence?.mount(to: self.sceneController)

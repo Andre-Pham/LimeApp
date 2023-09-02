@@ -12,9 +12,11 @@ An Auslan (Australian sign language) fingerspelling app for iOS.
     * Buttons to reset the camera to the default front/back perspectives
 * Has settings to use left handed models, disable smooth transitions, and hide the display prompt
 
-## Demo
+## Demos
 
-Main Demo: [YOUTUBE LINK](https://youtu.be/VK7Qs1gYWZs?si=i_Iq1wYRQJqp7nX6)
+Main Demo: [YOUTUBE LINK](https://youtube.com/watch?v=BS5IwGK1_Ls)
+
+Alphabet Demo: [YOUTUBE LINK](https://youtube.com/watch?v=8cXb0kTaQ-s)
 
 ## Compatibility
 

@@ -63,7 +63,6 @@
 		B60A3A932A7E29D300499484 /* LimeGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A922A7E29D300499484 /* LimeGestureView.swift */; };
 		B60A3A952A7E5B3D00499484 /* LetterDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A942A7E5B3D00499484 /* LetterDisplayView.swift */; };
 		B60A3A972A847CAB00499484 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A962A847CAB00499484 /* SettingsViewController.swift */; };
-		B60A3A992A84CCC500499484 /* OnTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A982A84CCC500499484 /* OnTransitionDelegate.swift */; };
 		B60A3AA62A86048700499484 /* Quicksand-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3AA22A86048700499484 /* Quicksand-SemiBold.ttf */; };
 		B60A3AA72A86048700499484 /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3AA32A86048700499484 /* Quicksand-Regular.ttf */; };
 		B60A3AA82A86048700499484 /* Quicksand-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B60A3AA42A86048700499484 /* Quicksand-Light.ttf */; };
@@ -180,7 +179,6 @@
 		B60A3A922A7E29D300499484 /* LimeGestureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeGestureView.swift; sourceTree = "<group>"; };
 		B60A3A942A7E5B3D00499484 /* LetterDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterDisplayView.swift; sourceTree = "<group>"; };
 		B60A3A962A847CAB00499484 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		B60A3A982A84CCC500499484 /* OnTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTransitionDelegate.swift; sourceTree = "<group>"; };
 		B60A3AA22A86048700499484 /* Quicksand-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-SemiBold.ttf"; sourceTree = "<group>"; };
 		B60A3AA32A86048700499484 /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.ttf"; sourceTree = "<group>"; };
 		B60A3AA42A86048700499484 /* Quicksand-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Light.ttf"; sourceTree = "<group>"; };
@@ -338,7 +336,6 @@
 				B60A39C52A7CA4A600499484 /* PresetNode.swift */,
 				B60A39C62A7CA4A600499484 /* NodeUtil.swift */,
 				B60A39D02A7CA4A600499484 /* SceneController.swift */,
-				B60A3A982A84CCC500499484 /* OnTransitionDelegate.swift */,
 				B697BA102AA20DFB001AC55E /* HandModelSequence.swift */,
 				B697BA122AA2337C001AC55E /* HandModel.swift */,
 			);
@@ -809,7 +806,6 @@
 				B6DC10FA2A7C87E300C10100 /* LimeView.swift in Sources */,
 				B60A39E62A7CA4A600499484 /* SceneModel.swift in Sources */,
 				B60A3A552A7CA72C00499484 /* SceneViewController.swift in Sources */,
-				B60A3A992A84CCC500499484 /* OnTransitionDelegate.swift in Sources */,
 				B60A39D92A7CA4A600499484 /* JointPositions.swift in Sources */,
 				B60A3A602A7D106600499484 /* LimeChipToggle.swift in Sources */,
 				B60A39D12A7CA4A600499484 /* CaptureSession.swift in Sources */,

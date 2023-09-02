@@ -78,6 +78,7 @@ class HandModelSequence {
             animationPlayer.paused = true
         }
         
+        // Continuously tick - this is what tracks the passage of time, and progresses the animation
         Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [weak self] timer in
             guard let self = self else {
                 timer.invalidate()
@@ -91,6 +92,7 @@ class HandModelSequence {
             self.totalProgress += addition*self.animationSpeed
             
             if isGreater(self.totalProgress, self.totalDuration) {
+                // If the sequence is complete, restart the loop
                 self.setSequencePause(to: true)
                 self.animationPlayers.forEach({
                     $0.stop()
@@ -99,6 +101,7 @@ class HandModelSequence {
                 self.setSequencePause(to: false, noBlend: true)
             }
             
+            // Grab the next animation that should be playing right now (if there is one) and play it
             if let animationPlayerThatShouldPlay = self.getAnimationThatShouldPlay() {
                 self.getHandModelThatShouldPlay()?.setBlendInDuration()
                 self.activeHandIndex = self.activeIndex ?? self.activeHandIndex
@@ -108,6 +111,7 @@ class HandModelSequence {
             self.timer = DispatchTime.now()
         }
         
+        // By default the sequence is paused
         self.setSequencePause(to: true)
     }
     
@@ -154,6 +158,9 @@ class HandModelSequence {
         })
         self.totalProgress = progress
         if isGreaterOrEqual(progress, 1.0) {
+            // The hand model is at its non-animated default state because we've reached the end
+            // Hide it, and we'll reveal it again when we play
+            // (This may be up to the controller)
             self.handModel.setOpacity(to: 0.0)
         }
     }

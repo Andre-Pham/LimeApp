@@ -10,10 +10,6 @@ import SceneKit
 
 class HandModelSequence {
     
-    // MARK: - Constants
-    
-    public static let NAME_PREFIX = "model"
-    
     // MARK: - Node Properties
     
     public let handModel: HandModel

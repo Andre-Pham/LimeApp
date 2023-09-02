@@ -378,7 +378,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
         if old.hidePrompt != new.hidePrompt {
             self.letterDisplay.setHidden(to: new.hidePrompt)
         }
-        if old.interpolate != new.interpolate || old.leftHanded != new.leftHanded {
+        if old.smoothTransitions != new.smoothTransitions || old.leftHanded != new.leftHanded {
             self.pauseScene()
             if !LimeSession.inst.activePrompt.isEmpty {
                 LimeSession.inst.clearLetterSequence()

@@ -101,7 +101,7 @@ class LimeSession {
     }
     
     func addLetterSequence(prompt: String) -> Bool {
-        if SettingsSession.inst.settings.interpolate {
+        if SettingsSession.inst.settings.smoothTransitions {
             return self.addInterpolatedLetterSequence(prompt: prompt)
         } else {
             return self.addSequentialLetterSequence(prompt: prompt)

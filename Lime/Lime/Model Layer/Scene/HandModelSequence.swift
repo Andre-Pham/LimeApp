@@ -34,6 +34,8 @@ class HandModelSequence {
     private(set) var activeHandIndex: Int = 0
     /// True if the sequence is paused
     private var isPaused = false
+    /// The period of time in which we should use non-blended animations due to the animation being reset
+    private var resetPeriod: (Double, Double)? = nil
     /// True if the sequence is playing
     public var isPlaying: Bool {
         return !self.isPaused
@@ -90,6 +92,10 @@ class HandModelSequence {
             }
             let addition = Double(DispatchTime.now().uptimeNanoseconds - timer.uptimeNanoseconds)/1_000_000_000.0
             self.totalProgress += addition*self.animationSpeed
+            
+            if !self.inResetPeriod() {
+                self.resetPeriod = nil
+            }
             
             if isGreater(self.totalProgress, self.totalDuration) {
                 // If the sequence is complete, restart the loop
@@ -204,6 +210,10 @@ class HandModelSequence {
         self.animationPlayers.forEach({ $0.speed = speed })
     }
     
+    /// Pause the sequence.
+    /// - Parameters:
+    ///   - isPaused: True if the sequence should be paused
+    ///   - noBlend: True if the sequence should not blend the animation upon resuming
     func setSequencePause(to isPaused: Bool, noBlend: Bool = false) {
         self.isPaused = isPaused
         self.getHandModelThatShouldPlay()?.setBlendInDuration(to: noBlend ? 0.0 : nil)
@@ -215,6 +225,40 @@ class HandModelSequence {
             self.getAnimationThatShouldPlay()?.play()
         }
         self.timer = self.isPlaying ? DispatchTime.now() : nil
+    }
+    
+    /// Pause the sequence. Automatically handles blending based on position.
+    /// - Parameters:
+    ///   - isPaused: True if the sequence should be paused
+    func setSequencePauseAuto(to isPaused: Bool) {
+        guard !self.handModels.isEmpty else {
+            return
+        }
+        let (_, firstTransitionTime) = self.animationStartEndTimes(animationIndex: 0)
+        // If we're at the start of the animation or we're in a reset period, don't blend
+        self.setSequencePause(
+            to: isPaused,
+            noBlend: isLess(self.totalProgress, firstTransitionTime) || self.inResetPeriod()
+        )
+    }
+    
+    private func inResetPeriod() -> Bool {
+        guard let resetPeriod else {
+            return false
+        }
+        return isGreaterOrEqual(self.totalProgress, resetPeriod.0) && isLessOrEqual(self.totalProgress, resetPeriod.1)
+    }
+    
+    func markAsReset() {
+        self.resetPeriod = self.transitionStartEndTimes(animationIndex: self.activeHandIndex)
+    }
+    
+    private func transitionStartEndTimes(animationIndex: Int) -> (Double, Double) {
+        var priorAnimationDurations = 0.0
+        for index in 0..<animationIndex {
+            priorAnimationDurations += self.handModels[index].animationDurationBlended
+        }
+        return (priorAnimationDurations, priorAnimationDurations + self.handModels[animationIndex].defaultBlendInDuration)
     }
     
 }

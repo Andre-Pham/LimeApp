@@ -141,6 +141,8 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
                     if !LimeSession.inst.activePrompt.isEmpty {
                         self.idleModel.setOpacity(to: 1.0)
                     }
+                    // The models would have reset from setting a new proportion while paused
+                    LimeSession.inst.sequence?.markAsReset()
                 } else {
                     // We were playing before, so no worries - we'll just continue playing and hide the idle model
                     self.idleModel.setOpacity(to: 0.0)
@@ -283,9 +285,13 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
             .setIcon(to: "play.fill", disabled: "pause.fill")
             .setState(enabled: true) // Start paused
             .setOnTap({ isPaused in
+                guard !self.timeline.isTracking else {
+                    self.playButton.setState(enabled: !isPaused)
+                    return
+                }
                 // If we were showing the idle previously, we certainly don't want to anymore
                 self.idleModel.setOpacity(to: 0.0)
-                LimeSession.inst.sequence?.setSequencePause(to: isPaused, noBlend: true)
+                LimeSession.inst.sequence?.setSequencePauseAuto(to: isPaused)
             })
         
         // Register for keyboard notifications

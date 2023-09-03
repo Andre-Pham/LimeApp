@@ -28,7 +28,7 @@ class HandModel: SceneModel {
         return self.node.name!
     }
     /// The blend in animation originally set
-    private let defaultBlendInDuration: Double
+    public let defaultBlendInDuration: Double
     /// This class' node's animated child node
     private var animatedNode: SCNNode {
         return self.node.childNode(withName: Self.ANIMATED_NODE_NAME, recursively: true)!

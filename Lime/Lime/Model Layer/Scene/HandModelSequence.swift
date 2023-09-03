@@ -33,7 +33,7 @@ class HandModelSequence {
     /// The index of the hand model that is active
     private(set) var activeHandIndex: Int = 0
     /// True if the sequence is paused
-    private var isPaused = false
+    private(set) var isPaused = false
     /// The period of time in which we should use non-blended animations due to the animation being reset
     private var resetPeriod: (Double, Double)? = nil
     /// True if the sequence is playing
@@ -131,7 +131,11 @@ class HandModelSequence {
         self.controller = nil
     }
     
-    func clampToAnimationStart(progressProportion: Double) -> Double {
+    /// Clamp the animation's progress to the closest animation start.
+    /// - Parameters:
+    ///   - progressProportion: The progress proportion to be clamped
+    /// - Returns: The progress proportion clamped to
+    func clampToClosestAnimation(progressProportion: Double) -> Double {
         let progressProportion = max(0.0, min(1.0, progressProportion))
         for animationIndex in self.animationPlayers.indices {
             let (startTime, endTime) = self.animationStartEndTimes(animationIndex: animationIndex)
@@ -156,6 +160,30 @@ class HandModelSequence {
         self.setTotalProgressTo(progress: self.totalDuration)
         self.activeHandIndex = self.animationPlayers.endIndex - 1
         return 1.0
+    }
+    
+    /// Clamp the animation's progress to the current animation's start.
+    /// - Parameters:
+    ///   - progressProportion: The progress proportion to be clamped
+    /// - Returns: The progress proportion clamped to
+    func clampToAnimationStart(progressProportion: Double) -> Double {
+        let progressProportion = max(0.0, min(1.0, progressProportion))
+        for animationIndex in self.animationPlayers.indices {
+            let (startTime, endTime) = self.animationStartEndTimes(animationIndex: animationIndex)
+            let startProportion = startTime/self.totalDuration
+            let endProportion = endTime/self.totalDuration
+            if isGreaterOrEqual(progressProportion, startProportion) && isLess(progressProportion, endProportion) {
+                self.setTotalProgressTo(progress: startTime)
+                self.activeHandIndex = animationIndex
+                return startProportion
+            }
+        }
+        let animationIndex = self.animationPlayers.endIndex - 1
+        let (startTime, _) = self.animationStartEndTimes(animationIndex: animationIndex)
+        let startProportion = startTime/self.totalDuration
+        self.setTotalProgressTo(progress: startTime)
+        self.activeHandIndex = self.animationPlayers.endIndex - 1
+        return startProportion
     }
     
     private func setTotalProgressTo(progress: Double) {

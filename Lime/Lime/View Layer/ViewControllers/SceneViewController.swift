@@ -159,12 +159,12 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
                     // We don't want the animation playing during tracking - continuously pause it
                     LimeSession.inst.sequence?.setSequencePause(to: true, noBlend: true)
                     // Clamp to the scrubber's progress proportion
-                    var clampedProportion = LimeSession.inst.sequence?.clampToAnimationStart(progressProportion: proportion) ?? 0.0
+                    var clampedProportion = LimeSession.inst.sequence?.clampToClosestAnimation(progressProportion: proportion) ?? 0.0
                     // If we clamp to the end of the timeline, wrap to the start
                     // I mean, there's no reason you'd ever clap to the end other than to go back to the start
                     // And plus, clamping to the end has some funny side effects on seeing the default pose
                     if isGreaterOrEqual(clampedProportion, 1.0) {
-                        clampedProportion = LimeSession.inst.sequence?.clampToAnimationStart(progressProportion: 0.0) ?? 0.0
+                        clampedProportion = LimeSession.inst.sequence?.clampToClosestAnimation(progressProportion: 0.0) ?? 0.0
                     }
                     // Match the timeline with the progression that was clamped to
                     self.timeline.setProgress(to: clampedProportion)
@@ -187,7 +187,22 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
             .addState(value: 0.25, label: "0.25x")
             .addState(value: 0.5, label: "0.5x")
             .setOnChange({ playbackSpeed in
-                LimeSession.inst.sequence?.setAnimationSpeed(to: playbackSpeed)
+                if let sequence = LimeSession.inst.sequence {
+                    sequence.setAnimationSpeed(to: playbackSpeed)
+                    if sequence.isPaused {
+                        // Clamp the animation
+                        let clampedProportion = sequence.clampToAnimationStart(progressProportion: self.timeline.progressProportion)
+                        self.timeline.setProgress(to: clampedProportion)
+                        // Hide the model and show the idle to avoid visual bugs
+                        // This will be reverted when we press play again
+                        LimeSession.inst.sequence?.handModel.setOpacity(to: 0.0)
+                        if !LimeSession.inst.activePrompt.isEmpty {
+                            self.idleModel.setOpacity(to: 1.0)
+                        }
+                        // The models would have reset from setting a new proportion while paused
+                        LimeSession.inst.sequence?.markAsReset()
+                    }
+                }
             })
         
         self.promptToggle

@@ -19,6 +19,8 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
     private var lastPosition: Double? = nil
     /// A haptic feedback generator to use within the view controller as feedback
     private let hapticFeedback = UIImpactFeedbackGenerator(style: .light)
+    /// The prompt dismissed by tapping outside the keyboard (reset per-tap)
+    private var dismissedPrompt = ""
     
     private var root: LimeView { return LimeView(self.view) }
     private let toolbarContainer = LimeView()
@@ -284,14 +286,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
                 self.promptInput.setText(to: LimeSession.inst.activePrompt)
             })
             .setOnSubmit({
-                let newSequenceMounted = LimeSession.inst.addLetterSequence(prompt: self.promptInput.text)
-                if newSequenceMounted {
-                    self.letterDisplay.setPrompt(to: LimeSession.inst.activePrompt)
-                    if !LimeSession.inst.activePrompt.isEmpty {
-                        self.letterDisplay.focusLetter(0, duration: 0.5)
-                    }
-                    self.resetToolbar()
-                }
+                self.submitPrompt(prompt: self.promptInput.text)
             })
         
         self.playButton
@@ -300,6 +295,15 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
             .setIcon(to: "play.fill", disabled: "pause.fill")
             .setState(enabled: true) // Start paused
             .setOnTap({ isPaused in
+                if self.dismissedPrompt != self.promptInput.text {
+                    // The user entered a prompt then immediately pressed the play button
+                    // Pressing the play button dismissed the keyboard
+                    // However we saved the dismissed prompt
+                    // If they entered a new prompt then immediately hit play, we want to submit the newly entered prompt
+                    self.submitPrompt(prompt: self.dismissedPrompt)
+                    // We must also make sure the newly entered prompt is reflected by the prompt input
+                    self.promptInput.setText(to: LimeSession.inst.activePrompt)
+                }
                 guard !self.timeline.isTracking else {
                     self.playButton.setState(enabled: !isPaused)
                     return
@@ -318,7 +322,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
         // If the user taps anywhere on-screen, cancel the keyboard
         // Note the keyboard dismissal callback triggers first, then the tap
         // E.g. if you press a button while the keyboard is open, the keyboard closes, then the button press is triggered
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onScreenTap))
         tapGesture.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGesture)
         
@@ -336,6 +340,17 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
         }
     }
     
+    func submitPrompt(prompt: String) {
+        let newSequenceMounted = LimeSession.inst.addLetterSequence(prompt: prompt)
+        if newSequenceMounted {
+            self.letterDisplay.setPrompt(to: LimeSession.inst.activePrompt)
+            if !LimeSession.inst.activePrompt.isEmpty {
+                self.letterDisplay.focusLetter(0, duration: 0.5)
+            }
+            self.resetToolbar()
+        }
+    }
+    
     func resetToolbar() {
         self.timeline.setProgress(to: 0.0)
         self.animationSpeedMultiState.setState(state: 0)
@@ -347,7 +362,12 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
         }
     }
     
-    @objc func dismissKeyboard() {
+    @objc func onScreenTap() {
+        self.dismissedPrompt = self.promptInput.text
+        self.dismissKeyboard()
+    }
+    
+    func dismissKeyboard() {
         self.view.endEditing(true)
     }
     

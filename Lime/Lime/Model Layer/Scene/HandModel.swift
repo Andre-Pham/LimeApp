@@ -72,6 +72,8 @@ class HandModel: SceneModel {
         self.defaultBlendInDuration = blendInDuration
         self.node.name = (name == nil ? "\(self.namePrefix)-\(fileName)" : "\(self.namePrefix)-\(name!)")
         self.animationPlayer.animation.blendInDuration = blendInDuration
+        self.animationPlayer.animation.repeatCount = 1
+        self.animationPlayer.animation.isRemovedOnCompletion = false
     }
     
     /// Add an animation player to this model.

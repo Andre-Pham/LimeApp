@@ -91,6 +91,7 @@ class HandModelSequence {
                 return
             }
             let addition = Double(DispatchTime.now().uptimeNanoseconds - timer.uptimeNanoseconds)/1_000_000_000.0
+            self.timer = DispatchTime.now()
             self.totalProgress += addition*self.animationSpeed
             
             if !self.inResetPeriod() {
@@ -113,8 +114,6 @@ class HandModelSequence {
                 self.activeHandIndex = self.activeIndex ?? self.activeHandIndex
                 animationPlayerThatShouldPlay.play()
             }
-            
-            self.timer = DispatchTime.now()
         }
         
         // By default the sequence is paused

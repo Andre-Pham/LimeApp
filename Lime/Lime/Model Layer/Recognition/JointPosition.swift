@@ -35,7 +35,7 @@ class JointPosition {
         )
     }
     
-    func interpolate(with previous: JointPosition, factor: CGFloat) -> JointPosition {
+    func interpolate(with previous: JointPosition, factor: Double) -> JointPosition {
         let interpolatedJoint = JointPosition(name: self.name)
         interpolatedJoint.confidence = self.confidence
         if let currentPosition = self.position,

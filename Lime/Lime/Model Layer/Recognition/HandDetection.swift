@@ -101,7 +101,7 @@ class HandDetection {
         }
     }
     
-    func interpolate(with previous: HandDetection, factor: CGFloat) -> HandDetection {
+    func interpolate(with previous: HandDetection, factor: Double) -> HandDetection {
         let interpolatedHand = HandDetection()
         for jointIndex in self.allPositions.indices {
             let previousJoint = previous.allPositions[jointIndex]
@@ -113,8 +113,8 @@ class HandDetection {
         return interpolatedHand
     }
     
-    func accumulatedDistance(to otherHand: HandDetection) -> CGFloat {
-        var totalDistance: CGFloat = 0.0
+    func accumulatedDistance(to otherHand: HandDetection) -> Double {
+        var totalDistance = 0.0
         for jointIndex in self.allPositions.indices {
             let joint1 = self.allPositions[jointIndex]
             let joint2 = otherHand.allPositions[jointIndex]

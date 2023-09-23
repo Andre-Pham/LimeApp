@@ -59,7 +59,7 @@ class HandOverlayView: LimeUIView {
         }
         
         if self.previousHandDetections.count > 20 {
-            self.previousHandDetections.removeUntil(capacity: 20)
+            self.previousHandDetections.removeUntil(capacity: 20, takeFromEnd: false)
         }
     }
     

@@ -71,6 +71,12 @@ extension LimeUIViewProtocol {
     }
     
     @discardableResult
+    func addLayer(_ layer: CALayer) -> Self {
+        self.view.layer.addSublayer(layer)
+        return self
+    }
+    
+    @discardableResult
     func clearSubviewsAndLayers() -> Self {
         self.view.subviews.forEach({ $0.removeFromSuperview() })
         self.view.layer.sublayers?.forEach({ $0.removeFromSuperlayer() })

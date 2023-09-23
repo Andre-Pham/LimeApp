@@ -10,58 +10,60 @@ import Vision
 
 class HandDetection {
     
+    public let id = UUID()
+    
     // MARK: - Wrist Properties
     
     private(set) var wrist = JointPosition(name: "wrist")
     
     // MARK: - Thumb Properties
     
-    private(set) var thumbCMC = JointPosition(name: "thumb1")
-    private(set) var thumbMP = JointPosition(name: "thumb2")
-    private(set) var thumbIP = JointPosition(name: "thumb3")
-    private(set) var thumbTip = JointPosition(name: "thumb4")
+    private(set) var thumb1 = JointPosition(name: "thumb1")
+    private(set) var thumb2 = JointPosition(name: "thumb2")
+    private(set) var thumb3 = JointPosition(name: "thumb3")
+    private(set) var thumb4 = JointPosition(name: "thumb4")
     public var thumbPositions: [JointPosition] {
-        return [self.thumbCMC, self.thumbMP, self.thumbIP, self.thumbTip]
+        return [self.thumb1, self.thumb2, self.thumb3, self.thumb4]
     }
     
     // MARK: - Index Properties
     
-    private(set) var indexMCP = JointPosition(name: "index1")
-    private(set) var indexPIP = JointPosition(name: "index2")
-    private(set) var indexDIP = JointPosition(name: "index3")
-    private(set) var indexTip = JointPosition(name: "index4")
+    private(set) var index1 = JointPosition(name: "index1")
+    private(set) var index2 = JointPosition(name: "index2")
+    private(set) var index3 = JointPosition(name: "index3")
+    private(set) var index4 = JointPosition(name: "index4")
     public var indexPositions: [JointPosition] {
-        return [self.indexMCP, self.indexPIP, self.indexDIP, self.indexTip]
+        return [self.index1, self.index2, self.index3, self.index4]
     }
     
     // MARK: - Middle Properties
     
-    private(set) var middleMCP = JointPosition(name: "middle1")
-    private(set) var middlePIP = JointPosition(name: "middle2")
-    private(set) var middleDIP = JointPosition(name: "middle3")
-    private(set) var middleTip = JointPosition(name: "middle4")
+    private(set) var middle1 = JointPosition(name: "middle1")
+    private(set) var middle2 = JointPosition(name: "middle2")
+    private(set) var middle3 = JointPosition(name: "middle3")
+    private(set) var middle4 = JointPosition(name: "middle4")
     public var middlePositions: [JointPosition] {
-        return [self.middleMCP, self.middlePIP, self.middleDIP, self.middleTip]
+        return [self.middle1, self.middle2, self.middle3, self.middle4]
     }
     
     // MARK: - Ring Properties
     
-    private(set) var ringMCP = JointPosition(name: "ring1")
-    private(set) var ringPIP = JointPosition(name: "ring2")
-    private(set) var ringDIP = JointPosition(name: "ring3")
-    private(set) var ringTip = JointPosition(name: "ring4")
+    private(set) var ring1 = JointPosition(name: "ring1")
+    private(set) var ring2 = JointPosition(name: "ring2")
+    private(set) var ring3 = JointPosition(name: "ring3")
+    private(set) var ring4 = JointPosition(name: "ring4")
     public var ringPositions: [JointPosition] {
-        return [self.ringMCP, self.ringPIP, self.ringDIP, self.ringTip]
+        return [self.ring1, self.ring2, self.ring3, self.ring4]
     }
     
     // MARK: - Little Properties
     
-    private(set) var littleMCP = JointPosition(name: "little1")
-    private(set) var littlePIP = JointPosition(name: "little2")
-    private(set) var littleDIP = JointPosition(name: "little3")
-    private(set) var littleTip = JointPosition(name: "little4")
+    private(set) var little1 = JointPosition(name: "little1")
+    private(set) var little2 = JointPosition(name: "little2")
+    private(set) var little3 = JointPosition(name: "little3")
+    private(set) var little4 = JointPosition(name: "little4")
     public var littlePositions: [JointPosition] {
-        return [self.littleMCP, self.littlePIP, self.littleDIP, self.littleTip]
+        return [self.little1, self.little2, self.little3, self.little4]
     }
     
     // MARK: - All Properties
@@ -73,30 +75,56 @@ class HandDetection {
     func retrievePosition(from joint: VNHumanHandPoseObservation.JointName) -> JointPosition {
         switch joint {
         case .wrist: return self.wrist
-        case .thumbCMC: return self.thumbCMC
-        case .thumbMP: return self.thumbMP
-        case .thumbIP: return self.thumbIP
-        case .thumbTip: return self.thumbTip
-        case .indexMCP: return self.indexMCP
-        case .indexPIP: return self.indexPIP
-        case .indexDIP: return self.indexDIP
-        case .indexTip: return self.indexTip
-        case .middleMCP: return self.middleMCP
-        case .middlePIP: return self.middlePIP
-        case .middleDIP: return self.middleDIP
-        case .middleTip: return self.middleTip
-        case .ringMCP: return self.ringMCP
-        case .ringPIP: return self.ringPIP
-        case .ringDIP: return self.ringDIP
-        case .ringTip: return self.ringTip
-        case .littleMCP: return self.littleMCP
-        case .littlePIP: return self.littlePIP
-        case .littleDIP: return self.littleDIP
-        case .littleTip: return self.littleTip
+        case .thumbCMC: return self.thumb1
+        case .thumbMP: return self.thumb2
+        case .thumbIP: return self.thumb3
+        case .thumbTip: return self.thumb4
+        case .indexMCP: return self.index1
+        case .indexPIP: return self.index2
+        case .indexDIP: return self.index3
+        case .indexTip: return self.index4
+        case .middleMCP: return self.middle1
+        case .middlePIP: return self.middle2
+        case .middleDIP: return self.middle3
+        case .middleTip: return self.middle4
+        case .ringMCP: return self.ring1
+        case .ringPIP: return self.ring2
+        case .ringDIP: return self.ring3
+        case .ringTip: return self.ring4
+        case .littleMCP: return self.little1
+        case .littlePIP: return self.little2
+        case .littleDIP: return self.little3
+        case .littleTip: return self.little4
         default:
             assertionFailure("Missing joint causes switch to not be exhaustive")
             return JointPosition(name: "")
         }
+    }
+    
+    func interpolate(with previous: HandDetection, factor: CGFloat) -> HandDetection {
+        let interpolatedHand = HandDetection()
+        for jointIndex in self.allPositions.indices {
+            let previousJoint = previous.allPositions[jointIndex]
+            let currentJoint = self.allPositions[jointIndex]
+            let interpolatedJoint = currentJoint.interpolate(with: previousJoint, factor: factor)
+            interpolatedHand.allPositions[jointIndex].position = interpolatedJoint.position
+            interpolatedHand.allPositions[jointIndex].confidence = interpolatedJoint.confidence
+        }
+        return interpolatedHand
+    }
+    
+    func accumulatedDistance(to otherHand: HandDetection) -> CGFloat {
+        var totalDistance: CGFloat = 0.0
+        for jointIndex in self.allPositions.indices {
+            let joint1 = self.allPositions[jointIndex]
+            let joint2 = otherHand.allPositions[jointIndex]
+            if let position1 = joint1.position, let position2 = joint2.position {
+                let dx = position1.x - position2.x
+                let dy = position1.y - position2.y
+                totalDistance += sqrt(dx*dx + dy*dy)
+            }
+        }
+        return totalDistance
     }
     
 }

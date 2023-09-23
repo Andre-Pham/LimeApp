@@ -7,6 +7,27 @@
 
 import Foundation
 
+extension Array {
+    
+    @discardableResult
+    mutating func removeUntil(capacity: Int, takeFromEnd: Bool = true) -> Int {
+        guard self.count > capacity else {
+            return 0
+        }
+        let elementsToRemove = self.count - capacity
+        guard elementsToRemove > 0 else {
+            return 0
+        }
+        if takeFromEnd {
+            self.removeLast(elementsToRemove)
+        } else {
+            self.removeFirst(elementsToRemove)
+        }
+        return elementsToRemove
+    }
+    
+}
+
 extension Array where Element: Hashable {
     
     func filterDuplicates() -> [Element] {

@@ -35,4 +35,16 @@ class JointPosition {
         )
     }
     
+    func interpolate(with previous: JointPosition, factor: CGFloat) -> JointPosition {
+        let interpolatedJoint = JointPosition(name: self.name)
+        interpolatedJoint.confidence = self.confidence
+        if let currentPosition = self.position,
+            let previousPosition = previous.position {
+            let interpolatedX = currentPosition.x * (1.0 - factor) + previousPosition.x * factor
+            let interpolatedY = currentPosition.y * (1.0 - factor) + previousPosition.y * factor
+            interpolatedJoint.position = CGPoint(x: interpolatedX, y: interpolatedY)
+        }
+        return interpolatedJoint
+    }
+    
 }

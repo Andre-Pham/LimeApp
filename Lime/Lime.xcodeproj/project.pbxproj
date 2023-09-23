@@ -91,6 +91,7 @@
 		B6B7F3022ABC5D3D00F8CDEB /* HandDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F3012ABC5D3D00F8CDEB /* HandDetection.swift */; };
 		B6B7F3042ABC60FE00F8CDEB /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F3032ABC60FE00F8CDEB /* CGPoint.swift */; };
 		B6B7F3062ABC611400F8CDEB /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F3052ABC611400F8CDEB /* CGFloat.swift */; };
+		B6B7F3082ABE78C900F8CDEB /* HandOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F3072ABE78C900F8CDEB /* HandOverlayView.swift */; };
 		B6DC10A82A7BF6E600C10100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */; };
 		B6DC10AA2A7BF6E600C10100 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */; };
 		B6DC10AC2A7BF6E600C10100 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10AB2A7BF6E600C10100 /* TabBarViewController.swift */; };
@@ -213,6 +214,7 @@
 		B6B7F3012ABC5D3D00F8CDEB /* HandDetection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandDetection.swift; sourceTree = "<group>"; };
 		B6B7F3032ABC60FE00F8CDEB /* CGPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
 		B6B7F3052ABC611400F8CDEB /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
+		B6B7F3072ABE78C900F8CDEB /* HandOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandOverlayView.swift; sourceTree = "<group>"; };
 		B6DC10A42A7BF6E600C10100 /* Lime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -595,6 +597,7 @@
 				B60A3A902A7E1CEE00499484 /* ScrubberView.swift */,
 				B60A3A942A7E5B3D00499484 /* LetterDisplayView.swift */,
 				B60A3AAA2A86428400499484 /* SettingsRowView.swift */,
+				B6B7F3072ABE78C900F8CDEB /* HandOverlayView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -770,6 +773,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6B7F3082ABE78C900F8CDEB /* HandOverlayView.swift in Sources */,
 				B60A39E52A7CA4A600499484 /* SceneGeometry.swift in Sources */,
 				B6DC10F92A7C87E300C10100 /* LimeImage.swift in Sources */,
 				B60A39AD2A7CA49900499484 /* Array.swift in Sources */,

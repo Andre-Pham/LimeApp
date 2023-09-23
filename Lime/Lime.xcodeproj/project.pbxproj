@@ -84,6 +84,13 @@
 		B67F06832A9EA17000591789 /* LimeChipTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67F06822A9EA17000591789 /* LimeChipTextButton.swift */; };
 		B697BA112AA20DFB001AC55E /* HandModelSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B697BA102AA20DFB001AC55E /* HandModelSequence.swift */; };
 		B697BA132AA2337C001AC55E /* HandModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B697BA122AA2337C001AC55E /* HandModel.swift */; };
+		B6B7F2FA2ABC54FF00F8CDEB /* RecognitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F2F92ABC54FF00F8CDEB /* RecognitionViewController.swift */; };
+		B6B7F2FC2ABC5CB100F8CDEB /* HandDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F2FB2ABC5CB100F8CDEB /* HandDetector.swift */; };
+		B6B7F2FE2ABC5D1200F8CDEB /* HandDetectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F2FD2ABC5D1200F8CDEB /* HandDetectionDelegate.swift */; };
+		B6B7F3002ABC5D2700F8CDEB /* HandDetectionOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F2FF2ABC5D2700F8CDEB /* HandDetectionOutcome.swift */; };
+		B6B7F3022ABC5D3D00F8CDEB /* HandDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F3012ABC5D3D00F8CDEB /* HandDetection.swift */; };
+		B6B7F3042ABC60FE00F8CDEB /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F3032ABC60FE00F8CDEB /* CGPoint.swift */; };
+		B6B7F3062ABC611400F8CDEB /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F3052ABC611400F8CDEB /* CGFloat.swift */; };
 		B6DC10A82A7BF6E600C10100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */; };
 		B6DC10AA2A7BF6E600C10100 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */; };
 		B6DC10AC2A7BF6E600C10100 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10AB2A7BF6E600C10100 /* TabBarViewController.swift */; };
@@ -199,6 +206,13 @@
 		B67F06822A9EA17000591789 /* LimeChipTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeChipTextButton.swift; sourceTree = "<group>"; };
 		B697BA102AA20DFB001AC55E /* HandModelSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandModelSequence.swift; sourceTree = "<group>"; };
 		B697BA122AA2337C001AC55E /* HandModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandModel.swift; sourceTree = "<group>"; };
+		B6B7F2F92ABC54FF00F8CDEB /* RecognitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionViewController.swift; sourceTree = "<group>"; };
+		B6B7F2FB2ABC5CB100F8CDEB /* HandDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandDetector.swift; sourceTree = "<group>"; };
+		B6B7F2FD2ABC5D1200F8CDEB /* HandDetectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandDetectionDelegate.swift; sourceTree = "<group>"; };
+		B6B7F2FF2ABC5D2700F8CDEB /* HandDetectionOutcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandDetectionOutcome.swift; sourceTree = "<group>"; };
+		B6B7F3012ABC5D3D00F8CDEB /* HandDetection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandDetection.swift; sourceTree = "<group>"; };
+		B6B7F3032ABC60FE00F8CDEB /* CGPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
+		B6B7F3052ABC611400F8CDEB /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
 		B6DC10A42A7BF6E600C10100 /* Lime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -279,6 +293,8 @@
 			isa = PBXGroup;
 			children = (
 				B60A39A92A7CA49900499484 /* CGRect.swift */,
+				B6B7F3032ABC60FE00F8CDEB /* CGPoint.swift */,
+				B6B7F3052ABC611400F8CDEB /* CGFloat.swift */,
 			);
 			path = "Core Graphics";
 			sourceTree = "<group>";
@@ -324,6 +340,10 @@
 				B60A39C02A7CA4A600499484 /* JointPositions.swift */,
 				B60A39C12A7CA4A600499484 /* PredictionOutcome.swift */,
 				B60A39C22A7CA4A600499484 /* SignDelegate.swift */,
+				B6B7F2FB2ABC5CB100F8CDEB /* HandDetector.swift */,
+				B6B7F2FD2ABC5D1200F8CDEB /* HandDetectionDelegate.swift */,
+				B6B7F2FF2ABC5D2700F8CDEB /* HandDetectionOutcome.swift */,
+				B6B7F3012ABC5D3D00F8CDEB /* HandDetection.swift */,
 			);
 			path = Recognition;
 			sourceTree = "<group>";
@@ -504,6 +524,7 @@
 				B6DC10AB2A7BF6E600C10100 /* TabBarViewController.swift */,
 				B60A3A542A7CA72C00499484 /* SceneViewController.swift */,
 				B60A3A962A847CAB00499484 /* SettingsViewController.swift */,
+				B6B7F2F92ABC54FF00F8CDEB /* RecognitionViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -761,6 +782,7 @@
 				B60A39AF2A7CA49900499484 /* SCNVector3.swift in Sources */,
 				B6DC10F62A7C87E300C10100 /* LimeVStack.swift in Sources */,
 				B60A39B12A7CA49900499484 /* CGRect.swift in Sources */,
+				B6B7F3062ABC611400F8CDEB /* CGFloat.swift in Sources */,
 				B60A39B22A7CA49900499484 /* Double.swift in Sources */,
 				B60A3A932A7E29D300499484 /* LimeGestureView.swift in Sources */,
 				B67F06832A9EA17000591789 /* LimeChipTextButton.swift in Sources */,
@@ -787,6 +809,7 @@
 				B60A3A4D2A7CA50600499484 /* ASLDemoClassifier 2.mlmodel in Sources */,
 				B60A3AB32A8C666F00499484 /* SettingsSession.swift in Sources */,
 				B60A39AE2A7CA49900499484 /* SCNNode.swift in Sources */,
+				B6B7F3042ABC60FE00F8CDEB /* CGPoint.swift in Sources */,
 				B60A39DD2A7CA4A600499484 /* PresetNode.swift in Sources */,
 				B6DC10AA2A7BF6E600C10100 /* SceneDelegate.swift in Sources */,
 				B60A3A912A7E1CEE00499484 /* ScrubberView.swift in Sources */,
@@ -794,13 +817,16 @@
 				B6DC10DA2A7C027A00C10100 /* Environment.swift in Sources */,
 				B60A3A572A7CD66D00499484 /* LimeChipButton.swift in Sources */,
 				B60A39AC2A7CA49900499484 /* Math.swift in Sources */,
+				B6B7F2FE2ABC5D1200F8CDEB /* HandDetectionDelegate.swift in Sources */,
 				B60A3A972A847CAB00499484 /* SettingsViewController.swift in Sources */,
+				B6B7F3002ABC5D2700F8CDEB /* HandDetectionOutcome.swift in Sources */,
 				B60A39DF2A7CA4A600499484 /* SCNBox.swift in Sources */,
 				B60A39E32A7CA4A600499484 /* SceneCamera.swift in Sources */,
 				B697BA132AA2337C001AC55E /* HandModel.swift in Sources */,
 				B60A39D42A7CA4A600499484 /* LimeSession.swift in Sources */,
 				B60A39DA2A7CA4A600499484 /* PredictionOutcome.swift in Sources */,
 				B6DC10F52A7C87E300C10100 /* LimeUIView.swift in Sources */,
+				B6B7F2FA2ABC54FF00F8CDEB /* RecognitionViewController.swift in Sources */,
 				B60A39B32A7CA49900499484 /* Float.swift in Sources */,
 				B60A3A5C2A7CF6EA00499484 /* LimeColors.swift in Sources */,
 				B6DC10FA2A7C87E300C10100 /* LimeView.swift in Sources */,
@@ -810,8 +836,10 @@
 				B60A3A602A7D106600499484 /* LimeChipToggle.swift in Sources */,
 				B60A39D12A7CA4A600499484 /* CaptureSession.swift in Sources */,
 				B60A39D72A7CA4A600499484 /* JointPosition.swift in Sources */,
+				B6B7F3022ABC5D3D00F8CDEB /* HandDetection.swift in Sources */,
 				B60A3AAB2A86428400499484 /* SettingsRowView.swift in Sources */,
 				B60A3A8A2A7DE00800499484 /* LimeFonts.swift in Sources */,
+				B6B7F2FC2ABC5CB100F8CDEB /* HandDetector.swift in Sources */,
 				B60A3AB52A8C949F00499484 /* OnSettingsChangedPublisher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

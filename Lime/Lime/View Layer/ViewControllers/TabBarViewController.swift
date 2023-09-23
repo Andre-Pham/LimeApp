@@ -16,26 +16,31 @@ class TabBarViewController: UITabBarController {
     /// The tab bar item icons
     private static let itemIcons = [
         "cube.transparent",
+        "camera",
         "gearshape",
     ]
     /// The selected tab bar item icons
     private static let selectedItemIcons = [
         "cube.transparent.fill",
+        "camera.fill",
         "gearshape.fill",
     ]
     /// The tab bar item labels
     private static var tabBarItemLabels: [String] {
         return [
             Strings("tabBar.generate3D").local,
+            "Recognition",
             Strings("tabBar.settings").local,
         ]
     }
     
     private let sceneViewController = SceneViewController()
+    private let recognitionViewController = RecognitionViewController()
     private let settingsViewController = SettingsViewController()
     private var allViewControllers: [UIViewController] {
         return [
             self.sceneViewController,
+            recognitionViewController,
             self.settingsViewController
         ]
     }
@@ -44,8 +49,9 @@ class TabBarViewController: UITabBarController {
     private let tabBarStack = LimeHStack()
     private let item1Button = LimeTabBarButton()
     private let item2Button = LimeTabBarButton()
+    private let item3Button = LimeTabBarButton()
     private var itemButtons: [LimeTabBarButton] {
-        return [self.item1Button, self.item2Button]
+        return [self.item1Button, self.item2Button, self.item3Button]
     }
     
     override func viewWillLayoutSubviews() {

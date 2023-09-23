@@ -19,6 +19,10 @@ class JointPosition {
         self.name = name
     }
     
+    func getDenormalisedPosition(for view: UIView) -> CGPoint? {
+        return self.getDenormalisedPosition(viewWidth: view.bounds.width, viewHeight: view.bounds.height)
+    }
+    
     func getDenormalisedPosition(viewWidth: Double, viewHeight: Double) -> CGPoint? {
         if self.position == nil { return nil }
         return VNImagePointForNormalizedPoint(

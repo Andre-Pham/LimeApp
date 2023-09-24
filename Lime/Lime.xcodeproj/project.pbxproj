@@ -92,6 +92,14 @@
 		B6B7F3042ABC60FE00F8CDEB /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F3032ABC60FE00F8CDEB /* CGPoint.swift */; };
 		B6B7F3062ABC611400F8CDEB /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F3052ABC611400F8CDEB /* CGFloat.swift */; };
 		B6B7F3082ABE78C900F8CDEB /* HandOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F3072ABE78C900F8CDEB /* HandOverlayView.swift */; };
+		B6B7F30B2ABED30D00F8CDEB /* RecognitionQuizMaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F30A2ABED30D00F8CDEB /* RecognitionQuizMaster.swift */; };
+		B6B7F30D2ABED3DC00F8CDEB /* QuizLetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F30C2ABED3DC00F8CDEB /* QuizLetter.swift */; };
+		B6B7F30F2ABED40100F8CDEB /* QuizAnswerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F30E2ABED40100F8CDEB /* QuizAnswerStatus.swift */; };
+		B6B7F3112ABED53200F8CDEB /* QuizAnswerOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F3102ABED53200F8CDEB /* QuizAnswerOutcome.swift */; };
+		B6B7F3132ABED58900F8CDEB /* QuizLetterA.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F3122ABED58900F8CDEB /* QuizLetterA.swift */; };
+		B6B7F3152ABEFC2300F8CDEB /* QuizLetterC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F3142ABEFC2300F8CDEB /* QuizLetterC.swift */; };
+		B6B7F3172AC01AD900F8CDEB /* QuizPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F3162AC01AD900F8CDEB /* QuizPromptView.swift */; };
+		B6B7F3192AC01F3800F8CDEB /* QuizCompletedPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F3182AC01F3800F8CDEB /* QuizCompletedPromptView.swift */; };
 		B6DC10A82A7BF6E600C10100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */; };
 		B6DC10AA2A7BF6E600C10100 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */; };
 		B6DC10AC2A7BF6E600C10100 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10AB2A7BF6E600C10100 /* TabBarViewController.swift */; };
@@ -215,6 +223,14 @@
 		B6B7F3032ABC60FE00F8CDEB /* CGPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
 		B6B7F3052ABC611400F8CDEB /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
 		B6B7F3072ABE78C900F8CDEB /* HandOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandOverlayView.swift; sourceTree = "<group>"; };
+		B6B7F30A2ABED30D00F8CDEB /* RecognitionQuizMaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionQuizMaster.swift; sourceTree = "<group>"; };
+		B6B7F30C2ABED3DC00F8CDEB /* QuizLetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizLetter.swift; sourceTree = "<group>"; };
+		B6B7F30E2ABED40100F8CDEB /* QuizAnswerStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizAnswerStatus.swift; sourceTree = "<group>"; };
+		B6B7F3102ABED53200F8CDEB /* QuizAnswerOutcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizAnswerOutcome.swift; sourceTree = "<group>"; };
+		B6B7F3122ABED58900F8CDEB /* QuizLetterA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizLetterA.swift; sourceTree = "<group>"; };
+		B6B7F3142ABEFC2300F8CDEB /* QuizLetterC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizLetterC.swift; sourceTree = "<group>"; };
+		B6B7F3162AC01AD900F8CDEB /* QuizPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizPromptView.swift; sourceTree = "<group>"; };
+		B6B7F3182AC01F3800F8CDEB /* QuizCompletedPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizCompletedPromptView.swift; sourceTree = "<group>"; };
 		B6DC10A42A7BF6E600C10100 /* Lime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -304,6 +320,7 @@
 		B60A39B42A7CA4A600499484 /* Model Layer */ = {
 			isa = PBXGroup;
 			children = (
+				B6B7F3092ABECFC100F8CDEB /* RecognitionQuiz */,
 				B60A3B2B2A8D056700499484 /* Database */,
 				B60A3AAF2A8C665900499484 /* Settings */,
 				B60A39B52A7CA4A600499484 /* Video */,
@@ -439,6 +456,19 @@
 				B60A3B2C2A8D057100499484 /* DatabaseSession.swift */,
 			);
 			path = Database;
+			sourceTree = "<group>";
+		};
+		B6B7F3092ABECFC100F8CDEB /* RecognitionQuiz */ = {
+			isa = PBXGroup;
+			children = (
+				B6B7F30A2ABED30D00F8CDEB /* RecognitionQuizMaster.swift */,
+				B6B7F30C2ABED3DC00F8CDEB /* QuizLetter.swift */,
+				B6B7F30E2ABED40100F8CDEB /* QuizAnswerStatus.swift */,
+				B6B7F3102ABED53200F8CDEB /* QuizAnswerOutcome.swift */,
+				B6B7F3122ABED58900F8CDEB /* QuizLetterA.swift */,
+				B6B7F3142ABEFC2300F8CDEB /* QuizLetterC.swift */,
+			);
+			path = RecognitionQuiz;
 			sourceTree = "<group>";
 		};
 		B6DC109B2A7BF6E600C10100 = {
@@ -598,6 +628,8 @@
 				B60A3A942A7E5B3D00499484 /* LetterDisplayView.swift */,
 				B60A3AAA2A86428400499484 /* SettingsRowView.swift */,
 				B6B7F3072ABE78C900F8CDEB /* HandOverlayView.swift */,
+				B6B7F3162AC01AD900F8CDEB /* QuizPromptView.swift */,
+				B6B7F3182AC01F3800F8CDEB /* QuizCompletedPromptView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -779,9 +811,12 @@
 				B60A39AD2A7CA49900499484 /* Array.swift in Sources */,
 				B60A3A8F2A7DF19600499484 /* LimeChipMultiState.swift in Sources */,
 				B6DC10F32A7C87E300C10100 /* LimeIconButton.swift in Sources */,
+				B6B7F30D2ABED3DC00F8CDEB /* QuizLetter.swift in Sources */,
+				B6B7F3112ABED53200F8CDEB /* QuizAnswerOutcome.swift in Sources */,
 				B6DC10AC2A7BF6E600C10100 /* TabBarViewController.swift in Sources */,
 				B60A3AB12A8C666600499484 /* LimeSettings.swift in Sources */,
 				B60A3AAE2A8C62A700499484 /* UIColor.swift in Sources */,
+				B6B7F3132ABED58900F8CDEB /* QuizLetterA.swift in Sources */,
 				B60A39DC2A7CA4A600499484 /* GeometryBuilder.swift in Sources */,
 				B60A39AF2A7CA49900499484 /* SCNVector3.swift in Sources */,
 				B6DC10F62A7C87E300C10100 /* LimeVStack.swift in Sources */,
@@ -799,6 +834,7 @@
 				B6DC10E62A7C87CF00C10100 /* LimeButton.swift in Sources */,
 				B6DC11942A7CA28900C10100 /* Strings.swift in Sources */,
 				B60A3A622A7D1B9F00499484 /* LimeTextInput.swift in Sources */,
+				B6B7F30F2ABED40100F8CDEB /* QuizAnswerStatus.swift in Sources */,
 				B60A3A952A7E5B3D00499484 /* LetterDisplayView.swift in Sources */,
 				B6DC10FB2A7C87E300C10100 /* LimeText.swift in Sources */,
 				B60A3B2D2A8D057100499484 /* DatabaseSession.swift in Sources */,
@@ -812,6 +848,7 @@
 				B697BA112AA20DFB001AC55E /* HandModelSequence.swift in Sources */,
 				B60A3A4D2A7CA50600499484 /* ASLDemoClassifier 2.mlmodel in Sources */,
 				B60A3AB32A8C666F00499484 /* SettingsSession.swift in Sources */,
+				B6B7F3192AC01F3800F8CDEB /* QuizCompletedPromptView.swift in Sources */,
 				B60A39AE2A7CA49900499484 /* SCNNode.swift in Sources */,
 				B6B7F3042ABC60FE00F8CDEB /* CGPoint.swift in Sources */,
 				B60A39DD2A7CA4A600499484 /* PresetNode.swift in Sources */,
@@ -825,6 +862,7 @@
 				B60A3A972A847CAB00499484 /* SettingsViewController.swift in Sources */,
 				B6B7F3002ABC5D2700F8CDEB /* HandDetectionOutcome.swift in Sources */,
 				B60A39DF2A7CA4A600499484 /* SCNBox.swift in Sources */,
+				B6B7F3172AC01AD900F8CDEB /* QuizPromptView.swift in Sources */,
 				B60A39E32A7CA4A600499484 /* SceneCamera.swift in Sources */,
 				B697BA132AA2337C001AC55E /* HandModel.swift in Sources */,
 				B60A39D42A7CA4A600499484 /* LimeSession.swift in Sources */,
@@ -835,11 +873,13 @@
 				B60A3A5C2A7CF6EA00499484 /* LimeColors.swift in Sources */,
 				B6DC10FA2A7C87E300C10100 /* LimeView.swift in Sources */,
 				B60A39E62A7CA4A600499484 /* SceneModel.swift in Sources */,
+				B6B7F30B2ABED30D00F8CDEB /* RecognitionQuizMaster.swift in Sources */,
 				B60A3A552A7CA72C00499484 /* SceneViewController.swift in Sources */,
 				B60A39D92A7CA4A600499484 /* JointPositions.swift in Sources */,
 				B60A3A602A7D106600499484 /* LimeChipToggle.swift in Sources */,
 				B60A39D12A7CA4A600499484 /* CaptureSession.swift in Sources */,
 				B60A39D72A7CA4A600499484 /* JointPosition.swift in Sources */,
+				B6B7F3152ABEFC2300F8CDEB /* QuizLetterC.swift in Sources */,
 				B6B7F3022ABC5D3D00F8CDEB /* HandDetection.swift in Sources */,
 				B60A3AAB2A86428400499484 /* SettingsRowView.swift in Sources */,
 				B60A3A8A2A7DE00800499484 /* LimeFonts.swift in Sources */,

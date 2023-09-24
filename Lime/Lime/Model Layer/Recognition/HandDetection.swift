@@ -127,4 +127,24 @@ class HandDetection {
         return totalDistance
     }
     
+    func getDenormalisedPalmLength(frameSize: CGSize) -> Double {
+        // We use the distance from the wrist to the little finger
+        // It's an extremely consistent length regardless of which fingers are curled, the hand direction, etc.
+        guard let wristPosition = self.wrist.getDenormalisedPosition(for: frameSize),
+              let littlePosition = self.little1.getDenormalisedPosition(for: frameSize) else {
+            assertionFailure("We shouldn't be calling the size rating if there's insufficient positions defined")
+            return 0.0
+        }
+        return wristPosition.length(to: littlePosition)
+    }
+    
+    func getPalmLength() -> Double {
+        guard let wristPosition = self.wrist.position,
+              let littlePosition = self.little1.position else {
+            assertionFailure("We shouldn't be calling the size rating if there's insufficient positions defined")
+            return 0.0
+        }
+        return wristPosition.length(to: littlePosition)
+    }
+    
 }

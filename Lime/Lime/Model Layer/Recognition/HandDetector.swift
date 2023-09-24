@@ -43,7 +43,7 @@ class HandDetector {
             assertionFailure("Handler failed with error: \(error)")
         }
         
-        let handDetectionOutcome = HandDetectionOutcome()
+        let handDetectionOutcome = HandDetectionOutcome(frameSize: CGSize(width: frame.width, height: frame.height))
         guard let handPoses = handPoseRequest.results, !handPoses.isEmpty else {
             self.delegateOutcome(handDetectionOutcome)
             return

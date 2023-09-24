@@ -12,9 +12,10 @@ import UIKit
 class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectionDelegate {
     
     private var root: LimeView { return LimeView(self.view) }
-    private var image = LimeImage()
+    private let image = LimeImage()
     private let handOverlayView = HandOverlayView()
-    private let text = LimeText()
+    private let quizPromptStack = LimeHStack()
+    private var quizPrompt = QuizPromptView()
     
     /// The camera capture session for producing a camera output
     private let captureSession = CaptureSession()
@@ -22,6 +23,11 @@ class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectio
     private let handDetector = HandDetector()
     /// Indicates if the overlay frames needs to be synced up (frames matched) to the main screen dimensions (e.g. if the device rotates)
     private var overlayFrameSyncRequired = true
+    /// The active frame being shown
+    private var activeFrame: CGImage? = nil
+    private let quizMaster = RecognitionQuizMaster()
+    
+    private let testButton = LimeIconButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,19 +36,56 @@ class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectio
         
         self.root
             .addSubview(self.image)
-            .addSubview(self.text)
             .addSubview(self.handOverlayView)
+            .addSubview(self.quizPromptStack)
+            .addSubview(self.testButton)
         
         self.image
-            .setFrame(to: self.root.frame)
+            .constrainAllSides(respectSafeArea: false)
+            .setContentMode(to: .scaleAspectFill)
         
-        self.text
+        self.handOverlayView
+            .constrainAllSides(respectSafeArea: false)
+        
+        self.quizPromptStack
+            .constrainBottom(padding: LimeDimensions.quizPromptPadding)
+            .constrainHorizontal(padding: LimeDimensions.quizPromptPadding)
+            .setSpacing(to: LimeDimensions.toolbarSpacing)
+//            .addView(self.quizPrompt)
+            .addSpacer()
+        
+        self.testButton
+            .constrainCenterVertical()
             .constrainCenterHorizontal()
-            .constrainBottom(padding: 20)
-            .setBackgroundColor(to: .white)
-            .setCornerRadius(to: 6)
-            .setPaddingAllSides(to: 12)
-            .setFont(to: LimeFont(font: LimeFonts.IBMPlexMono.Bold.rawValue, size: 48))
+            .setIcon(to: "plus")
+            .setOnTap({
+//                self.quizPromptStack
+//                    .removeViewAnimated(position: 0)
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+//                    self.quizPromptStack
+//                        .addViewAnimated(
+//                            QuizPromptView(),
+//                            position: 0
+//                        )
+//                }
+                self.quizPrompt
+                    .animateExit {
+                        self.quizPrompt.removeFromSuperView()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                            self.root.addSubview(
+                                self.quizPrompt
+                                    .animateEntrance()
+                            )
+                            self.quizPrompt
+                                .constrainCenterHorizontal(to: self.root)
+                                .constrainTop(to: self.root, padding: 50)
+                        }
+                    }
+            })
+        
+//        self.quizPrompt
+        
+        
         
         // Stop the device automatically sleeping
         UIApplication.shared.isIdleTimerDisabled = true
@@ -66,8 +109,6 @@ class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectio
             self.activeFrame = frame
         }
     }
-    
-    private var activeFrame: CGImage? = nil
     
     func onHandDetection(outcome: HandDetectionOutcome?) {
         if let outcome {
@@ -106,12 +147,14 @@ class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectio
 //                let stat = "MAX: \(maxPercentageDifference.toString(decimalPlaces: 3)) | MIN: \(minPercentageDifference.toString(decimalPlaces: 3))"
 //                self.text.setText(to: stat)
                 
-                if isLessOrEqual(maxPercentageDifference, 0.25) && isLessOrEqual(minPercentageDifference, 0.4) {
-                    self.text.setText(to: "C")
-                } else {
-                    self.text.setText(to: "NONE")
-                }
-                
+//                if isLessOrEqual(maxPercentageDifference, 0.25) && isLessOrEqual(minPercentageDifference, 0.4) {
+//                    self.text.setText(to: "C")
+//                } else {
+//                    self.text.setText(to: "NONE")
+//                }
+//
+//                let text = QuizLetterC().acceptAnswer(answer: outcome) == .correct ? "C" : "NONE"
+//                self.text.setText(to: text)
 
                 if true {
                     let width = 2.0*radius*(1.0 + 0.25)
@@ -270,64 +313,64 @@ class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectio
                  */
             }
             
-            if outcome.handDetections.count == 2 {
-                let hand1 = outcome.handDetections[0]
-                let hand2 = outcome.handDetections[1]
-                if let indexTip = hand1.index4.position, let thumbTip = hand2.thumb4.position {
-                    let distance = indexTip.length(to: thumbTip)
-                    if isLessOrEqual(distance, 0.025) {
-                        self.text.setText(to: "A")
-                    }
-                }
-                if let indexTip = hand2.index4.position, let thumbTip = hand1.thumb4.position {
-                    let distance = indexTip.length(to: thumbTip)
-                    if isLessOrEqual(distance, 0.025) {
-                        self.text.setText(to: "A")
-                    }
-                }
-                if let indexTip = hand1.index4.position, let otherIndexTip = hand2.index4.position {
-                    let distance = indexTip.length(to: otherIndexTip)
-                    if isLessOrEqual(distance, 0.025) {
-                        self.text.setText(to: "E")
-                    }
-                }
-                if let indexTip = hand1.index4.position, let middleTip = hand2.middle4.position {
-                    let distance = indexTip.length(to: middleTip)
-                    if isLessOrEqual(distance, 0.025) {
-                        self.text.setText(to: "I")
-                    }
-                }
-                if let indexTip = hand2.index4.position, let middleTip = hand1.middle4.position {
-                    let distance = indexTip.length(to: middleTip)
-                    if isLessOrEqual(distance, 0.025) {
-                        self.text.setText(to: "I")
-                    }
-                }
-                if let indexTip = hand1.index4.position, let ringTip = hand2.ring4.position {
-                    let distance = indexTip.length(to: ringTip)
-                    if isLessOrEqual(distance, 0.025) {
-                        self.text.setText(to: "O")
-                    }
-                }
-                if let indexTip = hand2.index4.position, let ringTip = hand1.ring4.position {
-                    let distance = indexTip.length(to: ringTip)
-                    if isLessOrEqual(distance, 0.025) {
-                        self.text.setText(to: "O")
-                    }
-                }
-                if let indexTip = hand1.index4.position, let littleTip = hand2.little4.position {
-                    let distance = indexTip.length(to: littleTip)
-                    if isLessOrEqual(distance, 0.025) {
-                        self.text.setText(to: "U")
-                    }
-                }
-                if let indexTip = hand2.index4.position, let littleTip = hand1.little4.position {
-                    let distance = indexTip.length(to: littleTip)
-                    if isLessOrEqual(distance, 0.025) {
-                        self.text.setText(to: "U")
-                    }
-                }
-            }
+//            if outcome.handDetections.count == 2 {
+//                let hand1 = outcome.handDetections[0]
+//                let hand2 = outcome.handDetections[1]
+//                if let indexTip = hand1.index4.position, let thumbTip = hand2.thumb4.position {
+//                    let distance = indexTip.length(to: thumbTip)
+//                    if isLessOrEqual(distance, 0.025) {
+//                        self.text.setText(to: "A")
+//                    }
+//                }
+//                if let indexTip = hand2.index4.position, let thumbTip = hand1.thumb4.position {
+//                    let distance = indexTip.length(to: thumbTip)
+//                    if isLessOrEqual(distance, 0.025) {
+//                        self.text.setText(to: "A")
+//                    }
+//                }
+//                if let indexTip = hand1.index4.position, let otherIndexTip = hand2.index4.position {
+//                    let distance = indexTip.length(to: otherIndexTip)
+//                    if isLessOrEqual(distance, 0.025) {
+//                        self.text.setText(to: "E")
+//                    }
+//                }
+//                if let indexTip = hand1.index4.position, let middleTip = hand2.middle4.position {
+//                    let distance = indexTip.length(to: middleTip)
+//                    if isLessOrEqual(distance, 0.025) {
+//                        self.text.setText(to: "I")
+//                    }
+//                }
+//                if let indexTip = hand2.index4.position, let middleTip = hand1.middle4.position {
+//                    let distance = indexTip.length(to: middleTip)
+//                    if isLessOrEqual(distance, 0.025) {
+//                        self.text.setText(to: "I")
+//                    }
+//                }
+//                if let indexTip = hand1.index4.position, let ringTip = hand2.ring4.position {
+//                    let distance = indexTip.length(to: ringTip)
+//                    if isLessOrEqual(distance, 0.025) {
+//                        self.text.setText(to: "O")
+//                    }
+//                }
+//                if let indexTip = hand2.index4.position, let ringTip = hand1.ring4.position {
+//                    let distance = indexTip.length(to: ringTip)
+//                    if isLessOrEqual(distance, 0.025) {
+//                        self.text.setText(to: "O")
+//                    }
+//                }
+//                if let indexTip = hand1.index4.position, let littleTip = hand2.little4.position {
+//                    let distance = indexTip.length(to: littleTip)
+//                    if isLessOrEqual(distance, 0.025) {
+//                        self.text.setText(to: "U")
+//                    }
+//                }
+//                if let indexTip = hand2.index4.position, let littleTip = hand1.little4.position {
+//                    let distance = indexTip.length(to: littleTip)
+//                    if isLessOrEqual(distance, 0.025) {
+//                        self.text.setText(to: "U")
+//                    }
+//                }
+//            }
         }
     }
 

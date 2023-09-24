@@ -16,9 +16,9 @@ class HandOverlayView: LimeUIView {
     /// The smoothing factor, range: [0, 1]
     /// A smaller value means it takes more of the current position (0.0 means it ignores the previous position)
     /// A large value means it takes more of the previous position (1.0 means it ignores the current position)
-    private static let SMOOTHING_FACTOR = 0.5
+    private static let SMOOTHING_FACTOR = 0.4
     /// The number of previous hand detections to smooth from
-    private static let SMOOTH_FROM_PREVIOUS = 20
+    private static let SMOOTH_FROM_PREVIOUS = 8
     
     private var previousHandDetections = [HandDetectionOutcome]()
     private let overlay = LimeImage()
@@ -66,7 +66,7 @@ class HandOverlayView: LimeUIView {
     }
     
     private func interpolateDetections(previous: HandDetectionOutcome, current: HandDetectionOutcome) -> HandDetectionOutcome {
-        let smoothedOutcome = HandDetectionOutcome()
+        let smoothedOutcome = HandDetectionOutcome(frameSize: current.frameSize)
         previous.arrangeHandDetections(matching: current)
         for handDetectionIndex in current.handDetections.indices {
             guard previous.handDetections.count >= handDetectionIndex + 1 else {

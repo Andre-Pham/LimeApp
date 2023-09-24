@@ -59,6 +59,10 @@ class Environment {
         return isLessOrEqual(self.screenHeight, 667)
     }
     
+    public var deviceIsLarge: Bool {
+        return self.deviceType != .phone
+    }
+    
     private init() { }
     
 }

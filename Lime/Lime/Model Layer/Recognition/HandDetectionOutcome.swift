@@ -6,12 +6,16 @@
 //
 
 import Foundation
+import CoreGraphics
 
 class HandDetectionOutcome {
     
+    public let frameSize: CGSize
     private(set) var handDetections = [HandDetection]()
     
-    init() { }
+    init(frameSize: CGSize) {
+        self.frameSize = frameSize
+    }
     
     func addHandDetection(_ handDetection: HandDetection) {
         self.handDetections.append(handDetection)

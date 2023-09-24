@@ -19,6 +19,9 @@ class LimeText: LimeUIView {
     public var text: String {
         return self.label.text ?? ""
     }
+    public var font: UIFont {
+        return self.label.font
+    }
     
     override init() {
         super.init()

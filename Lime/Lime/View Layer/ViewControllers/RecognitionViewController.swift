@@ -54,6 +54,9 @@ class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectio
         self.quizPrompt
             .setPromptText(to: Strings("label.perform").local)
         
+        self.tooCloseWarning
+            .setWarning(to: Strings("label.tooClose").local)
+        
         // Stop the device automatically sleeping
         UIApplication.shared.isIdleTimerDisabled = true
     }
@@ -64,9 +67,9 @@ class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectio
         self.root.addSubview(self.dialogue)
         self.dialogue
             .removeCancel()
-            .setTitle(to: "Experimental!")
-            .setBody(to: "This is an experimental feature for demo purposes, intended to give an idea of how fingerspelling recognition would feel and be implemented. It's limited to three letters: A, B, C.")
-            .setAcceptButtonText(to: "Get Started")
+            .setTitle(to: Strings("dialogue.title.experimental").local)
+            .setBody(to: Strings("dialogue.body.experimental").local)
+            .setAcceptButtonText(to: Strings("button.getStarted").local)
             .constrainCenterVertical()
             .constrainCenterHorizontal()
             .animateEntrance(duration: 1.2)
@@ -126,13 +129,14 @@ class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectio
         var amountInGrayArea = 0
         for handDetection in outcome.handDetections {
             let meetsConfidenceThreshold = isGreater(handDetection.averageConfidence, 0.85)
+            let palmToTipLength = handDetection.getDenormalisedPalmToTipLength(frameSize: self.root.frame.size)
             let tooClose = isGreater(
-                handDetection.getDenormalisedPalmToTipLength(frameSize: self.root.frame.size),
-                self.root.frame.size.height*0.8
+                palmToTipLength,
+                min(self.root.frame.size.height*0.8, self.root.frame.size.width*1.2)
             )
             let grayArea = isGreater(
-                handDetection.getDenormalisedPalmToTipLength(frameSize: self.root.frame.size),
-                self.root.frame.size.height*0.7
+                palmToTipLength,
+                min(self.root.frame.size.height*0.7, self.root.frame.size.width)
             ) && !tooClose || isGreater(handDetection.averageConfidence, 0.80) && !meetsConfidenceThreshold
             if grayArea {
                 amountInGrayArea += 1
@@ -163,7 +167,6 @@ class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectio
             self.tooCloseWarning
                 .constrainCenterVertical()
                 .constrainCenterHorizontal()
-                .setWarning(to: "Too close")
                 .animateEntrance(duration: 0.6)
         }
         

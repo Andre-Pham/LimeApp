@@ -26,6 +26,7 @@
 "label.viewFront" = "Front";
 "label.viewBack" = "Back";
 "label.perform" = "Perform";
+"label.tooClose" = "Too close";
 
 // MARK: - Settings
 
@@ -37,3 +38,9 @@
 
 "button.apply" = "Apply";
 "button.cancel" = "Cancel";
+"button.getStarted" = "Get Started";
+
+// MARK: - Dialogue
+
+"dialogue.title.experimental" = "Experimental!";
+"dialogue.body.experimental" = "This is an experimental feature for demo purposes, intended to give an idea of how fingerspelling recognition would feel and be implemented. It's limited to three letters: A, B, C.";

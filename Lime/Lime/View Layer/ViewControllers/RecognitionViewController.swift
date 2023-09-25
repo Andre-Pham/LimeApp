@@ -9,7 +9,7 @@ import Foundation
 import CoreGraphics
 import UIKit
 
-class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectionDelegate {
+class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectionDelegate, RecognitionQuizDelegate {
     
     private var root: LimeView { return LimeView(self.view) }
     private let image = LimeImage()
@@ -25,7 +25,7 @@ class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectio
     private var overlayFrameSyncRequired = true
     /// The active frame being shown
     private var activeFrame: CGImage? = nil
-    private let quizMaster = RecognitionQuizMaster()
+    private let quizHost = RecognitionQuizHost()
     
     private let testButton = LimeIconButton()
     
@@ -33,6 +33,8 @@ class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectio
         super.viewDidLoad()
         self.setupAndBeginCapturingVideoFrames()
         self.handDetector.handDetectionDelegate = self
+        self.quizHost.recognitionQuizDelegate = self
+        self.quizHost.setLetterPrompt(to: "ABC")
         
         self.root
             .addSubview(self.image)
@@ -102,6 +104,11 @@ class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectio
         self.overlayFrameSyncRequired = true
     }
     
+    func onCorrectSignPerformed(letter: Character, next: Character) {
+        print("COMPLETED: \(letter)")
+        print("NEXT: \(next)")
+    }
+    
     func onCapture(session: CaptureSession, frame: CGImage?) {
         if let frame {
             self.handDetector.makePrediction(on: frame)
@@ -113,6 +120,7 @@ class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectio
     func onHandDetection(outcome: HandDetectionOutcome?) {
         if let outcome {
             self.handOverlayView.draw(for: outcome)
+            self.quizHost.receiveHandDetectionOutcome(outcome)
             
             if let hand1 = outcome.handDetections.first, let frame = self.activeFrame {
                 // To detect c:

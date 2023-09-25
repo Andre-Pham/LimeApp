@@ -9,8 +9,6 @@ import Foundation
 
 class RecognitionQuizMaster {
     
-    private static let PASS_THRESHOLD = 0.5
-    
     private var letters = [QuizLetter]()
     private var letterIndex: Int = 0
     private var readyForAnswer = false
@@ -21,12 +19,14 @@ class RecognitionQuizMaster {
         return self.loadedLetter.letter
     }
     
-    init() {
-        
+    init() { }
+    
+    func setLetters(to letters: [QuizLetter]) {
+        self.letters = letters
     }
     
-    func acceptAnswers(answers: [HandDetectionOutcome]) -> QuizAnswerOutcome {
-        return self.loadedLetter.acceptAnswers(answers: answers, passThreshold: Self.PASS_THRESHOLD)
+    func acceptAnswers(answers: [HandDetectionOutcome], passThreshold: Double) -> QuizAnswerOutcome {
+        return self.loadedLetter.acceptAnswers(answers: answers, passThreshold: passThreshold)
     }
     
     func moveToNextPrompt() {

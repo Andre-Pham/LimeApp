@@ -99,7 +99,6 @@
 		B6B7F3132ABED58900F8CDEB /* QuizLetterA.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F3122ABED58900F8CDEB /* QuizLetterA.swift */; };
 		B6B7F3152ABEFC2300F8CDEB /* QuizLetterC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F3142ABEFC2300F8CDEB /* QuizLetterC.swift */; };
 		B6B7F3172AC01AD900F8CDEB /* QuizPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F3162AC01AD900F8CDEB /* QuizPromptView.swift */; };
-		B6B7F3192AC01F3800F8CDEB /* QuizCompletedPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F3182AC01F3800F8CDEB /* QuizCompletedPromptView.swift */; };
 		B6B7F31B2AC09DC200F8CDEB /* RecognitionQuizHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F31A2AC09DC200F8CDEB /* RecognitionQuizHost.swift */; };
 		B6B7F31D2AC09FEA00F8CDEB /* RecognitionQuizDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F31C2AC09FEA00F8CDEB /* RecognitionQuizDelegate.swift */; };
 		B6DC10A82A7BF6E600C10100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */; };
@@ -232,7 +231,6 @@
 		B6B7F3122ABED58900F8CDEB /* QuizLetterA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizLetterA.swift; sourceTree = "<group>"; };
 		B6B7F3142ABEFC2300F8CDEB /* QuizLetterC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizLetterC.swift; sourceTree = "<group>"; };
 		B6B7F3162AC01AD900F8CDEB /* QuizPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizPromptView.swift; sourceTree = "<group>"; };
-		B6B7F3182AC01F3800F8CDEB /* QuizCompletedPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizCompletedPromptView.swift; sourceTree = "<group>"; };
 		B6B7F31A2AC09DC200F8CDEB /* RecognitionQuizHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionQuizHost.swift; sourceTree = "<group>"; };
 		B6B7F31C2AC09FEA00F8CDEB /* RecognitionQuizDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionQuizDelegate.swift; sourceTree = "<group>"; };
 		B6DC10A42A7BF6E600C10100 /* Lime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lime.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -635,7 +633,6 @@
 				B60A3AAA2A86428400499484 /* SettingsRowView.swift */,
 				B6B7F3072ABE78C900F8CDEB /* HandOverlayView.swift */,
 				B6B7F3162AC01AD900F8CDEB /* QuizPromptView.swift */,
-				B6B7F3182AC01F3800F8CDEB /* QuizCompletedPromptView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -854,7 +851,6 @@
 				B697BA112AA20DFB001AC55E /* HandModelSequence.swift in Sources */,
 				B60A3A4D2A7CA50600499484 /* ASLDemoClassifier 2.mlmodel in Sources */,
 				B60A3AB32A8C666F00499484 /* SettingsSession.swift in Sources */,
-				B6B7F3192AC01F3800F8CDEB /* QuizCompletedPromptView.swift in Sources */,
 				B60A39AE2A7CA49900499484 /* SCNNode.swift in Sources */,
 				B6B7F3042ABC60FE00F8CDEB /* CGPoint.swift in Sources */,
 				B60A39DD2A7CA4A600499484 /* PresetNode.swift in Sources */,

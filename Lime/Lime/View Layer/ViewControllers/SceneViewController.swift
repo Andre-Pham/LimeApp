@@ -76,7 +76,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
         
         self.letterDisplay
             .constrainCenterHorizontal()
-            .constrainTop(padding: 50)
+            .constrainTop(padding: LimeDimensions.floatingCardTopPadding)
             .setHidden(to: SettingsSession.inst.settings.hidePrompt)
 
         self.toolbarStack

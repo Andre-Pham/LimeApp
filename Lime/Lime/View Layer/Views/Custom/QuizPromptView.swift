@@ -35,14 +35,19 @@ class QuizPromptView: LimeUIView {
         self.promptText
             .setFont(to: LimeFont(font: LimeFonts.Poppins.SemiBold.rawValue, size: 12))
             .setTextAlignment(to: .center)
-            .setText(to: "PERFORM")
-            .setTextColor(to: .gray)
         
         self.letterText
             .setFont(to: LimeFont(font: LimeFonts.PlusJakartaSans.ExtraBold.rawValue, size: 64))
             .setTextAlignment(to: .center)
-            .setText(to: "A")
             .setHeightConstraint(to: self.letterText.font.pointSize)
+    }
+    
+    func setPromptText(to prompt: String) {
+        self.promptText.setText(to: prompt.capitalized)
+    }
+    
+    func setLetter(to letter: Character) {
+        self.letterText.setText(to: String(letter))
     }
     
 }

@@ -28,7 +28,9 @@ class HandOverlayView: LimeUIView {
     
     override init() {
         super.init()
-        self.overlay.setBackgroundColor(to: UIColor.black.withAlphaComponent(0.1))
+        self.overlay
+            .setBackgroundColor(to: UIColor.black.withAlphaComponent(0.1))
+            .setContentMode(to: .scaleAspectFill)
     }
     
     func draw(for handDetectionOutcome: HandDetectionOutcome) {
@@ -36,7 +38,8 @@ class HandOverlayView: LimeUIView {
         
         self.previousHandDetections.append(handDetectionOutcome)
         
-        UIGraphicsBeginImageContextWithOptions(self.overlay.frame.size, false, 1.0)
+        let canvasSize = CGRect(origin: CGPoint(), size: handDetectionOutcome.frameSize).scale(toAspectFillSize: self.overlay.frame.size).size
+        UIGraphicsBeginImageContextWithOptions(canvasSize, false, 1.0)
         defer {
             UIGraphicsEndImageContext()
         }
@@ -96,8 +99,8 @@ class HandOverlayView: LimeUIView {
     }
     
     private func drawLine(_ context: CGContext, _ joint1: JointPosition, _ joint2: JointPosition) {
-        guard let startPoint = joint1.getDenormalisedPosition(for: self.view),
-              let endPoint = joint2.getDenormalisedPosition(for: self.view) else {
+        guard let startPoint = joint1.getDenormalisedPosition(viewWidth: Double(context.width), viewHeight: Double(context.height)),
+              let endPoint = joint2.getDenormalisedPosition(viewWidth: Double(context.width), viewHeight: Double(context.height)) else {
             return
         }
         let averageConfidence = ((joint1.confidence ?? 0.0) + (joint2.confidence ?? 0.0))/2.0

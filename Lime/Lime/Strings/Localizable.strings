@@ -25,6 +25,7 @@
 "label.hidePromptSetting" = "Hide the letters being performed (above model)";
 "label.viewFront" = "Front";
 "label.viewBack" = "Back";
+"label.perform" = "Perform";
 
 // MARK: - Settings
 

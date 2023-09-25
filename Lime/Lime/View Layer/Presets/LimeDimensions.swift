@@ -33,5 +33,7 @@ enum LimeDimensions {
     static let textInputHeight = Self.chipHeight
     /// The padding around the quiz prompt
     static let quizPromptPadding = 30.0
+    /// The external top padding for any view that floats (hangs) from the top
+    static let floatingCardTopPadding = 50.0
     
 }

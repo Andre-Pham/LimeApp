@@ -432,10 +432,10 @@ extension LimeUIViewProtocol {
     }
     
     @discardableResult
-    func animateEntrance() -> Self {
+    func animateEntrance(duration: Double = 0.2) -> Self {
         self.setOpacity(to: 0.0)
         self.view.transform = CGAffineTransform(translationX: 0, y: -10)
-        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 2, options: [.curveEaseOut], animations: {
+        UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 2, options: [.curveEaseOut], animations: {
             self.setOpacity(to: 1.0)
             self.view.transform = CGAffineTransform(translationX: 0, y: 0)
         })
@@ -443,8 +443,8 @@ extension LimeUIViewProtocol {
     }
     
     @discardableResult
-    func animateExit(onCompletion: @escaping () -> Void) -> Self {
-        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 2, options: [.curveEaseOut], animations: {
+    func animateExit(duration: Double = 0.2, onCompletion: @escaping () -> Void) -> Self {
+        UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 2, options: [.curveEaseOut], animations: {
             self.setOpacity(to: 0.0)
             self.view.transform = CGAffineTransform(translationX: 0, y: -10)
         }) { _ in

@@ -16,7 +16,11 @@ class RecognitionQuizHost {
     
     private let quizMaster = RecognitionQuizMaster()
     private var handDetectionOutcomes = [HandDetectionOutcome]()
+    private(set) var isAcceptingInput = false
     public weak var recognitionQuizDelegate: RecognitionQuizDelegate?
+    public var displayLetter: Character {
+        return self.quizMaster.displayLetter
+    }
     
     func setLetterPrompt(to letters: String) {
         var quizLetters = [QuizLetter]()
@@ -34,6 +38,9 @@ class RecognitionQuizHost {
     }
     
     func receiveHandDetectionOutcome(_ handDetectionOutcome: HandDetectionOutcome) {
+        guard self.isAcceptingInput else {
+            return
+        }
         self.handDetectionOutcomes.append(handDetectionOutcome)
         if self.handDetectionOutcomes.count > Self.BATCH_SIZE {
             self.handDetectionOutcomes.removeUntil(capacity: Self.BATCH_SIZE, takeFromEnd: false)
@@ -48,6 +55,15 @@ class RecognitionQuizHost {
             self.quizMaster.moveToNextPrompt()
             self.recognitionQuizDelegate?.onCorrectSignPerformed(letter: correctLetter, next: self.quizMaster.displayLetter)
         }
+    }
+    
+    func markReadyForInput() {
+        self.isAcceptingInput = true
+    }
+    
+    func disableInput() {
+        self.isAcceptingInput = false
+        self.handDetectionOutcomes.removeAll()
     }
     
 }

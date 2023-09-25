@@ -42,12 +42,16 @@ class QuizPromptView: LimeUIView {
             .setHeightConstraint(to: self.letterText.font.pointSize)
     }
     
-    func setPromptText(to prompt: String) {
+    @discardableResult
+    func setPromptText(to prompt: String) -> Self {
         self.promptText.setText(to: prompt.capitalized)
+        return self
     }
     
-    func setLetter(to letter: Character) {
+    @discardableResult
+    func setLetter(to letter: Character) -> Self {
         self.letterText.setText(to: String(letter))
+        return self
     }
     
 }

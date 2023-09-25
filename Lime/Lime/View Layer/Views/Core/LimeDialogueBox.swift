@@ -27,7 +27,7 @@ class LimeDialogueBox: LimeUIView {
         super.init()
         
         self.container
-            .setWidthConstraint(to: 300)
+            .setWidthConstraint(to: LimeDimensions.popupWidth)
             .setBackgroundColor(to: LimeColors.toolbarFill)
             .setCornerRadius(to: LimeDimensions.foregroundCornerRadius)
             .addSubview(self.stack)

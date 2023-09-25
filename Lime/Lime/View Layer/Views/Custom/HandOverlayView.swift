@@ -56,7 +56,9 @@ class HandOverlayView: LimeUIView {
             }
             
             for handDetection in smoothedDetections.handDetections {
-                self.drawHandDetection(context, handDetection)
+                if isGreater(handDetection.averageConfidence, 0.85) {
+                    self.drawHandDetection(context, handDetection)
+                }
             }
             if let image = UIGraphicsGetImageFromCurrentImageContext() {
                 self.overlay.setImage(image)

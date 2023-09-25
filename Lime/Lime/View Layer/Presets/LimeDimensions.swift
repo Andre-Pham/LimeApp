@@ -35,5 +35,7 @@ enum LimeDimensions {
     static let quizPromptPadding = 30.0
     /// The external top padding for any view that floats (hangs) from the top
     static let floatingCardTopPadding = 50.0
+    /// The width of any popup card
+    static let popupWidth = 300.0
     
 }

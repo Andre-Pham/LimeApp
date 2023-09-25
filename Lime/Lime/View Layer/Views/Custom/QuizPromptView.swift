@@ -27,8 +27,10 @@ class QuizPromptView: LimeUIView {
             .addSubview(self.stack)
         
         self.stack
-            .constrainVertical(padding: LimeDimensions.chipPaddingVertical)
+            .constrainTop(padding: LimeDimensions.chipPaddingVertical)
+            .constrainBottom(padding: LimeDimensions.chipPaddingVertical/2)
             .constrainHorizontal(padding: LimeDimensions.chipPaddingHorizontal)
+            .setSpacing(to: 6)
             .addView(self.promptText)
             .addView(self.letterText)
         
@@ -37,7 +39,7 @@ class QuizPromptView: LimeUIView {
             .setTextAlignment(to: .center)
         
         self.letterText
-            .setFont(to: LimeFont(font: LimeFonts.PlusJakartaSans.ExtraBold.rawValue, size: 64))
+            .setFont(to: LimeFont(font: LimeFonts.Poppins.Bold.rawValue, size: 64))
             .setTextAlignment(to: .center)
             .setHeightConstraint(to: self.letterText.font.pointSize)
     }

@@ -62,6 +62,10 @@ extension LimeUIViewProtocol {
         return nil
     }
     
+    public var hasSuperView: Bool {
+        return self.superView != nil
+    }
+    
     // MARK: - Views
     
     @discardableResult
@@ -132,6 +136,20 @@ extension LimeUIViewProtocol {
     func setWidthConstraint(to width: Double) -> Self {
         assert(!self.view.translatesAutoresizingMaskIntoConstraints, "Constraints requirement failed")
         self.view.widthAnchor.constraint(equalToConstant: width).isActive = true
+        return self
+    }
+    
+    @discardableResult
+    func setMaxHeightConstraint(to height: Double) -> Self {
+        assert(!self.view.translatesAutoresizingMaskIntoConstraints, "Constraints requirement failed")
+        self.view.heightAnchor.constraint(lessThanOrEqualToConstant: height).isActive = true
+        return self
+    }
+    
+    @discardableResult
+    func setMaxWidthConstraint(to width: Double) -> Self {
+        assert(!self.view.translatesAutoresizingMaskIntoConstraints, "Constraints requirement failed")
+        self.view.widthAnchor.constraint(lessThanOrEqualToConstant: width).isActive = true
         return self
     }
     

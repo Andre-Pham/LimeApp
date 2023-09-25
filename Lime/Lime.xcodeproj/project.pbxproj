@@ -102,6 +102,8 @@
 		B6B7F31B2AC09DC200F8CDEB /* RecognitionQuizHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F31A2AC09DC200F8CDEB /* RecognitionQuizHost.swift */; };
 		B6B7F31D2AC09FEA00F8CDEB /* RecognitionQuizDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F31C2AC09FEA00F8CDEB /* RecognitionQuizDelegate.swift */; };
 		B6B7F31F2AC1747700F8CDEB /* LimeDialogueBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F31E2AC1747700F8CDEB /* LimeDialogueBox.swift */; };
+		B6B7F3212AC19ED700F8CDEB /* CameraWarningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F3202AC19ED700F8CDEB /* CameraWarningView.swift */; };
+		B6B7F3242AC1EC2F00F8CDEB /* WrapsToZero.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F3232AC1EC2F00F8CDEB /* WrapsToZero.swift */; };
 		B6DC10A82A7BF6E600C10100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */; };
 		B6DC10AA2A7BF6E600C10100 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */; };
 		B6DC10AC2A7BF6E600C10100 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC10AB2A7BF6E600C10100 /* TabBarViewController.swift */; };
@@ -235,6 +237,8 @@
 		B6B7F31A2AC09DC200F8CDEB /* RecognitionQuizHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionQuizHost.swift; sourceTree = "<group>"; };
 		B6B7F31C2AC09FEA00F8CDEB /* RecognitionQuizDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionQuizDelegate.swift; sourceTree = "<group>"; };
 		B6B7F31E2AC1747700F8CDEB /* LimeDialogueBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeDialogueBox.swift; sourceTree = "<group>"; };
+		B6B7F3202AC19ED700F8CDEB /* CameraWarningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraWarningView.swift; sourceTree = "<group>"; };
+		B6B7F3232AC1EC2F00F8CDEB /* WrapsToZero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapsToZero.swift; sourceTree = "<group>"; };
 		B6DC10A42A7BF6E600C10100 /* Lime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6DC10A72A7BF6E600C10100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6DC10A92A7BF6E600C10100 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -477,6 +481,14 @@
 			path = RecognitionQuiz;
 			sourceTree = "<group>";
 		};
+		B6B7F3222AC1EC2200F8CDEB /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B6B7F3232AC1EC2F00F8CDEB /* WrapsToZero.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 		B6DC109B2A7BF6E600C10100 = {
 			isa = PBXGroup;
 			children = (
@@ -500,6 +512,7 @@
 		B6DC10A62A7BF6E600C10100 /* Lime */ = {
 			isa = PBXGroup;
 			children = (
+				B6B7F3222AC1EC2200F8CDEB /* Core */,
 				B60A39A12A7CA49900499484 /* Swift */,
 				B60A39B42A7CA4A600499484 /* Model Layer */,
 				B6DC11912A7CA28900C10100 /* Strings */,
@@ -636,6 +649,7 @@
 				B60A3AAA2A86428400499484 /* SettingsRowView.swift */,
 				B6B7F3072ABE78C900F8CDEB /* HandOverlayView.swift */,
 				B6B7F3162AC01AD900F8CDEB /* QuizPromptView.swift */,
+				B6B7F3202AC19ED700F8CDEB /* CameraWarningView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -830,6 +844,7 @@
 				B6B7F3062ABC611400F8CDEB /* CGFloat.swift in Sources */,
 				B60A39B22A7CA49900499484 /* Double.swift in Sources */,
 				B60A3A932A7E29D300499484 /* LimeGestureView.swift in Sources */,
+				B6B7F3212AC19ED700F8CDEB /* CameraWarningView.swift in Sources */,
 				B67F06832A9EA17000591789 /* LimeChipTextButton.swift in Sources */,
 				B6DC10FC2A7C87E300C10100 /* LimeHStack.swift in Sources */,
 				B60A39D62A7CA4A600499484 /* HandPointRecogniser.swift in Sources */,
@@ -850,6 +865,7 @@
 				B60A39DE2A7CA4A600499484 /* NodeUtil.swift in Sources */,
 				B60A39D52A7CA4A600499484 /* Label.swift in Sources */,
 				B6B7F31F2AC1747700F8CDEB /* LimeDialogueBox.swift in Sources */,
+				B6B7F3242AC1EC2F00F8CDEB /* WrapsToZero.swift in Sources */,
 				B60A39D32A7CA4A600499484 /* Clonable.swift in Sources */,
 				B60A39E72A7CA4A600499484 /* SceneController.swift in Sources */,
 				B697BA112AA20DFB001AC55E /* HandModelSequence.swift in Sources */,

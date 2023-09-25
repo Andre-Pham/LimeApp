@@ -68,8 +68,12 @@ class HandDetection {
     
     // MARK: - All Properties
     
-    var allPositions: [JointPosition] {
+    public var allPositions: [JointPosition] {
         return [self.wrist] + self.thumbPositions + self.indexPositions + self.middlePositions + self.ringPositions + self.littlePositions
+    }
+    
+    public var averageConfidence: Double {
+        return Double((self.allPositions.reduce(0.0) { $0 + ($1.confidence ?? 0.0) })/Float(self.allPositions.count))
     }
     
     func retrievePosition(from joint: VNHumanHandPoseObservation.JointName) -> JointPosition {
@@ -128,7 +132,7 @@ class HandDetection {
     }
     
     func getDenormalisedPalmLength(frameSize: CGSize) -> Double {
-        // We use the distance from the wrist to the little finger
+        // The distance from the wrist to the little finger
         // It's an extremely consistent length regardless of which fingers are curled, the hand direction, etc.
         guard let wristPosition = self.wrist.getDenormalisedPosition(for: frameSize),
               let littlePosition = self.little1.getDenormalisedPosition(for: frameSize) else {
@@ -138,6 +142,25 @@ class HandDetection {
         return wristPosition.length(to: littlePosition)
     }
     
+    func getDenormalisedPalmToTipLength(frameSize: CGSize) -> Double {
+        guard let wristPosition = self.wrist.getDenormalisedPosition(for: frameSize),
+              let middlePosition = self.middle4.getDenormalisedPosition(for: frameSize) else {
+            assertionFailure("We shouldn't be calling the size rating if there's insufficient positions defined")
+            return 0.0
+        }
+        if let middle1 = self.middle1.getDenormalisedPosition(for: frameSize),
+           let middle2 = self.middle2.getDenormalisedPosition(for: frameSize),
+           let middle3 = self.middle3.getDenormalisedPosition(for: frameSize) {
+            return (
+                wristPosition.length(to: middle1) +
+                middle1.length(to: middle2) +
+                middle2.length(to: middle3) +
+                middle3.length(to: middlePosition)
+            )
+        }
+        return wristPosition.length(to: middlePosition)
+    }
+    
     func getPalmLength() -> Double {
         guard let wristPosition = self.wrist.position,
               let littlePosition = self.little1.position else {
@@ -145,6 +168,25 @@ class HandDetection {
             return 0.0
         }
         return wristPosition.length(to: littlePosition)
+    }
+    
+    func getPalmToTipLength() -> Double {
+        guard let wristPosition = self.wrist.position,
+              let middlePosition = self.middle4.position else {
+            assertionFailure("We shouldn't be calling the size rating if there's insufficient positions defined")
+            return 0.0
+        }
+        if let middle1 = self.middle1.position,
+           let middle2 = self.middle2.position,
+           let middle3 = self.middle3.position {
+            return (
+                wristPosition.length(to: middle1) +
+                middle1.length(to: middle2) +
+                middle2.length(to: middle3) +
+                middle3.length(to: middlePosition)
+            )
+        }
+        return wristPosition.length(to: middlePosition)
     }
     
 }

@@ -1,5 +1,5 @@
 //
-//  LimeSession.swift
+//  SceneSession.swift
 //  Lime
 //
 //  Created by Andre Pham on 19/5/2023.
@@ -8,10 +8,10 @@
 import Foundation
 import SceneKit
 
-class LimeSession {
+class SceneSession {
     
     /// Singleton instance
-    public static let inst = LimeSession()
+    public static let inst = SceneSession()
     
     public let sceneController = SceneController()
     private(set) var activePrompt: String = ""

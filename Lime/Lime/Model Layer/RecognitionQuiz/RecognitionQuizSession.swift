@@ -1,5 +1,5 @@
 //
-//  RecognitionQuizHost.swift
+//  RecognitionQuizSession.swift
 //  Lime
 //
 //  Created by Andre Pham on 25/9/2023.
@@ -7,9 +7,10 @@
 
 import Foundation
 
-class RecognitionQuizHost {
+class RecognitionQuizSession {
     
-    // TODO: Make this RecognitionQuizSession
+    /// Singleton instance
+    public static let inst = RecognitionQuizSession()
     
     private static let BATCH_SIZE = 20
     private static let PASS_THRESHOLD = 0.5
@@ -21,6 +22,8 @@ class RecognitionQuizHost {
     public var displayLetter: Character {
         return self.quizMaster.displayLetter
     }
+    
+    private init() { }
     
     func setLetterPrompt(to letters: String) {
         var quizLetters = [QuizLetter]()

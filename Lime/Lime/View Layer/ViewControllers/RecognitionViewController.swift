@@ -26,7 +26,6 @@ class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectio
     private var activeFrame: CGImage? = nil
     /// The frame id used as a counter to run anything on every nth frame
     @WrapsToZero(threshold: 600) private var currentFrameID = 0
-    private let quizHost = RecognitionQuizHost()
     /// True if the too close warning is active
     private var tooCloseWarningActive: Bool {
         return self.tooCloseWarning.hasSuperView
@@ -36,8 +35,8 @@ class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectio
         super.viewDidLoad()
         self.setupAndBeginCapturingVideoFrames()
         self.handDetector.handDetectionDelegate = self
-        self.quizHost.recognitionQuizDelegate = self
-        self.quizHost.setLetterPrompt(to: "ABC")
+        RecognitionQuizSession.inst.recognitionQuizDelegate = self
+        RecognitionQuizSession.inst.setLetterPrompt(to: "ABC")
         
         self.root
             .setBackgroundColor(to: LimeColors.backgroundFill)
@@ -79,8 +78,8 @@ class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectio
             .setOnAccept({
                 self.dialogue.animateExit {
                     self.dialogue.removeFromSuperView()
-                    self.addQuizPrompt(letter: self.quizHost.displayLetter)
-                    self.quizHost.markReadyForInput()
+                    self.addQuizPrompt(letter: RecognitionQuizSession.inst.displayLetter)
+                    RecognitionQuizSession.inst.markReadyForInput()
                 }
             })
     }
@@ -91,13 +90,13 @@ class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectio
     }
     
     func onCorrectSignPerformed(letter: Character, next: Character) {
-        self.quizHost.disableInput()
+        RecognitionQuizSession.inst.disableInput()
         self.quizPrompt
             .animateExit {
                 self.quizPrompt.removeFromSuperView()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                     self.addQuizPrompt(letter: next)
-                    self.quizHost.markReadyForInput()
+                    RecognitionQuizSession.inst.markReadyForInput()
                 }
             }
     }
@@ -115,7 +114,7 @@ class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectio
         if let outcome {
             self.handOverlayView.draw(for: outcome)
             if !self.tooCloseWarningActive {
-                self.quizHost.receiveHandDetectionOutcome(outcome)
+                RecognitionQuizSession.inst.receiveHandDetectionOutcome(outcome)
             }
             
             self.updateTooCloseWarning(with: outcome)

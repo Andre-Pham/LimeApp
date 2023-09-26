@@ -18,14 +18,8 @@
 		B60A39D12A7CA4A600499484 /* CaptureSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39B62A7CA4A600499484 /* CaptureSession.swift */; };
 		B60A39D22A7CA4A600499484 /* CaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39B72A7CA4A600499484 /* CaptureDelegate.swift */; };
 		B60A39D32A7CA4A600499484 /* Clonable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39B92A7CA4A600499484 /* Clonable.swift */; };
-		B60A39D42A7CA4A600499484 /* LimeSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39BA2A7CA4A600499484 /* LimeSession.swift */; };
-		B60A39D52A7CA4A600499484 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39BC2A7CA4A600499484 /* Label.swift */; };
-		B60A39D62A7CA4A600499484 /* HandPointRecogniser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39BD2A7CA4A600499484 /* HandPointRecogniser.swift */; };
+		B60A39D42A7CA4A600499484 /* SceneSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39BA2A7CA4A600499484 /* SceneSession.swift */; };
 		B60A39D72A7CA4A600499484 /* JointPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39BE2A7CA4A600499484 /* JointPosition.swift */; };
-		B60A39D82A7CA4A600499484 /* SignRecogniser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39BF2A7CA4A600499484 /* SignRecogniser.swift */; };
-		B60A39D92A7CA4A600499484 /* JointPositions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39C02A7CA4A600499484 /* JointPositions.swift */; };
-		B60A39DA2A7CA4A600499484 /* PredictionOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39C12A7CA4A600499484 /* PredictionOutcome.swift */; };
-		B60A39DB2A7CA4A600499484 /* SignDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39C22A7CA4A600499484 /* SignDelegate.swift */; };
 		B60A39DC2A7CA4A600499484 /* GeometryBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39C42A7CA4A600499484 /* GeometryBuilder.swift */; };
 		B60A39DD2A7CA4A600499484 /* PresetNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39C52A7CA4A600499484 /* PresetNode.swift */; };
 		B60A39DE2A7CA4A600499484 /* NodeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39C62A7CA4A600499484 /* NodeUtil.swift */; };
@@ -99,7 +93,7 @@
 		B6B7F3132ABED58900F8CDEB /* QuizLetterA.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F3122ABED58900F8CDEB /* QuizLetterA.swift */; };
 		B6B7F3152ABEFC2300F8CDEB /* QuizLetterC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F3142ABEFC2300F8CDEB /* QuizLetterC.swift */; };
 		B6B7F3172AC01AD900F8CDEB /* QuizPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F3162AC01AD900F8CDEB /* QuizPromptView.swift */; };
-		B6B7F31B2AC09DC200F8CDEB /* RecognitionQuizHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F31A2AC09DC200F8CDEB /* RecognitionQuizHost.swift */; };
+		B6B7F31B2AC09DC200F8CDEB /* RecognitionQuizSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F31A2AC09DC200F8CDEB /* RecognitionQuizSession.swift */; };
 		B6B7F31D2AC09FEA00F8CDEB /* RecognitionQuizDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F31C2AC09FEA00F8CDEB /* RecognitionQuizDelegate.swift */; };
 		B6B7F31F2AC1747700F8CDEB /* LimeDialogueBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F31E2AC1747700F8CDEB /* LimeDialogueBox.swift */; };
 		B6B7F3212AC19ED700F8CDEB /* CameraWarningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7F3202AC19ED700F8CDEB /* CameraWarningView.swift */; };
@@ -154,14 +148,8 @@
 		B60A39B62A7CA4A600499484 /* CaptureSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureSession.swift; sourceTree = "<group>"; };
 		B60A39B72A7CA4A600499484 /* CaptureDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureDelegate.swift; sourceTree = "<group>"; };
 		B60A39B92A7CA4A600499484 /* Clonable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clonable.swift; sourceTree = "<group>"; };
-		B60A39BA2A7CA4A600499484 /* LimeSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimeSession.swift; sourceTree = "<group>"; };
-		B60A39BC2A7CA4A600499484 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
-		B60A39BD2A7CA4A600499484 /* HandPointRecogniser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandPointRecogniser.swift; sourceTree = "<group>"; };
+		B60A39BA2A7CA4A600499484 /* SceneSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneSession.swift; sourceTree = "<group>"; };
 		B60A39BE2A7CA4A600499484 /* JointPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JointPosition.swift; sourceTree = "<group>"; };
-		B60A39BF2A7CA4A600499484 /* SignRecogniser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignRecogniser.swift; sourceTree = "<group>"; };
-		B60A39C02A7CA4A600499484 /* JointPositions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JointPositions.swift; sourceTree = "<group>"; };
-		B60A39C12A7CA4A600499484 /* PredictionOutcome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredictionOutcome.swift; sourceTree = "<group>"; };
-		B60A39C22A7CA4A600499484 /* SignDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignDelegate.swift; sourceTree = "<group>"; };
 		B60A39C42A7CA4A600499484 /* GeometryBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeometryBuilder.swift; sourceTree = "<group>"; };
 		B60A39C52A7CA4A600499484 /* PresetNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetNode.swift; sourceTree = "<group>"; };
 		B60A39C62A7CA4A600499484 /* NodeUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeUtil.swift; sourceTree = "<group>"; };
@@ -235,7 +223,7 @@
 		B6B7F3122ABED58900F8CDEB /* QuizLetterA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizLetterA.swift; sourceTree = "<group>"; };
 		B6B7F3142ABEFC2300F8CDEB /* QuizLetterC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizLetterC.swift; sourceTree = "<group>"; };
 		B6B7F3162AC01AD900F8CDEB /* QuizPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizPromptView.swift; sourceTree = "<group>"; };
-		B6B7F31A2AC09DC200F8CDEB /* RecognitionQuizHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionQuizHost.swift; sourceTree = "<group>"; };
+		B6B7F31A2AC09DC200F8CDEB /* RecognitionQuizSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionQuizSession.swift; sourceTree = "<group>"; };
 		B6B7F31C2AC09FEA00F8CDEB /* RecognitionQuizDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionQuizDelegate.swift; sourceTree = "<group>"; };
 		B6B7F31E2AC1747700F8CDEB /* LimeDialogueBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeDialogueBox.swift; sourceTree = "<group>"; };
 		B6B7F3202AC19ED700F8CDEB /* CameraWarningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraWarningView.swift; sourceTree = "<group>"; };
@@ -336,7 +324,6 @@
 				B60A39B82A7CA4A600499484 /* Core */,
 				B60A39BB2A7CA4A600499484 /* Recognition */,
 				B60A39C32A7CA4A600499484 /* Scene */,
-				B60A39BA2A7CA4A600499484 /* LimeSession.swift */,
 			);
 			path = "Model Layer";
 			sourceTree = "<group>";
@@ -361,13 +348,7 @@
 		B60A39BB2A7CA4A600499484 /* Recognition */ = {
 			isa = PBXGroup;
 			children = (
-				B60A39BC2A7CA4A600499484 /* Label.swift */,
-				B60A39BD2A7CA4A600499484 /* HandPointRecogniser.swift */,
 				B60A39BE2A7CA4A600499484 /* JointPosition.swift */,
-				B60A39BF2A7CA4A600499484 /* SignRecogniser.swift */,
-				B60A39C02A7CA4A600499484 /* JointPositions.swift */,
-				B60A39C12A7CA4A600499484 /* PredictionOutcome.swift */,
-				B60A39C22A7CA4A600499484 /* SignDelegate.swift */,
 				B6B7F2FB2ABC5CB100F8CDEB /* HandDetector.swift */,
 				B6B7F2FD2ABC5D1200F8CDEB /* HandDetectionDelegate.swift */,
 				B6B7F2FF2ABC5D2700F8CDEB /* HandDetectionOutcome.swift */,
@@ -386,6 +367,7 @@
 				B60A39D02A7CA4A600499484 /* SceneController.swift */,
 				B697BA102AA20DFB001AC55E /* HandModelSequence.swift */,
 				B697BA122AA2337C001AC55E /* HandModel.swift */,
+				B60A39BA2A7CA4A600499484 /* SceneSession.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -476,7 +458,7 @@
 				B6B7F3102ABED53200F8CDEB /* QuizAnswerOutcome.swift */,
 				B6B7F3122ABED58900F8CDEB /* QuizLetterA.swift */,
 				B6B7F3142ABEFC2300F8CDEB /* QuizLetterC.swift */,
-				B6B7F31A2AC09DC200F8CDEB /* RecognitionQuizHost.swift */,
+				B6B7F31A2AC09DC200F8CDEB /* RecognitionQuizSession.swift */,
 				B6B7F31C2AC09FEA00F8CDEB /* RecognitionQuizDelegate.swift */,
 			);
 			path = RecognitionQuiz;
@@ -732,7 +714,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					B6DC10A32A7BF6E600C10100 = {
 						CreatedOnToolsVersion = 14.3;
@@ -849,9 +831,7 @@
 				B6B7F3212AC19ED700F8CDEB /* CameraWarningView.swift in Sources */,
 				B67F06832A9EA17000591789 /* LimeChipTextButton.swift in Sources */,
 				B6DC10FC2A7C87E300C10100 /* LimeHStack.swift in Sources */,
-				B60A39D62A7CA4A600499484 /* HandPointRecogniser.swift in Sources */,
 				B6DC10A82A7BF6E600C10100 /* AppDelegate.swift in Sources */,
-				B60A39DB2A7CA4A600499484 /* SignDelegate.swift in Sources */,
 				B60A39E42A7CA4A600499484 /* SceneLight.swift in Sources */,
 				B60A3A592A7CEECF00499484 /* LimeControl.swift in Sources */,
 				B6DC10E62A7C87CF00C10100 /* LimeButton.swift in Sources */,
@@ -861,11 +841,9 @@
 				B60A3A952A7E5B3D00499484 /* LetterDisplayView.swift in Sources */,
 				B6DC10FB2A7C87E300C10100 /* LimeText.swift in Sources */,
 				B60A3B2D2A8D057100499484 /* DatabaseSession.swift in Sources */,
-				B60A39D82A7CA4A600499484 /* SignRecogniser.swift in Sources */,
 				B60A3A5E2A7CF70000499484 /* LimeDimensions.swift in Sources */,
 				B60A39B02A7CA49900499484 /* SCNVector4.swift in Sources */,
 				B60A39DE2A7CA4A600499484 /* NodeUtil.swift in Sources */,
-				B60A39D52A7CA4A600499484 /* Label.swift in Sources */,
 				B6B7F31F2AC1747700F8CDEB /* LimeDialogueBox.swift in Sources */,
 				B6B7F3242AC1EC2F00F8CDEB /* WrapsToZero.swift in Sources */,
 				B60A39D32A7CA4A600499484 /* Clonable.swift in Sources */,
@@ -889,8 +867,7 @@
 				B6B7F3172AC01AD900F8CDEB /* QuizPromptView.swift in Sources */,
 				B60A39E32A7CA4A600499484 /* SceneCamera.swift in Sources */,
 				B697BA132AA2337C001AC55E /* HandModel.swift in Sources */,
-				B60A39D42A7CA4A600499484 /* LimeSession.swift in Sources */,
-				B60A39DA2A7CA4A600499484 /* PredictionOutcome.swift in Sources */,
+				B60A39D42A7CA4A600499484 /* SceneSession.swift in Sources */,
 				B6DC10F52A7C87E300C10100 /* LimeUIView.swift in Sources */,
 				B6B7F2FA2ABC54FF00F8CDEB /* RecognitionViewController.swift in Sources */,
 				B60A39B32A7CA49900499484 /* Float.swift in Sources */,
@@ -900,7 +877,6 @@
 				B60A39E62A7CA4A600499484 /* SceneModel.swift in Sources */,
 				B6B7F30B2ABED30D00F8CDEB /* RecognitionQuizMaster.swift in Sources */,
 				B60A3A552A7CA72C00499484 /* SceneViewController.swift in Sources */,
-				B60A39D92A7CA4A600499484 /* JointPositions.swift in Sources */,
 				B60A3A602A7D106600499484 /* LimeChipToggle.swift in Sources */,
 				B60A39D12A7CA4A600499484 /* CaptureSession.swift in Sources */,
 				B60A39D72A7CA4A600499484 /* JointPosition.swift in Sources */,
@@ -910,7 +886,7 @@
 				B60A3A8A2A7DE00800499484 /* LimeFonts.swift in Sources */,
 				B6B7F2FC2ABC5CB100F8CDEB /* HandDetector.swift in Sources */,
 				B60A3AB52A8C949F00499484 /* OnSettingsChangedPublisher.swift in Sources */,
-				B6B7F31B2AC09DC200F8CDEB /* RecognitionQuizHost.swift in Sources */,
+				B6B7F31B2AC09DC200F8CDEB /* RecognitionQuizSession.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1002,6 +978,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1062,6 +1039,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

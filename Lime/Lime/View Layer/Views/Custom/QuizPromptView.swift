@@ -14,6 +14,8 @@ class QuizPromptView: LimeUIView {
     private let stack = LimeVStack()
     private let promptText = LimeText()
     private let letterText = LimeText()
+    private let correctIcon = LimeImage()
+    
     public var view: UIView {
         return self.container.view
     }
@@ -38,6 +40,13 @@ class QuizPromptView: LimeUIView {
             .setFont(to: LimeFont(font: LimeFonts.Poppins.SemiBold.rawValue, size: 12))
             .setTextAlignment(to: .center)
         
+        self.correctIcon
+            .setImage(UIImage(
+                systemName: "checkmark.circle",
+                withConfiguration: UIImage.SymbolConfiguration(weight: .semibold)
+            )!)
+            .setColor(to: LimeColors.textWhite)
+        
         self.letterText
             .setFont(to: LimeFont(font: LimeFonts.Poppins.Bold.rawValue, size: 64))
             .setTextAlignment(to: .center)
@@ -46,7 +55,7 @@ class QuizPromptView: LimeUIView {
     
     @discardableResult
     func setPromptText(to prompt: String) -> Self {
-        self.promptText.setText(to: prompt.capitalized)
+        self.promptText.setText(to: prompt.uppercased())
         return self
     }
     
@@ -54,6 +63,29 @@ class QuizPromptView: LimeUIView {
     func setLetter(to letter: Character) -> Self {
         self.letterText.setText(to: String(letter))
         return self
+    }
+    
+    func markCorrect(onCompletion: @escaping () -> Void) {
+        UIView.animate(withDuration: 1.0, delay: 0, options: [.curveEaseInOut, .allowUserInteraction], animations: {
+            self.container.setBackgroundColor(to: LimeColors.success)
+            self.promptText.setTextColor(to: LimeColors.success)
+            self.letterText.setTextColor(to: LimeColors.success)
+            self.container.addSubview(self.correctIcon)
+            self.correctIcon
+                .constrainAllSides(padding: 20)
+                .animateEntrance()
+        }, completion: { _ in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                onCompletion()
+            }
+        })
+    }
+    
+    func reset() {
+        self.container.setBackgroundColor(to: LimeColors.toolbarFill)
+        self.promptText.setTextColor(to: LimeColors.textDark)
+        self.letterText.setTextColor(to: LimeColors.textDark)
+        self.correctIcon.removeFromSuperView()
     }
     
 }

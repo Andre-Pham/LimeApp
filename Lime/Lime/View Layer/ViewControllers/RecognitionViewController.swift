@@ -33,7 +33,6 @@ class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectio
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupAndBeginCapturingVideoFrames()
         self.handDetector.handDetectionDelegate = self
         RecognitionQuizSession.inst.recognitionQuizDelegate = self
         RecognitionQuizSession.inst.setLetterPrompt(to: "ABC")
@@ -60,11 +59,17 @@ class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectio
         UIApplication.shared.isIdleTimerDisabled = true
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        self.image.resetImage()
         self.quizPrompt.removeFromSuperView()
         self.tooCloseWarning.removeFromSuperView()
+        self.setupAndBeginCapturingVideoFrames()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         self.root.addSubview(self.dialogue)
         self.dialogue
@@ -84,6 +89,12 @@ class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectio
             })
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        self.captureSession.stopCapturing()
+    }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         // React to change in device orientation
         self.setupAndBeginCapturingVideoFrames()
@@ -91,14 +102,16 @@ class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectio
     
     func onCorrectSignPerformed(letter: Character, next: Character) {
         RecognitionQuizSession.inst.disableInput()
-        self.quizPrompt
-            .animateExit {
+        self.quizPrompt.markCorrect() {
+            self.quizPrompt.animateExit {
                 self.quizPrompt.removeFromSuperView()
+                self.quizPrompt.reset()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                     self.addQuizPrompt(letter: next)
                     RecognitionQuizSession.inst.markReadyForInput()
                 }
             }
+        }
     }
     
     func onCapture(session: CaptureSession, frame: CGImage?) {

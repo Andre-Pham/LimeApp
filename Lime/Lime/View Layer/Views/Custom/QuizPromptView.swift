@@ -66,14 +66,18 @@ class QuizPromptView: LimeUIView {
     }
     
     func markCorrect(onCompletion: @escaping () -> Void) {
-        UIView.animate(withDuration: 1.0, delay: 0, options: [.curveEaseInOut, .allowUserInteraction], animations: {
+        let duration = 1.0
+        let tickDuration = 0.7
+        UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseInOut, .allowUserInteraction], animations: {
             self.container.setBackgroundColor(to: LimeColors.success)
             self.promptText.setTextColor(to: LimeColors.success)
             self.letterText.setTextColor(to: LimeColors.success)
-            self.container.addSubview(self.correctIcon)
-            self.correctIcon
-                .constrainAllSides(padding: 20)
-                .animateEntrance()
+            DispatchQueue.main.asyncAfter(deadline: .now() + duration - tickDuration) {
+                self.container.addSubview(self.correctIcon)
+                self.correctIcon
+                    .constrainAllSides(padding: 20)
+                    .animateEntrance(duration: tickDuration)
+            }
         }, completion: { _ in
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 onCompletion()

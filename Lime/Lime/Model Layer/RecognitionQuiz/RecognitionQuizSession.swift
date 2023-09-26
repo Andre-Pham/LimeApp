@@ -31,6 +31,8 @@ class RecognitionQuizSession {
             switch letter {
             case "A":
                 quizLetters.append(QuizLetterA())
+            case "B":
+                quizLetters.append(QuizLetterB())
             case "C":
                 quizLetters.append(QuizLetterC())
             default:

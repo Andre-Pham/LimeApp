@@ -19,6 +19,9 @@ extension QuizLetter {
     public static var TOUCHING_THRESHOLD: Double {
         return 0.3
     }
+    public static var CLOSE_THRESHOLD: Double {
+        return 0.5
+    }
     
     func acceptAnswers(answers: [HandDetectionOutcome], passThreshold: Double) -> QuizAnswerOutcome {
         var correctCount = 0

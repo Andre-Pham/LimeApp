@@ -67,6 +67,7 @@
 		B60A3AB52A8C949F00499484 /* OnSettingsChangedPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3AB42A8C949F00499484 /* OnSettingsChangedPublisher.swift */; };
 		B60A3B2A2A8D046600499484 /* SwiftSerialization in Frameworks */ = {isa = PBXBuildFile; productRef = B60A3B292A8D046600499484 /* SwiftSerialization */; };
 		B60A3B2D2A8D057100499484 /* DatabaseSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3B2C2A8D057100499484 /* DatabaseSession.swift */; };
+		B652D6892AC31D1B0016853D /* QuizLetterB.swift in Sources */ = {isa = PBXBuildFile; fileRef = B652D6882AC31D1B0016853D /* QuizLetterB.swift */; };
 		B67F06722A9CD97500591789 /* PlusJakartaSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06702A9CD97500591789 /* PlusJakartaSans-ExtraBold.ttf */; };
 		B67F06732A9CD97500591789 /* PlusJakartaSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06712A9CD97500591789 /* PlusJakartaSans-ExtraBoldItalic.ttf */; };
 		B67F067A2A9CDA9E00591789 /* PlusJakartaSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06742A9CDA9E00591789 /* PlusJakartaSans-SemiBoldItalic.ttf */; };
@@ -196,6 +197,7 @@
 		B60A3AB22A8C666F00499484 /* SettingsSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSession.swift; sourceTree = "<group>"; };
 		B60A3AB42A8C949F00499484 /* OnSettingsChangedPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnSettingsChangedPublisher.swift; sourceTree = "<group>"; };
 		B60A3B2C2A8D057100499484 /* DatabaseSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseSession.swift; sourceTree = "<group>"; };
+		B652D6882AC31D1B0016853D /* QuizLetterB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizLetterB.swift; sourceTree = "<group>"; };
 		B67F06702A9CD97500591789 /* PlusJakartaSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-ExtraBold.ttf"; sourceTree = "<group>"; };
 		B67F06712A9CD97500591789 /* PlusJakartaSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		B67F06742A9CDA9E00591789 /* PlusJakartaSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
@@ -457,6 +459,7 @@
 				B6B7F30E2ABED40100F8CDEB /* QuizAnswerStatus.swift */,
 				B6B7F3102ABED53200F8CDEB /* QuizAnswerOutcome.swift */,
 				B6B7F3122ABED58900F8CDEB /* QuizLetterA.swift */,
+				B652D6882AC31D1B0016853D /* QuizLetterB.swift */,
 				B6B7F3142ABEFC2300F8CDEB /* QuizLetterC.swift */,
 				B6B7F31A2AC09DC200F8CDEB /* RecognitionQuizSession.swift */,
 				B6B7F31C2AC09FEA00F8CDEB /* RecognitionQuizDelegate.swift */,
@@ -869,6 +872,7 @@
 				B697BA132AA2337C001AC55E /* HandModel.swift in Sources */,
 				B60A39D42A7CA4A600499484 /* SceneSession.swift in Sources */,
 				B6DC10F52A7C87E300C10100 /* LimeUIView.swift in Sources */,
+				B652D6892AC31D1B0016853D /* QuizLetterB.swift in Sources */,
 				B6B7F2FA2ABC54FF00F8CDEB /* RecognitionViewController.swift in Sources */,
 				B60A39B32A7CA49900499484 /* Float.swift in Sources */,
 				B60A3A5C2A7CF6EA00499484 /* LimeColors.swift in Sources */,

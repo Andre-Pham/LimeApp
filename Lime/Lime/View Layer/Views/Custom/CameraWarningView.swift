@@ -45,7 +45,7 @@ class CameraWarningView: LimeUIView {
         self.warningText
             .setTextAlignment(to: .center)
             .setFont(to: LimeFont(font: LimeFonts.Poppins.SemiBold.rawValue, size: 24))
-            .setTextColor(to: .white) // TODO: CHANGE TO COLOR
+            .setTextColor(to: LimeColors.textWhite)
     }
     
     @discardableResult

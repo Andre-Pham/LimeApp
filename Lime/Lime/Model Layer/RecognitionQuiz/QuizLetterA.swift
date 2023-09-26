@@ -12,6 +12,7 @@ class QuizLetterA: QuizLetter {
     public let letter: Character = "A"
     
     func acceptAnswer(answer: HandDetectionOutcome) -> QuizAnswerStatus {
+        // TODO: Also make sure that no other fingers are touching so the user can't just smush all their fingers together
         guard answer.handDetections.count == 2 else {
             return .incorrect
         }

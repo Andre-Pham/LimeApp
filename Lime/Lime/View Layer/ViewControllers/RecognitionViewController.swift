@@ -64,6 +64,9 @@ class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectio
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        self.quizPrompt.removeFromSuperView()
+        self.tooCloseWarning.removeFromSuperView()
+        
         self.root.addSubview(self.dialogue)
         self.dialogue
             .removeCancel()

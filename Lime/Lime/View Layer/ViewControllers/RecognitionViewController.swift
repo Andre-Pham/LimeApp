@@ -151,7 +151,7 @@ class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectio
             )
             let grayArea = isGreater(
                 palmToTipLength,
-                min(self.root.frame.size.height*0.7, self.root.frame.size.width)
+                min(self.root.frame.size.height*0.65, self.root.frame.size.width)
             ) && !tooClose || isGreater(handDetection.averageConfidence, 0.80) && !meetsConfidenceThreshold
             if grayArea {
                 amountInGrayArea += 1

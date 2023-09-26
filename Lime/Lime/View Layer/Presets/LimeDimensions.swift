@@ -37,5 +37,7 @@ enum LimeDimensions {
     static let floatingCardTopPadding = 50.0
     /// The width of any popup card
     static let popupWidth = 300.0
+    /// The padding around the content inside a dialogue box
+    static let dialogueInnerPadding = 21.0
     
 }

@@ -33,8 +33,8 @@ class LimeDialogueBox: LimeUIView {
             .addSubview(self.stack)
         
         self.stack
-            .constrainVertical(padding: LimeDimensions.chipPaddingVertical)
-            .constrainHorizontal(padding: LimeDimensions.chipPaddingHorizontal)
+            .constrainVertical(padding: LimeDimensions.dialogueInnerPadding)
+            .constrainHorizontal(padding: LimeDimensions.dialogueInnerPadding)
             .addView(self.title)
             .addGap(size: 16)
             .addView(self.body)
@@ -42,7 +42,7 @@ class LimeDialogueBox: LimeUIView {
             .addView(self.buttonStack)
         
         self.title
-            .setFont(to: LimeFont(font: LimeFonts.Poppins.Bold.rawValue, size: 28))
+            .setFont(to: LimeFont(font: LimeFonts.PlusJakartaSans.ExtraBold.rawValue, size: 28))
             .setTextColor(to: LimeColors.textDark)
             .setTextAlignment(to: .center)
         

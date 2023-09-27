@@ -23,8 +23,8 @@ class QuizLetterC: QuizLetter {
                 hand.index1, hand.index2, hand.index3, hand.index4,
                 hand.thumb2, hand.thumb3, hand.thumb4
             ]
-            // Make sure the points are denormalised - otherwise two points on other ends of the rectangle picture are effectively squished together in the normalised version (seeing that the width and height are effectively 1.0 and 1.0)
-            let positions: [CGPoint] = relevantJoints.compactMap({ $0.getDenormalisedPosition(for: answer.frameSize) })
+            // Make sure the points are denormalized - otherwise two points on other ends of the rectangle picture are effectively squished together in the normalized version (seeing that the width and height are effectively 1.0 and 1.0)
+            let positions: [CGPoint] = relevantJoints.compactMap({ $0.getDenormalizedPosition(for: answer.frameSize) })
             guard positions.count == relevantJoints.count else {
                 continue
             }

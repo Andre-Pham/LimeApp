@@ -121,7 +121,7 @@ class LetterDisplayView: LimeUIView {
         
         let letterCenter = leftWidth + halfWay
         
-        // Get length from centre of stack to letter
+        // Get length from center of stack to letter
         let offset = ((Double(self.letters.count) - 1.0)*Self.LETTER_WIDTH + Self.FOCUS_LETTER_WIDTH)/2.0 - letterCenter
         
         UIView.animate(withDuration: duration) {

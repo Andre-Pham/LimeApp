@@ -131,26 +131,26 @@ class HandDetection {
         return totalDistance
     }
     
-    func getDenormalisedPalmLength(frameSize: CGSize) -> Double {
+    func getDenormalizedPalmLength(frameSize: CGSize) -> Double {
         // The distance from the wrist to the little finger
         // It's an extremely consistent length regardless of which fingers are curled, the hand direction, etc.
-        guard let wristPosition = self.wrist.getDenormalisedPosition(for: frameSize),
-              let littlePosition = self.little1.getDenormalisedPosition(for: frameSize) else {
+        guard let wristPosition = self.wrist.getDenormalizedPosition(for: frameSize),
+              let littlePosition = self.little1.getDenormalizedPosition(for: frameSize) else {
             assertionFailure("We shouldn't be calling the size rating if there's insufficient positions defined")
             return 0.0
         }
         return wristPosition.length(to: littlePosition)
     }
     
-    func getDenormalisedPalmToTipLength(frameSize: CGSize) -> Double {
-        guard let wristPosition = self.wrist.getDenormalisedPosition(for: frameSize),
-              let middlePosition = self.middle4.getDenormalisedPosition(for: frameSize) else {
+    func getDenormalizedPalmToTipLength(frameSize: CGSize) -> Double {
+        guard let wristPosition = self.wrist.getDenormalizedPosition(for: frameSize),
+              let middlePosition = self.middle4.getDenormalizedPosition(for: frameSize) else {
             assertionFailure("We shouldn't be calling the size rating if there's insufficient positions defined")
             return 0.0
         }
-        if let middle1 = self.middle1.getDenormalisedPosition(for: frameSize),
-           let middle2 = self.middle2.getDenormalisedPosition(for: frameSize),
-           let middle3 = self.middle3.getDenormalisedPosition(for: frameSize) {
+        if let middle1 = self.middle1.getDenormalizedPosition(for: frameSize),
+           let middle2 = self.middle2.getDenormalizedPosition(for: frameSize),
+           let middle3 = self.middle3.getDenormalizedPosition(for: frameSize) {
             return (
                 wristPosition.length(to: middle1) +
                 middle1.length(to: middle2) +

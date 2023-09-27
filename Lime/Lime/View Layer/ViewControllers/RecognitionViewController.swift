@@ -144,7 +144,7 @@ class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectio
         var amountInGrayArea = 0
         for handDetection in outcome.handDetections {
             let meetsConfidenceThreshold = isGreater(handDetection.averageConfidence, 0.85)
-            let palmToTipLength = handDetection.getDenormalisedPalmToTipLength(frameSize: self.root.frame.size)
+            let palmToTipLength = handDetection.getDenormalizedPalmToTipLength(frameSize: self.root.frame.size)
             let tooClose = isGreater(
                 palmToTipLength,
                 min(self.root.frame.size.height*0.8, self.root.frame.size.width*1.2)

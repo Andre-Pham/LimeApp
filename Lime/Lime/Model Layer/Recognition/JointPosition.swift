@@ -19,15 +19,15 @@ class JointPosition {
         self.name = name
     }
     
-    func getDenormalisedPosition(for view: UIView) -> CGPoint? {
-        return self.getDenormalisedPosition(viewWidth: view.bounds.width, viewHeight: view.bounds.height)
+    func getDenormalizedPosition(for view: UIView) -> CGPoint? {
+        return self.getDenormalizedPosition(viewWidth: view.bounds.width, viewHeight: view.bounds.height)
     }
     
-    func getDenormalisedPosition(for size: CGSize) -> CGPoint? {
-        return self.getDenormalisedPosition(viewWidth: size.width, viewHeight: size.height)
+    func getDenormalizedPosition(for size: CGSize) -> CGPoint? {
+        return self.getDenormalizedPosition(viewWidth: size.width, viewHeight: size.height)
     }
     
-    func getDenormalisedPosition(viewWidth: Double, viewHeight: Double) -> CGPoint? {
+    func getDenormalizedPosition(viewWidth: Double, viewHeight: Double) -> CGPoint? {
         if self.position == nil { return nil }
         return VNImagePointForNormalizedPoint(
             CGPoint(

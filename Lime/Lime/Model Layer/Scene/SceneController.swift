@@ -202,16 +202,16 @@ class SceneController {
             assertionFailure("Node '\(nodeName)' could not be found")
             return
         }
-        var centre = node.presentation.position
+        var center = node.presentation.position
         if let boundingBox = SCNBox(node: node) {
-            centre = boundingBox.centre
+            center = boundingBox.center
         }
         self.sceneCamera
-            .setPosition(to: SCNVector3Make(centre.x, centre.y, centre.z + distance))
-            .direct(to: centre)
+            .setPosition(to: SCNVector3Make(center.x, center.y, center.z + distance))
+            .direct(to: center)
         // If not set, camera control can be affected by other scene nodes
         // https://github.com/Andre-Pham/SpellApp/issues/1
-        self.sceneView.defaultCameraController.target = centre
+        self.sceneView.defaultCameraController.target = center
     }
     
     // MARK: - Geometry

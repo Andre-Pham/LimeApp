@@ -101,8 +101,8 @@ class HandOverlayView: LimeUIView {
     }
     
     private func drawLine(_ context: CGContext, _ joint1: JointPosition, _ joint2: JointPosition) {
-        guard let startPoint = joint1.getDenormalisedPosition(viewWidth: Double(context.width), viewHeight: Double(context.height)),
-              let endPoint = joint2.getDenormalisedPosition(viewWidth: Double(context.width), viewHeight: Double(context.height)) else {
+        guard let startPoint = joint1.getDenormalizedPosition(viewWidth: Double(context.width), viewHeight: Double(context.height)),
+              let endPoint = joint2.getDenormalizedPosition(viewWidth: Double(context.width), viewHeight: Double(context.height)) else {
             return
         }
         let averageConfidence = ((joint1.confidence ?? 0.0) + (joint2.confidence ?? 0.0))/2.0

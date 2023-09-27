@@ -13,7 +13,7 @@
 // MARK: - Tab Bar
 
 "tabBar.generate3D" = "3D";
-"tabBar.generateText" = "Camera";
+"tabBar.recognition" = "Recognition";
 "tabBar.info" = "Info";
 "tabBar.settings" = "Settings";
 

@@ -17,7 +17,7 @@ protocol QuizLetter {
 extension QuizLetter {
     
     public static var TOUCHING_THRESHOLD: Double {
-        return 0.3
+        return 0.35
     }
     public static var CLOSE_THRESHOLD: Double {
         return 0.5

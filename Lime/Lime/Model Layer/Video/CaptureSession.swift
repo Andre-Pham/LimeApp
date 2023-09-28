@@ -72,8 +72,8 @@ class CaptureSession: NSObject {
         }
         self.captureSession.beginConfiguration()
         self.captureSession.sessionPreset = .hd1920x1080
-        try setCaptureSessionInput()
-        try setCaptureSessionOutput()
+        try self.setCaptureSessionInput()
+        try self.setCaptureSessionOutput()
         self.captureSession.commitConfiguration()
     }
     
@@ -203,16 +203,17 @@ class CaptureSession: NSObject {
 
 extension CaptureSession: AVCaptureVideoDataOutputSampleBufferDelegate {
     
-    public func captureOutput(_ output: AVCaptureOutput,
-                              didOutput sampleBuffer: CMSampleBuffer,
-                              from connection: AVCaptureConnection) {
+    public func captureOutput(
+        _ output: AVCaptureOutput,
+        didOutput sampleBuffer: CMSampleBuffer,
+        from connection: AVCaptureConnection
+    ) {
         guard let captureDelegate = self.captureDelegate else { return }
 
         if let pixelBuffer = sampleBuffer.imageBuffer {
             // Attempt to lock the image buffer to gain access to its memory.
-            guard CVPixelBufferLockBaseAddress(pixelBuffer, .readOnly) == kCVReturnSuccess
-                else {
-                    return
+            guard CVPixelBufferLockBaseAddress(pixelBuffer, .readOnly) == kCVReturnSuccess else {
+                return
             }
 
             // Create Core Graphics image placeholder.

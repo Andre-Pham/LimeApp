@@ -29,3 +29,7 @@ Recognition Demo: [YOUTUBE LINK](https://youtu.be/FaW3HjzHEoU) *(Last updated: 1
 * Supports both light mode and dark mode
 * English only
 
+## Release History
+
+For a release history break down, visit [here](https://github.com/Andre-Pham/LimeApp/releases) for all releases and changelogs.
+

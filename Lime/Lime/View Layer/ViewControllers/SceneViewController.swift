@@ -50,11 +50,11 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.attach(scene: LimeSession.inst.sceneController)
-        LimeSession.inst.setupScene()
+        self.attach(scene: SceneSession.inst.sceneController)
+        SceneSession.inst.setupScene()
         OnSettingsChangedPublisher.subscribe(self)
         self.idleModel.setOpacity(to: 0.0)
-        LimeSession.inst.sceneController.addModel(self.idleModel)
+        SceneSession.inst.sceneController.addModel(self.idleModel)
         
         self.root
             .setBackgroundColor(to: LimeColors.sceneFill)
@@ -76,7 +76,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
         
         self.letterDisplay
             .constrainCenterHorizontal()
-            .constrainTop(padding: 50)
+            .constrainTop(padding: LimeDimensions.floatingCardTopPadding)
             .setHidden(to: SettingsSession.inst.settings.hidePrompt)
 
         self.toolbarStack
@@ -119,8 +119,8 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
             .setOnStartTracking({
                 // Hide the hand model
                 // It flickers or shows one of the default pose and the initial pose (shared by all models)
-                LimeSession.inst.sequence?.handModel.setOpacity(to: 0.0)
-                if !LimeSession.inst.activePrompt.isEmpty {
+                SceneSession.inst.sequence?.handModel.setOpacity(to: 0.0)
+                if !SceneSession.inst.activePrompt.isEmpty {
                     // We don't want the hand model disappearing every time we scrub
                     // We show the idle model in its place - they're in the same pose anyways
                     self.idleModel.setOpacity(to: 1.0)
@@ -128,23 +128,23 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
             })
             .setOnEndTracking({
                 // We can show the hand model again
-                LimeSession.inst.sequence?.handModel.setOpacity(to: 1.0)
+                SceneSession.inst.sequence?.handModel.setOpacity(to: 1.0)
                 // Play the sequence to get out of the default pose
-                LimeSession.inst.sequence?.setSequencePause(to: false, noBlend: true)
+                SceneSession.inst.sequence?.setSequencePause(to: false, noBlend: true)
                 // Slow down the animation
                 // We don't actually want to progress, we just want to get out of the default pose
-                self.animationSpeedCache = LimeSession.inst.sequence?.animationSpeed ?? 1.0
-                LimeSession.inst.sequence?.setAnimationSpeed(to: 0.001)
+                self.animationSpeedCache = SceneSession.inst.sequence?.animationSpeed ?? 1.0
+                SceneSession.inst.sequence?.setAnimationSpeed(to: 0.001)
                 if self.playButton.isEnabled {
                     // We were paused before
                     // Hide the model and show the idle to avoid visual bugs
                     // This will be reverted when we press play again
-                    LimeSession.inst.sequence?.handModel.setOpacity(to: 0.0)
-                    if !LimeSession.inst.activePrompt.isEmpty {
+                    SceneSession.inst.sequence?.handModel.setOpacity(to: 0.0)
+                    if !SceneSession.inst.activePrompt.isEmpty {
                         self.idleModel.setOpacity(to: 1.0)
                     }
                     // The models would have reset from setting a new proportion while paused
-                    LimeSession.inst.sequence?.markAsReset()
+                    SceneSession.inst.sequence?.markAsReset()
                 } else {
                     // We were playing before, so no worries - we'll just continue playing and hide the idle model
                     self.idleModel.setOpacity(to: 0.0)
@@ -152,21 +152,21 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                     // Now that we're out of the default pose
                     // We can set the animation speed back to normal and resume playing/paused (whatever we were before)
-                    LimeSession.inst.sequence?.setAnimationSpeed(to: self.animationSpeedCache)
-                    LimeSession.inst.sequence?.setSequencePause(to: self.playButton.isEnabled)
+                    SceneSession.inst.sequence?.setAnimationSpeed(to: self.animationSpeedCache)
+                    SceneSession.inst.sequence?.setSequencePause(to: self.playButton.isEnabled)
                 }
             })
             .setOnChange({ proportion in
                 if self.timeline.isTracking {
                     // We don't want the animation playing during tracking - continuously pause it
-                    LimeSession.inst.sequence?.setSequencePause(to: true, noBlend: true)
+                    SceneSession.inst.sequence?.setSequencePause(to: true, noBlend: true)
                     // Clamp to the scrubber's progress proportion
-                    var clampedProportion = LimeSession.inst.sequence?.clampToClosestAnimation(progressProportion: proportion) ?? 0.0
+                    var clampedProportion = SceneSession.inst.sequence?.clampToClosestAnimation(progressProportion: proportion) ?? 0.0
                     // If we clamp to the end of the timeline, wrap to the start
                     // I mean, there's no reason you'd ever clap to the end other than to go back to the start
                     // And plus, clamping to the end has some funny side effects on seeing the default pose
                     if isGreaterOrEqual(clampedProportion, 1.0) {
-                        clampedProportion = LimeSession.inst.sequence?.clampToClosestAnimation(progressProportion: 0.0) ?? 0.0
+                        clampedProportion = SceneSession.inst.sequence?.clampToClosestAnimation(progressProportion: 0.0) ?? 0.0
                     }
                     // Match the timeline with the progression that was clamped to
                     self.timeline.setProgress(to: clampedProportion)
@@ -176,7 +176,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
                     }
                     self.lastPosition = clampedProportion
                     // Focus the relevant letter
-                    if let letterIndex = LimeSession.inst.sequence?.activeHandIndex {
+                    if let letterIndex = SceneSession.inst.sequence?.activeHandIndex {
                         self.letterDisplay.focusLetter(letterIndex, duration: 0.2)
                     }
                 }
@@ -189,7 +189,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
             .addState(value: 0.25, label: "0.25x")
             .addState(value: 0.5, label: "0.5x")
             .setOnChange({ playbackSpeed in
-                if let sequence = LimeSession.inst.sequence {
+                if let sequence = SceneSession.inst.sequence {
                     sequence.setAnimationSpeed(to: playbackSpeed)
                     if sequence.isPaused {
                         // Clamp the animation
@@ -197,12 +197,12 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
                         self.timeline.setProgress(to: clampedProportion)
                         // Hide the model and show the idle to avoid visual bugs
                         // This will be reverted when we press play again
-                        LimeSession.inst.sequence?.handModel.setOpacity(to: 0.0)
-                        if !LimeSession.inst.activePrompt.isEmpty {
+                        SceneSession.inst.sequence?.handModel.setOpacity(to: 0.0)
+                        if !SceneSession.inst.activePrompt.isEmpty {
                             self.idleModel.setOpacity(to: 1.0)
                         }
                         // The models would have reset from setting a new proportion while paused
-                        LimeSession.inst.sequence?.markAsReset()
+                        SceneSession.inst.sequence?.markAsReset()
                     }
                 }
             })
@@ -239,7 +239,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
                     // If you don't, the view isn't updated because it's not "existent" because it hasn't been added yet
                     // Triggering the code after the animation also works but has a delay - this updates faster
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-                        self.timeline.setProgress(to: LimeSession.inst.sequence?.progressProportion ?? 0.0)
+                        self.timeline.setProgress(to: SceneSession.inst.sequence?.progressProportion ?? 0.0)
                     }
                 } else {
                     self.toolbarStack.removeViewAnimated(self.toolbarRowTimeline)
@@ -263,7 +263,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
             .setLabelSize(to: 17)
             .setIconWidth(to: 32)
             .setOnTap({
-                LimeSession.inst.resetCamera()
+                SceneSession.inst.resetCamera()
             })
         
         self.reverseCameraButton
@@ -272,7 +272,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
             .setLabelSize(to: 17)
             .setIconWidth(to: 32)
             .setOnTap({
-                LimeSession.inst.resetCameraFromBack()
+                SceneSession.inst.resetCameraFromBack()
             })
         
         self.promptInput
@@ -283,7 +283,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
                 self.pauseScene()
             })
             .setOnUnfocus({
-                self.promptInput.setText(to: LimeSession.inst.activePrompt)
+                self.promptInput.setText(to: SceneSession.inst.activePrompt)
             })
             .setOnSubmit({
                 self.submitPrompt(prompt: self.promptInput.text)
@@ -302,7 +302,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
                     // If they entered a new prompt then immediately hit play, we want to submit the newly entered prompt
                     self.submitPrompt(prompt: self.dismissedPrompt)
                     // We must also make sure the newly entered prompt is reflected by the prompt input
-                    self.promptInput.setText(to: LimeSession.inst.activePrompt)
+                    self.promptInput.setText(to: SceneSession.inst.activePrompt)
                 }
                 guard !self.timeline.isTracking else {
                     self.playButton.setState(enabled: !isPaused)
@@ -310,7 +310,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
                 }
                 // If we were showing the idle previously, we certainly don't want to anymore
                 self.idleModel.setOpacity(to: 0.0)
-                LimeSession.inst.sequence?.setSequencePauseAuto(to: isPaused)
+                SceneSession.inst.sequence?.setSequencePauseAuto(to: isPaused)
             })
         
         // Register for keyboard notifications
@@ -327,13 +327,13 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
         self.view.addGestureRecognizer(tapGesture)
         
         Timer.scheduledTimer(withTimeInterval: 1/60, repeats: true) { timer in
-            let sequence = LimeSession.inst.sequence
+            let sequence = SceneSession.inst.sequence
             if !self.timeline.isTracking, let proportion = sequence?.progressProportion {
                 if !self.playButton.isEnabled {
                     self.timeline.setProgress(to: proportion)
                     self.lastPosition = proportion
                 }
-                if let letterIndex = LimeSession.inst.sequence?.activeHandIndex {
+                if let letterIndex = SceneSession.inst.sequence?.activeHandIndex {
                     self.letterDisplay.focusLetter(letterIndex, duration: 0.5)
                 }
             }
@@ -341,10 +341,10 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
     }
     
     func submitPrompt(prompt: String) {
-        let newSequenceMounted = LimeSession.inst.addLetterSequence(prompt: prompt)
+        let newSequenceMounted = SceneSession.inst.addLetterSequence(prompt: prompt)
         if newSequenceMounted {
-            self.letterDisplay.setPrompt(to: LimeSession.inst.activePrompt)
-            if !LimeSession.inst.activePrompt.isEmpty {
+            self.letterDisplay.setPrompt(to: SceneSession.inst.activePrompt)
+            if !SceneSession.inst.activePrompt.isEmpty {
                 self.letterDisplay.focusLetter(0, duration: 0.5)
             }
             self.resetToolbar()
@@ -402,10 +402,10 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
         }
         if old.smoothTransitions != new.smoothTransitions || old.leftHanded != new.leftHanded {
             self.pauseScene()
-            if !LimeSession.inst.activePrompt.isEmpty {
-                LimeSession.inst.clearLetterSequence()
+            if !SceneSession.inst.activePrompt.isEmpty {
+                SceneSession.inst.clearLetterSequence()
                 self.promptInput.setText(to: "")
-                self.letterDisplay.setPrompt(to: LimeSession.inst.activePrompt)
+                self.letterDisplay.setPrompt(to: SceneSession.inst.activePrompt)
                 self.resetToolbar()
             }
         }

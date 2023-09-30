@@ -62,11 +62,21 @@ extension LimeUIViewProtocol {
         return nil
     }
     
+    public var hasSuperView: Bool {
+        return self.superView != nil
+    }
+    
     // MARK: - Views
     
     @discardableResult
     func addSubview(_ view: LimeUIView) -> Self {
         self.view.addSubview(view.view)
+        return self
+    }
+    
+    @discardableResult
+    func addLayer(_ layer: CALayer) -> Self {
+        self.view.layer.addSublayer(layer)
         return self
     }
     
@@ -126,6 +136,20 @@ extension LimeUIViewProtocol {
     func setWidthConstraint(to width: Double) -> Self {
         assert(!self.view.translatesAutoresizingMaskIntoConstraints, "Constraints requirement failed")
         self.view.widthAnchor.constraint(equalToConstant: width).isActive = true
+        return self
+    }
+    
+    @discardableResult
+    func setMaxHeightConstraint(to height: Double) -> Self {
+        assert(!self.view.translatesAutoresizingMaskIntoConstraints, "Constraints requirement failed")
+        self.view.heightAnchor.constraint(lessThanOrEqualToConstant: height).isActive = true
+        return self
+    }
+    
+    @discardableResult
+    func setMaxWidthConstraint(to width: Double) -> Self {
+        assert(!self.view.translatesAutoresizingMaskIntoConstraints, "Constraints requirement failed")
+        self.view.widthAnchor.constraint(lessThanOrEqualToConstant: width).isActive = true
         return self
     }
     
@@ -426,10 +450,10 @@ extension LimeUIViewProtocol {
     }
     
     @discardableResult
-    func animateEntrance() -> Self {
+    func animateEntrance(duration: Double = 0.2) -> Self {
         self.setOpacity(to: 0.0)
         self.view.transform = CGAffineTransform(translationX: 0, y: -10)
-        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 2, options: [.curveEaseOut], animations: {
+        UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 2, options: [.curveEaseOut], animations: {
             self.setOpacity(to: 1.0)
             self.view.transform = CGAffineTransform(translationX: 0, y: 0)
         })
@@ -437,8 +461,8 @@ extension LimeUIViewProtocol {
     }
     
     @discardableResult
-    func animateExit(onCompletion: @escaping () -> Void) -> Self {
-        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 2, options: [.curveEaseOut], animations: {
+    func animateExit(duration: Double = 0.2, onCompletion: @escaping () -> Void) -> Self {
+        UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 2, options: [.curveEaseOut], animations: {
             self.setOpacity(to: 0.0)
             self.view.transform = CGAffineTransform(translationX: 0, y: -10)
         }) { _ in

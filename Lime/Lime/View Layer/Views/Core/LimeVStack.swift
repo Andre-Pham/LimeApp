@@ -71,6 +71,15 @@ class LimeVStack: LimeUIView {
     }
     
     @discardableResult
+    func removeViewAnimated(position: Int) -> Self {
+        guard self.viewCount > position else {
+            return self
+        }
+        let view = self.stack.arrangedSubviews[position]
+        return self.removeViewAnimated(LimeView(view))
+    }
+    
+    @discardableResult
     func setSpacing(to spacing: CGFloat) -> Self {
         self.stack.spacing = spacing
         return self

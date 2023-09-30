@@ -71,9 +71,9 @@ class CaptureSession: NSObject {
             self.captureSession.stopRunning()
         }
         self.captureSession.beginConfiguration()
-        self.captureSession.sessionPreset = .vga640x480
-        try setCaptureSessionInput()
-        try setCaptureSessionOutput()
+        self.captureSession.sessionPreset = .high
+        try self.setCaptureSessionInput()
+        try self.setCaptureSessionOutput()
         self.captureSession.commitConfiguration()
     }
     
@@ -91,13 +91,12 @@ class CaptureSession: NSObject {
             self.captureSession.removeInput(input)
         }
 
-        // Create an instance of AVCaptureDeviceInput to capture the data from
-        // the capture device.
+        // Create an instance of AVCaptureDeviceInput to capture the data from the capture device.
         guard let videoInput = try? AVCaptureDeviceInput(device: captureDevice) else {
             throw CaptureError.invalidInput
         }
 
-        guard captureSession.canAddInput(videoInput) else {
+        guard self.captureSession.canAddInput(videoInput) else {
             throw CaptureError.invalidInput
         }
 
@@ -106,8 +105,8 @@ class CaptureSession: NSObject {
     
     private func setCaptureSessionOutput() throws {
         // Remove any previous outputs.
-        captureSession.outputs.forEach { output in
-            captureSession.removeOutput(output)
+        self.captureSession.outputs.forEach { output in
+            self.captureSession.removeOutput(output)
         }
 
         // Set the pixel type.
@@ -123,7 +122,7 @@ class CaptureSession: NSObject {
 
         self.videoOutput.setSampleBufferDelegate(self, queue: sessionQueue)
 
-        guard captureSession.canAddOutput(videoOutput) else {
+        guard self.captureSession.canAddOutput(self.videoOutput) else {
             throw CaptureError.invalidOutput
         }
 
@@ -132,7 +131,29 @@ class CaptureSession: NSObject {
         // Update the video orientation
         if let connection = self.videoOutput.connection(with: .video), connection.isVideoOrientationSupported {
             switch UIDevice.current.orientation {
-            case .unknown, .portrait, .faceUp, .faceDown:
+            case .unknown:
+                // .unknown can be returned in the early stages of the app lifecycle
+                // or if orientation notifications have been disabled.
+                // We fall back on UIApplication if this is the case.
+                DispatchQueue.main.async {
+                    if let orientation = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.interfaceOrientation {
+                        switch orientation {
+                        case .unknown:
+                            break
+                        case .portrait:
+                            connection.videoOrientation = .portrait
+                        case .portraitUpsideDown:
+                            connection.videoOrientation = .portraitUpsideDown
+                        case .landscapeLeft:
+                            connection.videoOrientation = .landscapeLeft
+                        case .landscapeRight:
+                            connection.videoOrientation = .landscapeRight
+                        @unknown default:
+                            assertionFailure("Implement newly added orientation")
+                        }
+                    }
+                }
+            case .portrait, .faceUp, .faceDown:
                 connection.videoOrientation = .portrait
             case .portraitUpsideDown:
                 connection.videoOrientation = .portraitUpsideDown
@@ -152,8 +173,7 @@ class CaptureSession: NSObject {
     public func startCapturing(completion completionHandler: (() -> Void)? = nil) {
         self.sessionQueue.async {
             if !self.captureSession.isRunning {
-                // Invoke the startRunning method of the captureSession to start the
-                // flow of data from the inputs to the outputs.
+                // Invoke the startRunning method of the captureSession to start the flow of data from the inputs to the outputs
                 self.captureSession.startRunning()
             }
 
@@ -183,16 +203,17 @@ class CaptureSession: NSObject {
 
 extension CaptureSession: AVCaptureVideoDataOutputSampleBufferDelegate {
     
-    public func captureOutput(_ output: AVCaptureOutput,
-                              didOutput sampleBuffer: CMSampleBuffer,
-                              from connection: AVCaptureConnection) {
+    public func captureOutput(
+        _ output: AVCaptureOutput,
+        didOutput sampleBuffer: CMSampleBuffer,
+        from connection: AVCaptureConnection
+    ) {
         guard let captureDelegate = self.captureDelegate else { return }
 
         if let pixelBuffer = sampleBuffer.imageBuffer {
             // Attempt to lock the image buffer to gain access to its memory.
-            guard CVPixelBufferLockBaseAddress(pixelBuffer, .readOnly) == kCVReturnSuccess
-                else {
-                    return
+            guard CVPixelBufferLockBaseAddress(pixelBuffer, .readOnly) == kCVReturnSuccess else {
+                return
             }
 
             // Create Core Graphics image placeholder.

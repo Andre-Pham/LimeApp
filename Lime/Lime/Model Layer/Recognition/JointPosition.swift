@@ -19,7 +19,15 @@ class JointPosition {
         self.name = name
     }
     
-    func getDenormalisedPosition(viewWidth: Double, viewHeight: Double) -> CGPoint? {
+    func getDenormalizedPosition(for view: UIView) -> CGPoint? {
+        return self.getDenormalizedPosition(viewWidth: view.bounds.width, viewHeight: view.bounds.height)
+    }
+    
+    func getDenormalizedPosition(for size: CGSize) -> CGPoint? {
+        return self.getDenormalizedPosition(viewWidth: size.width, viewHeight: size.height)
+    }
+    
+    func getDenormalizedPosition(viewWidth: Double, viewHeight: Double) -> CGPoint? {
         if self.position == nil { return nil }
         return VNImagePointForNormalizedPoint(
             CGPoint(
@@ -29,6 +37,18 @@ class JointPosition {
             Int(viewWidth),
             Int(viewHeight)
         )
+    }
+    
+    func interpolate(with previous: JointPosition, factor: Double) -> JointPosition {
+        let interpolatedJoint = JointPosition(name: self.name)
+        interpolatedJoint.confidence = self.confidence
+        if let currentPosition = self.position,
+            let previousPosition = previous.position {
+            let interpolatedX = currentPosition.x * (1.0 - factor) + previousPosition.x * factor
+            let interpolatedY = currentPosition.y * (1.0 - factor) + previousPosition.y * factor
+            interpolatedJoint.position = CGPoint(x: interpolatedX, y: interpolatedY)
+        }
+        return interpolatedJoint
     }
     
 }

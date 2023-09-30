@@ -24,7 +24,7 @@ class SCNBox {
     public var volume: Float {
         self.width*self.height*self.depth
     }
-    public var centre: SCNVector3 {
+    public var center: SCNVector3 {
         SCNVector3(
             (self.min.x + self.max.x)/2.0,
             (self.min.y + self.max.y)/2.0,

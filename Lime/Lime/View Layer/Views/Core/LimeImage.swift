@@ -46,6 +46,12 @@ class LimeImage: LimeUIView {
     }
     
     @discardableResult
+    func resetImage() -> Self {
+        self.imageView.image = nil
+        return self
+    }
+    
+    @discardableResult
     func setColor(to color: UIColor) -> Self {
         self.imageView.tintColor = color
         return self

@@ -15,6 +15,7 @@ enum LimeColors {
     static let accent = UIColor(named: "Assets#EC6572")!
     static let component = UIColor(named: "Assets#E4E5EA#454552")!
     static let warning = UIColor(named: "Assets#CB4343")!
+    static let success = UIColor(named: "Assets#51CF66")!
     
     // MARK: - Fill
     
@@ -30,6 +31,6 @@ enum LimeColors {
     static let textSemiDark = UIColor(named: "Assets#B2B3C2#767489")!
     static let textPrimaryButton = UIColor(named: "Assets#FFFFFF")!
     static let textSecondaryButton = Self.textDark
-    
+    static let textWhite = UIColor(named: "Assets#FFFFFF")!
     
 }

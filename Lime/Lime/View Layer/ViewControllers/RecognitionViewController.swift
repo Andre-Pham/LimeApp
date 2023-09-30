@@ -22,8 +22,6 @@ class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectio
     private let captureSession = CaptureSession()
     /// The model used for detecting hands within a frame
     private let handDetector = HandDetector()
-    /// The active frame being shown
-    private var activeFrame: CGImage? = nil
     /// The frame id used as a counter to run anything on every nth frame
     @WrapsToZero(threshold: 600) private var currentFrameID = 0
     /// True if the too close warning is active
@@ -118,7 +116,6 @@ class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectio
         if let frame {
             self.handDetector.makePrediction(on: frame)
             self.setVideoImage(to: frame)
-            self.activeFrame = frame
             self.currentFrameID += 1
         }
     }
@@ -184,8 +181,6 @@ class RecognitionViewController: UIViewController, CaptureDelegate, HandDetectio
                 .constrainCenterHorizontal()
                 .animateEntrance(duration: 0.6)
         }
-        
-        // Flashes between meeting confidence threshold and being too close, and not meeting threshold
     }
     
     private func addQuizPrompt(letter: Character) {

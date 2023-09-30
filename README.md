@@ -11,12 +11,15 @@ An Auslan (Australian sign language) fingerspelling app for iOS.
     * Playback speed control to change the animation playback speed
     * Buttons to reset the camera to the default front/back perspectives
 * Has settings to use left handed models, disable smooth transitions, and hide the display prompt
+* Try out the experimental recognition feature - the app will prompt a letter and recognise when it's performed using the device's camera
 
 ## Demos
 
-Main Demo: [YOUTUBE LINK](https://youtube.com/watch?v=BS5IwGK1_Ls)
+Main Demo: [YOUTUBE LINK](https://youtube.com/watch?v=BS5IwGK1_Ls) *(Last updated: 1.1.0)*
 
-Alphabet Demo: [YOUTUBE LINK](https://youtube.com/watch?v=8cXb0kTaQ-s)
+Alphabet Demo: [YOUTUBE LINK](https://youtube.com/watch?v=8cXb0kTaQ-s) *(Last updated: 1.1.0)*
+
+Recognition Demo: [YOUTUBE LINK](https://youtu.be/FaW3HjzHEoU) *(Last updated: 1.2.0)*
 
 ## Compatibility
 

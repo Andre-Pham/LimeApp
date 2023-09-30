@@ -17,10 +17,10 @@ protocol QuizLetter {
 extension QuizLetter {
     
     public static var TOUCHING_THRESHOLD: Double {
-        return 0.35
+        return 0.4
     }
     public static var CLOSE_THRESHOLD: Double {
-        return 0.5
+        return 0.6
     }
     
     func acceptAnswers(answers: [HandDetectionOutcome], passThreshold: Double) -> QuizAnswerOutcome {

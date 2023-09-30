@@ -71,7 +71,7 @@ class CaptureSession: NSObject {
             self.captureSession.stopRunning()
         }
         self.captureSession.beginConfiguration()
-        self.captureSession.sessionPreset = .hd1920x1080
+        self.captureSession.sessionPreset = .high
         try self.setCaptureSessionInput()
         try self.setCaptureSessionOutput()
         self.captureSession.commitConfiguration()

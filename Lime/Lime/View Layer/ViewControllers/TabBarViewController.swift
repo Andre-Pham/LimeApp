@@ -49,7 +49,7 @@ class TabBarViewController: UITabBarController {
         self.tabBarOptions.append(LimeTabBarOption(
             icon: "cube.transparent",
             selectedIcon: "cube.transparent.fill",
-            label: Strings("tabBar.generate3D").local,
+            label: Strings("tabBar.generation").local,
             viewController: SceneViewController()
         ))
         if !Environment.inst.deviceIsMac {

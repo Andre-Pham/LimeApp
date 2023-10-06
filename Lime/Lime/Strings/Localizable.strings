@@ -12,7 +12,7 @@
 
 // MARK: - Tab Bar
 
-"tabBar.generate3D" = "3D";
+"tabBar.generation" = "Generation";
 "tabBar.recognition" = "Recognition";
 "tabBar.info" = "Info";
 "tabBar.settings" = "Settings";

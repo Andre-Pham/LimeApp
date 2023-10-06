@@ -68,7 +68,7 @@
 		B60A3B2A2A8D046600499484 /* SwiftSerialization in Frameworks */ = {isa = PBXBuildFile; productRef = B60A3B292A8D046600499484 /* SwiftSerialization */; };
 		B60A3B2D2A8D057100499484 /* DatabaseSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3B2C2A8D057100499484 /* DatabaseSession.swift */; };
 		B652D6892AC31D1B0016853D /* QuizLetterB.swift in Sources */ = {isa = PBXBuildFile; fileRef = B652D6882AC31D1B0016853D /* QuizLetterB.swift */; };
-		B652D68C2AC484A60016853D /* LimeTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B652D68B2AC484A60016853D /* LimeTabBar.swift */; };
+		B652D68C2AC484A60016853D /* LimeTabBarOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = B652D68B2AC484A60016853D /* LimeTabBarOption.swift */; };
 		B652D68E2AC484D80016853D /* LimeTabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B652D68D2AC484D80016853D /* LimeTabBarButton.swift */; };
 		B67F06722A9CD97500591789 /* PlusJakartaSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06702A9CD97500591789 /* PlusJakartaSans-ExtraBold.ttf */; };
 		B67F06732A9CD97500591789 /* PlusJakartaSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06712A9CD97500591789 /* PlusJakartaSans-ExtraBoldItalic.ttf */; };
@@ -201,7 +201,7 @@
 		B60A3AB42A8C949F00499484 /* OnSettingsChangedPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnSettingsChangedPublisher.swift; sourceTree = "<group>"; };
 		B60A3B2C2A8D057100499484 /* DatabaseSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseSession.swift; sourceTree = "<group>"; };
 		B652D6882AC31D1B0016853D /* QuizLetterB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizLetterB.swift; sourceTree = "<group>"; };
-		B652D68B2AC484A60016853D /* LimeTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeTabBar.swift; sourceTree = "<group>"; };
+		B652D68B2AC484A60016853D /* LimeTabBarOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeTabBarOption.swift; sourceTree = "<group>"; };
 		B652D68D2AC484D80016853D /* LimeTabBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeTabBarButton.swift; sourceTree = "<group>"; };
 		B67F06702A9CD97500591789 /* PlusJakartaSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-ExtraBold.ttf"; sourceTree = "<group>"; };
 		B67F06712A9CD97500591789 /* PlusJakartaSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
@@ -461,10 +461,37 @@
 		B652D68A2AC484800016853D /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				B652D68B2AC484A60016853D /* LimeTabBar.swift */,
+				B652D68B2AC484A60016853D /* LimeTabBarOption.swift */,
 				B652D68D2AC484D80016853D /* LimeTabBarButton.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		B679C3FE2ACFDE4B0070A96E /* Basic */ = {
+			isa = PBXGroup;
+			children = (
+				B6DC10EE2A7C87E300C10100 /* LimeView.swift */,
+				B6DC10E52A7C87CE00C10100 /* LimeButton.swift */,
+				B6DC10E72A7C87E300C10100 /* LimeIconButton.swift */,
+				B6DC10ED2A7C87E300C10100 /* LimeImage.swift */,
+				B6DC10EF2A7C87E300C10100 /* LimeText.swift */,
+				B60A3A562A7CD66D00499484 /* LimeChipButton.swift */,
+				B67F06822A9EA17000591789 /* LimeChipTextButton.swift */,
+				B60A3A5F2A7D106600499484 /* LimeChipToggle.swift */,
+				B60A3A612A7D1B9F00499484 /* LimeTextInput.swift */,
+				B60A3A8E2A7DF19600499484 /* LimeChipMultiState.swift */,
+				B6B7F31E2AC1747700F8CDEB /* LimeDialogueBox.swift */,
+			);
+			path = Basic;
+			sourceTree = "<group>";
+		};
+		B679C3FF2ACFDE5A0070A96E /* Containers */ = {
+			isa = PBXGroup;
+			children = (
+				B6DC10F02A7C87E300C10100 /* LimeHStack.swift */,
+				B6DC10EA2A7C87E300C10100 /* LimeVStack.swift */,
+			);
+			path = Containers;
 			sourceTree = "<group>";
 		};
 		B6B7F3092ABECFC100F8CDEB /* RecognitionQuiz */ = {
@@ -567,6 +594,8 @@
 			isa = PBXGroup;
 			children = (
 				B6DC10E32A7C878700C10100 /* Core */,
+				B679C3FF2ACFDE5A0070A96E /* Containers */,
+				B679C3FE2ACFDE4B0070A96E /* Basic */,
 				B6DC10E42A7C878C00C10100 /* Custom */,
 			);
 			path = Views;
@@ -625,22 +654,9 @@
 		B6DC10E32A7C878700C10100 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				B6DC10E52A7C87CE00C10100 /* LimeButton.swift */,
-				B6DC10F02A7C87E300C10100 /* LimeHStack.swift */,
-				B6DC10E72A7C87E300C10100 /* LimeIconButton.swift */,
-				B6DC10ED2A7C87E300C10100 /* LimeImage.swift */,
-				B6DC10EF2A7C87E300C10100 /* LimeText.swift */,
 				B6DC10E92A7C87E300C10100 /* LimeUIView.swift */,
-				B6DC10EE2A7C87E300C10100 /* LimeView.swift */,
-				B6DC10EA2A7C87E300C10100 /* LimeVStack.swift */,
-				B60A3A562A7CD66D00499484 /* LimeChipButton.swift */,
-				B67F06822A9EA17000591789 /* LimeChipTextButton.swift */,
 				B60A3A582A7CEECF00499484 /* LimeControl.swift */,
-				B60A3A5F2A7D106600499484 /* LimeChipToggle.swift */,
-				B60A3A612A7D1B9F00499484 /* LimeTextInput.swift */,
-				B60A3A8E2A7DF19600499484 /* LimeChipMultiState.swift */,
 				B60A3A922A7E29D300499484 /* LimeGestureView.swift */,
-				B6B7F31E2AC1747700F8CDEB /* LimeDialogueBox.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -860,7 +876,7 @@
 				B60A3A622A7D1B9F00499484 /* LimeTextInput.swift in Sources */,
 				B6B7F30F2ABED40100F8CDEB /* QuizAnswerStatus.swift in Sources */,
 				B60A3A952A7E5B3D00499484 /* LetterDisplayView.swift in Sources */,
-				B652D68C2AC484A60016853D /* LimeTabBar.swift in Sources */,
+				B652D68C2AC484A60016853D /* LimeTabBarOption.swift in Sources */,
 				B6DC10FB2A7C87E300C10100 /* LimeText.swift in Sources */,
 				B60A3B2D2A8D057100499484 /* DatabaseSession.swift in Sources */,
 				B60A3A5E2A7CF70000499484 /* LimeDimensions.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  LimeTabBar.swift
+//  LimeTabBarOption.swift
 //  Lime
 //
 //  Created by Andre Pham on 28/9/2023.

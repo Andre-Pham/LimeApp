@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TabBarViewController: UITabBarController {
+class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
     // MARK: - Layout Properties
     
@@ -44,6 +44,7 @@ class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.delegate = self
         self.defaultTabBarHeight = self.tabBar.frame.size.height
         
         self.tabBarOptions.append(LimeTabBarOption(
@@ -113,20 +114,7 @@ class TabBarViewController: UITabBarController {
                 .constrainVertical()
                 .addSubview(label)
                 .setOnTap({
-                    // Very occasionally if you switch fast enough you can skip an update if you only update the selected item icon
-                    // To avoid this we just refresh all of them
-                    for itemButtonIndex in self.tabBarButtons.indices {
-                        guard itemButtonIndex != index else {
-                            continue
-                        }
-                        self.tabBarButtons[itemButtonIndex]
-                            .setIcon(to: self.itemIcons[itemButtonIndex])
-                            .setIconColor(to: LimeColors.textDark)
-                    }
-                    self.selectedIndex = index
-                    itemButton
-                        .setIcon(to: self.selectedItemIcons[index])
-                        .setIconColor(to: LimeColors.textDark)
+                    self.tabBarOptionSelected(index: index)
                 })
             
             label
@@ -149,6 +137,29 @@ class TabBarViewController: UITabBarController {
         } else {
             assertionFailure("Tab bar is defined without any options")
         }
+    }
+    
+    private func tabBarOptionSelected(index: Int) {
+        // Very occasionally if you switch fast enough you can skip an update if you only update the selected item icon
+        // To avoid this we just refresh all of them
+        for itemButtonIndex in self.tabBarButtons.indices {
+            guard itemButtonIndex != index else {
+                continue
+            }
+            self.tabBarButtons[itemButtonIndex]
+                .setIcon(to: self.itemIcons[itemButtonIndex])
+                .setIconColor(to: LimeColors.textDark)
+        }
+        self.selectedIndex = index
+        self.tabBarButtons[index]
+            .setIcon(to: self.selectedItemIcons[index])
+            .setIconColor(to: LimeColors.textDark)
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        // If the user presses just above the button, there is technically enough room to select the native tab bar button (changing the view controller) without touching/activating the LimeTabBarButton
+        // If this occurs, we still need to update our tab bar
+        self.tabBarOptionSelected(index: self.selectedIndex)
     }
     
     override func viewWillLayoutSubviews() {

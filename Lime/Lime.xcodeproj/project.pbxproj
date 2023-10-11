@@ -31,7 +31,6 @@
 		B60A39E72A7CA4A600499484 /* SceneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A39D02A7CA4A600499484 /* SceneController.swift */; };
 		B60A3A4B2A7CA50600499484 /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A1D2A7CA50600499484 /* Models.scnassets */; };
 		B60A3A4C2A7CA50600499484 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B60A3A1E2A7CA50600499484 /* Assets.xcassets */; };
-		B60A3A4D2A7CA50600499484 /* ASLDemoClassifier 2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A1F2A7CA50600499484 /* ASLDemoClassifier 2.mlmodel */; };
 		B60A3A552A7CA72C00499484 /* SceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A542A7CA72C00499484 /* SceneViewController.swift */; };
 		B60A3A572A7CD66D00499484 /* LimeChipButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A562A7CD66D00499484 /* LimeChipButton.swift */; };
 		B60A3A592A7CEECF00499484 /* LimeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60A3A582A7CEECF00499484 /* LimeControl.swift */; };
@@ -165,7 +164,6 @@
 		B60A39D02A7CA4A600499484 /* SceneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneController.swift; sourceTree = "<group>"; };
 		B60A3A1D2A7CA50600499484 /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
 		B60A3A1E2A7CA50600499484 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B60A3A1F2A7CA50600499484 /* ASLDemoClassifier 2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "ASLDemoClassifier 2.mlmodel"; sourceTree = "<group>"; };
 		B60A3A542A7CA72C00499484 /* SceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneViewController.swift; sourceTree = "<group>"; };
 		B60A3A562A7CD66D00499484 /* LimeChipButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeChipButton.swift; sourceTree = "<group>"; };
 		B60A3A582A7CEECF00499484 /* LimeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeControl.swift; sourceTree = "<group>"; };
@@ -617,7 +615,6 @@
 			children = (
 				B60A3A1D2A7CA50600499484 /* Models.scnassets */,
 				B60A3A1E2A7CA50600499484 /* Assets.xcassets */,
-				B60A3A1F2A7CA50600499484 /* ASLDemoClassifier 2.mlmodel */,
 				B60A3A202A7CA50600499484 /* Fonts */,
 			);
 			path = Assets;
@@ -887,7 +884,6 @@
 				B60A39D32A7CA4A600499484 /* Clonable.swift in Sources */,
 				B60A39E72A7CA4A600499484 /* SceneController.swift in Sources */,
 				B697BA112AA20DFB001AC55E /* HandModelSequence.swift in Sources */,
-				B60A3A4D2A7CA50600499484 /* ASLDemoClassifier 2.mlmodel in Sources */,
 				B60A3AB32A8C666F00499484 /* SettingsSession.swift in Sources */,
 				B60A39AE2A7CA49900499484 /* SCNNode.swift in Sources */,
 				B6B7F3042ABC60FE00F8CDEB /* CGPoint.swift in Sources */,

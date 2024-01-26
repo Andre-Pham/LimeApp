@@ -16,11 +16,33 @@ class SceneSession {
     public let sceneController = SceneController()
     private(set) var activePrompt: String = ""
     private(set) var sequence: HandModelSequence? = nil
-    private var fileDirectory: String {
+    private var animationModelFileDirectory: String {
         return SettingsSession.inst.settings.leftHanded ? "alphabet3" : "alphabet1"
     }
-    private var fileSuffix: String {
+    private var animationFileSuffix: String {
         return SettingsSession.inst.settings.leftHanded ? "_3" : "_1"
+    }
+    // TODO: This needs to be applied to the view controller (idle hands), and it needs to be refreshed when the settings change (use a subscriber)
+    private var handModel: HandModel {
+        // TODO: Implement settings, then implement below
+        // If settings -> Realistic hands:
+        let result = HandModel(subDir: "realistic", fileName: "realistic_hands_idle.dae", blendInDuration: 0.0)
+        result.editMaterial(childNode: "hands_realistic_LOD0") { material in
+            // TODO: Make these presets
+            material.diffuse.contents = UIImage(named: "Models.scnassets/realistic/textures/hands_base_color.png")!
+            material.metalness.contents = UIImage(named: "Models.scnassets/realistic/textures/hands_metalic.png")!
+            material.roughness.contents = UIImage(named: "Models.scnassets/realistic/textures/hands_roughness.png")!
+            material.normal.contents = UIImage(named: "Models.scnassets/realistic/textures/hands_normal.png")!
+            material.lightingModel = .physicallyBased
+        }
+        return result
+        // Else:
+    }
+    public var handModelProxy: HandModel {
+        // Make sure this has a unique name so it isn't replaced by the same model it's representing
+        let handModel = self.handModel
+        handModel.rename(to: "idle-proxy")
+        return handModel
     }
     
     private init() { }
@@ -63,6 +85,16 @@ class SceneSession {
         self.sceneController.setCamera(to: camera)
         self.resetCamera()
         
+        // TODO: Check settings condition
+        self.setupRealisticLights()
+        
+        self.sceneController.setCameraControl(allowed: true)
+        self.sceneController.setBackgroundColor(to: LimeColors.sceneFill)
+    }
+    
+    func setupSimpleLights() {
+        self.sceneController.clearLights()
+        
         let highlights = SceneLight(id: "highlights")
             .setType(to: .omni)
             .setColor(to: LimeColors.accent)
@@ -89,9 +121,37 @@ class SceneSession {
             .setColor(to: LimeColors.accent)
             .setIntensity(to: 200)
         self.sceneController.addLight(ambientLight)
+    }
+    
+    func setupRealisticLights() {
+        self.sceneController.clearLights()
         
-        self.sceneController.setCameraControl(allowed: true)
-        self.sceneController.setBackgroundColor(to: LimeColors.sceneFill)
+        let highlights = SceneLight(id: "highlights")
+            .setType(to: .omni)
+            .setColor(to: .white)
+            .setPosition(to: SCNVector3(x: 0, y: 10, z: 2))
+            .setIntensity(to: 100)
+        self.sceneController.addLight(highlights)
+        
+        let frontLight = SceneLight(id: "frontLight")
+            .setType(to: .directional)
+            .setColor(to: .white)
+            .setPosition(to: SCNVector3(x: 0, y: 8, z: 10))
+            .direct(to: SCNVector3())
+        self.sceneController.addLight(frontLight)
+        
+        let backLight = SceneLight(id: "backLight")
+            .setType(to: .directional)
+            .setColor(to: .white)
+            .setPosition(to: SCNVector3(x: 0, y: 8, z: -10))
+            .direct(to: SCNVector3())
+        self.sceneController.addLight(backLight)
+        
+        let ambientLight = SceneLight(id: "ambient")
+            .setType(to: .ambient)
+            .setColor(to: .white)
+            .setIntensity(to: 200)
+        self.sceneController.addLight(ambientLight)
     }
     
     func clearLetterSequence() {
@@ -119,13 +179,16 @@ class SceneSession {
             self.sequence = nil
             return true
         }
-        var handModels = [HandModel]()
-        let subDir = self.fileDirectory
-        let suffix = self.fileSuffix
+        var animationModels = [HandModel]()
+        let subDir = self.animationModelFileDirectory
+        let suffix = self.animationFileSuffix
         for char in prompt {
-            handModels.append(HandModel(subDir: subDir, fileName: "\(char)\(suffix).dae", blendInDuration: 0.0))
+            animationModels.append(HandModel(subDir: subDir, fileName: "\(char)\(suffix).dae", blendInDuration: 0.0))
         }
-        self.sequence = HandModelSequence(handModels: handModels)
+        self.sequence = HandModelSequence(
+            handModel: self.handModel,
+            animationModels: animationModels
+        )
         self.sequence?.mount(to: self.sceneController)
         return true
     }
@@ -141,13 +204,16 @@ class SceneSession {
             self.sequence = nil
             return true
         }
-        var handModels = [HandModel]()
-        let subDir = self.fileDirectory
-        let suffix = self.fileSuffix
+        var animationModels = [HandModel]()
+        let subDir = self.animationModelFileDirectory
+        let suffix = self.animationFileSuffix
         for char in prompt {
-            handModels.append(HandModel(subDir: subDir, fileName: "\(char)\(suffix).dae", blendInDuration: 0.55))
+            animationModels.append(HandModel(subDir: subDir, fileName: "\(char)\(suffix).dae", blendInDuration: 0.55))
         }
-        self.sequence = HandModelSequence(handModels: handModels)
+        self.sequence = HandModelSequence(
+            handModel: self.handModel,
+            animationModels: animationModels
+        )
         self.sequence?.mount(to: self.sceneController)
         return true
     }

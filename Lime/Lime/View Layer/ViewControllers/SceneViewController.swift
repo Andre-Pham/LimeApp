@@ -41,7 +41,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
     private let letterDisplay = LetterDisplayView()
     
     /// The idle model - used in place of actual animated model as a visual placeholder during scrubbing
-    private let idleModel = HandModel(subDir: "alphabet1", fileName: "Idle_1.dae", blendInDuration: 0.0)
+    private let idleModel = HandModel(subDir: "alphabet1", fileName: "Idle_1.dae", name: "idle-proxy", blendInDuration: 0.0)
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)

@@ -31,18 +31,10 @@ class HandModel: SceneModel {
     public let defaultBlendInDuration: Double
     /// This class' node's animated child node
     private var animatedNode: SCNNode {
-        // TODO: Remove
-        if let test = self.node.childNode(withName: "Armature-001", recursively: true) {
-            return test
-        }
         return self.node.childNode(withName: Self.ANIMATED_NODE_NAME, recursively: true)!
     }
     /// This class' node's animated child node's animation player
     public var animationPlayer: SCNAnimationPlayer {
-        // TODO: Remove
-        if let test = self.animatedNode.animationPlayer(forKey: "action_container-Armature_001") {
-            return test
-        }
         return self.animatedNode.animationPlayer(forKey: Self.ANIMATED_KEY)!
     }
     /// The total duration of the animation

@@ -26,8 +26,8 @@ class SceneSession {
     private var handModel: HandModel {
         // TODO: Implement settings, then implement below
         // If settings -> Realistic hands:
-        let result = HandModel(subDir: "realistic", fileName: "realistic_hands_idle.dae", blendInDuration: 0.0)
-        result.editMaterial(childNode: "hands_realistic_LOD0") { material in
+        let result = HandModel(subDir: "realistic", fileName: "idle_realistic_hands.dae", blendInDuration: 0.0)
+        result.editMaterial(childNode: .hands) { material in
             // TODO: Make these presets
             material.diffuse.contents = UIImage(named: "Models.scnassets/realistic/textures/hands_base_color.png")!
             material.metalness.contents = UIImage(named: "Models.scnassets/realistic/textures/hands_metalic.png")!

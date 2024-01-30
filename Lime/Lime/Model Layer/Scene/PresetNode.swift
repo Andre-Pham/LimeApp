@@ -14,17 +14,10 @@ enum PresetNode {
     /// Scene camera
     case camera
     /// Animated hands model
+    /// - Valid geometry
+    /// - Valid material
     /// - Valid bounding box
-    /// - Invalid position
     case hands
-    /// Animated right hand model
-    /// - Invalid bounding box
-    /// - Static position
-    case rightHand
-    /// Animated left hand model
-    /// - Invalid bounding box
-    /// - Static position
-    case leftHand
     
     var name: String {
         switch self {
@@ -34,10 +27,6 @@ enum PresetNode {
             return SceneCamera.NAME
         case .hands:
             return "Hands2"
-        case .rightHand:
-            return "hand-R"
-        case .leftHand:
-            return "hand-L"
         }
     }
     

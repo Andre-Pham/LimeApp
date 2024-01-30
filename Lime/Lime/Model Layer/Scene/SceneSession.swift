@@ -136,6 +136,8 @@ class SceneSession {
         let frontLight = SceneLight(id: "frontLight")
             .setType(to: .directional)
             .setColor(to: .white)
+            .setIntensity(to: 800)
+            .setTemperature(to: 6300)
             .setPosition(to: SCNVector3(x: 0, y: 8, z: 10))
             .direct(to: SCNVector3())
         self.sceneController.addLight(frontLight)
@@ -143,6 +145,8 @@ class SceneSession {
         let backLight = SceneLight(id: "backLight")
             .setType(to: .directional)
             .setColor(to: .white)
+            .setIntensity(to: 800)
+            .setTemperature(to: 6200)
             .setPosition(to: SCNVector3(x: 0, y: 8, z: -10))
             .direct(to: SCNVector3())
         self.sceneController.addLight(backLight)
@@ -150,7 +154,8 @@ class SceneSession {
         let ambientLight = SceneLight(id: "ambient")
             .setType(to: .ambient)
             .setColor(to: .white)
-            .setIntensity(to: 200)
+            .setIntensity(to: 600)
+            .setTemperature(to: 6300)
         self.sceneController.addLight(ambientLight)
     }
     

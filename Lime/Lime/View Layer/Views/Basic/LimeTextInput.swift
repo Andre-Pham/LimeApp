@@ -29,9 +29,9 @@ class LimeTextInput: LimeUIView {
         self.setBackgroundColor(to: LimeColors.secondaryButtonFill)
         self.setCornerRadius(to: LimeDimensions.foregroundCornerRadius)
         self.setHeightConstraint(to: LimeDimensions.textInputHeight)
-        self.textInput.addTarget(self, action: #selector(handleSubmit), for: .editingDidEndOnExit)
-        NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidBeginEditing), name: UITextField.textDidBeginEditingNotification, object: self.textInput)
-        NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidEndEditing), name: UITextField.textDidEndEditingNotification, object: self.textInput)
+        self.textInput.addTarget(self, action: #selector(self.handleSubmit), for: .editingDidEndOnExit)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.textFieldDidBeginEditing), name: UITextField.textDidBeginEditingNotification, object: self.textInput)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.textFieldDidEndEditing), name: UITextField.textDidEndEditingNotification, object: self.textInput)
     }
     
     deinit {
@@ -117,11 +117,11 @@ fileprivate class PaddedTextField: UITextField {
     private let padding = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
 
     override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: padding)
+        return bounds.inset(by: self.padding)
     }
 
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: padding)
+        return bounds.inset(by: self.padding)
     }
     
 }

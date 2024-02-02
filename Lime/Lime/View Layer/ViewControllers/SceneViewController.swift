@@ -41,7 +41,7 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
     private let letterDisplay = LetterDisplayView()
     
     /// The idle model - used in place of actual animated model as a visual placeholder during scrubbing
-    private let idleModel = HandModel(subDir: "alphabet1", fileName: "Idle_1.dae", name: "idle-proxy", blendInDuration: 0.0)
+    private var idleModel = SceneSession.inst.handModelProxy
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -400,13 +400,34 @@ class SceneViewController: UIViewController, SCNSceneRendererDelegate, OnSetting
         if old.hidePrompt != new.hidePrompt {
             self.letterDisplay.setHidden(to: new.hidePrompt)
         }
-        if old.smoothTransitions != new.smoothTransitions || old.leftHanded != new.leftHanded {
+        if (old.smoothTransitions != new.smoothTransitions
+            || old.leftHanded != new.leftHanded
+            || old.realisticHandModel != new.realisticHandModel
+        ) {
             self.pauseScene()
             if !SceneSession.inst.activePrompt.isEmpty {
                 SceneSession.inst.clearLetterSequence()
                 self.promptInput.setText(to: "")
                 self.letterDisplay.setPrompt(to: SceneSession.inst.activePrompt)
                 self.resetToolbar()
+            }
+            if old.realisticHandModel != new.realisticHandModel {
+                DispatchQueue.global(qos: .userInitiated).async {
+                    // Reset idle model to match the new model (simple/realistic)
+                    // Remove the model in a background thread - it's intensive and can bottleneck the main thread (UI)
+                    self.idleModel.remove()
+                    self.idleModel = SceneSession.inst.handModelProxy
+                    DispatchQueue.main.async {
+                        SceneSession.inst.sceneController.addModel(self.idleModel)
+                        self.idleModel.setOpacity(to: 0.0)
+                    }
+                }
+                // Re-setup the lighting
+                if new.realisticHandModel {
+                    SceneSession.inst.setupRealisticLights()
+                } else {
+                    SceneSession.inst.setupSimpleLights()
+                }
             }
         }
     }

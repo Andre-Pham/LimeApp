@@ -22,20 +22,20 @@ class SceneSession {
     private var animationFileSuffix: String {
         return SettingsSession.inst.settings.leftHanded ? "_3" : "_1"
     }
-    // TODO: This needs to be applied to the view controller (idle hands), and it needs to be refreshed when the settings change (use a subscriber)
     private var handModel: HandModel {
-        // TODO: Implement settings, then implement below
-        // If settings -> Realistic hands:
-        let result = HandModel(subDir: "realistic", fileName: "idle_realistic_hands.dae", blendInDuration: 0.0)
-        result.editMaterial(childNode: .hands) { material in
-            material.diffuse.contents = LimeTextures.realisticColor
-            material.metalness.contents = LimeTextures.realisticMetalic
-            material.roughness.contents = LimeTextures.realisticRoughness
-            material.normal.contents = LimeTextures.realisticNormal
-            material.lightingModel = .physicallyBased
+        if SettingsSession.inst.settings.realisticHandModel {
+            let result = HandModel(subDir: "realistic", fileName: "idle_realistic_hands.dae", blendInDuration: 0.0)
+            result.editMaterial(childNode: .hands) { material in
+                material.diffuse.contents = LimeTextures.realisticColor
+                material.metalness.contents = LimeTextures.realisticMetalic
+                material.roughness.contents = LimeTextures.realisticRoughness
+                material.normal.contents = LimeTextures.realisticNormal
+                material.lightingModel = .physicallyBased
+            }
+            return result
+        } else {
+            return HandModel(subDir: "alphabet1", fileName: "Idle_1.dae", blendInDuration: 0.0)
         }
-        return result
-        // Else:
     }
     public var handModelProxy: HandModel {
         // Make sure this has a unique name so it isn't replaced by the same model it's representing
@@ -84,8 +84,11 @@ class SceneSession {
         self.sceneController.setCamera(to: camera)
         self.resetCamera()
         
-        // TODO: Check settings condition
-        self.setupRealisticLights()
+        if SettingsSession.inst.settings.realisticHandModel {
+            self.setupRealisticLights()
+        } else {
+            self.setupSimpleLights()
+        }
         
         self.sceneController.setCameraControl(allowed: true)
         self.sceneController.setBackgroundColor(to: LimeColors.sceneFill)

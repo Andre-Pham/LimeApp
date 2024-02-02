@@ -23,6 +23,7 @@
 "label.chiralitySetting" = "Use left-handed Auslan signs";
 "label.smoothTransitionsSetting" = "Hands transition smoothly between signs";
 "label.hidePromptSetting" = "Hide the letters being performed (above model)";
+"label.realisticHandsSetting" = "Use realistic hand models";
 "label.viewFront" = "Front";
 "label.viewBack" = "Back";
 "label.perform" = "Perform";
@@ -33,6 +34,7 @@
 "setting.chirality" = "Left Handed Signs";
 "setting.smoothTransitions" = "Smooth Transitions";
 "setting.hidePrompt" = "Hide Prompt";
+"setting.realisticHands" = "Realistic Hands";
 
 // MARK: - Buttons
 

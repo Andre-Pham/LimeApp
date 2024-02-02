@@ -101,6 +101,20 @@ extension LimeUIViewProtocol {
         return self
     }
     
+    @discardableResult
+    func layoutIfNeeded() -> Self {
+        self.view.layoutIfNeeded()
+        return self
+    }
+    
+    @discardableResult
+    func layoutIfNeededAnimated(withDuration: Double = 0.3) -> Self {
+        UIView.animate(withDuration: withDuration, animations: {
+            self.view.layoutIfNeeded()
+        })
+        return self
+    }
+    
     // MARK: - Constraints
     
     @discardableResult
@@ -154,67 +168,87 @@ extension LimeUIViewProtocol {
     }
     
     @discardableResult
-    func constrainLeft(to other: LimeUIView? = nil, padding: CGFloat = 0.0, respectSafeArea: Bool = true) -> Self {
+    func constrainLeft(to other: LimeUIView? = nil, padding: CGFloat = 0.0, respectSafeArea: Bool = true, toContentLayoutGuide: Bool = false) -> Self {
         assert(!self.view.translatesAutoresizingMaskIntoConstraints, "Constraints requirement failed")
         guard let target = other?.view ?? self.view.superview else {
             fatalError("No constraint target found")
         }
-        let anchor = respectSafeArea ? target.safeAreaLayoutGuide.leadingAnchor : target.leadingAnchor
+        let anchor: NSLayoutXAxisAnchor
+        if toContentLayoutGuide, let scrollView = target as? UIScrollView {
+            anchor = scrollView.contentLayoutGuide.leadingAnchor
+        } else {
+            anchor = respectSafeArea ? target.safeAreaLayoutGuide.leadingAnchor : target.leadingAnchor
+        }
         self.view.leadingAnchor.constraint(equalTo: anchor, constant: padding).isActive = true
         return self
     }
     
     @discardableResult
-    func constrainRight(to other: LimeUIView? = nil, padding: CGFloat = 0.0, respectSafeArea: Bool = true) -> Self {
+    func constrainRight(to other: LimeUIView? = nil, padding: CGFloat = 0.0, respectSafeArea: Bool = true, toContentLayoutGuide: Bool = false) -> Self {
         assert(!self.view.translatesAutoresizingMaskIntoConstraints, "Constraints requirement failed")
         guard let target = other?.view ?? self.view.superview else {
             fatalError("No constraint target found")
         }
-        let anchor = respectSafeArea ? target.safeAreaLayoutGuide.trailingAnchor : target.trailingAnchor
+        let anchor: NSLayoutXAxisAnchor
+        if toContentLayoutGuide, let scrollView = target as? UIScrollView {
+            anchor = scrollView.contentLayoutGuide.trailingAnchor
+        } else {
+            anchor = respectSafeArea ? target.safeAreaLayoutGuide.trailingAnchor : target.trailingAnchor
+        }
         self.view.trailingAnchor.constraint(equalTo: anchor, constant: -padding).isActive = true
         return self
     }
     
     @discardableResult
-    func constrainTop(to other: LimeUIView? = nil, padding: CGFloat = 0.0, respectSafeArea: Bool = true) -> Self {
+    func constrainTop(to other: LimeUIView? = nil, padding: CGFloat = 0.0, respectSafeArea: Bool = true, toContentLayoutGuide: Bool = false) -> Self {
         assert(!self.view.translatesAutoresizingMaskIntoConstraints, "Constraints requirement failed")
         guard let target = other?.view ?? self.view.superview else {
             fatalError("No constraint target found")
         }
-        let anchor = respectSafeArea ? target.safeAreaLayoutGuide.topAnchor : target.topAnchor
+        let anchor: NSLayoutYAxisAnchor
+        if toContentLayoutGuide, let scrollView = target as? UIScrollView {
+            anchor = scrollView.contentLayoutGuide.topAnchor
+        } else {
+            anchor = respectSafeArea ? target.safeAreaLayoutGuide.topAnchor : target.topAnchor
+        }
         self.view.topAnchor.constraint(equalTo: anchor, constant: padding).isActive = true
         return self
     }
     
     @discardableResult
-    func constrainBottom(to other: LimeUIView? = nil, padding: CGFloat = 0.0, respectSafeArea: Bool = true) -> Self {
+    func constrainBottom(to other: LimeUIView? = nil, padding: CGFloat = 0.0, respectSafeArea: Bool = true, toContentLayoutGuide: Bool = false) -> Self {
         assert(!self.view.translatesAutoresizingMaskIntoConstraints, "Constraints requirement failed")
         guard let target = other?.view ?? self.view.superview else {
             fatalError("No constraint target found")
         }
-        let anchor = respectSafeArea ? target.safeAreaLayoutGuide.bottomAnchor : target.bottomAnchor
+        let anchor: NSLayoutYAxisAnchor
+        if toContentLayoutGuide, let scrollView = target as? UIScrollView {
+            anchor = scrollView.contentLayoutGuide.bottomAnchor
+        } else {
+            anchor = respectSafeArea ? target.safeAreaLayoutGuide.bottomAnchor : target.bottomAnchor
+        }
         self.view.bottomAnchor.constraint(equalTo: anchor, constant: -padding).isActive = true
         return self
     }
     
     @discardableResult
-    func constrainHorizontal(to other: LimeUIView? = nil, padding: CGFloat = 0.0, respectSafeArea: Bool = true) -> Self {
-        self.constrainLeft(to: other, padding: padding)
-        self.constrainRight(to: other, padding: padding)
+    func constrainHorizontal(to other: LimeUIView? = nil, padding: CGFloat = 0.0, respectSafeArea: Bool = true, toContentLayoutGuide: Bool = false) -> Self {
+        self.constrainLeft(to: other, padding: padding, toContentLayoutGuide: toContentLayoutGuide)
+        self.constrainRight(to: other, padding: padding, toContentLayoutGuide: toContentLayoutGuide)
         return self
     }
     
     @discardableResult
-    func constrainVertical(to other: LimeUIView? = nil, padding: CGFloat = 0.0, respectSafeArea: Bool = true) -> Self {
-        self.constrainTop(to: other, padding: padding, respectSafeArea: respectSafeArea)
-        self.constrainBottom(to: other, padding: padding, respectSafeArea: respectSafeArea)
+    func constrainVertical(to other: LimeUIView? = nil, padding: CGFloat = 0.0, respectSafeArea: Bool = true, toContentLayoutGuide: Bool = false) -> Self {
+        self.constrainTop(to: other, padding: padding, respectSafeArea: respectSafeArea, toContentLayoutGuide: toContentLayoutGuide)
+        self.constrainBottom(to: other, padding: padding, respectSafeArea: respectSafeArea, toContentLayoutGuide: toContentLayoutGuide)
         return self
     }
     
     @discardableResult
-    func constrainAllSides(to other: LimeUIView? = nil, padding: CGFloat = 0.0, respectSafeArea: Bool = true) -> Self {
-        self.constrainHorizontal(to: other, padding: padding, respectSafeArea: respectSafeArea)
-        self.constrainVertical(to: other, padding: padding, respectSafeArea: respectSafeArea)
+    func constrainAllSides(to other: LimeUIView? = nil, padding: CGFloat = 0.0, respectSafeArea: Bool = true, toContentLayoutGuide: Bool = false) -> Self {
+        self.constrainHorizontal(to: other, padding: padding, respectSafeArea: respectSafeArea, toContentLayoutGuide: toContentLayoutGuide)
+        self.constrainVertical(to: other, padding: padding, respectSafeArea: respectSafeArea, toContentLayoutGuide: toContentLayoutGuide)
         return self
     }
     
@@ -450,13 +484,15 @@ extension LimeUIViewProtocol {
     }
     
     @discardableResult
-    func animateEntrance(duration: Double = 0.2) -> Self {
+    func animateEntrance(duration: Double = 0.2, onCompletion: @escaping () -> Void = {}) -> Self {
         self.setOpacity(to: 0.0)
         self.view.transform = CGAffineTransform(translationX: 0, y: -10)
         UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 2, options: [.curveEaseOut], animations: {
             self.setOpacity(to: 1.0)
             self.view.transform = CGAffineTransform(translationX: 0, y: 0)
-        })
+        }) { _ in
+            onCompletion()
+        }
         return self
     }
     

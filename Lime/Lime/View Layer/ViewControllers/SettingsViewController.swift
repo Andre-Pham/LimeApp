@@ -11,6 +11,7 @@ import UIKit
 class SettingsViewController: UIViewController {
     
     private var root: LimeView { return LimeView(self.view) }
+    private let scroll = LimeScrollView()
     private let stack = LimeVStack()
     private let mainTitle = LimeText()
     private let chiralitySetting = SettingsRowView<Bool>()
@@ -30,10 +31,16 @@ class SettingsViewController: UIViewController {
     
         self.root
             .setBackgroundColor(to: LimeColors.backgroundFill)
-            .addSubview(self.stack)
+            .addSubview(self.scroll)
+        
+        self.scroll
+            .constrainHorizontal()
+            .constrainVertical()
+            .setVerticalBounce(to: true)
+            .addView(self.stack)
         
         self.stack
-            .constrainVertical(padding: 24)
+            .constrainVertical(padding: 24, toContentLayoutGuide: true)
             .constrainHorizontal(padding: 20)
             .setSpacing(to: 24)
             .addView(self.mainTitle)
@@ -192,12 +199,15 @@ class SettingsViewController: UIViewController {
     private func addActionButtons() {
         self.stack.insertView(self.buttonStack, at: self.stack.viewCount - 1)
         self.buttonStack.constrainHorizontal()
-        self.buttonStack.animateEntrance()
+        self.buttonStack.animateEntrance(onCompletion: {
+            self.scroll.scrollToBottomAnimated()
+        })
     }
     
     private func removeActionButtons() {
         self.buttonStack.animateExit() {
             self.buttonStack.removeFromSuperView()
+            self.scroll.layoutIfNeededAnimated()
         }
     }
     

@@ -69,6 +69,7 @@
 		B652D6892AC31D1B0016853D /* QuizLetterB.swift in Sources */ = {isa = PBXBuildFile; fileRef = B652D6882AC31D1B0016853D /* QuizLetterB.swift */; };
 		B652D68C2AC484A60016853D /* LimeTabBarOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = B652D68B2AC484A60016853D /* LimeTabBarOption.swift */; };
 		B652D68E2AC484D80016853D /* LimeTabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B652D68D2AC484D80016853D /* LimeTabBarButton.swift */; };
+		B65B7E052B6CB09E00C40E6E /* LimeScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65B7E042B6CB09E00C40E6E /* LimeScrollView.swift */; };
 		B67F06722A9CD97500591789 /* PlusJakartaSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06702A9CD97500591789 /* PlusJakartaSans-ExtraBold.ttf */; };
 		B67F06732A9CD97500591789 /* PlusJakartaSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06712A9CD97500591789 /* PlusJakartaSans-ExtraBoldItalic.ttf */; };
 		B67F067A2A9CDA9E00591789 /* PlusJakartaSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B67F06742A9CDA9E00591789 /* PlusJakartaSans-SemiBoldItalic.ttf */; };
@@ -202,6 +203,7 @@
 		B652D6882AC31D1B0016853D /* QuizLetterB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizLetterB.swift; sourceTree = "<group>"; };
 		B652D68B2AC484A60016853D /* LimeTabBarOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeTabBarOption.swift; sourceTree = "<group>"; };
 		B652D68D2AC484D80016853D /* LimeTabBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeTabBarButton.swift; sourceTree = "<group>"; };
+		B65B7E042B6CB09E00C40E6E /* LimeScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimeScrollView.swift; sourceTree = "<group>"; };
 		B67F06702A9CD97500591789 /* PlusJakartaSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-ExtraBold.ttf"; sourceTree = "<group>"; };
 		B67F06712A9CD97500591789 /* PlusJakartaSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		B67F06742A9CDA9E00591789 /* PlusJakartaSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
@@ -491,6 +493,7 @@
 			children = (
 				B6DC10F02A7C87E300C10100 /* LimeHStack.swift */,
 				B6DC10EA2A7C87E300C10100 /* LimeVStack.swift */,
+				B65B7E042B6CB09E00C40E6E /* LimeScrollView.swift */,
 			);
 			path = Containers;
 			sourceTree = "<group>";
@@ -919,6 +922,7 @@
 				B60A3A602A7D106600499484 /* LimeChipToggle.swift in Sources */,
 				B60A39D12A7CA4A600499484 /* CaptureSession.swift in Sources */,
 				B60A39D72A7CA4A600499484 /* JointPosition.swift in Sources */,
+				B65B7E052B6CB09E00C40E6E /* LimeScrollView.swift in Sources */,
 				B6B7F3152ABEFC2300F8CDEB /* QuizLetterC.swift in Sources */,
 				B6B7F3022ABC5D3D00F8CDEB /* HandDetection.swift in Sources */,
 				B60A3AAB2A86428400499484 /* SettingsRowView.swift in Sources */,

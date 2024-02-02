@@ -190,7 +190,8 @@ class SceneSession {
         let subDir = self.animationModelFileDirectory
         let suffix = self.animationFileSuffix
         for char in prompt {
-            animationModels.append(HandModel(subDir: subDir, fileName: "\(char)\(suffix).dae", blendInDuration: 0.0))
+            let fileName = char == " " ? "Idle\(suffix).dae" : "\(char)\(suffix).dae"
+            animationModels.append(HandModel(subDir: subDir, fileName: fileName, blendInDuration: 0.0))
         }
         self.sequence = HandModelSequence(
             handModel: self.handModel,
@@ -215,7 +216,8 @@ class SceneSession {
         let subDir = self.animationModelFileDirectory
         let suffix = self.animationFileSuffix
         for char in prompt {
-            animationModels.append(HandModel(subDir: subDir, fileName: "\(char)\(suffix).dae", blendInDuration: 0.55))
+            let fileName = char == " " ? "Idle\(suffix).dae" : "\(char)\(suffix).dae"
+            animationModels.append(HandModel(subDir: subDir, fileName: fileName, blendInDuration: 0.55))
         }
         self.sequence = HandModelSequence(
             handModel: self.handModel,
@@ -226,8 +228,13 @@ class SceneSession {
     }
     
     private func cleanPrompt(prompt: String) -> String {
-        let cleaned = prompt.lowercased().filter({ $0.isLetter })
-        return String(cleaned)
+        // Lowercase and filter out non-letter characters except spaces
+        let cleaned = prompt.lowercased().filter({ $0.isLetter || $0 == " " })
+        // Trim spaces from the start and end
+        let trimmed = cleaned.trimmingCharacters(in: .whitespaces)
+        // Replace multiple spaces with a single space
+        let singleSpaced = trimmed.replacingOccurrences(of: " +", with: " ", options: .regularExpression, range: nil)
+        return singleSpaced
     }
     
 }

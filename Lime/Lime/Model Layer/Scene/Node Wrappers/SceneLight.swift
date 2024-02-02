@@ -60,5 +60,16 @@ class SceneLight {
         self.light.intensity = lumens
         return self
     }
+    
+    /// Sets the temperature of the light (in Kelvin).
+    /// The default value of 6500 K represents a pure white light (leaving the color unmodulated); lower values (down to a minimum of zero) add a “warmer” yellow or orange effect to the light source, and higher values (up to a maximum of 40000) add a “cooler” blue effect.
+    /// - Parameters:
+    ///   - kelvin: The temperature (Kelvin)
+    /// - Returns: A reference to Self
+    @discardableResult
+    func setTemperature(to kelvin: Double = 6500.0) -> Self {
+        self.light.temperature = kelvin
+        return self
+    }
 
 }

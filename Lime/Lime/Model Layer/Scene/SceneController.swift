@@ -307,8 +307,16 @@ class SceneController {
     
     func clearGeometry() {
         for geometry in self.sceneGeometry {
-            self.removeNode(named: geometry.name)
+            geometry.remove()
         }
+        self.sceneGeometry.removeAll()
+    }
+    
+    func clearLights() {
+        for light in self.sceneLights {
+            light.remove()
+        }
+        self.sceneLights.removeAll()
     }
     
     // MARK: - Debugging

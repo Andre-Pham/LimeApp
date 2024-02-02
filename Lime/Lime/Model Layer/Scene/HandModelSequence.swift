@@ -23,8 +23,8 @@ class HandModelSequence {
     
     // MARK: - Animation Properties
     
-    /// All hand models provided, which hold the animation players (ordered)
-    private let handModels: [HandModel]
+    /// All animated hand models provided, which hold the animation players (ordered)
+    private let animationModels: [HandModel]
     /// The progress through the entire sequence (seconds)
     private var totalProgress = 0.0
     /// The timer used to measure time between Timer intervals
@@ -51,13 +51,13 @@ class HandModelSequence {
     }
     /// All animation players from hand models (ordered)
     private var animationPlayers: [SCNAnimationPlayer] {
-        return self.handModels.map({ $0.animationPlayer })
+        return self.animationModels.map({ $0.animationPlayer })
     }
     /// The entire sequence's duration (seconds)
     private var totalDuration: Double {
-        return self.handModels.dropLast().reduce(0.0) {
+        return self.animationModels.dropLast().reduce(0.0) {
             $0 + $1.animationDurationBlended
-        } + (self.handModels.last?.animationDuration ?? 0.0)
+        } + (self.animationModels.last?.animationDuration ?? 0.0)
     }
     /// The speed multiplier on every model's animation
     public var animationSpeed: Double {
@@ -68,11 +68,15 @@ class HandModelSequence {
         return self.totalProgress/self.totalDuration
     }
     
-    init(handModels: [HandModel]) {
-        self.handModels = handModels
+    /// Constructor.
+    /// - Parameters:
+    ///   - handModel: The hand model to be placed in the scene
+    ///   - animationModels: The models which hold the animations to be applied to the hand model
+    init(handModel: HandModel, animationModels: [HandModel]) {
+        self.handModel = handModel
+        self.animationModels = animationModels
         
         // Setup the hand model / node
-        self.handModel = self.handModels.first!
         self.node.isPaused = true
         self.node.removeAllAnimations()
         for (index, animationPlayer) in self.animationPlayers.enumerated() {
@@ -190,6 +194,7 @@ class HandModelSequence {
             $0.stop()
         })
         self.totalProgress = progress
+        // TODO: What's going on here?
         if isGreaterOrEqual(progress, 1.0) {
             // The hand model is at its non-animated default state because we've reached the end
             // Hide it, and we'll reveal it again when we play
@@ -201,9 +206,18 @@ class HandModelSequence {
     private func animationStartEndTimes(animationIndex: Int) -> (Double, Double) {
         var priorAnimationDurations = 0.0
         for index in 0..<animationIndex {
-            priorAnimationDurations += self.handModels[index].animationDurationBlended
+            priorAnimationDurations += self.animationModels[index].animationDurationBlended
         }
-        return (priorAnimationDurations, priorAnimationDurations + (animationIndex == self.handModels.endIndex - 1 ? self.handModels[animationIndex].animationDuration : self.handModels[animationIndex].animationDurationBlended))
+        return (
+            priorAnimationDurations,
+            priorAnimationDurations + (
+                animationIndex == self.animationModels.endIndex - 1 
+                    ?
+                self.animationModels[animationIndex].animationDuration 
+                    :
+                self.animationModels[animationIndex].animationDurationBlended
+            )
+        )
     }
     
     private func animationShouldPlay(animationIndex: Int, ignorePause: Bool = false) -> Bool {
@@ -227,7 +241,7 @@ class HandModelSequence {
     private func getHandModelThatShouldPlay(ignorePause: Bool = false) -> HandModel? {
         for animationPlayerIndex in self.animationPlayers.indices {
             if self.animationShouldPlay(animationIndex: animationPlayerIndex, ignorePause: ignorePause) {
-                return self.handModels[animationPlayerIndex]
+                return self.animationModels[animationPlayerIndex]
             }
         }
         return nil
@@ -258,7 +272,7 @@ class HandModelSequence {
     /// - Parameters:
     ///   - isPaused: True if the sequence should be paused
     func setSequencePauseAuto(to isPaused: Bool) {
-        guard !self.handModels.isEmpty else {
+        guard !self.animationModels.isEmpty else {
             return
         }
         let (_, firstTransitionTime) = self.animationStartEndTimes(animationIndex: 0)
@@ -283,9 +297,9 @@ class HandModelSequence {
     private func transitionStartEndTimes(animationIndex: Int) -> (Double, Double) {
         var priorAnimationDurations = 0.0
         for index in 0..<animationIndex {
-            priorAnimationDurations += self.handModels[index].animationDurationBlended
+            priorAnimationDurations += self.animationModels[index].animationDurationBlended
         }
-        return (priorAnimationDurations, priorAnimationDurations + self.handModels[animationIndex].defaultBlendInDuration)
+        return (priorAnimationDurations, priorAnimationDurations + self.animationModels[animationIndex].defaultBlendInDuration)
     }
     
 }

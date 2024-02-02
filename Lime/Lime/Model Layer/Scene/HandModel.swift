@@ -67,7 +67,7 @@ class HandModel: SceneModel {
                 self.node.addChildNode(childNode)
             }
         } else {
-            assertionFailure("File '\(fileName)' could not be loaded from \(dir)")
+            assertionFailure("File '\(fileName)' could not be loaded from \(directory)")
         }
         self.defaultBlendInDuration = blendInDuration
         self.node.name = (name == nil ? "\(self.namePrefix)-\(fileName)" : "\(self.namePrefix)-\(name!)")

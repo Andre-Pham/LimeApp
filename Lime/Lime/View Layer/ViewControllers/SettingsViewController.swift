@@ -11,11 +11,13 @@ import UIKit
 class SettingsViewController: UIViewController {
     
     private var root: LimeView { return LimeView(self.view) }
+    private let scroll = LimeScrollView()
     private let stack = LimeVStack()
     private let mainTitle = LimeText()
     private let chiralitySetting = SettingsRowView<Bool>()
-    private let smoothTransitions = SettingsRowView<Bool>()
+    private let smoothTransitionsSetting = SettingsRowView<Bool>()
     private let hidePromptSetting = SettingsRowView<Bool>()
+    private let realisticHandsSetting = SettingsRowView<Bool>()
     private let buttonStack = LimeHStack()
     private let applyButton = LimeButton()
     private let cancelButton = LimeButton()
@@ -29,16 +31,23 @@ class SettingsViewController: UIViewController {
     
         self.root
             .setBackgroundColor(to: LimeColors.backgroundFill)
-            .addSubview(self.stack)
+            .addSubview(self.scroll)
+        
+        self.scroll
+            .constrainHorizontal()
+            .constrainVertical()
+            .setVerticalBounce(to: true)
+            .addView(self.stack)
         
         self.stack
-            .constrainVertical(padding: 24)
+            .constrainVertical(padding: 24, toContentLayoutGuide: true)
             .constrainHorizontal(padding: 20)
             .setSpacing(to: 24)
             .addView(self.mainTitle)
             .addView(self.chiralitySetting)
-            .addView(self.smoothTransitions)
+            .addView(self.smoothTransitionsSetting)
             .addView(self.hidePromptSetting)
+            .addView(self.realisticHandsSetting)
             .addGap(size: 8)
             .addSpacer()
         
@@ -70,19 +79,19 @@ class SettingsViewController: UIViewController {
                 }
             })
         
-        self.smoothTransitions
+        self.smoothTransitionsSetting
             .constrainHorizontal()
             .setText(label: Strings("setting.smoothTransitions").local, subLabel: Strings("label.smoothTransitionsSetting").local)
-        self.smoothTransitions.toggle
+        self.smoothTransitionsSetting.toggle
             .addState(value: false, icon: "square.stack.3d.down.right")
             .addState(value: true, icon: "square.stack.3d.down.right.fill")
             .setOnChange({ isToggled in
                 if isToggled {
-                    self.smoothTransitions.toggle
+                    self.smoothTransitionsSetting.toggle
                         .setBackgroundColor(to: LimeColors.primaryButtonFill)
                         .setForegroundColor(to: LimeColors.textPrimaryButton)
                 } else {
-                    self.smoothTransitions.toggle
+                    self.smoothTransitionsSetting.toggle
                         .setBackgroundColor(to: LimeColors.secondaryButtonFill)
                         .setForegroundColor(to: LimeColors.textSecondaryButton)
                 }
@@ -110,6 +119,28 @@ class SettingsViewController: UIViewController {
                 }
                 if !self.resetActive {
                     SettingsSession.inst.settings.setHidePromptSetting(to: isToggled)
+                    self.updateActionButtons()
+                }
+            })
+        
+        self.realisticHandsSetting
+            .constrainHorizontal()
+            .setText(label: Strings("setting.realisticHands").local, subLabel: Strings("label.realisticHandsSetting").local)
+        self.realisticHandsSetting.toggle
+            .addState(value: false, icon: "sparkles")
+            .addState(value: true, icon: "sparkles")
+            .setOnChange({ isToggled in
+                if isToggled {
+                    self.realisticHandsSetting.toggle
+                        .setBackgroundColor(to: LimeColors.primaryButtonFill)
+                        .setForegroundColor(to: LimeColors.textPrimaryButton)
+                } else {
+                    self.realisticHandsSetting.toggle
+                        .setBackgroundColor(to: LimeColors.secondaryButtonFill)
+                        .setForegroundColor(to: LimeColors.textSecondaryButton)
+                }
+                if !self.resetActive {
+                    SettingsSession.inst.settings.setUseRealisticHandModelSetting(to: isToggled)
                     self.updateActionButtons()
                 }
             })
@@ -152,8 +183,9 @@ class SettingsViewController: UIViewController {
     
     private func matchTogglesToSettings() {
         self.chiralitySetting.toggle.setState(state: SettingsSession.inst.settings.leftHanded ? 1 : 0, trigger: true)
-        self.smoothTransitions.toggle.setState(state: SettingsSession.inst.settings.smoothTransitions ? 1 : 0, trigger: true)
+        self.smoothTransitionsSetting.toggle.setState(state: SettingsSession.inst.settings.smoothTransitions ? 1 : 0, trigger: true)
         self.hidePromptSetting.toggle.setState(state: SettingsSession.inst.settings.hidePrompt ? 1 : 0, trigger: true)
+        self.realisticHandsSetting.toggle.setState(state: SettingsSession.inst.settings.realisticHandModel ? 1 : 0, trigger: true)
     }
     
     private func updateActionButtons() {
@@ -167,12 +199,15 @@ class SettingsViewController: UIViewController {
     private func addActionButtons() {
         self.stack.insertView(self.buttonStack, at: self.stack.viewCount - 1)
         self.buttonStack.constrainHorizontal()
-        self.buttonStack.animateEntrance()
+        self.buttonStack.animateEntrance(onCompletion: {
+            self.scroll.scrollToBottomAnimated()
+        })
     }
     
     private func removeActionButtons() {
         self.buttonStack.animateExit() {
             self.buttonStack.removeFromSuperView()
+            self.scroll.layoutIfNeededAnimated()
         }
     }
     

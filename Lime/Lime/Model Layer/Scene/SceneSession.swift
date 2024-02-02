@@ -16,11 +16,32 @@ class SceneSession {
     public let sceneController = SceneController()
     private(set) var activePrompt: String = ""
     private(set) var sequence: HandModelSequence? = nil
-    private var fileDirectory: String {
+    private var animationModelFileDirectory: String {
         return SettingsSession.inst.settings.leftHanded ? "alphabet3" : "alphabet1"
     }
-    private var fileSuffix: String {
+    private var animationFileSuffix: String {
         return SettingsSession.inst.settings.leftHanded ? "_3" : "_1"
+    }
+    private var handModel: HandModel {
+        if SettingsSession.inst.settings.realisticHandModel {
+            let result = HandModel(subDir: "realistic", fileName: "idle_realistic_hands.dae", blendInDuration: 0.0)
+            result.editMaterial(childNode: .hands) { material in
+                material.diffuse.contents = LimeTextures.realisticColor
+                material.metalness.contents = LimeTextures.realisticMetalic
+                material.roughness.contents = LimeTextures.realisticRoughness
+                material.normal.contents = LimeTextures.realisticNormal
+                material.lightingModel = .physicallyBased
+            }
+            return result
+        } else {
+            return HandModel(subDir: "alphabet1", fileName: "Idle_1.dae", blendInDuration: 0.0)
+        }
+    }
+    public var handModelProxy: HandModel {
+        // Make sure this has a unique name so it isn't replaced by the same model it's representing
+        let handModel = self.handModel
+        handModel.rename(to: "idle-proxy")
+        return handModel
     }
     
     private init() { }
@@ -63,6 +84,19 @@ class SceneSession {
         self.sceneController.setCamera(to: camera)
         self.resetCamera()
         
+        if SettingsSession.inst.settings.realisticHandModel {
+            self.setupRealisticLights()
+        } else {
+            self.setupSimpleLights()
+        }
+        
+        self.sceneController.setCameraControl(allowed: true)
+        self.sceneController.setBackgroundColor(to: LimeColors.sceneFill)
+    }
+    
+    func setupSimpleLights() {
+        self.sceneController.clearLights()
+        
         let highlights = SceneLight(id: "highlights")
             .setType(to: .omni)
             .setColor(to: LimeColors.accent)
@@ -89,9 +123,42 @@ class SceneSession {
             .setColor(to: LimeColors.accent)
             .setIntensity(to: 200)
         self.sceneController.addLight(ambientLight)
+    }
+    
+    func setupRealisticLights() {
+        self.sceneController.clearLights()
         
-        self.sceneController.setCameraControl(allowed: true)
-        self.sceneController.setBackgroundColor(to: LimeColors.sceneFill)
+        let highlights = SceneLight(id: "highlights")
+            .setType(to: .omni)
+            .setColor(to: .white)
+            .setPosition(to: SCNVector3(x: 0, y: 10, z: 2))
+            .setIntensity(to: 100)
+        self.sceneController.addLight(highlights)
+        
+        let frontLight = SceneLight(id: "frontLight")
+            .setType(to: .directional)
+            .setColor(to: .white)
+            .setIntensity(to: 800)
+            .setTemperature(to: 6300)
+            .setPosition(to: SCNVector3(x: 0, y: 8, z: 10))
+            .direct(to: SCNVector3())
+        self.sceneController.addLight(frontLight)
+        
+        let backLight = SceneLight(id: "backLight")
+            .setType(to: .directional)
+            .setColor(to: .white)
+            .setIntensity(to: 800)
+            .setTemperature(to: 6200)
+            .setPosition(to: SCNVector3(x: 0, y: 8, z: -10))
+            .direct(to: SCNVector3())
+        self.sceneController.addLight(backLight)
+        
+        let ambientLight = SceneLight(id: "ambient")
+            .setType(to: .ambient)
+            .setColor(to: .white)
+            .setIntensity(to: 600)
+            .setTemperature(to: 6300)
+        self.sceneController.addLight(ambientLight)
     }
     
     func clearLetterSequence() {
@@ -119,13 +186,17 @@ class SceneSession {
             self.sequence = nil
             return true
         }
-        var handModels = [HandModel]()
-        let subDir = self.fileDirectory
-        let suffix = self.fileSuffix
+        var animationModels = [HandModel]()
+        let subDir = self.animationModelFileDirectory
+        let suffix = self.animationFileSuffix
         for char in prompt {
-            handModels.append(HandModel(subDir: subDir, fileName: "\(char)\(suffix).dae", blendInDuration: 0.0))
+            let fileName = char == " " ? "Idle\(suffix).dae" : "\(char)\(suffix).dae"
+            animationModels.append(HandModel(subDir: subDir, fileName: fileName, blendInDuration: 0.0))
         }
-        self.sequence = HandModelSequence(handModels: handModels)
+        self.sequence = HandModelSequence(
+            handModel: self.handModel,
+            animationModels: animationModels
+        )
         self.sequence?.mount(to: self.sceneController)
         return true
     }
@@ -141,20 +212,29 @@ class SceneSession {
             self.sequence = nil
             return true
         }
-        var handModels = [HandModel]()
-        let subDir = self.fileDirectory
-        let suffix = self.fileSuffix
+        var animationModels = [HandModel]()
+        let subDir = self.animationModelFileDirectory
+        let suffix = self.animationFileSuffix
         for char in prompt {
-            handModels.append(HandModel(subDir: subDir, fileName: "\(char)\(suffix).dae", blendInDuration: 0.55))
+            let fileName = char == " " ? "Idle\(suffix).dae" : "\(char)\(suffix).dae"
+            animationModels.append(HandModel(subDir: subDir, fileName: fileName, blendInDuration: 0.55))
         }
-        self.sequence = HandModelSequence(handModels: handModels)
+        self.sequence = HandModelSequence(
+            handModel: self.handModel,
+            animationModels: animationModels
+        )
         self.sequence?.mount(to: self.sceneController)
         return true
     }
     
     private func cleanPrompt(prompt: String) -> String {
-        let cleaned = prompt.lowercased().filter({ $0.isLetter })
-        return String(cleaned)
+        // Lowercase and filter out non-letter characters except spaces
+        let cleaned = prompt.lowercased().filter({ $0.isLetter || $0 == " " })
+        // Trim spaces from the start and end
+        let trimmed = cleaned.trimmingCharacters(in: .whitespaces)
+        // Replace multiple spaces with a single space
+        let singleSpaced = trimmed.replacingOccurrences(of: " +", with: " ", options: .regularExpression, range: nil)
+        return singleSpaced
     }
     
 }

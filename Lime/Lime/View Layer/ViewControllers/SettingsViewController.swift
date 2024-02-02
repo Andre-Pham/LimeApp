@@ -16,8 +16,8 @@ class SettingsViewController: UIViewController {
     private let mainTitle = LimeText()
     private let chiralitySetting = SettingsRowView<Bool>()
     private let smoothTransitionsSetting = SettingsRowView<Bool>()
-    private let hidePromptSetting = SettingsRowView<Bool>()
     private let realisticHandsSetting = SettingsRowView<Bool>()
+    private let hidePromptSetting = SettingsRowView<Bool>()
     private let buttonStack = LimeHStack()
     private let applyButton = LimeButton()
     private let cancelButton = LimeButton()
@@ -46,8 +46,8 @@ class SettingsViewController: UIViewController {
             .addView(self.mainTitle)
             .addView(self.chiralitySetting)
             .addView(self.smoothTransitionsSetting)
-            .addView(self.hidePromptSetting)
             .addView(self.realisticHandsSetting)
+            .addView(self.hidePromptSetting)
             .addGap(size: 8)
             .addSpacer()
         
@@ -101,28 +101,6 @@ class SettingsViewController: UIViewController {
                 }
             })
         
-        self.hidePromptSetting
-            .constrainHorizontal()
-            .setText(label: Strings("setting.hidePrompt").local, subLabel: Strings("label.hidePromptSetting").local)
-        self.hidePromptSetting.toggle
-            .addState(value: false, icon: "a.square")
-            .addState(value: true, icon: "a.square.fill")
-            .setOnChange({ isToggled in
-                if isToggled {
-                    self.hidePromptSetting.toggle
-                        .setBackgroundColor(to: LimeColors.primaryButtonFill)
-                        .setForegroundColor(to: LimeColors.textPrimaryButton)
-                } else {
-                    self.hidePromptSetting.toggle
-                        .setBackgroundColor(to: LimeColors.secondaryButtonFill)
-                        .setForegroundColor(to: LimeColors.textSecondaryButton)
-                }
-                if !self.resetActive {
-                    SettingsSession.inst.settings.setHidePromptSetting(to: isToggled)
-                    self.updateActionButtons()
-                }
-            })
-        
         self.realisticHandsSetting
             .constrainHorizontal()
             .setText(label: Strings("setting.realisticHands").local, subLabel: Strings("label.realisticHandsSetting").local)
@@ -141,6 +119,28 @@ class SettingsViewController: UIViewController {
                 }
                 if !self.resetActive {
                     SettingsSession.inst.settings.setUseRealisticHandModelSetting(to: isToggled)
+                    self.updateActionButtons()
+                }
+            })
+        
+        self.hidePromptSetting
+            .constrainHorizontal()
+            .setText(label: Strings("setting.hidePrompt").local, subLabel: Strings("label.hidePromptSetting").local)
+        self.hidePromptSetting.toggle
+            .addState(value: false, icon: "a.square")
+            .addState(value: true, icon: "a.square.fill")
+            .setOnChange({ isToggled in
+                if isToggled {
+                    self.hidePromptSetting.toggle
+                        .setBackgroundColor(to: LimeColors.primaryButtonFill)
+                        .setForegroundColor(to: LimeColors.textPrimaryButton)
+                } else {
+                    self.hidePromptSetting.toggle
+                        .setBackgroundColor(to: LimeColors.secondaryButtonFill)
+                        .setForegroundColor(to: LimeColors.textSecondaryButton)
+                }
+                if !self.resetActive {
+                    SettingsSession.inst.settings.setHidePromptSetting(to: isToggled)
                     self.updateActionButtons()
                 }
             })

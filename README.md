@@ -1,3 +1,13 @@
+## Disclaimer
+
+**This project has been moved to a private repo.**
+
+As of 07/02/2024, this project was moved to a private repo to be continued being worked on by me (Andre Pham), as requested by the project's steering committee. The app is in beta testing and upon being released to the App Store, this page will be updated. Hence this repo acts as an archive of this project up to release 1.2.2.
+
+There are significant changes being worked on for the full release - stay tuned!
+
+--------
+
 ![page](Assets/page.png)
 
 ## About

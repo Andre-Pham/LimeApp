@@ -235,5 +235,5 @@ xcuserdata
 
 # End of https://www.toptal.com/developers/gitignore/api/swift,xcode,swiftpackagemanager,swiftpm,macos
 
-
-/Data
+# Don't include models to stop uploads of the app without permission
+*.scnassets
